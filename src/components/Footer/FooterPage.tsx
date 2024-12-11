@@ -1,0 +1,112 @@
+import Image from "next/image";
+import React from "react";
+
+const FooterPage = () => {
+  return (
+    <footer className="px-[10%] pt-10 bg-[#121212] text-white mt-[10vh]">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Logo Section */}
+        <div>
+          <Image
+            src="/Images/MenrolLogo.png"
+            alt="Placeholder"
+            className="w-auto h-auto rounded-lg object-cover"
+            height={200}
+            width={200}
+          />
+          <p className="text-sm pt-6">
+          Leo elementum iaculis quam massa vitae odio sed. Morbi tincidunt senectus.
+          </p>
+        </div>
+
+        {/* Navigation Section */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+          <ul className="space-y-2">
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Our Services
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Our Team
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Services Section */}
+        <div>
+          <h3 className="text-lg font-semibold mb-4">Services</h3>
+          <ul className="space-y-2">
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Home Cleaning
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Office Cleaning
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Kitchen Cleaning
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:underline decoration-blue-500">
+                Vehicle Cleaning
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        {/* Subscribe to Newsletter Section */}
+        <div>
+          <h3 className="text-[18px] text-[#FFFFFF] font-semibold mb-4">
+            Subscribe to Newsletter
+          </h3>
+          <form>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="w-full pl-6 mb-4 rounded-full p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button className="w-[9vw] rounded-full bg-[#0054A5] p-4 hover:bg-blue-700">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Footer Bottom Section */}
+      <hr className="my-8 border-gray-700" />
+      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+        <p>Copyright &copy; 2024 Menrol</p>
+        <p className="flex space-x-4">
+          <a href="#" className="hover:underline decoration-blue-500">
+            Terms of Use
+          </a>
+          <span>|</span>
+          <a href="#" className="hover:underline decoration-blue-500">
+            Privacy Policy
+          </a>
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default FooterPage;
