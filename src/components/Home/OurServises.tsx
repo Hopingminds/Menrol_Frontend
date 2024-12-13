@@ -1,8 +1,12 @@
+"use client"
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const OurServises = () => {
+  const router=useRouter()
+
   return (
     <div className="gap-4 px-[10%] ">
       <h1
@@ -21,7 +25,7 @@ const OurServises = () => {
             with Supaklin
           </h1>
         </div>
-        <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
+        <button onClick={()=>router.push('/about')} className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
           View All
         </button>
       </div>
