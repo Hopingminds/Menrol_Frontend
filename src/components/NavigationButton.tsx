@@ -1,5 +1,6 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 
 interface NavigationButtonProps {
   path: string;
@@ -7,9 +8,16 @@ interface NavigationButtonProps {
 }
 
 const NavigationButton: React.FC<NavigationButtonProps> = ({ path, label }) => {
+  const currentPath = usePathname();
+  const isActive = currentPath === path;
+
   return (
     <Link href={path}>
-      <p className="hover:text-blue-500 cursor-pointer">
+      <p
+        className={`cursor-pointer ${
+          isActive ? "text-blue-700 font-bold underline" : "hover:text-blue-500"
+        }`}
+      >
         {label}
       </p>
     </Link>
