@@ -5,17 +5,17 @@ const HowToApply: React.FC = () => {
         {
             heading: 'STEP 1',
             title: 'Find Job',
-            description: 'Tellus aliquam faucibus imperdiet eget interdum risus diam.',
+            description: 'Find your ideal job with ease and convenience',
         },
         {
             heading: 'STEP 2',
             title: 'Submit CV',
-            description: 'Tellus aliquam faucibus imperdiet eget interdum risus diam.',
+            description: 'Submit your CV and take the next step.',
         },
         {
             heading: 'STEP 3',
             title: 'Interview',
-            description: 'Tellus aliquam faucibus imperdiet eget interdum risus diam.',
+            description: 'Nail the interview and secure your dream job',
         },
     ];
 

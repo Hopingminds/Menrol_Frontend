@@ -151,7 +151,7 @@ const Header = () => {
           <NavigationButton path="/about" label="About Us" />
           <NavigationButton path="/ServiceDetails" label="Services" />
           <NavigationButton path="/careers" label="Careers" />
-          <NavigationButton path="/contact" label="Contact Us" />
+          <NavigationButton path="/contactus" label="Contact Us" />
 
           {/* Button */}
           <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0">

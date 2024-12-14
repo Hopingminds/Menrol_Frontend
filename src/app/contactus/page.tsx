@@ -18,7 +18,7 @@ const contactus: React.FC = () => {
                 <div className="flex-1 space-y-8 text-center lg:text-left px-24  ">
                     <h2 className="text-5xl font-bold text-gray-800 ">Get in Touch</h2>
                     <p className="text-gray-600">
-                        Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris nunc aliquam nunc ullamcorper tincidunt morbi.
+                        Contact us now for expert guidance, quick responses, and solutions to your specific needs
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                         <div className="flex items-center space-x-4">
