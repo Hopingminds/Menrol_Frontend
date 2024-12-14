@@ -25,7 +25,7 @@ const OurServises = () => {
             with Supaklin
           </h1>
         </div>
-        <button onClick={()=>router.push('/about')} className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
+        <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
           View All
         </button>
       </div>
