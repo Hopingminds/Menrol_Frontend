@@ -37,7 +37,15 @@ const CoreValues: React.FC<CoreValuesProps> = ({ values, progressBars }) => {
             </div>
 
             {/* Progress Bars Section */}
-            <div className="relative bg-[rgba(107,106,126,1)] text-white p-6 rounded-md shadow-md w-72 h-96">
+            <div
+                className="relative bg-[rgba(107,106,126,1)] text-white p-6 rounded-md shadow-md w-72 h-96"
+                style={{
+                    backgroundImage: "url('/Images/value.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                }}
+            >
                 {/* New Box */}
                 <div className="absolute bottom-[-50px] -left-1 transform translate-x-[-50%] bg-blue-700 text-white p-4 w- h-40 rounded-lg shadow-lg">
                     {progressBars.map((progress, index) => (

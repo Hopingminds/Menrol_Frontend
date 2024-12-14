@@ -65,7 +65,16 @@ const FAQSection: FC = () => {
                 </div>
             </div>
             <div className="mt-6 w-2/3 flex flex-col items-start">
-                <div className="w-72 h-96 bg-[rgba(94,147,198,1)] rounded-xl"></div>
+                <div
+                    className="w-72 h-96 bg-[rgba(94,147,198,1)] rounded-xl"
+                    style={{
+                        backgroundImage: "url('/Images/FAQ.jpg')", 
+                        backgroundSize: "cover", 
+                        backgroundPosition: "center", 
+                        backgroundRepeat: "no-repeat", 
+                    }}
+                ></div>
+
                 <p className="mt-4 text-sm text-gray-500">
                     More Information <span className="text-orange-500">+1 (333) 000-0000</span>
                 </p>

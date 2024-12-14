@@ -74,12 +74,12 @@ const AboutUs: React.FC = () => {
     { label: "Flexible", percentage: 80 },
   ];
   const images = [
-    "/images/gallery1.jpg",
-    "/images/gallery2.jpg",
-    "/images/gallery3.jpg",
-    "/images/gallery4.jpg",
-    "/images/gallery5.jpg",
-    "/images/gallery6.jpg",
+    "/Images/plumber1.jpg",
+    "/Images/plumber2.jpg",
+    "/Images/plumber3.jpg",
+    "/Images/plumber4.jpg",
+    "/Images/plumber5.jpg",
+    "/Images/plumber6.jpg",
   ];
   return (
     <Layout>
@@ -126,11 +126,18 @@ const AboutUs: React.FC = () => {
                 />
               </div>
             </div>
-            {/* Newly Added Box (Decreased Width) */}
             <div className="flex flex-col items-center justify-center col-span-2">
-              <div className="bg-[rgba(94,147,198,1)] w-[95%] h-72 rounded-2xl shadow-md flex items-center justify-center text-center">
-                {/* Optional content inside the new box */}
+              <div className="bg-[rgba(94,147,198,1)] w-[95%] h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+                <video
+                  className="absolute top-0 left-0 w-full h-full object-cover"
+                  src="/Images/solar.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                ></video>
               </div>
+
               <div className="col-span-2 grid grid-cols-2 md:grid-cols-2 gap-20 ">
                 {" "}
                 {/* Reduced gap and added margin top */}
@@ -148,8 +155,16 @@ const AboutUs: React.FC = () => {
         </div>
 
         <div className="flex items-center  gap-14 mt-12 px-24">
-          <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"></div>
-
+          <div
+            className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"
+            style={{
+              backgroundImage: "url('/Images/businessman.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+          </div>
           {/* Content Section */}
           <div className="w-1/2 flex flex-col  ">
             <h1 className="text-black text-4xl font-bold mb-4">
@@ -181,12 +196,21 @@ const AboutUs: React.FC = () => {
 
         <div className="flex justify-center gap-16 items-center bg-[rgba(0,84,165,1)]  h-screen">
           {/* First Div */}
-          <div className="relative bg-[rgba(94,147,198,1)]  text-white p-4 rounded-xl  h-80 w-72 mx-4 px-24">
+          <div
+            className="relative bg-[rgba(94,147,198,1)] text-white p-4 rounded-xl h-80 w-72 mx-4 px-24"
+            style={{
+              backgroundImage: "url('/Images/OfferImage.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             {/* New Box */}
             <div className="absolute top-16 right-[-40px] bg-[rgba(36,35,42,1)] text-white p-4 w-28 h-36 rounded-lg shadow-lg">
               {/* Content for the overlapping box */}
             </div>
           </div>
+
 
           {/* Second Div */}
           <div className="mx-4">
