@@ -42,10 +42,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 1</h3>
+            <h3 className="mt-4 text-lg font-semibold">Home Cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Such a great experience! The cleaners were punctual and did a detailed job throughout my home
             </p>
           </div>
 
@@ -65,10 +64,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 2</h3>
+            <h3 className="mt-4 text-lg font-semibold">Office Cleaning </h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Our office space has never looked this clean! The cleaners were efficient, friendly, and thorough
             </p>
           </div>
 
@@ -88,10 +86,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 3</h3>
+            <h3 className="mt-4 text-lg font-semibold">Kitchen Cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+            Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free
             </p>
           </div>
         </div>

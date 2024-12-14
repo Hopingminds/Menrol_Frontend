@@ -15,23 +15,23 @@ const FAQSection: FC = () => {
 
     const faqs: FAQ[] = [
         {
-            question: "What is digital marketing?",
+            question: "How does the app ensure customer trust?",
             answer:
-                "Nulla enim lectus porttitor pulvinar. Diam sed fusce aliquam lacus. Tincidunt ultrices cursus amet donec egestas. Enim risus quam in in urna scelerisque proin. Eget aliquam cras nec egestas massa.",
+                "The app features verified profiles, ratings, and reviews to help customers make informed decisions about service providers.",
         },
         {
-            question: "What services do digital marketing agencies offer?",
+            question: "What happens if a customer cancels a booking?",
             answer:
-                "Digital marketing agencies offer services like SEO, social media management, PPC advertising, and content marketing.",
+                "If a customer cancels, you will be notified immediately. Any cancellation charges (if applicable) will follow the app’s policy.",
         },
         {
-            question: "How much does digital marketing cost?",
-            answer: "The cost of digital marketing varies depending on the scope of the project.",
+            question: "Is there a fee for using the app?",
+            answer: "The app may charge a small commission on completed jobs. Check the terms for detailed fee information.",
         },
         {
-            question: "How can digital marketing help my business?",
+            question: "What should I do if I face technical issues with the app?",
             answer:
-                "Digital marketing helps businesses reach a broader audience, generate leads, and boost revenue through online channels.",
+                "For technical issues, go to the “Help” section and report the problem. Our support team will assist you promptly.",
         },
     ];
 
@@ -68,10 +68,10 @@ const FAQSection: FC = () => {
                 <div
                     className="w-72 h-96 bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
-                        backgroundImage: "url('/Images/FAQ.jpg')", 
-                        backgroundSize: "cover", 
-                        backgroundPosition: "center", 
-                        backgroundRepeat: "no-repeat", 
+                        backgroundImage: "url('/Images/FAQ.jpg')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
                     }}
                 ></div>
 

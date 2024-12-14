@@ -4,20 +4,20 @@ import React from "react";
 const blogsData = [
   {
     id: 1,
-    title: "Card Heading 1",
-    description: "Some text content for card 1. This is a description.",
+    title: "HOME CLEANING",
+    description: "Trusted home cleaning professionals creating clean, fresh, and beautiful homes",
     image: "/Images/Notifications-1.png",
   },
   {
     id: 2,
-    title: "Card Heading 2",
-    description: "Some text content for card 2. This is a description.",
+    title: "office Cleaning",
+    description: "Efficient office cleaning services for a healthier, cleaner, and more focused workspace.",
     image: "/Images/Notifications-1.png",
   },
   {
     id: 3,
-    title: "Card Heading 3",
-    description: "Some text content for card 3. This is a description.",
+    title: "Kitchen Cleaning",
+    description: "Custom kitchen cleaning services delivering deep cleanliness and hygiene in every corner.",
     image: "/Images/Notifications-1.png",
   },
   {
@@ -26,7 +26,7 @@ const blogsData = [
     description: "Some text content for card 4. This is a description.",
     image: "/Images/Notifications-1.png",
   },
- 
+
 ];
 
 const Blogs = () => {
@@ -38,7 +38,7 @@ const Blogs = () => {
           {"/ BLOGS".split(" ").join("  ")}
         </h1>
         <h1 className="text-[#24232A] text-[56px] text-center pb-10">
-          Meet the Expert Team at Supaklin
+          Comfortable cleanliness,Supaklin's standard
         </h1>
       </div>
 

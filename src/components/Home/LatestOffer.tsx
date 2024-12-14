@@ -43,11 +43,10 @@ const LatestOffer = () => {
           </h1>
 
           <h1 className="text-[56px] font-bold mb-4 md:text-[40px]">
-            Limited Time Offer - Enjoy Exclusive Cleaning Discounts!
+            Big Savings, Big Clean: Limited Time Offer
           </h1>
           <p className="text-lg mb-4">
-            Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris nunc
-            aliquam nunc ullamcorper tincidunt morbi.
+            Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
           <p className="text-lg font-semibold cursor-pointer p-10 tracking-[0.2em]">
             Contact Us

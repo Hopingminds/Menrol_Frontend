@@ -7,14 +7,14 @@ import Header from '@/components/Home/Header';
 const careerdetails = () => {
     const content = {
         responsibilities: [
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna non eget eget nibh. Odio.",
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna.",
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna non eget eget nibh. Odio.",
+            "Responsibilities outline key duties and tasks that an individual must perform to meet job expectations and contribute to success.",
+            "Clear responsibilities ensure employees understand their roles, fostering accountability and helping teams work efficiently toward common organizational goals.",
+            "Job responsibilities define the specific tasks, skills, and outcomes expected from an employee, ensuring clarity and guiding performance.",
         ],
         jobRequirements: [
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna non eget eget nibh. Odio.",
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna.",
-            "Sollicitudin dictum sit lectus a bibendum. Feugiat eu sed justo in diam auctor ac. Ornare est mattis magna non eget eget nibh. Odio.",
+            "Job requirements can include a combination of educational background, specific certifications, and work experience to meet role demands.",
+            "They ensure clarity in the hiring process by establishing the necessary criteria for potential candidates to meet",
+            "They include education, certifications, technical expertise, and soft skills, ensuring candidates meet the standards set for the position",
         ],
     };
     const jobData = [
@@ -55,10 +55,7 @@ const careerdetails = () => {
                     </section>
                     <section className="mb-8 w-full">
                         <h2 className="text-xl font-bold mb-4">Job Description</h2>
-                        <p className="text-[#6B6A7E] text-lg font-normal mt-6">Lectus at est ipsum at ut iaculis dictum sem morbi.
-                            Auctor semper aliquet scelerisque lectus blandit.
-                            Eget vel arcu pulvinar pulvinar porttitor.
-                            At tristique vel ornare ut. Molestie donec imperdiet nisl vehicula nam sed.</p>
+                        <p className="text-[#6B6A7E] text-lg font-normal mt-6">A well-crafted job description provides detailed information about responsibilities, expectations, required qualifications, and specific job-related competencies for candidates.</p>
                     </section>
                     <section className="mb-8">
                         <h2 className="text-xl font-bold mb-4">Responsibilities</h2>

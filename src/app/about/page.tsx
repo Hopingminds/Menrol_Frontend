@@ -10,61 +10,61 @@ const AboutUs: React.FC = () => {
   const missionData = [
     {
       number: "01",
-      title: "Excellent Pioneers",
+      title: "Outstanding Innovators",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "We empower outstanding innovators to reshape industries, consistently providing forward-thinking solutions with exceptional results",
     },
     {
       number: "02",
       title: "Spotless Solutions",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "We provide a spotless solution, ensuring every inch of your space is cleaned to perfection",
     },
     {
       number: "03",
       title: "Healthy Environments",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "By prioritizing cleanliness and hygiene, we create healthy environments that enhance well-being and comfort",
     },
     {
       number: "04",
       title: "Sustainable Practices",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "Committed to sustainable practices, we focus on eco-friendly solutions that contribute to a healthier planet",
     },
     {
       number: "05",
       title: "Empowered Team",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "Driven by passion and empowerment, our team consistently delivers outstanding results and innovative solutions",
     },
     {
       number: "06",
-      title: "Lasting Bonds",
+      title: "Timeless Connections",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus.",
+        "Creating timeless connections by delivering value and trust, ensuring relationships that stand the test of tim",
     },
   ];
   const values = [
     {
       title: "Excellence in Every Detail",
       description:
-        "Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit elementum massa eleifend semper.",
+        "We achieve excellence in every detail, paying meticulous attention to create exceptional outcomes every time",
     },
     {
       title: "Personalized Care",
       description:
-        "Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit elementum massa eleifend semper.",
+        "We achieve excellence in every detail, paying meticulous attention to create exceptional outcomes every tim",
     },
     {
       title: "Transparent Communication",
       description:
-        "Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit elementum massa eleifend semper.",
+        "Experience personalized care with services designed to address your specific needs for optimal satisfaction",
     },
     {
       title: "Eco-Friendly Approach",
       description:
-        "Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit elementum massa eleifend semper.",
+        "Our commitment to transparent communication means no surprises—just clear, honest, and consistent updates every time.",
     },
   ];
   const progressBars = [
@@ -99,8 +99,7 @@ const AboutUs: React.FC = () => {
             <div className="flex justify-end w-2/3 mt-6">
               <div className="flex justify-end">
                 <p className="text-gray-500 md:w-1/2 text-sm self-end  text-justify">
-                  Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris
-                  nuncaliquam nunc ullamcorper tincidunt morbi.
+                  We perfect cleanliness, transforming every space into a spotless, fresh, and hygienic environment
                 </p>
               </div>
             </div>
@@ -122,7 +121,7 @@ const AboutUs: React.FC = () => {
               <div className="col-span-1">
                 <Feature
                   title="Professional Cleaners"
-                  description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                  description="Our professional cleaners offer expert cleaning services, transforming your space into a fresh, hygienic haven"
                 />
               </div>
             </div>
@@ -143,11 +142,11 @@ const AboutUs: React.FC = () => {
                 {/* Reduced gap and added margin top */}
                 <Feature
                   title="Flexible Scheduling"
-                  description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                  description="We offer flexible scheduling, making it easy to book cleaning services at your convenience."
                 />
                 <Feature
                   title="Attention to Detail"
-                  description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                  description="We focus on the small details, ensuring your space is cleaned with precision and care."
                 />
               </div>
             </div>
@@ -176,10 +175,7 @@ const AboutUs: React.FC = () => {
             </button>
 
             <p className="text-gray-600 text-justify">
-              Scelerisque risus in sagittis malesuada. Praesent nec vestibulum
-              ipsum odio enim risus. Egestas tempor morbi felis faucibus
-              vulputate lorem lectus tortor bibendum. Molestie id aliquam ornare
-              in imperdiet nisi.
+              With our embrace of cleanliness and beyond, we promise a level of service that ensures perfection. Every space we clean is carefully attended to, providing you with a healthy and welcoming environment.
             </p>
           </div>
         </div>
