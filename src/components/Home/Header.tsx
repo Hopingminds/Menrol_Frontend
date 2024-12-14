@@ -149,7 +149,7 @@ const Header = () => {
         >
           <NavigationButton path="/" label="Home" />
           <NavigationButton path="/about" label="About Us" />
-          <NavigationButton path="/services" label="Services" />
+          <NavigationButton path="/ServiceDetails" label="Services" />
           <NavigationButton path="/careers" label="Careers" />
           <NavigationButton path="/contact" label="Contact Us" />
 
