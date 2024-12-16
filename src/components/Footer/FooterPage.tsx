@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const FooterPage = () => {
@@ -7,15 +8,18 @@ const FooterPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo Section */}
         <div>
-          <Image
-            src="/Images/MenrolLogo.png"
-            alt="Placeholder"
-            className="w-auto h-auto rounded-lg object-cover"
-            height={200}
-            width={200}
-          />
+          <Link href="/" passHref>
+            <Image
+              src="/Images/MenrolLogo.png"
+              alt="Placeholder"
+              className="w-auto h-auto rounded-lg object-cover hover:scale-105"
+              height={200}
+              width={200}
+            />
+          </Link>
           <p className="text-sm pt-6">
-          Leo elementum iaculis quam massa vitae odio sed. Morbi tincidunt senectus.
+            Leo elementum iaculis quam massa vitae odio sed. Morbi tincidunt
+            senectus.
           </p>
         </div>
 
@@ -24,23 +28,31 @@ const FooterPage = () => {
           <h3 className="text-lg font-semibold mb-4">Navigation</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <a href="/" className="hover:underline decoration-blue-500">
                 Home
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <a href="about" className="hover:underline decoration-blue-500">
                 About Us
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <a
+                href="ServiceDetails"
+                className="hover:underline decoration-blue-500"
+              >
                 Our Services
               </a>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
-                Our Team
+              <a href="careers" className="hover:underline decoration-blue-500">
+                Careers
+              </a>
+            </li>
+            <li>
+              <a href="contactus" className="hover:underline decoration-blue-500">
+              Contact Us
               </a>
             </li>
           </ul>

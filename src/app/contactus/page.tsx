@@ -1,5 +1,6 @@
 import React from 'react';
 import FAQSection from "../../components/About/FaqSection";
+import Layout from '@/components/Layout';
 
 
 const contactus: React.FC = () => {
@@ -12,6 +13,7 @@ const contactus: React.FC = () => {
         '/Images/plumber6.jpg',
     ];
     return (
+        <Layout>
         <section className="w-screen border border-black-500 ">
             <div className="flex flex-col lg:flex-row justify-around p-8 bg-gray-50 ">
                 {/* Left Section */}
@@ -138,6 +140,7 @@ const contactus: React.FC = () => {
                 <FAQSection></FAQSection>
             </div>
         </section>
+        </Layout>
     );
 };
 

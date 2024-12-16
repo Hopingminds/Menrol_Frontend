@@ -7,8 +7,8 @@ import { MdOutlineWatchLater } from "react-icons/md";
 
 const WhyChooseUs = () => {
   return (
-    <div className="px-[10%] h-screen">
-      <div className="bg-[#F9F9FE] rounded-lg w-full h-[80vh] px-[10%] ">
+    <div className="px-[10%] py-[10vh] shadow-sm">
+      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%] ">
         <div className="flex flex-row justify-between font-lexend">
           <div className="py-[8%]">
             <h1
@@ -39,60 +39,76 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="flex flex-row justify-around font-Lexend">
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+
+        <div className="flex flex-col items-center py-10">
+          {/* First Row */}
+          <div className="flex flex-col sm:flex-row sm:justify-between w-full mb-10">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <FiUsers />
               </div>
-
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Reliable Cleaning Crew</h1>
+                <h1 className="text-[24px] text-[#24232A]">
+                  Reliable Cleaning Crew
+                </h1>
                 <p className="text-[16px] text-[#24232A]">
                   Trusted cleaning experts making every space
                 </p>
-                <p className="text-[16px]"> shine with care and precision</p>
+                <p className="text-[16px]">shine with care and precision</p>
               </div>
             </div>
 
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[7vw] rounded-lg flex items-center justify-center text-white">
                 <MdOutlineWatchLater />
               </div>
               <div>
                 <h1 className="text-[24px] text-[#24232A]">On-Time Services</h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Timely delivery of services, ensuring reliability and customer satisfaction.
+                  Timely delivery of services, ensuring reliability and customer
+                  satisfaction.
                 </p>
-                <p className="text-[16px]"> satisfaction. reliability and customer satisfaction.</p>
+                <p className="text-[16px]">
+                  satisfaction, reliability, and customer care.
+                </p>
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-around py-10">
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+
+          {/* Second Row */}
+          <div className="flex flex-col sm:flex-row sm:justify-between w-full py-10">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[7vw] rounded-lg flex items-center justify-center text-white">
                 <IoCubeOutline />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Flexible Packages</h1>
+                <h1 className="text-[24px] text-[#24232A]">
+                  Flexible Packages
+                </h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Affordable and adaptable packages for all your cleaning and service needs.
+                  Affordable and adaptable packages for all your cleaning and
+                  service needs.
                 </p>
-                <p className="text-[16px]"> for all your cleaning and service needs.</p>
+                <p className="text-[16px]">
+                  for all your cleaning and service needs.
+                </p>
               </div>
             </div>
 
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <BsEmojiSmile />
               </div>
-
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Transparent Pricing</h1>
+                <h1 className="text-[24px] text-[#24232A]">
+                  Transparent Pricing
+                </h1>
                 <p className="text-[16px] text-[#24232A]">
                   Fair and transparent pricing,
                 </p>
-                <p className="text-[16px] text-[#24232A]">ensuring clarity on every service we provide.</p>
+                <p className="text-[16px] text-[#24232A]">
+                  ensuring clarity on every service we provide.
+                </p>
               </div>
             </div>
           </div>
