@@ -110,7 +110,7 @@ const AboutUs: React.FC = () => {
           {/* Right Section: Paragraph */}
           <div className="flex justify-end w-2/3 mt-6">
             <div className="flex justify-end">
-              <p className="text-gray-500 md:w-1/2 text-sm self-end  text-justify">
+              <p className="text-gray-500 md:w-1/2 text-sm self-end  text-justify font-sans">
                 We perfect cleanliness, transforming every space into a spotless, fresh, and hygienic environment
               </p>
             </div>
@@ -124,7 +124,7 @@ const AboutUs: React.FC = () => {
           <div className="flex-col">
             <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72">
               <div className="text-6xl font-bold text-white mt-14">99%</div>
-              <p className="text-gray-600 mt-2">Satisfied Clients</p>
+              <p className="text-gray-600 mt-2 font-sans">Satisfied Clients</p>
               <div className="absolute top-10 left-10 text-3xl text-[rgba(193,244,88,1)]"> ★</div>
               <div className="absolute bottom-14  right-12 text-[rgba(36,35,42,1)] text-3xl">
                 ★
@@ -165,7 +165,7 @@ const AboutUs: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex items-center  gap-14 mt-12 px-24">
+      <div className="flex items-center  gap-14 mt-10 px-24">
         <div
           className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"
           style={{
@@ -177,16 +177,19 @@ const AboutUs: React.FC = () => {
         >
         </div>
         {/* Content Section */}
-        <div className="w-1/2 flex flex-col  ">
-          <h1 className="text-black text-4xl font-bold mb-4">
-            Embracing Cleanliness and Beyond:
+        <div className="w-3/5 flex flex-col h-72 leading-loose">
+          <h1 className="text-black text-5xl font-bold mb-4 font-lexend tracking-widest w-full">
+            Embracing Cleanliness
+          </h1>
+          <h1 className="text-black text-5xl font-bold mb-4 font-lexend tracking-widest  w-full">
+            and Beyond:
           </h1>
           <button className="bg-[rgba(193,244,88,1)] text-white w-[50%] h-10 px-2 py-2 mb-4 flex items-center justify-center gap-1 ">
             <span className="text-md">🎤</span>
-            <span className="text-sm">A message from the founder</span>
+            <span className="text-sm font-lexend font-bold text-[rgba(36,35,42,1)]">A message from the founder</span>
           </button>
 
-          <p className="text-gray-600 text-justify">
+          <p className="text-gray-600 font-sans text-justify tracking-wider">
             With our embrace of cleanliness and beyond, we promise a level of service that ensures perfection. Every space we clean is carefully attended to, providing you with a healthy and welcoming environment.
           </p>
         </div>
@@ -220,8 +223,8 @@ const AboutUs: React.FC = () => {
               ★
             </div>
             {/* Centered Content */}
-            <p className="text-3xl text-center font-semibold">22 </p>
-            <p className="text-xs text-center text-[rgba(188,187,201,1)]">Years of Experience</p>
+            <p className="text-3xl text-center font-semibold font-lexend">22 </p>
+            <p className="text-xs text-center font-sans text-[rgba(188,187,201,1)]">Years of Experience</p>
           </div>
 
         </div>
@@ -231,24 +234,24 @@ const AboutUs: React.FC = () => {
 
         {/* Second Div */}
         <div className="mx-4 mt-24">
-          <p className="text-sm font-bold text-green-500">
+          <p className="text-sm font-bold text-green-500 font-lexend">
             /DISCOUNT UP TO 50%
           </p>
-          <h1 className="text-5xl font-bold mt-2   tracking-widest text-[rgba(255,255,255,1)]">
+          <h1 className="text-5xl font-bold mt-2   tracking-widest text-[rgba(255,255,255,1)] font-lexend">
             Limited Time Offer-
             <br />
             Enjoy Exclusive
             <br />
             Cleaning Discounts!
           </h1>
-          <p className="mt-4 text-md   text-[rgba(188,187,201,1)]">
+          <p className="mt-4 text-md   text-[rgba(188,187,201,1)] font-sans">
             Don’t miss out! Limited-time savings on professional
 
 
             <br />
             cleaning services for a spotless experience.
           </p>
-          <p className="mt-4 text-sm font-bold underline cursor-pointer text-[rgba(255,255,255,1)]">
+          <p className="mt-4 text-sm font-bold underline cursor-pointer text-[rgba(255,255,255,1)] font-lexend">
             Contact Us
           </p>
         </div>

@@ -39,10 +39,10 @@ const FAQSection: FC = () => {
         <div className="flex flex-col md:flex-row items-start justify-center py-12 bg-white">
             {/* Left Section - FAQ */}
             <div className="w-[90%] px-32 ">
-                <p className="text-sm font-bold text-green-500 uppercase">
+                <p className="text-sm font-bold text-green-500 uppercase font-lexend">
                     / Questions & Answers
                 </p>
-                <h1 className="text-4xl font-bold mt-4 text-[rgba(36,35,42,1)] leading-relaxed">
+                <h1 className="text-4xl font-bold mt-4 text-[rgba(36,35,42,1)] leading-relaxed font-lexend">
                     Frequently Asked<br /> Questions
                 </h1>
                 <div className="mt-8 space-y-6 ">
@@ -52,13 +52,13 @@ const FAQSection: FC = () => {
                                 onClick={() => toggleQuestion(index)}
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
-                                <h2 className="text-lg font-bold">{faq.question}</h2>
+                                <h2 className="text-lg font-bold font-lexend">{faq.question}</h2>
                                 <span className="text-2xl font-bold">
                                     {openQuestionIndex === index ? "−" : "+"}
                                 </span>
                             </button>
                             {openQuestionIndex === index && (
-                                <p className="mt-2 text-sm text-gray-600">{faq.answer}</p>
+                                <p className="mt-2 text-sm text-[rgba(107,106,126,1)] font-sans">{faq.answer}</p>
                             )}
                         </div>
                     ))}

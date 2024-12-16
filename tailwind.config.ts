@@ -14,6 +14,7 @@ export default {
       },
       fontFamily: {
         lexend: ['Lexend', 'sans-serif'],
+        sans: ["DM Sans", "sans-serif"],
       },
     },
   },
