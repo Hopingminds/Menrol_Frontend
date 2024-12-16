@@ -2,6 +2,7 @@ import React from 'react';
 import FAQSection from "../../components/About/FaqSection";
 import DynamicHeader from '@/components/About/DynamicHeader';
 import Header from '@/components/Home/Header';
+import Layout from '@/components/Layout';
 
 
 const contactus: React.FC = () => {
@@ -14,6 +15,7 @@ const contactus: React.FC = () => {
         '/Images/plumber6.jpg',
     ];
     return (
+
         <section className="w-screen border border-black-500 ">
             <div>
                 <Header></Header>
