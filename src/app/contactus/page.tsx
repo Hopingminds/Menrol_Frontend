@@ -1,5 +1,7 @@
 import React from 'react';
 import FAQSection from "../../components/About/FaqSection";
+import DynamicHeader from '@/components/About/DynamicHeader';
+import Header from '@/components/Home/Header';
 
 
 const contactus: React.FC = () => {
@@ -13,6 +15,12 @@ const contactus: React.FC = () => {
     ];
     return (
         <section className="w-screen border border-black-500 ">
+            <div>
+                <Header></Header>
+            </div>
+            <div className='border w-full h-14'>
+                <DynamicHeader title="contactus" />
+            </div>
             <div className="flex flex-col lg:flex-row justify-around p-8 bg-gray-50 ">
                 {/* Left Section */}
                 <div className="flex-1 space-y-8 text-center lg:text-left px-24  ">

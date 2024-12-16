@@ -4,6 +4,7 @@ import CultureSection from "../../components/Careers/CultureSection";
 import HowToApply from "../../components/Careers/HowToApply";
 import JobCard from "@/components/CareerDetails/JobCard";
 import Layout from "@/components/Layout";
+import DynamicHeader from "@/components/About/DynamicHeader";
 
 const Careers: React.FC = () => {
   const missionData = [
@@ -98,6 +99,9 @@ const Careers: React.FC = () => {
   return (
     <Layout>
       <section className="bg-white py-16">
+        <div>
+          <DynamicHeader title="careers" />
+        </div>
         <div className="flex">
           <div className="flex-col text-justify px-24">
             <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend ">

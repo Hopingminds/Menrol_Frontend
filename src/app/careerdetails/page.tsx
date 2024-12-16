@@ -3,6 +3,7 @@ import JobCard from '@/components/CareerDetails/JobCard';
 import HowToApply from '@/components/Careers/HowToApply';
 import Footer from '../../components/Footer/FooterPage'
 import Header from '@/components/Home/Header';
+import DynamicHeader from '@/components/About/DynamicHeader';
 
 const careerdetails = () => {
     const content = {
@@ -41,10 +42,15 @@ const careerdetails = () => {
         }
     ]
     return (
-        <section className="bg-white py-16">
+        <section className="bg-white ">
             <div>
                 <Header></Header>
             </div>
+            <div>
+                <DynamicHeader title="careerdetails" />
+
+            </div>
+
             <div className="flex  items-start  text-[#24232A] justify-between gap-20 px-24 mt-8">
                 <div className="w-[70%]   ">
                     <h1 className="font-semibold text-4xl text-[#24232A]">Cleaning Technician</h1>

@@ -6,12 +6,15 @@ import OurServises from "@/components/Sercices/OurServices";
 import OurValue from "@/components/Sercices/OurValue";
 import Reviews from "@/components/Sercices/Reviews";
 import ServicesHeader from "@/components/Sercices/ServicesHeader";
+import DynamicHeader from "@/components/About/DynamicHeader";
 import React from "react";
 
 function Services() {
   return (
     <Layout>
       <ServicesHeader />
+      <DynamicHeader title="Services" />
+
       <Reviews />
       <LatestProjects />
       <OurValue />
