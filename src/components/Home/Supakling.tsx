@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 
@@ -9,6 +10,8 @@ const Supakling = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showButton, setShowButton] = useState(false); // Initially hide the button
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -51,8 +54,21 @@ const Supakling = () => {
     };
   }, []);
 
+  const handleGoContact = () => {
+    setLoading(true);
+    router.push("/about");
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
+
   return (
     <div className="pt-10">
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="loader"></div>
+        </div>
+      )}
       <div className="gap-4 px-4 md:px-[10%] mb-[10vh]">
         <div className="flex gap-6">
           {/* Left Section */}
@@ -78,7 +94,7 @@ const Supakling = () => {
           {/* Middle Section */}
           <div className="flex flex-col w-full md:w-2/2 pl-0 ">
             <div className="flex flex-row justify-between md:flex-col md:items-start">
-              <h1 className="text-[#51DC98] uppercase font-bold text-xs md:text-lg">
+              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md">
                 {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
               </h1>
               <div className="hidden md:block">
@@ -110,7 +126,7 @@ const Supakling = () => {
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
-                <button className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw]">
+                <button className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw]" onClick={handleGoContact}>
                   Learn More
                 </button>
               </div>

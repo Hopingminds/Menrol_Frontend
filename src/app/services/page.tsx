@@ -12,9 +12,8 @@ import React from "react";
 function Services() {
   return (
     <Layout>
+      <DynamicHeader title="Our Services / Service Details" />
       <ServicesHeader />
-      <DynamicHeader title="Services" />
-
       <Reviews />
       <LatestProjects />
       <OurValue />

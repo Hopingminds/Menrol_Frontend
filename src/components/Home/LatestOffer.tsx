@@ -1,9 +1,30 @@
+"use client";
+
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import "../Lodder.css"
 
 const LatestOffer = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false); // State to track loading
+
+  const handleGoContact = () => {
+    setLoading(true); // Show loader
+    router.push("/contactus");
+    setTimeout(() => {
+      setLoading(false); // Hide loader
+    }, 1000); // Adjust time to suit the actual duration
+  };
+
   return (
     <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative">
+      {loading && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="loader"></div>
+        </div>
+      )}
+
       <div className="px-[10%] flex flex-col-reverse md:flex-row w-full justify-between md:items-center sm:top-4">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
@@ -48,7 +69,10 @@ const LatestOffer = () => {
           <p className="text-lg mb-4">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
-          <p className="text-lg font-semibold cursor-pointer p-10 tracking-[0.2em]">
+          <p
+            className="text-lg font-semibold cursor-pointer p-10 tracking-[0.2em]"
+            onClick={handleGoContact}
+          >
             Contact Us
           </p>
         </div>

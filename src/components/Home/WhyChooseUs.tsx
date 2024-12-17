@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
-              className="absolute top-5 right-12 w-[3vw] h-[6vh] object-cover"
+              className="absolute top-2 right-5 w-auto h-auto object-cover"
               height={100}
               width={100}
             />
@@ -48,13 +48,15 @@ const WhyChooseUs = () => {
                 <FiUsers />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A]">
                   Reliable Cleaning Crew
                 </h1>
-                <p className="text-[16px] text-[#24232A]">
-                  Trusted cleaning experts making every space
+                <p className="text-[14px] text-[#24232A]">
+                  Trusted cleaning experts making every space <br />
+                  Shine with care and precision
+
                 </p>
-                <p className="text-[16px]">shine with care and precision</p>
+               
               </div>
             </div>
 
@@ -63,13 +65,13 @@ const WhyChooseUs = () => {
                 <MdOutlineWatchLater />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">On-Time Services</h1>
-                <p className="text-[16px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A]">On-Time Services</h1>
+                <p className="text-[14px] text-[#24232A]">
                   Timely delivery of services, ensuring reliability and customer
-                  satisfaction.
+                  satisfaction. <br /> Satisfaction, reliability, and customer care.
                 </p>
-                <p className="text-[16px]">
-                  satisfaction, reliability, and customer care.
+                <p className="text-[14px]">
+                 
                 </p>
               </div>
             </div>
@@ -82,16 +84,14 @@ const WhyChooseUs = () => {
                 <IoCubeOutline />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A]">
                   Flexible Packages
                 </h1>
-                <p className="text-[16px] text-[#24232A]">
+                <p className="text-[14px] text-[#24232A]">
                   Affordable and adaptable packages for all your cleaning and
-                  service needs.
+                  service needs. <br /> For all your cleaning and service needs.
                 </p>
-                <p className="text-[16px]">
-                  for all your cleaning and service needs.
-                </p>
+               
               </div>
             </div>
 
@@ -100,14 +100,14 @@ const WhyChooseUs = () => {
                 <BsEmojiSmile />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A]">
                   Transparent Pricing
                 </h1>
-                <p className="text-[16px] text-[#24232A]">
-                  Fair and transparent pricing,
+                <p className="pl-1 text-[14px] text-[#24232A]">
+                  Fair and transparent pricing, <br /> Ensuring clarity on every service we provide.
                 </p>
-                <p className="text-[16px] text-[#24232A]">
-                  ensuring clarity on every service we provide.
+                <p className="text-[14px] text-[#24232A]">
+                  
                 </p>
               </div>
             </div>

@@ -31,13 +31,13 @@ const OurServises = () => {
       </div>
 
       {/* Cards Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 pt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-[5vw] pt-10">
         {/* Card 1 */}
         <div className="relative shadow-lg">
           <Image
             src="/Images/Plumber1.jpg"
             alt="Placeholder"
-            className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
+            className="w-full h-[45vh] md:w-full md:h-[55vh] rounded-lg object-cover"
             height={200}
             width={200}
           />
@@ -64,7 +64,7 @@ const OurServises = () => {
           <Image
             src="/Images/card-01.png"
             alt="Placeholder"
-            className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
+            className="w-full h-[45vh] md:w-full md:h-[55vh] rounded-lg object-cover"
             height={200}
             width={200}
           />
@@ -87,11 +87,11 @@ const OurServises = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="relative shadow-lg">
+        <div className="relative shadow-lg ">
           <Image
             src="/Images/Plumber4.jpg"
             alt="Placeholder"
-            className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
+            className="w-full h-[45vh] md:w-full md:h-[55vh] rounded-lg object-cover"
             height={200}
             width={200}
           />
