@@ -27,5 +27,4 @@ const contactus: React.FC = () => {
         </Layout>
     );
 };
-
 export default contactus;
