@@ -110,7 +110,7 @@ const Header = () => {
                     </div>
                     <div className="flex items-center gap-1 md:gap-2">
                         <FaPhoneAlt />
-                        <p>+91 08.00 - 17.00</p>
+                        <p>+91 9193700050</p>
                     </div>
                 </div>
 
