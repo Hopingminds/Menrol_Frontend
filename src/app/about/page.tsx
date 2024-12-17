@@ -93,7 +93,7 @@ const AboutUs: React.FC = () => {
       <div className="border ">
         <Header></Header>
       </div>
-      <div className="">
+      <div >
         <DynamicHeader title="About Us" />
       </div>
       <div className="mb-12 mt-4">

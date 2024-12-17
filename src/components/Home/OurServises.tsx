@@ -5,7 +5,7 @@ import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const OurServises = () => {
-  const router=useRouter()
+  const router = useRouter()
 
   return (
     <div className="gap-4 px-[10%] ">
@@ -35,7 +35,7 @@ const OurServises = () => {
         {/* Card 1 */}
         <div className="relative shadow-lg">
           <Image
-            src="/Images/card-01.png"
+            src="/Images/Plumber1.jpg"
             alt="Placeholder"
             className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
             height={200}
@@ -50,10 +50,10 @@ const OurServises = () => {
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px]">
-                Home Cleaning
+                Plumber
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                On-call plumbers ready to resolve your plumbing issues with expertise and efficiency.
               </p>
             </div>
           </div>
@@ -77,10 +77,10 @@ const OurServises = () => {
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px]">
-                Office Cleaning
+                Electrician
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                Professional electricians available on-demand for repairs, upgrades, and electrical emergencies.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ const OurServises = () => {
         {/* Card 3 */}
         <div className="relative shadow-lg">
           <Image
-            src="/Images/card-01.png"
+            src="/Images/Plumber4.jpg"
             alt="Placeholder"
             className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
             height={200}
@@ -104,10 +104,10 @@ const OurServises = () => {
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px]">
-                Kitchen Cleaning
+                Home Services
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                Book trusted home service providers for cleaning, maintenance, and repairs through our easy-to-use app.
               </p>
             </div>
           </div>

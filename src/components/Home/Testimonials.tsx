@@ -35,8 +35,8 @@ const Testimonials = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">John Doe</h2>
-                <p className="text-sm text-gray-600">Software Engineer</p>
+                <h2 className="text-lg font-bold">Madhav </h2>
+
               </div>
             </div>
             <div className="flex items-center mt-2">
@@ -57,8 +57,8 @@ const Testimonials = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Jane Smith</h2>
-                <p className="text-sm text-gray-600">UI/UX Designer</p>
+                <h2 className="text-lg font-bold">Karan Tyagi</h2>
+
               </div>
             </div>
             <div className="flex items-center mt-2">
@@ -79,8 +79,7 @@ const Testimonials = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Sam Wilson</h2>
-                <p className="text-sm text-gray-600">Project Manager</p>
+                <h2 className="text-lg font-bold">Kammal Prakash</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
@@ -88,7 +87,7 @@ const Testimonials = () => {
             </div>
             <h3 className="mt-4 text-lg font-semibold">Kitchen Cleaning</h3>
             <p className="text-gray-700 mt-2">
-            Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free
+              Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free
             </p>
           </div>
         </div>

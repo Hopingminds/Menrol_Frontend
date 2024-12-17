@@ -5,7 +5,7 @@ import React from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const OurServises = () => {
-  const router=useRouter()
+  const router = useRouter()
 
   return (
     <div className="gap-4 px-[10%] ">
@@ -53,7 +53,7 @@ const OurServises = () => {
                 Home Cleaning
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                Affordable, high-quality home cleaning services with a focus on customer satisfaction and hygiene.
               </p>
             </div>
           </div>
@@ -80,7 +80,7 @@ const OurServises = () => {
                 Office Cleaning
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                Dedicated cleaning professionals creating a healthier, more comfortable office environment for everyone.
               </p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const OurServises = () => {
                 Kitchen Cleaning
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px]">
-                Tellus aliquam faucibus imperdiet eget interdum risus diam.
+                Professional cleaners restoring your kitchen's shine with efficient, eco-friendly cleaning methods
               </p>
             </div>
           </div>

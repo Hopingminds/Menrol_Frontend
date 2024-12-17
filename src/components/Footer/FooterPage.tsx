@@ -18,8 +18,7 @@ const FooterPage = () => {
             />
           </Link>
           <p className="text-sm pt-6">
-            Leo elementum iaculis quam massa vitae odio sed. Morbi tincidunt
-            senectus.
+            Trusted home services at your fingertips, anytime, anywhere.
           </p>
         </div>
 
@@ -52,7 +51,7 @@ const FooterPage = () => {
             </li>
             <li>
               <a href="contactus" className="hover:underline decoration-blue-500">
-              Contact Us
+                Contact Us
               </a>
             </li>
           </ul>
