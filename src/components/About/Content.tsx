@@ -7,7 +7,7 @@ const Content = () => {
                 <div
                     className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"
                     style={{
-                        backgroundImage: "url('/Images/businessman.jpg')",
+                        backgroundImage: "url('/Images/All photos/businessman.jpg')",
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
