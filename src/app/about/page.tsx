@@ -100,7 +100,6 @@ const AboutUs: React.FC = () => {
       <FAQSection></FAQSection>
       <FooterPage></FooterPage>
     </section>
-
   );
 };
 

@@ -1,0 +1,32 @@
+import React from 'react'
+
+const Gallery = () => {
+    const images = [
+        '/Images/plumber1.jpg',
+        '/Images/plumber2.jpg',
+        '/Images/plumber3.jpg',
+        '/Images/plumber4.jpg',
+        '/Images/plumber5.jpg',
+        '/Images/plumber6.jpg',
+    ];
+    return (
+        <div><section className="p-8 bg-white px-24">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {images.map((image, index) => (
+                    <div
+                        key={index}
+                        className="bg-[rgba(94,147,198,1)] rounded-md shadow-md h-48 flex items-center justify-center"
+                    >
+                        <img
+                            src={image}
+                            alt={`Gallery item ${index + 1}`}
+                            className="w-full h-full object-cover rounded-md"
+                        />
+                    </div>
+                ))}
+            </div>
+        </section></div>
+    )
+}
+
+export default Gallery
