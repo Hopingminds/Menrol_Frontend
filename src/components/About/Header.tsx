@@ -89,10 +89,22 @@ import { FaRegClock, FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import NavigationButton from "@/components/NavigationButton";
+import { useRouter } from "next/navigation";
 
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+      const router = useRouter();
+      const [loading, setLoading] = useState(false);
+
+
+    const handleGoContact = () => {
+        setLoading(true);
+        router.push("/contactus");
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -117,7 +129,9 @@ const Header = () => {
                 {/* Right Section */}
                 <div className="flex items-center gap-1 md:gap-2">
                     <p>Request an Estimate</p>
-                    <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6" />
+                    <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6" 
+                    onClick={handleGoContact}
+                    />
                 </div>
             </div>
 

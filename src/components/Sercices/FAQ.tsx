@@ -76,7 +76,7 @@ const FAQ: FC = () => {
                 ></div>
 
                 <p className="mt-4 text-sm text-gray-500">
-                    More Information <span className="text-orange-500">+1 (333) 000-0000</span>
+                    More Information <span className="text-orange-500">+91 9193700050</span>
                 </p>
             </div>
         </div>

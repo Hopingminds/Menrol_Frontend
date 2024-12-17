@@ -79,7 +79,6 @@
 // };
 
 // export default Header;
-
 // components/Home/Header.tsx
 
 "use client";
@@ -107,6 +106,10 @@ const Header = () => {
     });
   };
 
+  const handleGoContact=()=>{
+    router.push("contactus");
+  }
+
   const isActive = (path: string) =>
     pathname === path
       ? "font-bold underline text-blue-500" // Active styles
@@ -130,12 +133,14 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt />
-            <p>+91 91937 00050</p>
+            <p>+91 9193700050</p>
           </div>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
           <p>Request an Estimate</p>
-          <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6" />
+          <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6"
+            onClick={handleGoContact}
+          />
         </div>
       </div>
 
@@ -145,7 +150,7 @@ const Header = () => {
           <Image
             src="/menrol-logo.png"
             alt="Logo"
-            className="h-16 w-auto md:h-20 md:w-30 cursor-pointer hover:scale-105"
+            className="h-16 w-auto md:h-20 md:w-auto cursor-pointer hover:scale-105"
             onClick={() => handleNavigation("/")}
             height={100}
             width={100}
@@ -162,7 +167,7 @@ const Header = () => {
         {/* Navigation Links */}
         <div
           className={`${isMenuOpen ? "flex" : "hidden"
-            } flex-col md:flex md:flex-row md:justify-end items-center space-y-4 md:space-y-0 space-x-0 md:space-x-6 text-sm md:text-lg w-full md:w-auto`}
+            } flex-col md:flex md:flex-row md:justify-end items-center space-y-4 md:space-y-0 space-x-0 md:space-x-6 text-md md:text-md w-full md:w-auto`}
         >
           <button
             onClick={() => handleNavigation("/")}

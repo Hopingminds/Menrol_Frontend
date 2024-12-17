@@ -8,10 +8,12 @@ import Testimonials from "@/components/Home/Testimonials";
 import ScanAndDownload from "@/components/Home/ScanAndDownload";
 import CallToAction from "@/components/Home/CallToAction";
 import Layout from "@/components/Layout";
+import DynamicHeader from "@/components/About/DynamicHeader";
 
 export default function Home() {
   return (
     <Layout>
+      <DynamicHeader title=""/>
       <Supakling />
       <OurServises />
       <WhyChooseUs />
