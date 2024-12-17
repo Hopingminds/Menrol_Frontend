@@ -2,7 +2,8 @@ import React from 'react';
 import FAQSection from "../../components/About/FaqSection";
 import DynamicHeader from '@/components/About/DynamicHeader';
 import Header from '@/components/Home/Header';
-import Layout from '@/components/Layout';
+import { CiMail } from "react-icons/ci";
+import { FiPhone } from "react-icons/fi";
 
 
 const contactus: React.FC = () => {
@@ -33,40 +34,23 @@ const contactus: React.FC = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                         <div className="flex items-center space-x-4">
                             <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
-                                <i className="fas fa-phone"></i>
+                                <i className="fas fa-phone"><FiPhone></FiPhone></i>
                             </div>
                             <div>
                                 <h4 className="text-lg font-medium text-gray-800">Phone</h4>
-                                <p className="text-gray-600">+1 (333) 000-0000</p>
+                                <p className="text-gray-600">+91 9193700050</p>
                             </div>
                         </div>
                         <div className="flex items-center space-x-4">
                             <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
-                                <i className="fas fa-envelope"></i>
+                                <i className="fas fa-envelope text-2xl"><CiMail></CiMail></i>
                             </div>
                             <div>
                                 <h4 className="text-lg font-medium text-gray-800">Email</h4>
-                                <p className="text-gray-600">hi@supaklin.com</p>
+                                <p className="text-gray-600">hr@menrol.com</p>
                             </div>
                         </div>
-                        <div className="flex items-center space-x-4 ">
-                            <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
-                                <i className="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 className="text-lg font-medium text-[rgba(36,35,42,1)]">office 2</h4>
-                                <p className="text-gray-600">Jl. MH Thamrin </p>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-4 ">
-                            <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
-                                <i className="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 className="text-lg font-medium text-[rgba(36,35,42,1)]">office 2</h4>
-                                <p className="text-gray-600">Jl. MH Thamrin</p>
-                            </div>
-                        </div>
+
                     </div>
                     <div className="w-full h-1  bg-blue-200 "></div>
 
