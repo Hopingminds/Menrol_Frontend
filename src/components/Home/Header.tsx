@@ -112,8 +112,8 @@ const Header = () => {
 
   const isActive = (path: string) =>
     pathname === path
-      ? "font-bold underline text-blue-500" // Active styles
-      : "text-gray-800"; // Default styles
+      ? "font-bold underline text-blue-500" 
+      : "text-gray-800";
 
   return (
     <>
