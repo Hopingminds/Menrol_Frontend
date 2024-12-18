@@ -13,7 +13,7 @@ type OurMissionProps = {
 
 const Ourmission: React.FC<OurMissionProps> = ({ missions }) => {
     return (
-        <section className="p-8 bg-gray-50 px-24">
+        <section className="p-8 bg-gray-50 px-[10%] my-12 h-[100%]">
             <h1 className="text-3xl font-bold text-gray-900 mb-6 font-lexend">Our Mission</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {missions.map((mission, index) => (

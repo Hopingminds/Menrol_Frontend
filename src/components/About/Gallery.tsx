@@ -7,7 +7,7 @@ type GalleryProps = {
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
     return (
-        <section className="p-8 bg-white px-24">
+        <section className="p-8 bg-white px-[10%]">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h5 className="text-green-600 uppercase font-bold mb-2 font-lexend">/ Our Gallery</h5>
@@ -25,7 +25,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                         <img
                             src={image}
                             alt={`Gallery item ${index + 1}`}
-                            className="w-full h-full object-cover rounded-md"
+                            className="w-full h-full object-cover rounded-md hover:scale-105 cursor-pointer"
                         />
                     </div>
                 ))}
