@@ -8,7 +8,7 @@ const Discount = () => {
                 <div
                     className="relative bg-[rgba(94,147,198,1)] text-white rounded-xl h-80 w-64 mx-4 mt-24"
                     style={{
-                        backgroundImage: "url('/Images/OfferImage.png')",
+                        backgroundImage: "url('/Images/All photos/OfferImage (1).jpg')",
                         backgroundSize: "cover", // Ensure image covers the entire area
                         backgroundPosition: "center", // Center the image
                         backgroundRepeat: "no-repeat",

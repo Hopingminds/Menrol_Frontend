@@ -29,7 +29,7 @@ const LatestOffer = () => {
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
-            src="/Images/OfferImage.png"
+            src="/Images/All photos/OfferImage (1).jpg"
             alt="Offer"
             className="w-[20vw] h-[55vh] md:w-[25vw] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 "
             height={300}
