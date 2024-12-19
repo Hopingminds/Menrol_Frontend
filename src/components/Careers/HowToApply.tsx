@@ -39,8 +39,9 @@ const HowToApply: React.FC = () => {
                 ))}
             </div>
             <div className="bg-[rgba(36,35,42,1)] text-white p-8 text-center rounded-xl shadow-md w-[100%]  h-72   ">
-                <h3 className="text-4xl font-bold mb-4 mt-8">Join Our Cleaning Dream Team!</h3>
-                <p className="text-lg mb-4 mt-4">Tellus aliquam faucibus imperdiet eget interdum risus diam.</p>
+                <h3 className="text-4xl font-bold mb-4 mt-8">Join Our  Dream Team!</h3>
+                <p className="text-lg mb-4 mt-4">Be a part of our expert team and bring cleanliness and joy to every
+                    space.</p>
                 <button className="bg-[rgba(0,84,165,1)] text-[rgba(255,255,255,1)] font-bold py-2 px-4 rounded-md hover:bg-gray- transition mt-4">
                     Join Our Team
                 </button>

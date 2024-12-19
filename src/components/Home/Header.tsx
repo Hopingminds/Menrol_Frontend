@@ -129,7 +129,7 @@ const Header = () => {
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
             <FaRegClock />
-            <p>Mon-Fri 08.00 - 17.00</p>
+            <p>Mon-Fri 08:00 - 17:00</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt />
@@ -200,9 +200,9 @@ const Header = () => {
             Contact Us
           </button>
 
-          <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0">
+          {/* <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0">
             Signup/Login
-          </button>
+          </button> */}
         </div>
       </div>
       <hr />

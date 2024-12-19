@@ -28,8 +28,8 @@ const Reviews = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">John Doe</h2>
-                <p className="text-sm text-gray-600">Software Engineer</p>
+                <h2 className="text-lg font-bold">Khushdeep saini</h2>
+
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
@@ -42,10 +42,10 @@ const Reviews = () => {
                   ))}
               </div>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 1</h3>
+            <h3 className="mt-4 text-lg font-semibold">House cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Very much satisied with the work.They do provide reasonable pricing.Worth the price.
+
             </p>
           </div>
 
@@ -58,8 +58,8 @@ const Reviews = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Jane Smith</h2>
-                <p className="text-sm text-gray-600">UI/UX Designer</p>
+                <h2 className="text-lg font-bold">Rakshit Maheshwari</h2>
+
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
@@ -72,10 +72,9 @@ const Reviews = () => {
                   ))}
               </div>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 2</h3>
+            <h3 className="mt-4 text-lg font-semibold">office cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Booked them for my Office cleaning services.They do provide exceptional services.
             </p>
           </div>
 
@@ -88,8 +87,7 @@ const Reviews = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Sam Wilson</h2>
-                <p className="text-sm text-gray-600">Project Manager</p>
+                <h2 className="text-lg font-bold">Alish Kamboj</h2>
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
@@ -102,10 +100,9 @@ const Reviews = () => {
                   ))}
               </div>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 3</h3>
+            <h3 className="mt-4 text-lg font-semibold">Kitchen cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Exceptional services.Quite professional work.I will definately recommend it to others.
             </p>
           </div>
         </div>

@@ -126,7 +126,7 @@ const Supakling = () => {
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
-                <button className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw]" onClick={handleGoContact}>
+                <button className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw] hover:scale-105" onClick={handleGoContact}>
                   Learn More
                 </button>
               </div>

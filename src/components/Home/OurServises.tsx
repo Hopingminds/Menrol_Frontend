@@ -1,14 +1,29 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const OurServises = () => {
-  const router = useRouter()
+const OurServices = () => {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false); // State to manage the loader
+
+  const HandleServiceDetails = () => {
+    setLoading(true); // Set loading to true when button is clicked
+    setTimeout(() => {
+      router.push("/ServiceDetails");
+    }, 1000); // Simulate a delay before redirecting
+  };
 
   return (
-    <div className="gap-4 px-[10%] ">
+    <div className="gap-4 px-[10%] relative">
+      {/* Loader */}
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
+          <div className="animate-spin w-16 h-16 border-4 border-t-transparent border-black rounded-full"></div>
+        </div>
+      )}
+
       <h1
         className="text-[#51DC98] uppercase font-bold pl-4 sm:flex sm:justify-center"
         style={{ wordSpacing: "0.1em" }}
@@ -25,9 +40,6 @@ const OurServises = () => {
             with Supaklin
           </h1>
         </div>
-        <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
-          View All
-        </button>
       </div>
 
       {/* Cards Section */}
@@ -41,9 +53,11 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
-            <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
+            <button
+              className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+              onClick={HandleServiceDetails}
+            >
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
@@ -59,6 +73,7 @@ const OurServises = () => {
           </div>
         </div>
 
+        {/* Repeat for other cards */}
         {/* Card 2 */}
         <div className="relative shadow-lg">
           <Image
@@ -68,9 +83,11 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
-            <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
+            <button
+              className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+              onClick={HandleServiceDetails}
+            >
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
@@ -87,7 +104,7 @@ const OurServises = () => {
         </div>
 
         {/* Card 3 */}
-        <div className="relative shadow-lg ">
+        <div className="relative shadow-lg">
           <Image
             src="/Images/Plumber4.jpg"
             alt="Placeholder"
@@ -95,9 +112,11 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
-            <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
+            <button
+              className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+              onClick={HandleServiceDetails}
+            >
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
@@ -117,4 +136,4 @@ const OurServises = () => {
   );
 };
 
-export default OurServises;
+export default OurServices;

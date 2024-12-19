@@ -10,7 +10,7 @@ type JobCardProps = {
 
 const JobCard: React.FC<JobCardProps> = ({ title, salary, tags, description, buttonText }) => {
     return (
-        <div className="bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[336px] h-[308px] border border-black">
+        <div className="bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[336px] h-[308px] ">
             <h2 className="text-2xl font-semibold text-gray-800">{title}</h2>
             <p className="text-[#5653E1] mt-1 text-[16px] font-normal">Salary : {salary}</p>
             <div className="flex flex-wrap gap-4 mt-4 text-[#24232A] text-xs">

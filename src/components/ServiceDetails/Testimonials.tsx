@@ -39,17 +39,15 @@ const Testimonials: React.FC = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">John Doe</h2>
-                <p className="text-sm text-gray-600">Software Engineer</p>
+                <h2 className="text-lg font-bold">Rinki Beniwal</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 1</h3>
+            <h3 className="mt-4 text-lg font-semibold">Plumbing</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              Really satisfied with the services.Will definately recommend to others.
             </p>
           </div>
 
@@ -62,17 +60,15 @@ const Testimonials: React.FC = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Jane Smith</h2>
-                <p className="text-sm text-gray-600">UI/UX Designer</p>
+                <h2 className="text-lg font-bold">Aditya Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 2</h3>
+            <h3 className="mt-4 text-lg font-semibold">Home cleaning</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              They really provided exceptional cleaning services.Really satsified and my home does smell really good.
             </p>
           </div>
 
@@ -85,17 +81,15 @@ const Testimonials: React.FC = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Sam Wilson</h2>
-                <p className="text-sm text-gray-600">Project Manager</p>
+                <h2 className="text-lg font-bold">Ankit Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Card Heading 3</h3>
+            <h3 className="mt-4 text-lg font-semibold">Plumbing</h3>
             <p className="text-gray-700 mt-2">
-              This is some text providing details about the card's content. It
-              can include a brief description or summary.
+              They solved all the leakage problems.i was really troubled from these services from a long a time.Appreciate their work.
             </p>
           </div>
         </div>
@@ -119,11 +113,11 @@ const Testimonials: React.FC = () => {
             <div className="col-span-2 grid grid-cols-2 gap-20">
               <Feature
                 title="Flexible Scheduling"
-                description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                description="We offer flexible scheduling, making it easy to book cleaning services at your convenience."
               />
               <Feature
                 title="Attention to Detail"
-                description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                description="We focus on the small details, ensuring your space is cleaned with precision and care."
               />
             </div>
           </div>
@@ -138,7 +132,7 @@ const Testimonials: React.FC = () => {
             <div className="col-span-1">
               <Feature
                 title="Professional Cleaners"
-                description="Tellus aliquam faucibus imperdiet eget interdum risus diam neque lectus."
+                description="Our professional cleaners offer expert cleaning services, transforming your space into a fresh, hygienic haven"
               />
             </div>
           </div>

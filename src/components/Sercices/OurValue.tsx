@@ -25,8 +25,7 @@ const OurValue = () => {
               </span>
               <div>
                 <p className="pl-8 text-[12px]">
-                  Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit
-                  elementum massa eleifend semper.
+                  We achieve excellence in every detail, paying meticulous attention to create exceptional outcomes every time
                 </p>
               </div>
             </div>
@@ -39,8 +38,7 @@ const OurValue = () => {
               </span>
               <div>
                 <p className="pl-8 text-[12px]">
-                  Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit
-                  elementum massa eleifend semper.
+                  We achieve excellence in every detail, paying meticulous attention to create exceptional outcomes every tim
                 </p>
               </div>
             </div>
@@ -53,8 +51,7 @@ const OurValue = () => {
               </span>
               <div>
                 <p className="pl-8 text-[12px]">
-                  Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit
-                  elementum massa eleifend semper.
+                  Experience personalized care with services designed to address your specific needs for optimal satisfaction
                 </p>
               </div>
             </div>
@@ -67,8 +64,7 @@ const OurValue = () => {
               </span>
               <div>
                 <p className="pl-8 text-[12px]">
-                  Elit nisl morbi nunc enim pellentesque ultrices ultrices. Sit
-                  elementum massa eleifend semper.
+                  Our commitment to transparent communication means no surprises—just clear, honest, and consistent updates every time.
                 </p>
               </div>
             </div>

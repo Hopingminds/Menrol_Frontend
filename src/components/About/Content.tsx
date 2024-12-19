@@ -22,10 +22,10 @@ const Content = () => {
                     <h1 className="text-black text-[45px] font-bold mb-2 font-lexend tracking-widest w-full">
                         and Beyond:
                     </h1>
-                    <button className="bg-[rgba(193,244,88,1)] text-white w-[50%] h-10 px-2 py-2 mb-4 flex items-center justify-center gap-1 ">
+                    <div className="bg-[rgba(193,244,88,1)] text-white w-[50%] h-10 px-2 py-2 mb-4 flex items-center justify-center gap-1 ">
                         <span className="text-md">🎤</span>
                         <span className="text-sm font-lexend font-bold text-[rgba(36,35,42,1)]">A message from the founder</span>
-                    </button>
+                    </div>
 
                     <p className="text-gray-600 font-sans text-justify tracking-wider">
                         With our embrace of cleanliness and beyond, we promise a level of service that ensures perfection. Every space we clean is carefully attended to, providing you with a healthy and welcoming environment.

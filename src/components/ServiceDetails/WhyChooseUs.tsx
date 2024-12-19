@@ -49,9 +49,10 @@ const WhyChooseUs = () => {
               <div>
                 <h1 className="text-[24px] text-[#24232A]">Reliable Cleaning Crew</h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Tellus aliquam faucibus imperdiet eget
+                  Trusted cleaning experts making every space
+
                 </p>
-                <p className="text-[16px]">interdum risus diam neque lectus.</p>
+                <p className="text-[16px]">Shine with care and precision</p>
               </div>
             </div>
 
@@ -62,9 +63,10 @@ const WhyChooseUs = () => {
               <div>
                 <h1 className="text-[24px] text-[#24232A]">On-Time Services</h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Tellus aliquam faucibus imperdiet eget
+                  Timely delivery of services, ensuring reliability and customer
+                  satisfaction.
                 </p>
-                <p className="text-[16px]">interdum risus diam neque lectus.</p>
+                <p className="text-[16px]"> Satisfaction, reliability, and customer care.</p>
               </div>
             </div>
           </div>
@@ -76,9 +78,10 @@ const WhyChooseUs = () => {
               <div>
                 <h1 className="text-[24px] text-[#24232A]">Flexible Packages</h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Tellus aliquam faucibus imperdiet eget
+                  Affordable and adaptable packages for all your cleaning and
+                  service needs.
                 </p>
-                <p className="text-[16px]">interdum risus diam neque lectus.</p>
+                <p className="text-[16px]">For all your cleaning and service needs.</p>
               </div>
             </div>
 
@@ -90,9 +93,9 @@ const WhyChooseUs = () => {
               <div>
                 <h1 className="text-[24px] text-[#24232A]">Transparent Pricing</h1>
                 <p className="text-[16px] text-[#24232A]">
-                  Tellus aliquam faucibus imperdiet eget
+                  Fair and transparent pricing,  Ensuring clarity on every service we provide.
                 </p>
-                <p className="text-[16px] text-[#24232A]">interdum risus diam neque lectus.</p>
+                <p className="text-[16px] text-[#24232A]"> Ensuring clarity on every service we provide.</p>
               </div>
             </div>
           </div>

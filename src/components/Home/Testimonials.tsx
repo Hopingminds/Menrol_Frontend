@@ -35,7 +35,7 @@ const Testimonials = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Madhav </h2>
+                <h2 className="text-lg font-bold">Rahul Rana </h2>
 
               </div>
             </div>
@@ -57,7 +57,7 @@ const Testimonials = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-bold">Karan Tyagi</h2>
+                <h2 className="text-lg font-bold">Prajjwal sharma</h2>
 
               </div>
             </div>

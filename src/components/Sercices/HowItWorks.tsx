@@ -6,19 +6,19 @@ const HowItWorks: React.FC = () => {
       heading: "STEP 1",
       title: "Request a Quote",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam.",
+        "One step closer to your solution—request a service quote and receive timely responses.",
     },
     {
       heading: "STEP 2",
-      title: "Schedule Your Cleaning",
+      title: "Schedule for service",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam.",
+        "Choose your desired time slot and schedule professional services with ease.",
     },
     {
       heading: "STEP 3",
-      title: "Cleaning Team Arrives",
+      title: "Service Team Arrives",
       description:
-        "Tellus aliquam faucibus imperdiet eget interdum risus diam.",
+        "Our team arrives as scheduled, ensuring your service experience is smooth and stress-free.",
     },
   ];
 
