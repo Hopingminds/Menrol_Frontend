@@ -8,6 +8,7 @@ import Content from "@/components/About/Content";
 import JoinOurTeam from "@/components/Careers/JoinOurTeam";
 import OpenPositions from "@/components/Careers/OpenPositions";
 import PhoenixSterling from "@/components/Careers/PhoenixSterling";
+import Layout from "@/components/Layout";
 
 const Careers: React.FC = () => {
   const missionData = [
@@ -50,30 +51,27 @@ const Careers: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white">
-      <div className="border ">
-        <Header></Header>
-      </div>
-      <div>
-        <DynamicHeader title="careers" />
-      </div>
-      <JoinOurTeam />
-      <div>
-        <Content></Content>
-      </div>
-      <div>
-        <Ourmission missions={missionData} />
-      </div>
-      <div>
-        <CultureSection></CultureSection>
-      </div>
+    <Layout>
+      <section className="bg-white">
 
-      <PhoenixSterling />
-      <OpenPositions />
-      <div>
-        <HowToApply></HowToApply>
-      </div>
-    </section>
+        <DynamicHeader title="careers" />
+        <JoinOurTeam />
+
+        <Content />
+
+
+        <Ourmission missions={missionData} />
+
+        <CultureSection />
+
+
+        <PhoenixSterling />
+        <OpenPositions />
+
+        <HowToApply />
+
+      </section>
+    </Layout>
   );
 };
 

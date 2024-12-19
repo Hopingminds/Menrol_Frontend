@@ -23,17 +23,15 @@ const Reviews = () => {
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="John Doe"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person9.png"
+                alt="Khushdeep Saini"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
                 <h2 className="text-lg font-bold">Khushdeep saini</h2>
-
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
-              {/* <span className="text-[10px] font-serif ">Rating:</span> */}
               <div className="flex space-x-1 text-[#C1F458]">
                 {Array(5)
                   .fill(null)
@@ -44,26 +42,24 @@ const Reviews = () => {
             </div>
             <h3 className="mt-4 text-lg font-semibold">House cleaning</h3>
             <p className="text-gray-700 mt-2">
-              Very much satisied with the work.They do provide reasonable pricing.Worth the price.
-
+              Very much satisfied with the work. They provide reasonable pricing. Worth the price.
             </p>
           </div>
+
 
           {/* Card 2 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Jane Smith"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person3.webp"
+                alt="Rakshit Maheshwari"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
                 <h2 className="text-lg font-bold">Rakshit Maheshwari</h2>
-
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
-              {/* <span className="text-[10px] font-serif ">Rating:</span> */}
               <div className="flex space-x-1 text-[#C1F458]">
                 {Array(5)
                   .fill(null)
@@ -72,26 +68,26 @@ const Reviews = () => {
                   ))}
               </div>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">office cleaning</h3>
+            <h3 className="mt-4 text-lg font-semibold">Office cleaning</h3>
             <p className="text-gray-700 mt-2">
-              Booked them for my Office cleaning services.They do provide exceptional services.
+              Booked them for my office cleaning services. They do provide exceptional services.
             </p>
           </div>
+
 
           {/* Card 3 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Sam Wilson"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person4.jpg"
+                alt="Aditya Rana"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Alish Kamboj</h2>
+                <h2 className="text-lg font-bold">Aditya Rana</h2>
               </div>
             </div>
             <div className="flex items-center pl-[4vw] pt-2">
-              {/* <span className="text-[10px] font-serif ">Rating:</span> */}
               <div className="flex space-x-1 text-[#C1F458]">
                 {Array(5)
                   .fill(null)
@@ -102,9 +98,10 @@ const Reviews = () => {
             </div>
             <h3 className="mt-4 text-lg font-semibold">Kitchen cleaning</h3>
             <p className="text-gray-700 mt-2">
-              Exceptional services.Quite professional work.I will definately recommend it to others.
+              Exceptional services. Quite professional work. I will definitely recommend it to others.
             </p>
           </div>
+
         </div>
       </div>
     </div>
