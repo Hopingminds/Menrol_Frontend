@@ -16,10 +16,13 @@ const CultureSection: React.FC = () => {
                     {/* Content inside the div (if any) */}
                 </div>
 
-                <div className="bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center w-64 h-64">
-                    <div className="text-6xl font-bold">90%</div>
-                    <div className="text-xl mt-2">Job Satisfaction</div>
-                    <div className="text-sm mt-2">Our employees love working for Supaklin</div>
+                <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center w-64 h-64">
+                    <div className="text-6xl font-bold text-white mt-8">90%</div>
+                    <p className="text-gray-600 mt-2 font-sans">Job Satisfaction<br /><span className="text-[rgba(249,249,254,1)] font-sans">Our employees love working for Supaklin</span></p>
+                    <div className="absolute top-10 left-10 text-3xl text-[rgba(193,244,88,1)]"> ★</div>
+                    <div className="absolute bottom-6  right-4 text-[rgba(36,35,42,1)] text-3xl">
+                        ★
+                    </div>
                 </div>
             </div>
             <div className="md:w-2/3 border h-[100%] p-5">
@@ -36,7 +39,7 @@ const CultureSection: React.FC = () => {
                     ].map((item, index) => (
                         <div key={index}>
                             <h3 className="text-xl font-bold flex items-center mt-2">
-                                <span className="mr-2 text-[rgba(36,35,42,1)] text-justify">➡</span> {item.title}
+                                <span className="mr-2 text-[rgba(86,83,225,1)] text-justify ">➡</span> {item.title}
                             </h3>
                             <p className="mt-2 text-[rgba(107,106,126,1)]">{item.description}</p>
                         </div>
