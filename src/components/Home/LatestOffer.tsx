@@ -58,19 +58,19 @@ const LatestOffer = () => {
         </div>
 
         {/* Right Side Text */}
-        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col items-center justify-center text-center">
-          <h1 className="text-[#51DC98] uppercase font-bold pl-4 tracking-[0.08em] py-10">
+        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col ">
+          <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.08em] py-10">
             {"/ / Discount Up To 50%".split(" ").join("  ")}
           </h1>
 
-          <h1 className="text-[56px] font-bold mb-4 md:text-[40px]">
+          <h1 className="text-[45px] font-bold mb-4 md:text-[40px]">
             Big Savings, Big Clean: Limited Time Offer
           </h1>
           <p className="text-lg mb-4">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
           <p
-            className="text-lg font-semibold cursor-pointer p-10 tracking-[0.2em]"
+            className="text-lg font-semibold cursor-pointer pt-10 tracking-[0.2em]"
             onClick={handleGoContact}
           >
             Contact Us

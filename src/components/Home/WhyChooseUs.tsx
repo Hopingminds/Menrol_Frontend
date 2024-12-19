@@ -54,25 +54,22 @@ const WhyChooseUs = () => {
                 <p className="text-[14px] text-[#24232A]">
                   Trusted cleaning experts making every space <br />
                   Shine with care and precision
-
                 </p>
-               
               </div>
             </div>
 
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[7vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <MdOutlineWatchLater />
               </div>
               <div>
                 <h1 className="text-[18px] text-[#24232A]">On-Time Services</h1>
                 <p className="text-[14px] text-[#24232A]">
                   Timely delivery of services, ensuring reliability and customer
-                  satisfaction. <br /> Satisfaction, reliability, and customer care.
+                  satisfaction. <br /> Satisfaction, reliability, and customer
+                  care.
                 </p>
-                <p className="text-[14px]">
-                 
-                </p>
+                <p className="text-[14px]"></p>
               </div>
             </div>
           </div>
@@ -80,7 +77,7 @@ const WhyChooseUs = () => {
           {/* Second Row */}
           <div className="flex flex-col sm:flex-row sm:justify-between w-full py-10">
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[7vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <IoCubeOutline />
               </div>
               <div>
@@ -91,7 +88,6 @@ const WhyChooseUs = () => {
                   Affordable and adaptable packages for all your cleaning and
                   service needs. <br /> For all your cleaning and service needs.
                 </p>
-               
               </div>
             </div>
 
@@ -104,11 +100,10 @@ const WhyChooseUs = () => {
                   Transparent Pricing
                 </h1>
                 <p className="pl-1 text-[14px] text-[#24232A]">
-                  Fair and transparent pricing, <br /> Ensuring clarity on every service we provide.
+                  Fair and transparent pricing, <br /> Ensuring clarity on every
+                  service we provide.
                 </p>
-                <p className="text-[14px] text-[#24232A]">
-                  
-                </p>
+                <p className="text-[14px] text-[#24232A]"></p>
               </div>
             </div>
           </div>

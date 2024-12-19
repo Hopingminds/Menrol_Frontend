@@ -59,21 +59,14 @@ const Blogs = () => {
             <Image
               src={blog.image}
               alt={blog.title}
-              className="w-full h-[200px] object-cover"
+              className="w-full h-[30vh] hover:scale-105 cursor-pointer object-cover"
               height={200}
               width={300}
             />
-            <div className="flex flex-col p-4 gap-y-3 flex-grow">
-              <h3 className="text-lg font-bold text-white">{blog.title}</h3>
-              <p className="text-sm text-white flex-grow">{blog.description}</p>
-              <a
-                href={blog.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#51DC98] text-sm underline mt-2"
-              >
-                Read More
-              </a>
+            <div className="flex flex-col p-4 gap-y-3 flex-grow h-[40vh] sm:h-[30vh] pt-10">
+              <h3 className="text-xl font-bold text-white">{blog.title}</h3>
+              <p className="text-md text-white flex-grow">{blog.description}</p>
+              
             </div>
           </div>
         ))}
