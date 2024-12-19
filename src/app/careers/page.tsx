@@ -105,52 +105,32 @@ const Careers: React.FC = () => {
       <div>
         <DynamicHeader title="careers" />
       </div>
-      <div className="flex gap-10 mt-12 border border-black">
-        <div className="flex-col text-justify px-24 w-[50%] leading-relaxed  gap-20">
+      <div className="flex  mt-12  justify-around ">
+        <div className="flex-col text-justify  w-[40%] leading-relaxed  ">
           <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend ">
             /JOIN OUR TEAM
           </p>
-          <h1 className="text-5xl font-semibold leading-tight">Make a Difference with a Rewarding Cleaning Career </h1>
-          <p className="mt-2">
+          <h1 className="text-5xl font-semibold w-[90%] font-lexend">Make a Difference with a Rewarding Cleaning Career </h1>
+          <p className="mt-2 font-sans">
             Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris
             nunc aliquam nunc ullamcorper tincidunt morbi.{" "}
           </p>
-          <button className="bg-[rgba(0,84,165,1)] rounded-full mt-4 h-14 w-32">
+          <button className="bg-[rgba(0,84,165,1)] rounded-full mt-4 h-12 w-32">
             Learn More
           </button>
         </div>
-        <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"></div>
-      </div>
-
-      {/* <div className="flex items-center  gap-14 mt-12 px-24">
         <div
-          className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"
+          className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-80 w-80 border border-black"
           style={{
-            backgroundImage: "url('/Images/businessman.jpg')",
+            backgroundImage: "url('/Images/ServiceImg/closeup service (1).jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-        ></div>
-
-   
-        <div className="w-1/2 flex flex-col  ">
-          <h1 className="text-black text-4xl font-bold mb-4">
-            Embracing Cleanliness and Beyond:
-          </h1>
-          <button className="bg-[rgba(193,244,88,1)] text-white w-[50%] h-10 px-2 py-2 mb-4 flex items-center justify-center gap-1 ">
-            <span className="text-md">🎤</span>
-            <span className="text-sm">A message from the founder</span>
-          </button>
-
-          <p className="text-gray-600 text-justify">
-            Scelerisque risus in sagittis malesuada. Praesent nec vestibulum
-            ipsum odio enim risus. Egestas tempor morbi felis faucibus
-            vulputate lorem lectus tortor bibendum. Molestie id aliquam ornare
-            in imperdiet nisi.
-          </p>
+        >
         </div>
-      </div> */}
+
+      </div>
       <div>
         <Content></Content>
       </div>
@@ -160,28 +140,23 @@ const Careers: React.FC = () => {
       <div>
         <CultureSection></CultureSection>
       </div>
-      <div className="flex  px-24   bg-[rgba(0,84,165,1)]  h-screen ">
-        {/* Second Div */}
+
+      <div className="flex  px-24  mt-12 bg-[rgba(0,84,165,1)]  h-screen ">
+
         <div className=" w-[65%] text-justify mt-20 ">
           <div className="flex items-center gap-3">
             <p className="text-2xl tracking-wider">Phoenix Sterling</p>
             <span className="text-green-500">✔</span>
           </div>
 
-          <p>Supaklin Employee</p>
+          <p>
+            Supaklin Employee
+          </p>
           <div>
             <p className="mt-4 text-sm w-[75%]">
-              “Working at Supaklin has been a rewarding experience. The
-              company's dedication to excellence and sustainable practices has
-              inspired me to grow both professionally and personally.
-            </p>
+              “Working at Supaklin has been a rewarding experience. The company's dedication to excellence and sustainable practices has inspired me to grow both professionally and personally.</p>
             <p className="mt-4 text-sm w-[75%]">
-              The supportive and close-knit team has made every day enjoyable,
-              and knowing that our efforts contribute to creating healthier
-              and safer spaces for our clients gives me a sense of fulfillment
-              in my work. Supaklin is more than just a workplace; it feels
-              like a family where everyone's contributions are valued, and I
-              am grateful to be a part of it.”
+              The supportive and close-knit team has made every day enjoyable, and knowing that our efforts contribute to creating healthier and safer spaces for our clients gives me a sense of fulfillment in my work. Supaklin is more than just a workplace; it feels like a family where everyone's contributions are valued, and I am grateful to be a part of it.”
             </p>
           </div>
         </div>
@@ -193,8 +168,11 @@ const Careers: React.FC = () => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
-        ></div>
+        >
+        </div>
+
       </div>
+
       <div className=" px-24 border  flex items-center mx-auto">
         <div className="flex justify-between flex-col">
           <p className="text-green-500 mt-20 ml-8">
@@ -203,7 +181,7 @@ const Careers: React.FC = () => {
           <h1 className="text-5xl font-semibold mb-10  ml-8">
             Current Job Openings:
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-x-9">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 space-x-1">
             {jobData.map((job, index) => (
               <JobCard
                 key={index}
