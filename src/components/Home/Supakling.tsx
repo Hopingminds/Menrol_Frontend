@@ -74,7 +74,7 @@ const Supakling = () => {
           {/* Left Section */}
           <div className="flex sm:flex-col xsm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0">
             <Image
-              src="/Images/Home_image_01.png"
+              src="/Images/All photos/Home_image_01.png"
               alt="Placeholder"
               className="w-[15vw] h-auto rounded-lg md:w-[20vw]"
               height={200}

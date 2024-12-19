@@ -2,12 +2,12 @@ import React from 'react'
 
 const Gallery = () => {
     const images = [
-        '/Images/plumber1.jpg',
-        '/Images/plumber2.jpg',
-        '/Images/plumber3.jpg',
-        '/Images/plumber4.jpg',
-        '/Images/plumber5.jpg',
-        '/Images/plumber6.jpg',
+        '/Images/ServiceImg/Image-1.png',
+        '/Images/ServiceImg/Image-2.png',
+        '/Images/ServiceImg/Image-3.png',
+        '/Images/ServiceImg/Image-4.png',
+        '/Images/ServiceImg/Image-5.png',
+        '/Images/ServiceImg/Image-6.png',
     ];
     return (
         <div><section className="p-8 bg-white px-24">
