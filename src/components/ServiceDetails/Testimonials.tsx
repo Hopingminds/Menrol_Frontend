@@ -31,67 +31,70 @@ const Testimonials: React.FC = () => {
       <div className="container mx-auto py-10">
         <div className="flex flex-row gap-6">
           {/* Card 1 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="John Doe"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person6.webp"
+                alt="Rinki Beniwal"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Rinki Beniwal</h2>
+                <h2 className="text-lg font-bold text-gray-800">Rinki Beniwal</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Plumbing</h3>
-            <p className="text-gray-700 mt-2">
-              Really satisfied with the services.Will definately recommend to others.
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Plumbing</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              Really satisfied with the services. Will definitely recommend to others.
             </p>
           </div>
+
 
           {/* Card 2 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Jane Smith"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person7.jpg"
+                alt="Aditya Raj"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Aditya Raj</h2>
+                <h2 className="text-lg font-bold text-gray-800">Aditya Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Home cleaning</h3>
-            <p className="text-gray-700 mt-2">
-              They really provided exceptional cleaning services.Really satsified and my home does smell really good.
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Home Cleaning</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              They really provided exceptional cleaning services. Really satisfied, and my home smells amazing!
             </p>
           </div>
 
+
           {/* Card 3 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Sam Wilson"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person8.webp"
+                alt="Ankit Raj"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Ankit Raj</h2>
+                <h2 className="text-lg font-bold text-gray-800">Ankit Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Plumbing</h3>
-            <p className="text-gray-700 mt-2">
-              They solved all the leakage problems.i was really troubled from these services from a long a time.Appreciate their work.
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Plumbing</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              They solved all the leakage problems. I was really troubled by these issues for a long time. Appreciate their work!
             </p>
           </div>
+
         </div>
       </div>
 

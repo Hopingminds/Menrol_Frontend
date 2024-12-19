@@ -27,69 +27,69 @@ const Testimonials = () => {
       <div className="container mx-auto py-10">
         <div className="flex flex-row gap-6">
           {/* Card 1 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="John Doe"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person3.webp"
+                alt="Rahul Rana"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Rahul Rana </h2>
-
+                <h2 className="text-lg font-bold text-gray-800">Rahul Rana</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Home Cleaning</h3>
-            <p className="text-gray-700 mt-2">
-              Such a great experience! The cleaners were punctual and did a detailed job throughout my home
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Home Cleaning</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              Such a great experience! The cleaners were punctual and did a detailed job throughout my home.
             </p>
           </div>
 
           {/* Card 2 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Jane Smith"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person4.jpg"
+                alt="Prajjwal Sharma"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Prajjwal sharma</h2>
-
+                <h2 className="text-lg font-bold text-gray-800">Prajjwal Sharma</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Office Cleaning </h3>
-            <p className="text-gray-700 mt-2">
-              Our office space has never looked this clean! The cleaners were efficient, friendly, and thorough
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Office Cleaning</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              Our office space has never looked this clean! The cleaners were efficient, friendly, and thorough.
             </p>
           </div>
+
 
           {/* Card 3 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <img
-                src="https://via.placeholder.com/50"
-                alt="Sam Wilson"
-                className="w-12 h-12 rounded-full"
+                src="/Images/All photos/person5.jpg"
+                alt="Kammal Prakash"
+                className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold">Kammal Prakash</h2>
+                <h2 className="text-lg font-bold text-gray-800">Kammal Prakash</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold">Kitchen Cleaning</h3>
-            <p className="text-gray-700 mt-2">
-              Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free
+            <h3 className="mt-4 text-lg font-semibold text-gray-900">Kitchen Cleaning</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free.
             </p>
           </div>
+
         </div>
       </div>
     </div>
