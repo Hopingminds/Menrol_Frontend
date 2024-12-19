@@ -6,10 +6,10 @@ const Home = () => {
         <div>
             <div className="mb-12 mt-4">
 
-                <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend px-24">
+                <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend px-[10%]">
                     / About Us
                 </p>
-                <div className="flex flex-col md:flex-row items-center md:items-start justify-between  px-24 mt-4">
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-between  px-[10%] mt-4">
                     {/* Left Section: Heading */}
                     <h2 className="text-5xl font-lexend md:text-4xl   font-bold text-gray-900 md:w-1/2  tracking-wider leading-relaxed ">
                         Elevating Cleanliness to Perfection
@@ -26,7 +26,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="grid ">
-                <div className="grid grid-cols-3 gap-4 px-24">
+                <div className="grid grid-cols-3 gap-4 px-[10%]">
                     <div className="flex-col">
                         <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72">
                             <div className="text-6xl font-bold text-white mt-14">99%</div>

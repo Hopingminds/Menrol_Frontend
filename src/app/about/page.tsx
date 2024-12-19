@@ -9,8 +9,7 @@ import Header from "@/components/About/Header";
 import Home from "../../components/About/Home";
 import Content from "../../components/About/Content";
 import Discount from "@/components/About/Discount";
-
-
+import Layout from "@/components/Layout";
 
 const AboutUs: React.FC = () => {
   const missionData = [
@@ -88,18 +87,16 @@ const AboutUs: React.FC = () => {
     "/Images/ServiceImg/Image-6.png",
   ];
   return (
-    <section className="bg-white ">
-      <Header></Header>
+    <Layout>
       <DynamicHeader title="About Us" />
-      <Home></Home>
-      <Content></Content>
+      <Home />
+      <Content />
       <Ourmission missions={missionData} />
       <CoreValues values={values} progressBars={progressBars} />
       <Gallery images={images} />
-      <Discount></Discount>
-      <FAQSection></FAQSection>
-      <FooterPage></FooterPage>
-    </section>
+      <Discount />
+      <FAQSection />
+    </Layout>
   );
 };
 

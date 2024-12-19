@@ -1,12 +1,20 @@
+"use client"
+
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const Discount = () => {
+    const route = useRouter();
+
+    const HandleGoContect=()=>{
+        route.push("/contactus");
+    }
     return (
         <div>
-            <div className="flex mt-6 gap-36 px-24 bg-[rgba(0,84,165,1)] h-[80vh] justify-stretch ">
+            <div className="flex  bg-[rgba(0,84,165,1)] h-[100%] justify-center gap-[8vw] items-center px-[10%] py-10 my-10">
                 {/* First Div */}
                 <div
-                    className="relative bg-[rgba(94,147,198,1)] text-white rounded-xl h-80 w-64 mx-4 mt-24"
+                    className="relative bg-[rgba(94,147,198,1)] text-white rounded-xl h-80 w-64 mx-4"
                     style={{
                         backgroundImage: "url('/Images/All photos/OfferImage (1).jpg')",
                         backgroundSize: "cover", // Ensure image covers the entire area
@@ -15,7 +23,7 @@ const Discount = () => {
                     }}
                 >
                     {/* New Box */}
-                    <div className="absolute top-16 right-[-76px] bg-[rgba(36,35,42,1)] text-white  p-4 w-28 h-36 shadow-lg flex flex-col justify-center items-center space-y-2 ">
+                    <div className="absolute top-1/4 right-[-76px] bg-[rgba(36,35,42,1)] text-white  p-4 w-28 h-36 shadow-lg flex flex-col justify-center items-center space-y-2 ">
                         {/* Star aligned to the right */}
                         <div className="absolute top-2 right-2 text-[rgba(193,244,88,1)] text-lg">
                             ★
@@ -30,7 +38,7 @@ const Discount = () => {
 
 
                 {/* Second Div */}
-                <div className="mx-4 mt-24  leading-relaxed">
+                <div className="mx-4 leading-relaxed">
                     <p className="text-sm font-bold text-green-500 font-lexend">
                         /DISCOUNT UP TO 50%
                     </p>
@@ -46,7 +54,9 @@ const Discount = () => {
                         <br />
                         cleaning services for a spotless experience.
                     </p>
-                    <p className="mt-4 text-sm font-bold underline cursor-pointer text-[rgba(255,255,255,1)] font-lexend">
+                    <p className="mt-4 text-sm font-bold underline cursor-pointer text-[rgba(255,255,255,1)] font-lexend"
+                    onClick={HandleGoContect}
+                    >
                         Contact Us
                     </p>
                 </div>
