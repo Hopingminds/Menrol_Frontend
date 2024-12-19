@@ -1,17 +1,27 @@
+"use client"
+
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const JoinOurTeam = () => {
+    const route = useRouter()
+
+    const HandleGoAbout =()=>{
+        route.push("/about");
+    }
     return (
         <div className="flex  mt-12  justify-around ">
             <div className="flex-col text-justify  w-[40%] leading-relaxed  ">
-                <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend ">
+                <p className="text-[rgba(81,220,152,1)] uppercase  text-sm tracking-wide font-lexend font-lg">
                     /JOIN OUR TEAM
                 </p>
-                <h1 className="text-5xl font-semibold w-[90%] font-lexend leading-normal">Elevate Your Career While Changing the World </h1>
-                <p className="mt-2 font-sans">
+                <p className="text-5xl w-[90%] font-dm-sans leading-relaxed tracking-[0.1em]">Elevate Your Career While Changing the World </p>
+                <p className="mt-2 font-sans font-dm-sans tracking-wide leading-relaxed">
                     Lead with purpose and grow professionally while making the world a better place.{" "}
                 </p>
-                <button className="bg-[rgba(0,84,165,1)] rounded-full mt-4 h-12 w-32">
+                <button className="bg-[rgba(0,84,165,1)] rounded-full mt-10 h-12 w-40 font-dm-sans tracking-wide leading-relaxed hover:scale-105"
+                onClick={HandleGoAbout}
+                >
                     Learn More
                 </button>
             </div>

@@ -38,13 +38,13 @@ const ServicesHeader = () => {
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl font-extrabold text-gray-800">
+          <h2 className="text-3xl font-extrabold text-gray-800 font-dm-sans tracking-wide leading-relaxed">
             Home Cleaning
           </h2>
 
           {/* Rating */}
           <div className="flex items-center space-x-2">
-            <span className="text-[10px] font-serif ">Rating:</span>
+            <span className="text-[10px] font-serif font-dm-sans tracking-wide leading-relaxed">Rating:</span>
             <div className="flex space-x-1 text-[#C1F458]">
               {Array(5)
                 .fill(null)
@@ -55,7 +55,7 @@ const ServicesHeader = () => {
           </div>
 
           {/* Description */}
-          <p className="text-gray-600 max-w-[40vw]">
+          <p className="text-gray-600 max-w-[40vw] font-dm-sans tracking-wide leading-relaxed">
             Purus vel lacus erat iaculis augue sed mauris mauris. Dolor sit
             purus adipiscing amet et cras. Nulla volutpat purus pellentesque
             amet pharetra. Nulla ut sit odio integer hac. Sit cras vestibulum
@@ -65,7 +65,7 @@ const ServicesHeader = () => {
           {/* Order Now Button */}
           <div className="py-[9vh]">
 
-          <button className="bg-[#0054A5] text-white font-semibold px-6 items-center rounded-full h-[6vh] shadow hover:bg-blue-700">
+          <button className="bg-[#0054A5] text-white font-semibold px-6 items-center rounded-full h-[6vh] shadow hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
             Order Now
           </button>
           </div>
@@ -75,7 +75,7 @@ const ServicesHeader = () => {
       {/* Company Logos */}
       <div className="pt-6 px-[20%] ">
       <div className="border-b-2 pb-10">
-        <h3 className="text-lg font-semibold mb-4">Our Trusted Partners</h3>
+        <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Our Trusted Partners</h3>
         <div className="flex justify-between items-center space-x-4 ">
           {[
             "Images/CompaniesLogo/logo-1.png",

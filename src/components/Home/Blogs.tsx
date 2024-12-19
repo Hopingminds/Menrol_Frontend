@@ -38,13 +38,13 @@ const blogsData = [
 
 const Blogs = () => {
   return (
-    <div className="px-[5%] py-10">
+    <div className="px-[10%] py-10">
       {/* Header Section */}
       <div className="flex flex-col items-center">
         <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.3em] py-6">
           / BLOGS
         </h1>
-        <h1 className="text-[#24232A] text-[36px] text-center pb-10">
+        <h1 className="text-[#24232A] text-[36px] text-center pb-10 font-dm-sans tracking-wide leading-relaxed ">
           Comfortable Cleanliness, Supaklin's Standard
         </h1>
       </div>
@@ -63,10 +63,9 @@ const Blogs = () => {
               height={200}
               width={300}
             />
-            <div className="flex flex-col p-4 gap-y-3 flex-grow h-[40vh] sm:h-[30vh] pt-10">
-              <h3 className="text-xl font-bold text-white">{blog.title}</h3>
-              <p className="text-md text-white flex-grow">{blog.description}</p>
-              
+            <div className="flex flex-col p-4 gap-y-3 flex-grow h-[45vh] md:h-[45vh] sm:h-[45vh] pt-10">
+              <h3 className="text-xl font-bold text-white font-dm-sans tracking-wide leading-relaxed ">{blog.title}</h3>
+              <p className="text-md text-white flex-grow font-dm-sans tracking-wide leading-relaxed ">{blog.description}</p>
             </div>
           </div>
         ))}

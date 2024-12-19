@@ -53,15 +53,15 @@ const OpenPositions = () => {
         },
     ];
     return (
-        <div className=" px-24 border  flex items-center mx-auto">
-            <div className="flex justify-between flex-col">
-                <p className="text-green-500 mt-20 ml-8">
+        <div className=" px-[10%] py-10">
+            <div className="flex  flex-col">
+                <p className="text-green-500 mt-20  uppercase text-[20px] pb-6">
                     /Available job positions
                 </p>
-                <h1 className="text-5xl font-semibold mb-10  ml-8">
+                <h1 className="text-5xl font-semibold mb-10">
                     Current Job Openings:
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 space-x-1">
+                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
                     {jobData.map((job, index) => (
                         <JobCard
                             key={index}

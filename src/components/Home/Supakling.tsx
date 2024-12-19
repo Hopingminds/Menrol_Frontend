@@ -80,12 +80,12 @@ const Supakling = () => {
               height={200}
               width={200}
             />
-            <div className="flex flex-row pt-3 justify-start gap-y-2 gap-5">
-              <p className="text-lg md:text-[24px] font-bold">126</p>
+            <div className="flex flex-row pt-3 justify-start items-center gap-y-2 gap-5">
+              <p className="text-lg md:text-[24px] font-dm-sans tracking-wide leading-relaxed ">126</p>
               <span className="text-[#AEADF1] font-bold text-lg md:text-[24px]">
                 +
               </span>
-              <p className="text-sm md:text-[16px] w-auto font-sans tracking-[0.05em]">
+              <p className="text-sm md:text-[16px] w-auto font-dm-sans tracking-wide leading-relaxed text-[#6B6A7E]">
                 Professional Tools
               </p>
             </div>
@@ -119,14 +119,18 @@ const Supakling = () => {
                 </h1>
               </div>
               <div className="w-full md:w-[15vw] mt-4 md:mt-0">
-                <p className="font-bold text-lg md:text-[24px]">
+                <p className="font-bold text-lg md:text-[24px] text-[#6B6A7E]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[14px] mb-3">
+                <p className="text-sm md:text-[22px] mb-3 pt-5 md:w-[12vw] font-dm-sans tracking-wide leading-relaxed text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
-                <button className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw] hover:scale-105" onClick={handleGoContact}>
+
+                <button
+                  className="bg-[#0054A5] text-white rounded-full px-4 py-2 md:w-[10vw] hover:scale-105"
+                  onClick={handleGoContact}
+                >
                   Learn More
                 </button>
               </div>

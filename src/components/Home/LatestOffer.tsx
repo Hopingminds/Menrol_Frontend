@@ -63,10 +63,10 @@ const LatestOffer = () => {
             {"/ / Discount Up To 50%".split(" ").join("  ")}
           </h1>
 
-          <h1 className="text-[45px] font-bold mb-4 md:text-[40px]">
+          <h1 className="text-[45px] font-bold mb-4 md:text-[40px] font-dm-sans tracking-wide leading-relaxed ">
             Big Savings, Big Clean: Limited Time Offer
           </h1>
-          <p className="text-lg mb-4">
+          <p className="text-lg mb-4 font-dm-sans tracking-wide leading-relaxed ">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
           <p

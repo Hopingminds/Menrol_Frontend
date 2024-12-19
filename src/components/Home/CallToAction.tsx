@@ -17,7 +17,7 @@ const CallToAction = () => {
         <p className="mt-2 text-[20px] text-[#6B6A7E]">
           Enjoy a fresh, clean environment by booking our cleaning service today and feel the difference.
         </p>
-        <button className="bg-[#0054A5] rounded-full h-[7vh] w-[11vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em] mt-5">
+        <button className="bg-[#0054A5] rounded-full h-[7vh] w-[11vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em] mt-5 hover:scale-105">
           Contact Us
         </button>
       </div>
