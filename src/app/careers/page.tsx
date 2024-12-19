@@ -110,7 +110,7 @@ const Careers: React.FC = () => {
           <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend ">
             /JOIN OUR TEAM
           </p>
-          <h1 className="text-5xl font-semibold w-[90%] font-lexend">Make a Difference with a Rewarding Cleaning Career </h1>
+          <h1 className="text-5xl font-semibold w-[90%] font-lexend leading-normal">Make a Difference with a Rewarding Cleaning Career </h1>
           <p className="mt-2 font-sans">
             Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris
             nunc aliquam nunc ullamcorper tincidunt morbi.{" "}
