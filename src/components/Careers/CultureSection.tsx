@@ -2,7 +2,7 @@ import React from 'react';
 
 const CultureSection: React.FC = () => {
     return (
-        <section className="flex md:flex-row items-center md:items-start p-8 bg-white px-28 gap-10">
+        <section className="flex md:flex-row items-center md:items-start p-8 bg-white px-[10%] gap-10">
             <div className="flex flex-col items-center md:items-start border">
                 <div
                     className="w-64 h-64 bg-blue-400 mb-8 p-8 rounded-lg shadow-md"
@@ -22,7 +22,7 @@ const CultureSection: React.FC = () => {
                     <div className="text-sm mt-2">Our employees love working for Supaklin</div>
                 </div>
             </div>
-            <div className="md:w-2/3 border h-64">
+            <div className="md:w-2/3 border h-[100%] p-5">
                 <div className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend">/Our culture</div>
                 <h2 className="text-3xl font-bold mb-8 text-[rgba(36,35,42,1)] mt-3">Collaboration and Growth</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
