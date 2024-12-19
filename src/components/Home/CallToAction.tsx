@@ -24,7 +24,7 @@ const CallToAction = () => {
       {/* Image Section */}
       <div className="w-[40%]">
         <img
-          src="Images/BookingImage.png"
+          src="Images/All photos/BookingImage.png"
           alt="Call to Action"
           className="w-full h-auto object-cover"
         />

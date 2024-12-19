@@ -5,6 +5,7 @@ import HowToApply from "../../components/Careers/HowToApply";
 import JobCard from "@/components/CareerDetails/JobCard";
 import Header from "@/components/Home/Header";
 import DynamicHeader from "@/components/About/DynamicHeader";
+import Content from "@/components/About/Content";
 
 const Careers: React.FC = () => {
   const missionData = [
@@ -104,24 +105,24 @@ const Careers: React.FC = () => {
       <div>
         <DynamicHeader title="careers" />
       </div>
-      <div className="flex">
-        <div className="flex-col text-justify px-24">
+      <div className="flex gap-10 mt-12 border border-black">
+        <div className="flex-col text-justify px-24 w-[50%] leading-relaxed  gap-20">
           <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend ">
             /JOIN OUR TEAM
           </p>
-          <h1>Make a Difference with a Rewarding Cleaning Career </h1>
-          <p>
+          <h1 className="text-5xl font-semibold leading-tight">Make a Difference with a Rewarding Cleaning Career </h1>
+          <p className="mt-2">
             Ac eu tortor facilisi pulvinar mattis. Nisl vel integer mauris
             nunc aliquam nunc ullamcorper tincidunt morbi.{" "}
           </p>
-          <button className="bg-[rgba(0,84,165,1)] rounded-lg">
+          <button className="bg-[rgba(0,84,165,1)] rounded-full mt-4 h-14 w-32">
             Learn More
           </button>
         </div>
         <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"></div>
       </div>
 
-      <div className="flex items-center  gap-14 mt-12 px-24">
+      {/* <div className="flex items-center  gap-14 mt-12 px-24">
         <div
           className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72"
           style={{
@@ -132,7 +133,7 @@ const Careers: React.FC = () => {
           }}
         ></div>
 
-        {/* Content Section */}
+   
         <div className="w-1/2 flex flex-col  ">
           <h1 className="text-black text-4xl font-bold mb-4">
             Embracing Cleanliness and Beyond:
@@ -149,6 +150,9 @@ const Careers: React.FC = () => {
             in imperdiet nisi.
           </p>
         </div>
+      </div> */}
+      <div>
+        <Content></Content>
       </div>
       <div>
         <Ourmission missions={missionData} />
