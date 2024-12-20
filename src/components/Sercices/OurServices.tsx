@@ -39,7 +39,7 @@ const OurServises = () => {
         {/* Card 1 */}
         <div className="relative shadow-lg">
           <Image
-            src="/Images/card-01.png"
+            src="/Images/AllImages/card-01.png"
             alt="Placeholder"
             className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
             height={200}
@@ -66,7 +66,7 @@ const OurServises = () => {
         {/* Card 2 */}
         <div className="relative shadow-lg">
           <Image
-            src="/Images/card-01.png"
+            src="/Images/AllImages/card-01.png"
             alt="Placeholder"
             className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
             height={200}
@@ -93,7 +93,7 @@ const OurServises = () => {
         {/* Card 3 */}
         <div className="relative shadow-lg">
           <Image
-            src="/Images/card-01.png"
+            src="/Images/AllImages/card-01.png"
             alt="Placeholder"
             className="w-full h-[45vh] md:w-[20vw] md:h-[55vh] rounded-lg object-cover"
             height={200}

@@ -1,14 +1,16 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BiSolidOffer } from "react-icons/bi";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const Ourservices = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
-  // const handleNavigate = () => {
-  //   router.push("/services");
-  // };
+  const handleNavigate = () => {
+    router.push("/services");
+  };
   return (
     <div className="px-[10%] mt-[5vh]">
       <h1
@@ -47,12 +49,12 @@ const Ourservices = () => {
                 </div>
 
                 <div className="absolute top-4 right-4 md:top-6 md:right-6">
-                  {/* <button
+                  <button
                     className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
                     onClick={handleNavigate}
                   >
                     <FaArrowRightLong className="h-6 w-6" />
-                  </button> */}
+                  </button>
                 </div>
               </div>
 
