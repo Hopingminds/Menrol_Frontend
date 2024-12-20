@@ -89,6 +89,7 @@ import { FaRegClock, FaPhoneAlt } from "react-icons/fa";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -169,36 +170,37 @@ const Header = () => {
           className={`${isMenuOpen ? "flex" : "hidden"
             } flex-col md:flex md:flex-row md:justify-end items-center space-y-4 md:space-y-0 space-x-0 md:space-x-6 text-md md:text-md w-full md:w-auto`}
         >
-          <button
-            onClick={() => handleNavigation("/")}
+          <Link
+              href="/"
             className={`${isActive("/")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Home
-          </button>
-          <button
-            onClick={() => handleNavigation("/about")}
+          </Link>
+          <Link
+              href="/about"
             className={`${isActive("/about")} font-dm-sans tracking-wide leading-relaxed`}
           >
             About Us
-          </button>
-          <button
-            onClick={() => handleNavigation("/ServiceDetails")}
+          </Link>
+          <Link
+            href="/ServiceDetails"
+           
             className={`${isActive("/ServiceDetails")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Services
-          </button>
-          <button
-            onClick={() => handleNavigation("/careers")}
+          </Link>
+          <Link
+            href="/careers"
             className={`${isActive("/careers")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Careers
-          </button>
-          <button
-            onClick={() => handleNavigation("/contactus")}
+          </Link>
+          <Link
+            href="/contactus"
             className={`${isActive("/contactus")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Contact Us
-          </button>
+          </Link>
 
           {/* <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0">
             Signup/Login
