@@ -18,11 +18,11 @@ const contactus: React.FC = () => {
     ];
     return (
         <Layout>
-            <div className='px-8' >
+            <div>
                 <DynamicHeader title="contactus" />
-                <GetInTouch></GetInTouch>
-                <Gallery></Gallery>
-                <FAQSection></FAQSection>
+                <GetInTouch />
+                <Gallery />
+                <FAQSection />
             </div>
         </Layout>
     );

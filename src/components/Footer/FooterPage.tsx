@@ -17,76 +17,76 @@ const FooterPage = () => {
               width={200}
             />
           </Link>
-          <p className="text-sm pt-6">
+          <p className="text-sm pt-6 font-dm-sans tracking-wide leading-relaxed">
             Trusted home services at your fingertips, anytime, anywhere.
           </p>
         </div>
 
         {/* Navigation Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Navigation</h3>
           <ul className="space-y-2">
             <li>
-              <a href="/" className="hover:underline decoration-blue-500">
+              <Link href="/" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="about" className="hover:underline decoration-blue-500">
+              <Link href="/about" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="ServiceDetails"
-                className="hover:underline decoration-blue-500"
+              <Link
+                href="/ServiceDetails"
+                className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed"
               >
                 Our Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="careers" className="hover:underline decoration-blue-500">
+              <Link href="/careers" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Careers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="contactus" className="hover:underline decoration-blue-500">
+              <Link href="/contactus" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
         {/* Services Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Services</h3>
+          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Services</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Home Cleaning
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Office Cleaning
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Kitchen Cleaning
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:underline decoration-blue-500">
+              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
                 Vehicle Cleaning
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
 
         {/* Subscribe to Newsletter Section */}
         <div>
-          <h3 className="text-[18px] text-[#FFFFFF] font-semibold mb-4">
+          <h3 className="text-[18px] text-[#FFFFFF] font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
             Subscribe to Newsletter
           </h3>
           <form>
@@ -95,7 +95,7 @@ const FooterPage = () => {
               placeholder="Enter your email"
               className="w-full pl-6 mb-4 rounded-full p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="w-[9vw] rounded-full bg-[#0054A5] p-4 hover:bg-blue-700">
+            <button className="w-[9vw] rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Subscribe
             </button>
           </form>
@@ -104,16 +104,16 @@ const FooterPage = () => {
 
       {/* Footer Bottom Section */}
       <hr className="my-8 border-gray-700" />
-      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
         <p>Copyright &copy; 2024 Menrol</p>
         <p className="flex space-x-4">
-          <a href="#" className="hover:underline decoration-blue-500">
+          <Link href="#" className="hover:underline decoration-blue-500">
             Terms of Use
-          </a>
+          </Link>
           <span>|</span>
-          <a href="#" className="hover:underline decoration-blue-500">
+          <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
             Privacy Policy
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

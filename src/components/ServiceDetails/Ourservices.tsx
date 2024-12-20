@@ -20,10 +20,10 @@ const Ourservices = () => {
         {"/ Our Service".split("").join(" ")}
       </h1>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-[45px] font-[\'Lexend\']">
+        <h1 className="text-[45px]  font-dm-sans tracking-wide leading-relaxed">
           Elevate Your Cleanliness{" "}
         </h1>
-        <h1 className="text-[45px] font-[\'Lexend\']">with Supaklin</h1>
+        <h1 className="text-[45px]  font-dm-sans tracking-wide leading-relaxed">With Supaklin</h1>
       </div>
 
       {/* Cards Section */}
@@ -49,18 +49,18 @@ const Ourservices = () => {
                 </div>
 
                 <div className="absolute top-4 right-4 md:top-6 md:right-6">
-                  <button
+                  {/* <button
                     className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
                     onClick={handleNavigate}
                   >
                     <FaArrowRightLong className="h-6 w-6" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
 
               <div className="absolute bottom-4 lg:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
                 <div className="text-center px-2">
-                  <h3 className="font-bold text-[#24232A] text-[18px] lg:text-[24px] font-[\'Lexend\']">
+                  <h3 className="font-bold text-[#24232A] text-[18px] lg:text-[24px] font-dm-sans tracking-wide leading-relaxed">
                     {index === 0
                       ? "Home Cleaning"
                       : index === 1
@@ -69,7 +69,7 @@ const Ourservices = () => {
                       ? "Kitchen Cleaning"
                       : "Other Service"}
                   </h3>
-                  <p className="text-xs text-[#24232A] lg:text-[16px] font-[\'Lexend\']">
+                  <p className="text-xs text-[#24232A] lg:text-[16px] font-dm-sans tracking-wide leading-relaxed">
                     Tellus aliquam faucibus imperdiet eget interdum risus diam.
                   </p>
                 </div>

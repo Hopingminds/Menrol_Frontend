@@ -1,5 +1,6 @@
 "use client";
 import { FC, useState } from "react";
+import { FaPlusCircle, FaWindowMinimize } from "react-icons/fa";
 
 type FAQ = {
     question: string;
@@ -36,14 +37,14 @@ const FAQSection: FC = () => {
     ];
 
     return (
-        <div className="flex flex-col md:flex-row items-start justify-center py-12 bg-white">
+        <div className="flex flex-col md:flex-row items-start py-12 bg-white px-[10%] justify-between gap-40">
             {/* Left Section - FAQ */}
-            <div className="w-[90%] px-32 ">
-                <p className="text-sm font-bold text-green-500 uppercase font-lexend">
+            <div className="w-full">
+                <p className="text-lg font-bold text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
                     / Questions & Answers
                 </p>
-                <h1 className="text-4xl font-bold mt-4 text-[rgba(36,35,42,1)] leading-relaxed font-lexend">
-                    Frequently Asked<br /> Questions
+                <h1 className="text-5xl font-bold mt-6 text-[rgba(36,35,42,1)]  font-lexend font-dm-sans tracking-wide leading-relaxed">
+                    Frequently Asked Questions
                 </h1>
                 <div className="mt-8 space-y-6 ">
                     {faqs.map((faq, index) => (
@@ -52,13 +53,13 @@ const FAQSection: FC = () => {
                                 onClick={() => toggleQuestion(index)}
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
-                                <h2 className="text-lg font-bold font-lexend">{faq.question}</h2>
-                                <span className="text-2xl font-bold">
-                                    {openQuestionIndex === index ? "−" : "+"}
+                                <h2 className="text-xl font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
+                                <span className="text-2xl font-bold  items-center p-2">
+                                    {openQuestionIndex === index ? <FaWindowMinimize /> : <FaPlusCircle />}
                                 </span>
                             </button>
                             {openQuestionIndex === index && (
-                                <p className="mt-2 text-sm text-[rgba(107,106,126,1)] font-sans">{faq.answer}</p>
+                                <p className="mt-2 text-lg text-[rgba(107,106,126,1)] font-sans font-dm-sans tracking-wide leading-relaxed">{faq.answer}</p>
                             )}
                         </div>
                     ))}
@@ -66,7 +67,7 @@ const FAQSection: FC = () => {
             </div>
             <div className="mt-6 w-2/3 flex flex-col items-start">
                 <div
-                    className="w-72 h-96 bg-[rgba(94,147,198,1)] rounded-xl"
+                    className="w-full h-[50vh] bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
                         backgroundImage: "url('/Images/All photos/FAQ (1).jpg')",
                         backgroundSize: "cover",
@@ -75,7 +76,7 @@ const FAQSection: FC = () => {
                     }}
                 ></div>
 
-                <p className="mt-4 text-sm text-gray-500">
+                <p className="mt-4 text-lg text-gray-500 gap-3">
                     More Information <span className="text-orange-500">+91 9193700050</span>
                 </p>
             </div>

@@ -7,8 +7,8 @@ import { MdOutlineWatchLater } from "react-icons/md";
 
 const WhyChooseUs = () => {
   return (
-    <div className="px-[10%] py-[15vh]">
-      <div className="bg-[#F9F9FE] rounded-lg w-full h-[80vh] px-[10%] ">
+    <div className="px-[10%] py-[10vh] shadow-sm">
+      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%] ">
         <div className="flex flex-row justify-between font-lexend">
           <div className="py-[8%]">
             <h1
@@ -25,7 +25,7 @@ const WhyChooseUs = () => {
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
-              className="absolute top-5 right-12 w-[3vw] h-[6vh] object-cover"
+              className="absolute top-2 right-5 w-auto h-auto object-cover"
               height={100}
               width={100}
             />
@@ -39,63 +39,71 @@ const WhyChooseUs = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="flex flex-row justify-around font-Lexend">
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+
+        <div className="flex flex-col items-center py-10">
+          {/* First Row */}
+          <div className="flex flex-col sm:flex-row sm:justify-between w-full mb-10">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <FiUsers />
               </div>
-
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Reliable Cleaning Crew</h1>
-                <p className="text-[16px] text-[#24232A]">
-                  Trusted cleaning experts making every space
-
+                <h1 className="text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                  Reliable Cleaning Crew
+                </h1>
+                <p className="text-[14px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                  Trusted cleaning experts making every space <br />
+                  Shine with care and precision
                 </p>
-                <p className="text-[16px]">Shine with care and precision</p>
               </div>
             </div>
 
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <MdOutlineWatchLater />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">On-Time Services</h1>
-                <p className="text-[16px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">On-Time Services</h1>
+                <p className="text-[14px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Timely delivery of services, ensuring reliability and customer
-                  satisfaction.
+                  satisfaction. <br /> Satisfaction, reliability, and customer
+                  care.
                 </p>
-                <p className="text-[16px]"> Satisfaction, reliability, and customer care.</p>
+                <p className="text-[14px]"></p>
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-around py-10">
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+
+          {/* Second Row */}
+          <div className="flex flex-col sm:flex-row sm:justify-between w-full py-10">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <IoCubeOutline />
               </div>
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Flexible Packages</h1>
-                <p className="text-[16px] text-[#24232A]">
+                <h1 className="text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                  Flexible Packages
+                </h1>
+                <p className="text-[14px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Affordable and adaptable packages for all your cleaning and
-                  service needs.
+                  service needs. <br /> For all your cleaning and service needs.
                 </p>
-                <p className="text-[16px]">For all your cleaning and service needs.</p>
               </div>
             </div>
 
-            <div className="flex flex-row items-center gap-5">
-              <div className="bg-[#0054A5] h-[7vh] w-[4vw] rounded-lg flex items-center justify-center text-white">
+            <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] rounded-lg flex items-center justify-center text-white">
                 <BsEmojiSmile />
               </div>
-
               <div>
-                <h1 className="text-[24px] text-[#24232A]">Transparent Pricing</h1>
-                <p className="text-[16px] text-[#24232A]">
-                  Fair and transparent pricing,  Ensuring clarity on every service we provide.
+                <h1 className="text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                  Transparent Pricing
+                </h1>
+                <p className="pl-1 text-[14px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                  Fair and transparent pricing, <br /> Ensuring clarity on every
+                  service we provide.
                 </p>
-                <p className="text-[16px] text-[#24232A]"> Ensuring clarity on every service we provide.</p>
+                <p className="text-[14px] text-[#24232A]"></p>
               </div>
             </div>
           </div>

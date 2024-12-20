@@ -129,15 +129,15 @@ const Header = () => {
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
             <FaRegClock />
-            <p>Mon-Fri 08:00 - 17:00</p>
+            <p className="font-dm-sans tracking-wide leading-relaxed">Mon-Fri 08:00 - 17:00</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt />
-            <p>+91 9193700050</p>
+            <p className="font-dm-sans tracking-wide leading-relaxed">+91 9193700050</p>
           </div>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
-          <p>Request an Estimate</p>
+          <p className="font-dm-sans tracking-wide leading-relaxed">Request an Estimate</p>
           <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6"
             onClick={handleGoContact}
           />
@@ -171,31 +171,31 @@ const Header = () => {
         >
           <button
             onClick={() => handleNavigation("/")}
-            className={`${isActive("/")}`}
+            className={`${isActive("/")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Home
           </button>
           <button
             onClick={() => handleNavigation("/about")}
-            className={`${isActive("/about")}`}
+            className={`${isActive("/about")} font-dm-sans tracking-wide leading-relaxed`}
           >
             About Us
           </button>
           <button
             onClick={() => handleNavigation("/ServiceDetails")}
-            className={`${isActive("/ServiceDetails")}`}
+            className={`${isActive("/ServiceDetails")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Services
           </button>
           <button
             onClick={() => handleNavigation("/careers")}
-            className={`${isActive("/careers")}`}
+            className={`${isActive("/careers")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Careers
           </button>
           <button
             onClick={() => handleNavigation("/contactus")}
-            className={`${isActive("/contactus")}`}
+            className={`${isActive("/contactus")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Contact Us
           </button>

@@ -5,7 +5,7 @@ import { FiPhone } from "react-icons/fi";
 const GetInTouch = () => {
     return (
         <div>
-            <div className="flex flex-col lg:flex-row  p-8 bg-gray-50 px-24  justify-between ">
+            <div className="flex flex-col lg:flex-row  p-8 bg-gray-50 px-[10%]  justify-between ">
                 {/* Left Section */}
                 <div className=" space-y-8 text-center lg:text-left">
                     <h2 className="text-5xl font-bold text-gray-800 ">Get in Touch</h2>

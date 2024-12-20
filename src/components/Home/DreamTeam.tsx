@@ -24,8 +24,8 @@ const DreamTeam = () => {
         </div>
       )}
       <div className="bg-[#24232A] rounded-lg h-[50vh] w-full flex flex-col items-center justify-center text-center px-6 shadow-sm">
-        <h1 className="text-white text-[48px] mb-4">Join Our Dream Team!</h1>
-        <p className="text-[#BCBBC9] mb-6">
+        <h1 className="text-white text-[48px] mb-4 font-dm-sans tracking-wide leading-relaxed ">Join Our Dream Team!</h1>
+        <p className="text-[#BCBBC9] mb-6 font-dm-sans tracking-wide leading-relaxed ">
           Be a part of our expert team and bring cleanliness and joy to every
           space.
         </p>

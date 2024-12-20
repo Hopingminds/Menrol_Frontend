@@ -2,10 +2,10 @@ import React from 'react';
 
 const CultureSection: React.FC = () => {
     return (
-        <section className="flex md:flex-row items-center md:items-start p-8 bg-white px-[10%] gap-10">
-            <div className="flex flex-col items-center md:items-start border">
+        <section className="flex md:flex-row items-center md:items-start p-8 bg-white px-[10%] gap-10 justify-between">
+            <div className="flex flex-col items-center md:items-start w-[20vw] border  p-2">
                 <div
-                    className="w-64 h-64 bg-blue-400 mb-8 p-8 rounded-lg shadow-md"
+                    className="w-full h-64 bg-blue-400 mb-8 p-8 rounded-lg shadow-md "
                     style={{
                         backgroundImage: "url('/Images/culture.jpg')",
                         backgroundSize: "cover",
@@ -16,18 +16,15 @@ const CultureSection: React.FC = () => {
                     {/* Content inside the div (if any) */}
                 </div>
 
-                <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center w-64 h-64">
-                    <div className="text-6xl font-bold text-white mt-8">90%</div>
-                    <p className="text-gray-600 mt-2 font-sans">Job Satisfaction<br /><span className="text-[rgba(249,249,254,1)] font-sans">Our employees love working for Supaklin</span></p>
-                    <div className="absolute top-10 left-10 text-3xl text-[rgba(193,244,88,1)]"> ★</div>
-                    <div className="absolute bottom-6  right-4 text-[rgba(36,35,42,1)] text-3xl">
-                        ★
-                    </div>
+                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full h-64 flex flex-col justify-center items-center">
+                    <div className="text-6xl font-bold">90%</div>
+                    <div className="text-xl mt-2 font-dm-sans tracking-wide leading-relaxed">Job Satisfaction</div>
+                    <div className="text-sm mt-2 font-dm-sans tracking-wide leading-relaxed">Our employees love working for Supaklin</div>
                 </div>
             </div>
             <div className="md:w-2/3 border h-[100%] p-5">
-                <div className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend">/Our culture</div>
-                <h2 className="text-3xl font-bold mb-8 text-[rgba(36,35,42,1)] mt-3">Collaboration and Growth</h2>
+                <div className="text-[rgba(81,220,152,1)] uppercase text-lg tracking-wide font-lexend">/Our culture</div>
+                <h2 className="text-3xl font-bold mb-8 text-[rgba(36,35,42,1)] mt-3 font-dm-sans tracking-wide leading-relaxed">Collaboration and Growth</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
                     {[
                         { title: 'Collaboration', description: '"Effective collaboration promotes open communication, strengthens relationships, and ensures the successful execution of complex projects across various industries.' },

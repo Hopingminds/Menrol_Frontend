@@ -16,14 +16,14 @@ const Testimonials: React.FC = () => {
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] font-bold tracking-[0.05em] w-[70%]">
+            <h1 className="text-[#24232A] text-[56px] font-bold tracking-[0.05em] w-[70%] font-dm-sans tracking-wide leading-relaxed">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>
 
-          <button className="bg-[#0054A5] my-[5vh] rounded-full h-[7vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
+          {/* <button className="bg-[#0054A5] my-[5vh] rounded-full h-[7vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
             View All
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -39,14 +39,14 @@ const Testimonials: React.FC = () => {
                 className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold text-gray-800">Rinki Beniwal</h2>
+                <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Rinki Beniwal</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">Plumbing</h3>
-            <p className="text-gray-600 mt-2 text-sm">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed" >Plumbing</h3>
+            <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed">
               Really satisfied with the services. Will definitely recommend to others.
             </p>
           </div>
@@ -61,14 +61,14 @@ const Testimonials: React.FC = () => {
                 className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold text-gray-800">Aditya Raj</h2>
+                <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Aditya Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">Home Cleaning</h3>
-            <p className="text-gray-600 mt-2 text-sm">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed">Home Cleaning</h3>
+            <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed">
               They really provided exceptional cleaning services. Really satisfied, and my home smells amazing!
             </p>
           </div>
@@ -83,14 +83,14 @@ const Testimonials: React.FC = () => {
                 className="w-16 h-16 rounded-full object-cover"
               />
               <div>
-                <h2 className="text-lg font-bold text-gray-800">Ankit Raj</h2>
+                <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Ankit Raj</h2>
               </div>
             </div>
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900">Plumbing</h3>
-            <p className="text-gray-600 mt-2 text-sm">
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed">Plumbing</h3>
+            <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed">
               They solved all the leakage problems. I was really troubled by these issues for a long time. Appreciate their work!
             </p>
           </div>
@@ -113,7 +113,7 @@ const Testimonials: React.FC = () => {
               ></video>
             </div>
 
-            <div className="col-span-2 grid grid-cols-2 gap-20">
+            <div className="col-span-2 grid grid-cols-2 gap-10 font-dm-sans tracking-wide leading-relaxed">
               <Feature
                 title="Flexible Scheduling"
                 description="We offer flexible scheduling, making it easy to book cleaning services at your convenience."
@@ -125,14 +125,15 @@ const Testimonials: React.FC = () => {
             </div>
           </div>
 
-          <div className="">
-            <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 mx-3 h-72 w-full">
-              <div className="text-6xl font-bold text-white mt-9">30%</div>
-              <p className="text-gray-600 mt-2">Satisfied Clients</p>
+          <div className=" flex flex-col pt-8">
+            <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 h-72 w-full">
+
+              <div className="text-6xl font-bold text-white mt-9 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div>
+              <p className="text-gray-600 mt-2 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Satisfied Clients</p>
               <div className="absolute top-4 left-4 text-lg">⭐</div>
               <div className="absolute bottom-4 right-4 text-gray-700 text-lg">★</div>
             </div>
-            <div className="col-span-1">
+            <div className=" flex font-dm-sans tracking-wide leading-relaxed items-center justify-center font-lg">
               <Feature
                 title="Professional Cleaners"
                 description="Our professional cleaners offer expert cleaning services, transforming your space into a fresh, hygienic haven"
