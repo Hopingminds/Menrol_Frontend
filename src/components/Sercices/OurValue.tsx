@@ -73,7 +73,7 @@ const OurValue = () => {
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
-            src="/Images/OfferImage.png"
+            src="/Images/Services_01.png"
             alt="Offer"
             className="w-[20vw] h-[65vh] md:w-[25vw] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 md:ml-[15vw] "
             height={300}

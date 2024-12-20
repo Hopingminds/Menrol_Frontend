@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Testimonials = () => {
@@ -29,10 +30,12 @@ const Testimonials = () => {
           {/* Card 1 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person3.webp"
+              <Image
+                src="/Images/AllImages/person3.webp"
                 alt="Rahul Rana"
                 className="w-16 h-16 rounded-full object-cover"
+                height={100}
+                width={100}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Rahul Rana</h2>
@@ -50,10 +53,13 @@ const Testimonials = () => {
           {/* Card 2 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person4.jpg"
+              <Image
+                src="/Images/AllImages/person4.jpg"
                 alt="Prajjwal Sharma"
                 className="w-16 h-16 rounded-full object-cover"
+
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed" >Prajjwal Sharma</h2>
@@ -72,10 +78,12 @@ const Testimonials = () => {
           {/* Card 3 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person5.jpg"
+              <Image
+                src="/Images/AllImages/person5.jpg"
                 alt="Kammal Prakash"
                 className="w-16 h-16 rounded-full object-cover"
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed ">Kammal Prakash</h2>

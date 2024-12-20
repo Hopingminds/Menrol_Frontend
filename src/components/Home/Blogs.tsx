@@ -7,7 +7,7 @@ const blogsData = [
     title: "Menrol: Your Trusted Partner for All Home Services",
     description:
       "Managing home maintenance has never been easier! Menrol is a one-stop solution for all your household needs, offering services like cleaning, plumbing, carpentry, electrical repairs, and more.",
-    image: "/Images/All photos/Blog1.jpg",
+    image: "/Images/AllImages/Blog1.jpg",
     link: "https://pizzazzpainting.com/blog/diy-guide-condo-painting/",
   },
   {
@@ -15,7 +15,7 @@ const blogsData = [
     title: "Simplify Your Life with Menrol",
     description:
       "Life is busy, but your household chores don’t have to be. Menrol brings skilled professionals to your fingertips, offering on-demand services for every need.",
-    image: "/Images/All photos/Blog2.jpg",
+    image: "/Images/AllImages/Blog2.jpg",
     link: "https://pizzazzpainting.com/blog/popular-paint-colors-and-how-they-affect-your-mood/",
   },
   {
@@ -23,7 +23,7 @@ const blogsData = [
     title: "Transform Your Home with Menrol’s Expert Services",
     description:
       "Your home deserves the best care, and that’s exactly what Menrol provides. Our app connects you with experienced professionals who specialize in cleaning, repairs, and installations.",
-    image: "/Images/All photos/Blog3.png",
+    image: "/Images/AllImages/Blog3.png",
     link: "https://pulseelectrix.co.uk/stay-connected-and-safe-a-guide-to-using-extension-leads/",
   },
   {
@@ -31,7 +31,7 @@ const blogsData = [
     title: "Connecting You with Verified Experts for Quality Home Services",
     description:
       "Finding reliable home service providers can be challenging. That’s where Menrol steps in. Our app connects you with trusted, verified professionals who deliver top-quality work for tasks big and small.",
-    image: "/Images/All photos/Blog4.png",
+    image: "/Images/AllImages/Blog4.png",
     link: "https://pulseelectrix.co.uk/everything-you-need-to-know-about-portable-appliance-testing/",
   },
 ];
@@ -45,7 +45,7 @@ const Blogs = () => {
           / BLOGS
         </h1>
         <h1 className="text-[#24232A] text-[36px] text-center pb-10 font-dm-sans tracking-wide leading-relaxed ">
-          Comfortable Cleanliness, Supaklin's Standard
+          Comfortable Cleanliness, Supaklin&apos;s Standard
         </h1>
       </div>
 
