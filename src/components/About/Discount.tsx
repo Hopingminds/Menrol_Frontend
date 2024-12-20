@@ -18,18 +18,18 @@ const Discount = () => {
   };
 
   return (
-    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative py-10 my-10" >
+    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative py-10 my-10 gap-10" >
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
         </div>
       )}
 
-      <div className="px-[10%] flex flex-col-reverse md:flex-row w-full justify-between md:items-center sm:top-4">
+      <div className="px-[10%] lg:px-0  flex flex-col-reverse md:flex-row w-full justify-between md:items-center  sm:top-4  ">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
-            src="/Images/Allphotos/OfferImage (1).jpg"
+            src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
             className="w-[20vw] h-[55vh] md:w-[25vw] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 "
             height={300}
@@ -58,7 +58,7 @@ const Discount = () => {
         </div>
 
         {/* Right Side Text */}
-        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col ">
+        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col lg:px-24">
           <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.08em] py-10">
             {"/ / Discount Up To 50%".split(" ").join("  ")}
           </h1>
