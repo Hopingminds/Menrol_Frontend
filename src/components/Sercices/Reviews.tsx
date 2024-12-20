@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Reviews = () => {
@@ -22,10 +23,12 @@ const Reviews = () => {
           {/* Card 1 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person9.png"
+              <Image
+                src="/Images/AllImages/person9.png"
                 alt="Khushdeep Saini"
                 className="w-16 h-16 rounded-full object-cover"
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold">Khushdeep saini</h2>
@@ -50,10 +53,12 @@ const Reviews = () => {
           {/* Card 2 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person3.webp"
+              <Image
+                src="/Images/AllImages/person3.webp"
                 alt="Rakshit Maheshwari"
                 className="w-16 h-16 rounded-full object-cover"
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold">Rakshit Maheshwari</h2>
@@ -78,10 +83,12 @@ const Reviews = () => {
           {/* Card 3 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person4.jpg"
+              <Image
+                src="/Images/AllImages/person4.jpg"
                 alt="Aditya Rana"
                 className="w-16 h-16 rounded-full object-cover"
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold">Aditya Rana</h2>

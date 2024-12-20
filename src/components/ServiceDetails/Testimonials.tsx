@@ -1,6 +1,6 @@
 import React from "react";
 import Feature from "../../components/About/Feature";
-import Layout from "@/components/Layout";
+import Image from "next/image";
 
 const Testimonials: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Testimonials: React.FC = () => {
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] font-bold tracking-[0.05em] w-[70%] font-dm-sans tracking-wide leading-relaxed">
+            <h1 className="text-[#24232A] text-[56px] font-bold tracking-[0.05em] w-[70%] font-dm-sans leading-relaxed">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>
@@ -33,10 +33,12 @@ const Testimonials: React.FC = () => {
           {/* Card 1 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person6.webp"
+              <Image
+                src="/Images/AllImages/person6.webp"
                 alt="Rinki Beniwal"
                 className="w-16 h-16 rounded-full object-cover"
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Rinki Beniwal</h2>
@@ -55,10 +57,13 @@ const Testimonials: React.FC = () => {
           {/* Card 2 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person7.jpg"
+              <Image
+                src="/Images/AllImages/person7.jpg"
                 alt="Aditya Raj"
                 className="w-16 h-16 rounded-full object-cover"
+
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Aditya Raj</h2>
@@ -77,10 +82,13 @@ const Testimonials: React.FC = () => {
           {/* Card 3 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
-              <img
-                src="/Images/All photos/person8.webp"
+              <Image
+                src="/Images/AllImages/person8.webp"
                 alt="Ankit Raj"
                 className="w-16 h-16 rounded-full object-cover"
+
+                height={200}
+                width={200}
               />
               <div>
                 <h2 className="text-lg font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">Ankit Raj</h2>

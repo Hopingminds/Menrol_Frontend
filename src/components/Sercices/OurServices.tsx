@@ -7,6 +7,10 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const OurServises = () => {
   const router = useRouter()
 
+  const HandleGoAbout =()=>{
+    router.push("/about");
+  }
+
   return (
     <div className="gap-4 px-[10%] ">
       <h1
@@ -25,7 +29,7 @@ const OurServises = () => {
             with Supaklin
           </h1>
         </div>
-        <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]">
+        <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]" onClick={HandleGoAbout}>
           View All
         </button>
       </div>
@@ -107,7 +111,7 @@ const OurServises = () => {
                 Kitchen Cleaning
               </h3>
               <p className="text-xs text-[#24232A] md:text-[16px] font-dm-sans tracking-wide leading-relaxed">
-                Professional cleaners restoring your kitchen's shine with efficient, eco-friendly cleaning methods
+                Professional cleaners restoring your kitchen &apos;s shine with efficient, eco-friendly cleaning methods
               </p>
             </div>
           </div>

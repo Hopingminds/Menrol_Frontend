@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 const Gallery = () => {
@@ -17,10 +18,12 @@ const Gallery = () => {
                         key={index}
                         className="bg-[rgba(94,147,198,1)] rounded-md shadow-md h-48 flex items-center justify-center hover:scale-105 cursor-pointer"
                     >
-                        <img
+                        <Image
                             src={image}
                             alt={`Gallery item ${index + 1}`}
                             className="w-full h-full object-cover rounded-md"
+                            height={100}
+                            width={100}
                         />
                     </div>
                 ))}

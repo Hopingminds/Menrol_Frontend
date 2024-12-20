@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const CallToAction = () => {
@@ -23,10 +24,12 @@ const CallToAction = () => {
       </div>
       {/* Image Section */}
       <div className="w-[40%]">
-        <img
-          src="Images/All photos/BookingImage.png"
+        <Image
+          src="/Images/AllImages/BookingImage.png"
           alt="Call to Action"
           className="w-full h-auto object-cover"
+          height={100}
+          width={100}
         />
       </div>
     </div>

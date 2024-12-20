@@ -1,16 +1,14 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { BiSolidOffer } from "react-icons/bi";
-import { FaArrowRightLong } from "react-icons/fa6";
 
 const Ourservices = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const handleNavigate = () => {
-    router.push("/services");
-  };
+  // const handleNavigate = () => {
+  //   router.push("/services");
+  // };
   return (
     <div className="px-[10%] mt-[5vh]">
       <h1

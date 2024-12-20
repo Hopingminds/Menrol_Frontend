@@ -14,20 +14,20 @@ const PhoenixSterling = () => {
         <p className="text-white text-xl font-dm-sans tracking-wide leading-relaxed">
           Supaklin Employee
         </p>
-         <p className="mt-4 text-lg text-white font-dm-sans tracking-wide leading-relaxed">
-            “Working at Supaklin has been a rewarding experience. The company's
-            dedication to excellence and sustainable practices has inspired me
-            to grow both professionally and personally.
-          </p>
-          <p className="mt-4 text-lg text-white font-dm-sans tracking-wide leading-relaxed">
-            The supportive and close-knit team has made every day enjoyable, and
-            knowing that our efforts contribute to creating healthier and safer
-            spaces for our clients gives me a sense of fulfillment in my work.
-            Supaklin is more than just a workplace; it feels like a family where
-            everyone's contributions are valued, and I am grateful to be a part
-            of it.”
-          </p>
-        
+        <p className="mt-4 text-lg text-white font-dm-sans tracking-wide leading-relaxed">
+          “Working at Supaklin has been a rewarding experience. The
+          company&apos;s dedication to excellence and sustainable practices has
+          inspired me to grow both professionally and personally.
+        </p>
+
+        <p className="mt-4 text-lg text-white font-dm-sans tracking-wide leading-relaxed">
+          The supportive and close-knit team has made every day enjoyable, and
+          knowing that our efforts contribute to creating healthier and safer
+          spaces for our clients gives me a sense of fulfillment in my work.
+          Supaklin is more than just a workplace; it feels like a family where
+          everyone&apos;s contributions are valued, and I am grateful to be a part of
+          it.”
+        </p>
       </div>
       <div
         className="relative bg-[rgba(94,147,198,1)] text-white p-4 rounded-xl h-[50vh] w-[30%]"

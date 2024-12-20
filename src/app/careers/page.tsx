@@ -2,7 +2,6 @@ import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CultureSection from "../../components/Careers/CultureSection";
 import HowToApply from "../../components/Careers/HowToApply";
-import Header from "@/components/Home/Header";
 import DynamicHeader from "@/components/About/DynamicHeader";
 import Content from "@/components/About/Content";
 import JoinOurTeam from "@/components/Careers/JoinOurTeam";

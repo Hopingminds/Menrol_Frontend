@@ -1,8 +1,9 @@
 // Gallery.tsx
+import Image from 'next/image';
 import React from 'react';
 
 type GalleryProps = {
-    images: string[]; // Array of image URLs
+    images: string[]; 
 };
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
@@ -17,15 +18,17 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {images.map((image, index) => (
+                {images?.map((image, index) => (
                     <div
                         key={index}
                         className="bg-[rgba(94,147,198,1)] rounded-md shadow-md h-48 flex items-center justify-center"
                     >
-                        <img
+                        <Image
                             src={image}
                             alt={`Gallery item ${index + 1}`}
                             className="w-full h-full object-cover rounded-md hover:scale-105 cursor-pointer"
+                            height={200}
+                            width={200}
                         />
                     </div>
                 ))}

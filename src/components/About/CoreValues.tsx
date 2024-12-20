@@ -41,7 +41,7 @@ const CoreValues: React.FC<CoreValuesProps> = ({ values, progressBars }) => {
                 className="relative bg-[rgba(107,106,126,1)] text-white p-6 rounded-md shadow-md w-72 h-96"
                 style={{
 
-                    backgroundImage: "url('/Images/All photos/value (1).jpg')",
+                    backgroundImage: "url('/Images/AllImages/value (1).jpg')",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",

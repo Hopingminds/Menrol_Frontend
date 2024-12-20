@@ -84,11 +84,14 @@ const ServicesHeader = () => {
             "Images/CompaniesLogo/logo-4.png",
             "Images/CompaniesLogo/logo-5.png",
           ].map((logo, index) => (
-            <img
+            <Image
               key={index}
               src={logo}
               alt={`Company Logo ${index + 1}`}
               className="w-20 h-auto"
+
+              height={200}
+              width={200}
             />
           ))}
           
