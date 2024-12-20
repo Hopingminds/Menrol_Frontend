@@ -49,7 +49,7 @@ const OurServices = () => {
           <Image
             src="/Images/Plumber1.jpg"
             alt="Placeholder"
-            className="w-full h-[45vh] md:w-full md:h-[55vh] rounded-lg object-cover"
+            className="w-full h-[45vh] md:w-full md:h-[55vh] lg:[60vh] rounded-lg object-cover"
             height={200}
             width={200}
           />
@@ -61,7 +61,7 @@ const OurServices = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed ">
                 Plumber
@@ -91,7 +91,7 @@ const OurServices = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed ">
                 Electrician
@@ -120,7 +120,7 @@ const OurServices = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed ">
                 Home Services

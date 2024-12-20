@@ -82,7 +82,7 @@ const OurValue = () => {
 
           {/* Overlay Content */}
           <div className="bg-[#0054A5] h-[30vw] md:h-[20vw] md:w-[15vw] w-[10vw] sm:w-[18vw] rounded-lg text-white absolute top-[90%] left-[50%] transform -translate-x-[40%] sm:translate-x-[30%] md:-translate-x-[100%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="flex flex-col items-center justify-center space-y-4 lg:space-y-2 text-center">
               <div className="w-full">
                 <h2 className="text-[16px] text-[#BCBBC9]">Experienced</h2>
                 <div className="text-[14px] text-[black]">70%</div>

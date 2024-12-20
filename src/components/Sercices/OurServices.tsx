@@ -47,7 +47,7 @@ const OurServises = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px]  font-dm-sans tracking-wide leading-relaxed">
                 Home Cleaning
@@ -74,7 +74,7 @@ const OurServises = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
                 Office Cleaning
@@ -101,7 +101,7 @@ const OurServises = () => {
               <FaArrowRightLong className="h-6 w-6" />
             </button>
           </div>
-          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
+          <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
               <h3 className="font-bold text-[#24232A] text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
                 Kitchen Cleaning

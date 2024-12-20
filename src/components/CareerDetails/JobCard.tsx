@@ -44,7 +44,7 @@ const JobCard: React.FC<JobCardProps> = ({
             <p className="text-[#6B6A7E] mt-6 text-[16px] font-normal mb-4 font-dm-sans tracking-wide leading-relaxed">
                 {description}
             </p>
-            <button className="bg-[#0054A5] text-white py-2 px-6 rounded-full mt-2 w-[7vw] h-[5vh] ">
+            <button className="bg-[#0054A5] text-white py-2 px-6 lg:px-4 rounded-full mt-2 w-[7vw] h-[5vh] lg:w-[10vw] lg:h-[7vh]">
                 {buttonText}
             </button>
         </div>

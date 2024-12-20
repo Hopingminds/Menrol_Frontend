@@ -118,11 +118,11 @@ const Supakling = () => {
                   Clean Spaces
                 </h1>
               </div>
-              <div className="w-full md:w-[15vw] mt-4 md:mt-0">
-                <p className="font-bold text-lg md:text-[24px] text-[#6B6A7E]">
+              <div className="w-full md:w-[15vw]  mt-4 md:mt-0">
+                <p className="font-bold  font-lexend text-lg md:text-[24px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[22px] mb-3 pt-5 md:w-[12vw] font-dm-sans tracking-wide leading-relaxed text-[#6B6A7E]" >
+                <p className="text-sm md:text-[22px] mb-3 pt-5 md:w-[12vw] lg:w-[20vw] font-dm-sans tracking-wide leading-relaxed text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
