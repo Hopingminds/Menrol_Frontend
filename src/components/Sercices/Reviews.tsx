@@ -12,9 +12,9 @@ const Reviews = () => {
             </h1>
           </div>
 
-          <button className="bg-[#0054A5] my-[5vh] rounded-full h-[6vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
+          {/* <button className="bg-[#0054A5] my-[5vh] rounded-full h-[6vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
             View All
-          </button>
+          </button> */}
         </div>
       </div>
 

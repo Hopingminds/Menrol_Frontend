@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import React from "react";
+import Image from "next/image";
 
 const LatestProjects = () => {
   const photos = [
@@ -25,13 +26,13 @@ const LatestProjects = () => {
             key={index}
             className="shadow-lg rounded-lg overflow-hidden group"
           >
-            {/* <Image
-              src={Img1}
+            <Image
+              src={photo} // Use the URL from the photos array
               alt={`Project ${index + 1}`}
               className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-              height={200}
-              width={200}
-            /> */}
+              width={400}
+              height={300}
+            />
           </div>
         ))}
       </div>

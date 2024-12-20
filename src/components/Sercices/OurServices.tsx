@@ -7,12 +7,12 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const OurServises = () => {
   const router = useRouter()
 
-  const HandleGoAbout =()=>{
+  const HandleGoAbout = () => {
     router.push("/about");
   }
 
   return (
-    <div className="gap-4 px-[10%] ">
+    <div className="gap-4 px-[10%] lg:mt-8 ">
       <h1
         className="text-[#51DC98] uppercase font-bold pl-4 sm:flex sm:justify-center"
         style={{ wordSpacing: "0.1em" }}

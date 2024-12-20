@@ -5,7 +5,7 @@ import { BiSolidOffer } from "react-icons/bi";
 const ServicesHeader = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row px-[10%] py-10 border border-black lg:mt-8">
+      <div className="flex flex-col md:flex-row px-[10%] py-10 lg:mt-8">
         {/* Left Section: Image */}
         <div className="md:w-1/2 flex  items-center mb-10 md:mb-0">
           <Image
@@ -18,9 +18,9 @@ const ServicesHeader = () => {
         </div>
 
         {/* Right Section: Text Content */}
-        <div className="md:w-full space-y-6 lg:space-y-1 border border-black">
+        <div className="md:w-full space-y-6 lg:space-y-3   lg:leading-relaxed">
           {/* Discount */}
-          <div className="flex flex-row justify-between items-center ">
+          <div className="flex flex-row justify-between items-center">
             <div className="bg-[#C1F458] text-black text-[14px] px-3 rounded-full h-8 flex items-center">
               <span className="pr-2">
                 <BiSolidOffer />
@@ -47,6 +47,7 @@ const ServicesHeader = () => {
             <span className="text-[10px] font-serif font-dm-sans tracking-wide leading-relaxed">
               Rating:
             </span>
+
             <div className="flex space-x-1 text-[#C1F458]">
               {Array(5)
                 .fill(null)
@@ -55,9 +56,12 @@ const ServicesHeader = () => {
                 ))}
             </div>
           </div>
+          <h2 className="text-2xl font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">
+            Description
+          </h2>
 
           {/* Description */}
-          <p className="text-gray-600 max-w-[40vw] font-dm-sans tracking-wide leading-relaxed">
+          <p className="text-gray-600 max-w-[40vw] lg:max-w-[50vw] font-dm-sans tracking-wide leading-relaxed lg:gap-2  ">
             Purus vel lacus erat iaculis augue sed mauris mauris. Dolor sit
             purus adipiscing amet et cras. Nulla volutpat purus pellentesque
             amet pharetra. Nulla ut sit odio integer hac. Sit cras vestibulum
@@ -65,7 +69,7 @@ const ServicesHeader = () => {
           </p>
 
           {/* Order Now Button */}
-          <div className="py-[9vh]">
+          <div className="py-[9vh] lg:py-[3vh]">
             <button className="bg-[#0054A5] text-white font-semibold px-6 items-center rounded-full h-[6vh] shadow hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Order Now
             </button>
@@ -74,7 +78,7 @@ const ServicesHeader = () => {
       </div>
 
       {/* Company Logos */}
-      <div className="pt-6 px-[20%] ">
+      <div className="pt-6 px-[14%] ">
         <div className="border-b-2 pb-10">
           <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
             Our Trusted Partners
