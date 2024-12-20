@@ -68,7 +68,7 @@ const FAQ: FC = () => {
                 <div
                     className="w-72 h-96 bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
-                        backgroundImage: "url('/Images/FAQ.jpg')", 
+                        backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')", 
                         backgroundSize: "cover", 
                         backgroundPosition: "center", 
                         backgroundRepeat: "no-repeat", 
