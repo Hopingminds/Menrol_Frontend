@@ -5,7 +5,7 @@ import { BiSolidOffer } from "react-icons/bi";
 const ServicesHeader = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row px-[10%] py-10">
+      <div className="flex flex-col md:flex-row px-[10%] py-10 border border-black lg:mt-8">
         {/* Left Section: Image */}
         <div className="md:w-1/2 flex  items-center mb-10 md:mb-0">
           <Image
@@ -18,9 +18,9 @@ const ServicesHeader = () => {
         </div>
 
         {/* Right Section: Text Content */}
-        <div className="md:w-full space-y-6">
+        <div className="md:w-full space-y-6 lg:space-y-1 border border-black">
           {/* Discount */}
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-row justify-between items-center ">
             <div className="bg-[#C1F458] text-black text-[14px] px-3 rounded-full h-8 flex items-center">
               <span className="pr-2">
                 <BiSolidOffer />
