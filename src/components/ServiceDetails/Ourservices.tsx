@@ -64,10 +64,10 @@ const Ourservices = () => {
                     {index === 0
                       ? "Home Cleaning"
                       : index === 1
-                      ? "Office Cleaning"
-                      : index === 2
-                      ? "Kitchen Cleaning"
-                      : "Other Service"}
+                        ? "Office Cleaning"
+                        : index === 2
+                          ? "Kitchen Cleaning"
+                          : "Other Service"}
                   </h3>
                   <p className="text-xs text-[#24232A] lg:text-[16px] font-dm-sans tracking-wide leading-relaxed">
                     Tellus aliquam faucibus imperdiet eget interdum risus diam.

@@ -56,7 +56,7 @@ const Home = () => {
                             ></video>
                         </div>
 
-                        <div className="col-span-2 grid grid-cols-2 md:grid-cols-2 gap-20 font-dm-sans tracking-wide leading-relaxed text-[18px]">
+                        <div className="col-span-2 grid grid-cols-2 md:grid-cols-2 gap-20 font-dm-sans tracking-wide leading-relaxed text-[18px] 2xl:gap-96">
                             {" "}
                             {/* Reduced gap and added margin top */}
                             <Feature

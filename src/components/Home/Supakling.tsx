@@ -141,16 +141,16 @@ const Supakling = () => {
 
       <div className="flex flex-col justify-between h-auto md:h-screen pt-10 md:pt-[40vh]">
         <div
-          className="bg-[#0054A5] w-full h-auto md:h-[50vh] flex justify-center items-center relative"
+          className="bg-[#0054A5] w-full h-auto md:h-[50vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
           onMouseMove={handleMouseMove}
         >
           {/* Video Embed */}
-          <div className="transform -translate-y-1/3 relative">
+          <div className="transform -translate-y-1/3 relative 2xl:px-40">
             <video
               autoPlay
               loop
               ref={videoRef}
-              className="w-full md:w-[60vw] h-[30vh] md:h-[60vh] object-cover rounded-xl shadow-sm"
+              className="w-full md:w-[60vw] h-[30vh] md:h-[60vh] 2xl:w-[100vw] object-cover rounded-xl shadow-sm"
               src="/Images/solar.mp4"
             ></video>
 

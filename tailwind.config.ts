@@ -16,7 +16,11 @@ export default {
         lexend: ['Lexend', 'sans-serif'],
         sans: ["DM Sans", "sans-serif"],
       },
+      screens: {
+        'xsm': { 'min': '320px', 'max': '630px' },
+      },
     },
+
   },
   plugins: [],
 } satisfies Config;

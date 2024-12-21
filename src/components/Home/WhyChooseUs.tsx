@@ -7,9 +7,9 @@ import { MdOutlineWatchLater } from "react-icons/md";
 
 const WhyChooseUs = () => {
   return (
-    <div className="px-[10%] py-[10vh] shadow-sm">
-      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%] ">
-        <div className="flex flex-row justify-between font-lexend">
+    <div className="px-[10%] py-[10vh] shadow-sm border ">
+      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%]  border ">
+        <div className="flex flex-row justify-between  font-lexend">
           <div className="py-[8%]">
             <h1
               className="text-[#51DC98] uppercase font-bold py-[2vh]"
