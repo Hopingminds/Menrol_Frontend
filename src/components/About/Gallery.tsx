@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 
 type GalleryProps = {
-    images: string[]; 
+    images: string[];
 };
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {

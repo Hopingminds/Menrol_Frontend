@@ -17,9 +17,9 @@ const DreamTeam = () => {
   };
 
   return (
-    <div className="px-[10%] flex items-center justify-center py-[10vh] relative">
+    <div className="px-[10%] flex items-center justify-center py-[10vh] xsm:py-0 xsm:px-0 relative xsm:p-9">
       {loading && (
-        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="absolute top-0 left-0 w-full xsm:w-full xsm:h-gull h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
         </div>
       )}
@@ -30,7 +30,7 @@ const DreamTeam = () => {
           space.
         </p>
         <button
-          className="text-white bg-[#0054A5] px-6 mt-5  h-[7vh] shadow-sm  rounded-full transition"
+          className="text-white bg-[#0054A5] px-6 mt-5 xsm:px-3 xsm:py-2  h-[7vh] shadow-sm  rounded-full transition"
           onClick={handleGoContact}
         >
           Join Our Team
