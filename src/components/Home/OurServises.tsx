@@ -63,10 +63,10 @@ const OurServices = () => {
           </div>
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
-              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[15px] font-dm-sans tracking-wide leading-relaxed">
                 Plumber
               </h3>
-              <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-[11px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                 On-call plumbers ready to resolve your plumbing issues with
                 expertise and efficiency.
               </p>
@@ -93,10 +93,10 @@ const OurServices = () => {
           </div>
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
-              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[15px] font-dm-sans tracking-wide leading-relaxed">
                 Electrician
               </h3>
-              <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-[11px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                 Professional electricians available on-demand for repairs,
                 upgrades, and electrical emergencies.
               </p>
@@ -122,10 +122,10 @@ const OurServices = () => {
           </div>
           <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
             <div className="text-center px-2">
-              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[15px] font-dm-sans tracking-wide leading-relaxed">
                 Home Services
               </h3>
-              <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-[11px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                 Book trusted home service providers for cleaning, maintenance,
                 and repairs through our easy-to-use app.
               </p>
