@@ -45,14 +45,14 @@ const WhyChooseUs = () => {
           {/* First Row */}
           <div className="flex flex-col sm:flex-row sm:justify-between w-full mb-10">
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[5vw] md:h-[3vh] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[5vw] md:h-[7vh] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
                 <FiUsers />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[17px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Reliable Cleaning Crew
                 </h1>
-                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[10px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[18px] font-dm-sans tracking-wide leading-relaxed ">
                   Trusted cleaning experts making every space <br />
                   Shine with care and precision
                 </p>
@@ -60,12 +60,12 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[8vw] md:h-[3vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[6vw] md:h-[7vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
                 <MdOutlineWatchLater />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[17px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">On-Time Services</h1>
-                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[10px] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">On-Time Services</h1>
+                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[18px] font-dm-sans tracking-wide leading-relaxed ">
                   Timely delivery of services, ensuring reliability and customer
                   satisfaction. <br /> Satisfaction, reliability, and customer
                   care.
@@ -78,14 +78,14 @@ const WhyChooseUs = () => {
           {/* Second Row */}
           <div className="flex flex-col sm:flex-row sm:justify-between w-full py-10 xsm:py-0">
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[8vw] md:h-[3vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[6vw] md:h-[7vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
                 <IoCubeOutline />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[17px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Flexible Packages
                 </h1>
-                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[10px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[18px] font-dm-sans tracking-wide leading-relaxed ">
                   Affordable and adaptable packages for all your cleaning and
                   service needs. <br /> For all your cleaning and service needs.
                 </p>
@@ -93,14 +93,14 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[5vw] md:h-[3vh] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] md:w-[5vw] md:h-[7vh] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
                 <BsEmojiSmile />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[17px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Transparent Pricing
                 </h1>
-                <p className="pl-1 text-[14px] xsm:text-[10px] text-[#24232A] md:text-[10px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="pl-1 text-[14px] xsm:text-[10px] text-[#24232A] md:text-[18px] font-dm-sans tracking-wide leading-relaxed ">
                   Fair and transparent pricing, <br /> Ensuring clarity on every
                   service we provide.
                 </p>

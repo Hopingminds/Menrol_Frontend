@@ -38,7 +38,7 @@ const blogsData = [
 
 const Blogs = () => {
   return (
-    <div className="px-4 sm:px-6 lg:px-[10%] py-10">
+    <div className="px-4 sm:px-6 lg:px-[10%] md:px-[10%] py-10">
   {/* Header Section */}
   <div className="flex flex-col items-center text-center">
     <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.3em] py-4">

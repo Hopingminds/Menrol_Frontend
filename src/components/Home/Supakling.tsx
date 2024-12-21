@@ -63,7 +63,7 @@ const Supakling = () => {
   };
 
   return (
-    <div className="p-10 overflow-hidden md:mt-10">
+    <div className="p-10 overflow-hidden md:mt-10  md:my-[25vh]">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
@@ -111,18 +111,18 @@ const Supakling = () => {
             {/* Right Section */}
             <div className="flex flex-col xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
               <div >
-                <h1 className="text-4xl md:text-[40px] xsm:text-[20px] font-bold tracking-[0.05em] leading-tight">
+                <h1 className="text-4xl md:text-[56px] xsm:text-[20px] font-bold tracking-[0.07em] leading-tight">
                   Sparkling
                 </h1>
-                <h1 className="text-4xl md:text-[40px] xsm:text-[20px] font-bold tracking-[0.05em] leading-tight">
+                <h1 className="text-4xl md:text-[56px] xsm:text-[20px] font-bold tracking-[0.07em] leading-tight">
                   Clean Spaces
                 </h1>
               </div>
-              <div className="w-full md:w-[15vw] xsm:w-screen xsm:-ml-3 xsm:mr-10  mt-4 md:mt-0 xsm:mt-20">
+              <div className="w-full md:w-[15vw] md:pt-10 xsm:w-screen xsm:-ml-3 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
                 <p className="font-bold  font-lexend text-lg md:text-[24px] xsm:text-[10px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[10px] xsm:text-[10px] mb-3 pt-5 xsm:pt-1 md:w-full lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
+                <p className="text-sm md:text-[22px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
@@ -143,7 +143,7 @@ const Supakling = () => {
 
       <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-screen pt-10 md:pt-[40vh]">
         <div
-          className="bg-[#0054A5] w-full h-auto md:w-full  xsm:h-[20vh] md:h-[30vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
+          className="bg-[#0054A5] w-full h-auto md:w-full  xsm:h-[20vh] md:h-[60vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
           onMouseMove={handleMouseMove}
         >
           {/* Video Embed */}
@@ -152,7 +152,7 @@ const Supakling = () => {
               autoPlay
               loop
               ref={videoRef}
-              className="w-full md:w-[60vw] h-[30vh]  md:h-[30vh] 2xl:w-[100vw] xsm:h-[20vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
+              className="w-full md:w-[60vw] h-[30vh]  md:h-[60vh] 2xl:w-[100vw] xsm:h-[20vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
               src="/Images/solar.mp4"
             ></video>
 

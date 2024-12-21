@@ -31,7 +31,7 @@ const LatestOffer = () => {
           <Image
             src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
-            className="w-[20vw] h-[55vh] md:w-[90%] md:h-[30vh] xsm:w-[80%] xsm:h-[40vh] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 2xl:h-[70vh] "
+            className="w-[20vw] h-[55vh] md:w-[70%] md:h-[30vh] xsm:w-[80%] xsm:h-[40vh] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 2xl:h-[70vh] "
             height={300}
             width={300}
           />
@@ -58,7 +58,7 @@ const LatestOffer = () => {
         </div>
 
         {/* Right Side Text */}
-        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col  2xl:px-24">
+        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col  2xl:px-24 ">
           <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.08em] py-10">
             {"/ / Discount Up To 50%".split(" ").join("  ")}
           </h1>
