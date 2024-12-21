@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {children}
       <FooterPage />
     </div>
-  );
+  );  
 };
 
 export default Layout;
