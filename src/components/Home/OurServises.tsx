@@ -86,7 +86,7 @@ const OurServices: React.FC = () => {
   };
 
   return (
-    <div className="gap-4 px-[10%] relative">
+    <div className="gap-4 px-[10%] xsm:p-6 relative">
       {/* Show loading spinner while data is being fetched */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
@@ -112,10 +112,10 @@ const OurServices: React.FC = () => {
       {/* Subheading */}
       <div className="flex flex-row justify-between w-full items-center">
         <div>
-          <h1 className="text-[#24232A] text-[56px] xsm:text-[20px] md:text-[56px] font-bold font-dm-sans tracking-wide leading-relaxed">
+          <h1 className="text-[#24232A] text-[56px] xsm:text-[18px] md:text-[56px] font-bold font-dm-sans tracking-wide leading-relaxed">
             Elevate Your Cleanliness
           </h1>
-          <h1 className="text-[#24232A] text-[32px] xsm:text-[20px] md:text-[56px] font-bold tracking-[0.05em]">
+          <h1 className="text-[#24232A] text-[32px] xsm:text-[18px] md:text-[56px] font-bold tracking-[0.05em]">
             with Supaklin
           </h1>
         </div>
@@ -127,7 +127,7 @@ const OurServices: React.FC = () => {
       {/* Slider for displaying services */}
       <Slider {...settings} className="pt-10">
         {services?.map((service) => (
-          <div key={service?._id} className="p-4">
+          <div key={service?._id} className="p-4 ">
             <div className="min-w-[75vw] sm:min-w-0 relative shadow-lg">
               <Image
                 src={service?.categoryImage}
@@ -147,11 +147,11 @@ const OurServices: React.FC = () => {
               </div>
               {/* Service description */}
               <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
-                <div className="text-center px-2">
-                  <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+                <div className="text-center px-5 xsm:px-2">
+                  <h3 className="font-bold text-[#24232A]  text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
                     {service?.category}
                   </h3>
-                  <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                  <p className="text-xs sm:text-sm xsm:text-xs  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                     {service?.categoryDescription}
                   </p>
                 </div>

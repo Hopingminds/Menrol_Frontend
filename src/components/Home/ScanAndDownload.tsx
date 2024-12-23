@@ -54,7 +54,7 @@ const ScanAndDownload = () => {
           </div>
           </div>
 
-          <div className="xsm:hidden"><Image
+          <div className="xsm:hidden sm:hidden md:hidden xl:block"><Image
             src="/Images/iPhone12_Screen.png"
             alt="iPhone Screen"
             className="h-[55vh] w-[30vw] shadow-sm object-contain ml-[4vw] "
