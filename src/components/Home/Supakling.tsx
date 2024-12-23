@@ -63,7 +63,7 @@ const Supakling = () => {
   };
 
   return (
-    <div className="p-10 overflow-hidden md:mt-10  md:my-[25vh]">
+    <div className="p-10 overflow-hidden md:mt-10  md:my-[30vh]">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
@@ -122,7 +122,7 @@ const Supakling = () => {
                 <p className="font-bold  font-lexend text-lg md:text-[24px] xsm:text-[10px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[22px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
+                <p className="text-sm md:text-[10px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[20%] lg:absolute lg:right-32 lg:bottom-32  text-white rounded-full px-4 py-2 md:w-full  xsm:w-24 xsm:px-2 xsm:text-sm hover:scale-105 relative xsm:-left-10 xsm:-top-12 "
+                  className="bg-[#0054A5] lg:w-[20%] lg:absolute lg:right-32 lg:bottom-2  text-white rounded-full px-4 py-2 md:w-full  xsm:w-24 xsm:px-2 xsm:text-sm hover:scale-105 relative xsm:-left-10 xsm:-top-12 "
                   onClick={handleGoContact}
                 >
                   Learn More
