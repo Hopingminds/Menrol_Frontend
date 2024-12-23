@@ -1,18 +1,89 @@
 "use client";
+
 import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import React from "react";
-import { BiSolidOffer } from "react-icons/bi";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const Ourservices = () => {
+// Type definitions
+interface Pricing {
+  pricingtype: string;
+  from: number;
+  to: number;
+  _id: string;
+}
+
+interface Subcategory {
+  description: string | null;
+  dailyWageWorker: number;
+  hourlyWorker: number;
+  contractWorker: number;
+  title: string;
+  image: string;
+  _id: string;
+  pricing: Pricing[];
+}
+
+interface Service {
+  _id: string;
+  category: string;
+  categoryDescription: string;
+  categoryImage: string;
+  subcategory: Subcategory[];
+}
+
+interface ApiResponse {
+  success: boolean;
+  all: Service[];
+}
+
+const Ourservices: React.FC = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleNavigate = () => {
-    router.push("/services");
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(
+          "https://api.menrol.com/api/v1/getServices"
+        );
+        const data: ApiResponse = await response.json();
+
+        if (data.success) {
+          setServices(data.all);
+        } else {
+          setError("Failed to load services.");
+        }
+      } catch (error) {
+        setError("Failed to load services.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  const handleServiceDetails = (serviceId: string) => {
+    router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
   };
+
   return (
-    <div className="px-[10%] mt-[5vh]">
+    <div className="gap-4 px-[10%] relative py-10">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
+          <div className="animate-spin w-16 h-16 border-4 border-t-transparent rounded-full"></div>
+        </div>
+      )}
+
+      {error && (
+        <div className="absolute inset-0 flex items-center justify-center bg-red-500 text-white z-50">
+          <span>{error}</span>
+        </div>
+      )}
+
       <h1
         className="text-[#51DC98] uppercase font-bold text-center"
         style={{ wordSpacing: "0.1em" }}
@@ -20,62 +91,41 @@ const Ourservices = () => {
         {"/ Our Service".split("").join(" ")}
       </h1>
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-[45px]  font-dm-sans tracking-wide leading-relaxed">
-          Elevate Your Cleanliness{" "}
+        <h1 className="text-[45px] font-dm-sans tracking-wide leading-relaxed">
+          Elevate Your Cleanliness
         </h1>
-        <h1 className="text-[45px]  font-dm-sans tracking-wide leading-relaxed">With Supaklin</h1>
+        <h1 className="text-[45px] font-dm-sans tracking-wide leading-relaxed">
+          With Supaklin
+        </h1>
       </div>
 
-      {/* Cards Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 pt-10">
-        {Array(9)
-          .fill(null)
-          .map((_, index) => (
-            <div key={index} className="relative shadow-lg">
-              <Image
-                src="/Images/card-01.png"
-                alt="Service Image"
-                className="w-full h-[45vh] lg:h-[55vh] rounded-lg object-cover"
-                height={200}
-                width={200}
-              />
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 pt-10">
+        {services?.map((service) => (
+          <div key={service?._id} className="p-4 shadow-lg rounded-lg">
+            <Image
+              src={service?.categoryImage}
+              alt={service?.category}
+              className="w-full h-[40vh] sm:h-[45vh] md:h-[55vh] rounded-lg object-cover"
+              height={400}
+              width={400}
+            />
+            <div className="text-center px-2 mt-4">
+              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+                {service?.category}
+              </h3>
+              <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                {service?.categoryDescription}
+              </p>
 
-              <div className="flax flex-row justify-between items-center">
-                <div className="absolute top-3 md:top-6 md:left-2 bg-[#C1F458] text-black text-[14px] px-3 rounded-full h-8 flex items-center">
-                  <span className="pr-2">
-                    <BiSolidOffer />
-                  </span>
-                  <p>Discount 50%</p>
-                </div>
-
-                <div className="absolute top-4 right-4 md:top-6 md:right-6">
-                  <button
-                    className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
-                    onClick={handleNavigate}
-                  >
-                    <FaArrowRightLong className="h-6 w-6" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="absolute bottom-4 lg:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[30%] bg-white flex items-center justify-center rounded-lg">
-                <div className="text-center px-2">
-                  <h3 className="font-bold text-[#24232A] text-[18px] lg:text-[24px] font-dm-sans tracking-wide leading-relaxed">
-                    {index === 0
-                      ? "Home Cleaning"
-                      : index === 1
-                        ? "Office Cleaning"
-                        : index === 2
-                          ? "Kitchen Cleaning"
-                          : "Other Service"}
-                  </h3>
-                  <p className="text-xs text-[#24232A] lg:text-[16px] font-dm-sans tracking-wide leading-relaxed">
-                    Tellus aliquam faucibus imperdiet eget interdum risus diam.
-                  </p>
-                </div>
-              </div>
+              <button
+                className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+                onClick={() => handleServiceDetails(service._id)}
+              >
+                <FaArrowRightLong className="h-6 w-6" />
+              </button>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        background: "#ffffff",
         foreground: "var(--foreground)",
       },
       fontFamily: {
@@ -17,7 +17,7 @@ export default {
         sans: ["DM Sans", "sans-serif"],
       },
       screens: {
-        'xsm': { 'min': '320px', 'max': '630px' },
+        'xsm': { 'min': '320px', 'max': '480px' },
       },
     },
 

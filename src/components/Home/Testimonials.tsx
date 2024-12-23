@@ -14,7 +14,7 @@ const Testimonials = () => {
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] font-bold  w-[70%] font-dm-sans tracking-wide leading-relaxed ">
+            <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] md:text-[30px] font-bold xsm:w-full  w-[70%] font-dm-sans tracking-wide leading-relaxed ">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>
@@ -25,11 +25,11 @@ const Testimonials = () => {
         </div>
       </div>
 
-      <div className="container mx-auto py-10">
-        <div className="flex flex-row gap-6">
+      <div className="container mx-auto sm:overflow-x-scroll xsm:overflow-x-scroll xsm:w-screen">
+        <div className="flex flex-row gap-6  ">
           {/* Card 1 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
-            <div className="flex items-center space-x-4">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px]  py-10 mx-auto">
+            <div className="flex items-start  space-x-4">
               <Image
                 src="/Images/AllImages/person3.webp"
                 alt="Rahul Rana"
@@ -45,14 +45,14 @@ const Testimonials = () => {
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
             <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Home Cleaning</h3>
-            <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed " >
+            <p className="text-gray-600 xsm:leading-tight text-sm font-dm-sans tracking-wide leading-relaxed " >
               Such a great experience! The cleaners were punctual and did a detailed job throughout my home.
             </p>
           </div>
 
           {/* Card 2 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
-            <div className="flex items-center space-x-4">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px]  py-10 mx-auto">
+            <div className="flex items-start space-x-4 ">
               <Image
                 src="/Images/AllImages/person4.jpg"
                 alt="Prajjwal Sharma"
@@ -76,8 +76,8 @@ const Testimonials = () => {
 
 
           {/* Card 3 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
-            <div className="flex items-center space-x-4">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px] py-10 mx-auto">
+            <div className="flex items-start space-x-4 ">
               <Image
                 src="/Images/AllImages/person5.jpg"
                 alt="Kammal Prakash"
