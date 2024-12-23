@@ -26,17 +26,17 @@ const Home = () => {
                 </div>
             </div>
             <div className="grid ">
-                <div className="grid grid-cols-3 gap-4 px-[10%]">
+                <div className="grid grid-cols-[1fr,2.5fr] gap-4 px-[10%]">
                     <div className="flex-col">
-                        <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72">
+                        <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-72 w-72 2xl:w-80">
                             <div className="text-6xl font-bold text-white mt-14 font-dm-sans tracking-wide leading-relaxed">99%</div>
-                            <p className="text-gray-600 mt-2 font-sans font-dm-sans tracking-wide leading-relaxed">Satisfied Clients</p>
+                            <p className="text-gray-600 mt-2 font-sans font-dm-sans tracking-wide leading-relaxed 2xl:mt-0">Satisfied Clients</p>
                             <div className="absolute top-10 left-10 text-3xl text-[rgba(193,244,88,1)]"> ★</div>
-                            <div className="absolute bottom-14  right-12 text-[rgba(36,35,42,1)] text-3xl">
+                            <div className="absolute bottom-14  right-12 text-[rgba(36,35,42,1)] text-3xl 2xl:bottom-6 2xl:right-14">
                                 ★
                             </div>
                         </div>
-                        <div className="col-span-1 font-dm-sans tracking-wide leading-relaxed text-[18px]">
+                        <div className="col-span-1 font-dm-sans tracking-wide leading-relaxed text-[18px] 2xl:text-justify">
                             {" "}
                             <Feature
                                 title="Professional Cleaners"
@@ -44,8 +44,8 @@ const Home = () => {
                             />
                         </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center col-span-2">
-                        <div className="bg-[rgba(94,147,198,1)] w-[95%] h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="bg-[rgba(94,147,198,1)] w-full h-full rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
                             <video
                                 className="absolute top-0 left-0 w-full h-full object-cover"
                                 src="/Images/solar.mp4"
@@ -56,7 +56,7 @@ const Home = () => {
                             ></video>
                         </div>
 
-                        <div className="col-span-2 grid grid-cols-2 md:grid-cols-2 gap-20 font-dm-sans tracking-wide leading-relaxed text-[18px] 2xl:gap-96">
+                        <div className="flex justify-between w-full md:grid-cols-2 gap-20 font-dm-sans tracking-wide leading-relaxed text-[18px] text-justify">
                             {" "}
                             {/* Reduced gap and added margin top */}
                             <Feature

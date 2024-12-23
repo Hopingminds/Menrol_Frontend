@@ -43,17 +43,17 @@ const FAQSection: FC = () => {
                 <p className="text-lg font-bold text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
                     / Questions & Answers
                 </p>
-                <h1 className="text-5xl font-bold mt-6 text-[rgba(36,35,42,1)]  font-lexend font-dm-sans tracking-wide leading-relaxed">
+                <h1 className="text-7xl xsm:text-4xl font-bold mt-6 text-[rgba(36,35,42,1)]  font-lexend font-dm-sans tracking-wide leading-relaxed">
                     Frequently Asked Questions
                 </h1>
-                <div className="mt-8 space-y-6 ">
+                <div className="mt-8 2xl:space-y-8 xsm:space-y-2">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button
                                 onClick={() => toggleQuestion(index)}
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
-                                <h2 className="text-xl font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
+                                <h2 className="text-3xl xsm:text-lg font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
                                 <span className="text-2xl font-bold  items-center p-2">
                                     {openQuestionIndex === index ? <FaWindowMinimize /> : <FaPlusCircle />}
                                 </span>
@@ -65,9 +65,9 @@ const FAQSection: FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="mt-6 w-2/3 flex flex-col items-start">
+            <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:hidden xl:flex xl:w-full">
                 <div
-                    className="w-full h-[50vh] lg:h-[75vh] bg-[rgba(94,147,198,1)] rounded-xl"
+                    className="w-full h-[600px] bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
                         backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')",
                         backgroundSize: "cover",
@@ -80,6 +80,7 @@ const FAQSection: FC = () => {
                     More Information <span className="text-orange-500">+91 9193700050</span>
                 </p>
             </div>
+
         </div>
     );
 };
