@@ -11,13 +11,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true, 
+  swcMinify: true,
   images: {
-    domains: ["example.com"], 
+    domains: ["example.com", "menrol.s3.ap-south-1.amazonaws.com"], // Add the required domain here
   },
   i18n: {
     locales: ["en", "es"],
-    defaultLocale: "en", 
+    defaultLocale: "en",
   },
   webpack: (config) => {
     return config;
@@ -25,3 +25,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
