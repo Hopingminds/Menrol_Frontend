@@ -1,11 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation"; // Import useSearchParams
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 interface Subcategory {
   _id: string;
@@ -39,7 +37,7 @@ const IndividualServices: React.FC = () => {
         const data = await response.json();
 
         if (data.success) {
-          setService(data.data); // Use data.data to set the service
+          setService(data.data); // Set the service data
           setError(null);
         } else {
           setError("Failed to load service details.");
@@ -55,13 +53,16 @@ const IndividualServices: React.FC = () => {
     fetchServiceDetails(id);
   }, [id]);
 
-  
+  if (loading) {
+    return <p>Loading service details...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
+  }
 
   return (
     <div className="p-6">
-      {loading && <p>Loading service details...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 pt-10">
         {service?.subcategory.map((service) => (
           <div key={service?._id} className="p-4 shadow-lg rounded-lg">
@@ -79,10 +80,7 @@ const IndividualServices: React.FC = () => {
               <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                 {service?.description}
               </p>
-
-              <button
-                className="h-[5vh] w-[10vw] md:w-[4vw] bg-[rgb(36,35,42)] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
-              >
+              <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[rgb(36,35,42)] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
                 <FaArrowRightLong className="h-6 w-6" />
               </button>
             </div>
@@ -90,10 +88,7 @@ const IndividualServices: React.FC = () => {
         ))}
       </div>
     </div>
-
   );
-} 
-
+};
 
 export default IndividualServices;
-
