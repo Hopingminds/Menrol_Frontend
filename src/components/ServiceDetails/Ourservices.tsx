@@ -58,6 +58,7 @@ const Ourservices: React.FC = () => {
         }
       } catch (error) {
         setError("Failed to load services.");
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -99,33 +100,36 @@ const Ourservices: React.FC = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 xsm:flex xsm:overflow-x-auto xsm:w-full xsm:gap-4 sm:grid-cols-1 md:grid-cols-3 gap-6 pt-10">
+      <div className="grid grid-cols-1 xsm:flex xsm:overflow-x-auto xsm:w-full xsm:gap-4 sm:flex sm:w-full sm:overflow-x-auto md:grid-cols-2 md:grid lg:grid xl:grid xl:grid-cols-3 gap-6 pt-10">
   {services?.map((service) => (
     <div
       key={service?._id}
-      className="p-4 shadow-lg rounded-lg xsm:min-w-[80%] sm:w-auto sm:h-auto md:w-full md:h-full"
+      className="p-4 shadow-lg rounded-lg xsm:min-w-[80%] sm:w-auto   md:w-full md:h-full xl:w-full"
     >
       <Image
         src={service?.categoryImage}
         alt={service?.category}
-        className="w-full h-[30vh] xsm:h-[35vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh] rounded-lg object-cover"
+        className="w-full h-[30vh] xsm:h-[35vh] sm:h-[40vh] md:h-[30vh] lg:h-[40vh] rounded-lg object-cover"
         height={400}
         width={400}
       />
       <div className="text-center px-2 mt-4">
-        <h3 className="font-bold text-[#24232A] text-[16px] xsm:text-[14px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+        <h3 className="font-bold text-[#24232A] text-[16px] xsm:text-[14px] sm:text-[12px] md:text-[20px] lg:text-[24px] font-dm-sans tracking-wide leading-relaxed">
           {service?.category}
         </h3>
-        <p className="text-xs xsm:text-[12px] sm:text-sm md:text-[16px] lg:text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+        <p className="text-xs xsm:text-[12px] sm:text-[10px] md:text-[16px] lg:text-[18px] sm:w-full text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
           {service?.categoryDescription}
         </p>
 
+        <div className="flex w-full justify-center gap-40 xsm:gap-20 p-5">
         <button
-          className="h-[5vh] w-[10vw] xsm:w-[20vw] sm:w-[15vw] md:w-[10vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+          className="h-[5vh] w-[10vw] xsm:w-[30vw] sm:w-[10vw] md:w-[10vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
           onClick={() => handleServiceDetails(service._id)}
         >
-          <FaArrowRightLong className="h-6 w-6" />
+          <FaArrowRightLong className="h-6 w-6 sm:w-4 " />
         </button>
+        <div></div>
+        </div>
       </div>
     </div>
   ))}

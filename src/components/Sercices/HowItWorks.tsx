@@ -24,20 +24,20 @@ const HowItWorks: React.FC = () => {
 
   return (
     <section className="pb-[10vh] p-10 mt-[15vh] bg-gray-100 px-[10%]">
-      <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend">
+      <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend xsm:text-[10px]">
         /HOW IT WORKS
       </p>
-      <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4">
+      <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4 xsm:text-base">
         How to Apply
       </h2>
-      <div className="flex mb-12 items-center">
+      <div className="flex mb-12 items-center xsm:flex-col">
         {steps.map((step, index) => (
           <div key={index} className=" p-6">
             <div className="flex">
               <div className="border w-16 h-5 rounded-xl bg-[rgba(193,244,88,1)] text-[rgba(36,35,42,1)]">
                 {step.heading}
               </div>
-              <div className="text-[rgba(188,187,201,1)] tracking-wider">
+              <div className="text-[rgba(188,187,201,1)] tracking-wider xsm:rotate-90 xsm:absolute xsm:left-1">
                 ---------------------------------
               </div>
             </div>

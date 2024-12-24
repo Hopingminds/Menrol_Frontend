@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation"; // Import useSearchParams
 import { useEffect, useState } from "react";
-import Slider from "react-slick";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
@@ -56,29 +55,7 @@ const IndividualServices: React.FC = () => {
     fetchServiceDetails(id);
   }, [id]);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+  
 
   return (
     <div className="p-6">

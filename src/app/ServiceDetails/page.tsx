@@ -2,7 +2,6 @@
 import DynamicHeader from "@/components/About/DynamicHeader";
 import Layout from "@/components/Layout";
 import HowItWorks from "@/components/Sercices/HowItWorks";
-import IndividualServices from "@/components/ServiceDetails/IndividualServices";
 import Ourservices from "@/components/ServiceDetails/Ourservices";
 import Testimonials from "@/components/ServiceDetails/Testimonials";
 import WhyChooseUs from "@/components/ServiceDetails/WhyChooseUs";
