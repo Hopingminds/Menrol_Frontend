@@ -95,7 +95,7 @@ const FooterPage = () => {
               placeholder="Enter your email"
               className="w-full pl-6 mb-4 rounded-full p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="w-[9vw] xsm:w-full md:w-full rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
+            <button className="w-[9vw] xsm:w-full sm:w-full md:w-full rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Subscribe
             </button>
           </form>

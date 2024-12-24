@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[20%] sm:w-[50%]  xl:absolute xl: xl:right-20 lg:absolute lg:right-28 lg:-bottom-16 2xl:w-[15%] 2xl:mb-40 2xl:mr-20  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
+                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:bottom-36 xl:right-20  2xl:w-[15%] 2xl:absolute 2xl:bottom-10 2xl:right-40  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
                   onClick={handleGoContact}
                 >
                   Learn More

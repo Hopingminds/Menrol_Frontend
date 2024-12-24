@@ -148,10 +148,10 @@ const OurServices: React.FC = () => {
               {/* Service description */}
               <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
                 <div className="text-center px-5 xsm:px-2">
-                  <h3 className="font-bold text-[#24232A]  text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
+                  <h3 className="font-bold text-[#24232A] xl:text-[16px]  text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
                     {service?.category}
                   </h3>
-                  <p className="text-xs sm:text-sm xsm:text-xs  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                  <p className="text-xs sm:text-sm xsm:text-xs xl:tracking-wide xl:text-[12px]  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                     {service?.categoryDescription}
                   </p>
                 </div>
