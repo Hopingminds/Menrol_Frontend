@@ -1,45 +1,122 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation"; // Import useSearchParams
 import { useEffect, useState } from "react";
+import Slider from "react-slick";
+import { FaArrowRightLong } from "react-icons/fa6";
+import Image from "next/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+interface Subcategory {
+  _id: string;
+  title: string;
+  description: string | null;
+  image: string;
+}
 
 interface Service {
   _id: string;
   category: string;
+  subcategory: Subcategory[];
   description: string;
   categoryImage: string;
 }
 
 const IndividualServices: React.FC = () => {
   const searchParams = useSearchParams();
+  const id = searchParams.get("data");
+
   const [service, setService] = useState<Service | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const data = searchParams.get("data");
-    if (data) {
+    if (!id) return;
+
+    const fetchServiceDetails = async (id: string) => {
       try {
-        const parsedService = JSON.parse(data);
-        setService(parsedService);
-      } catch (error) {
-        console.error("Error parsing service data:", error);
+        const response = await fetch(`https://api.menrol.com/api/v1/getCategory?categoryId=${id}`);
+        const data = await response.json();
+
+        if (data.success) {
+          setService(data.data); // Use data.data to set the service
+          setError(null);
+        } else {
+          setError("Failed to load service details.");
+        }
+      } catch (err) {
+        console.error("Error fetching service details:", err);
+        setError("An error occurred while fetching service details.");
+      } finally {
+        setLoading(false);
       }
-    }
-    console.log(" first check data is comming or not ", data);
-  }, [searchParams]);
+    };
+
+    fetchServiceDetails(id);
+  }, [id]);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
-    <div>
-      {service ? (
-        <>
-          <h1>{service.category}</h1>
-          <p>{service.description}</p>
-          <img src={service.categoryImage} alt={service.category} />
-        </>
-      ) : (
-        <p>Loading service details...</p>
-      )}
+    <div className="p-6">
+      {loading && <p>Loading service details...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 pt-10">
+        {service?.subcategory.map((service) => (
+          <div key={service?._id} className="p-4 shadow-lg rounded-lg">
+            <Image
+              src={service?.image}
+              alt={service?.title}
+              className="w-full h-[40vh] sm:h-[45vh] md:h-[55vh] rounded-lg object-cover"
+              height={400}
+              width={400}
+            />
+            <div className="text-center px-2 mt-4">
+              <h3 className="font-bold text-[#24232A] text-[16px] sm:text-[18px] md:text-[24px] font-dm-sans tracking-wide leading-relaxed">
+                {service?.title}
+              </h3>
+              <p className="text-xs sm:text-sm md:text-[16px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                {service?.description}
+              </p>
+
+              <button
+                className="h-[5vh] w-[10vw] md:w-[4vw] bg-[rgb(36,35,42)] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+              >
+                <FaArrowRightLong className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
+
   );
-};
+} 
+
 
 export default IndividualServices;
+

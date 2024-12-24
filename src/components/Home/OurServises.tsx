@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 // Type definition for Service
 interface Service {
   _id: string;
@@ -26,7 +27,7 @@ const OurServices: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const HandleGoServices=()=>{
+  const HandleGoServices = () => {
     router.push("/ServiceDetails");
   }
 
@@ -57,9 +58,10 @@ const OurServices: React.FC = () => {
   const handleServiceDetails = (id: string) => {
     setLoading(true);
     setTimeout(() => {
-      router.push(`/ServiceDetails/${id}`);
+      router.push(`/IndividualServices?data=${id}`); // Use query parameter format
     }, 1000);
   };
+
 
   const settings = {
     dots: true,
@@ -119,8 +121,8 @@ const OurServices: React.FC = () => {
             with Supaklin
           </h1>
         </div>
-      <div >
-        <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0" onClick={HandleGoServices}>View All</button>
+        <div >
+          <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0" onClick={HandleGoServices}>View All</button>
         </div>
       </div>
 
@@ -137,13 +139,13 @@ const OurServices: React.FC = () => {
                 width={400}
               />
               {/* Arrow button to navigate to service details */}
-              <div className="absolute top-4 right-4 md:top-8 md:right-6">
-                {/* <button
+              <div className="absolute top-4 right-4 md:top-8 md:right-6 ">
+                <button
                   className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[8vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#1F1E24]"
                   onClick={() => handleServiceDetails(service._id)}
                 >
                   <FaArrowRightLong className="h-4 w-4 sm:h-6 sm:w-6" />
-                </button> */}
+                </button>
               </div>
               {/* Service description */}
               <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
