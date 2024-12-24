@@ -50,11 +50,11 @@ const Blogs = () => {
   </div>
 
   {/* Blog Cards Section */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
+  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap lg:flex lg:flex-nowrap lg:overflow-x-auto xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
     {blogsData.map((blog) => (
       <div
         key={blog.id}
-        className="shadow-lg rounded-xl bg-[#0054A5] overflow-hidden flex flex-col min-w-[80%] xsm:min-w-[75%] sm:min-w-0"
+        className="shadow-lg rounded-xl bg-[#0054A5] overflow-hidden flex flex-col min-w-[80%] lg:min-w-[75%] xsm:min-w-[75%] sm:min-w-0"
       >
         <Image
           src={blog.image}

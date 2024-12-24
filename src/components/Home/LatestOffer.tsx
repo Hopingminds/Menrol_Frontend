@@ -31,13 +31,13 @@ const LatestOffer = () => {
           <Image
             src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
-            className="w-[20vw] h-[55vh] md:w-[100%] md:h-[50vh] xl:h-[70vh] xsm:w-[80%] xsm:h-[40vh] sm:w-[80%]  object-cover rounded-lg shadow-sm mt-9 2xl:h-[70vh] "
+            className="w-[20vw] h-[55vh] md:w-[100%] md:h-[30vh] lg:h-[30vh] xl:h-[70vh] xsm:w-[80%] xsm:h-[40vh] sm:w-[80%]  object-cover rounded-lg shadow-sm mt-9 2xl:h-[70vh] "
             height={300}
             width={300}
           />
 
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] md:h-[15vw] xsm:h-[19vh] md:p-10 xsm:w-[30vw] md:w-[10vw] w-[10vw] sm:w-[30%] xsm:relative md: xsm:-top-40 xsm:left-56 rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[90%] xl:translate-x-[130%]  md:translate-x-[100%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend 2xl:h-[12vw] 2xl:translate-x-[150%]">
+          <div className="bg-[#24232A] h-[20vw] md:h-[15vw] lg:ml-8 xsm:h-[19vh] md:p-10 xsm:w-[30vw] md:w-[10vw] w-[10vw] sm:w-[30%] xsm:relative md:ml-6 xsm:-top-40 xsm:left-56 rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[90%] xl:translate-x-[130%]  md:translate-x-[100%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend 2xl:h-[12vw] 2xl:translate-x-[150%]">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
