@@ -63,7 +63,7 @@ const Supakling = () => {
   };
 
   return (
-    <div className="p-10 overflow-hidden md:mt-10  md:my-[30vh]">
+    <div className="p-5 overflow-hidden ">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
@@ -97,7 +97,7 @@ const Supakling = () => {
               <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-xs xsm:relative xsm:top-9">
                 {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
               </h1>
-              <div className=" md:block">
+              <div className=" hidden xsm:block lg:block">
                 <Image
                   src="/Images/Home_Star_Image.png"
                   alt="Star Icon"
@@ -109,12 +109,12 @@ const Supakling = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex flex-col xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
+            <div className="flex flex-col  xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
               <div >
-                <h1 className="text-4xl md:text-[56px] xsm:text-[20px] font-bold tracking-[0.07em] leading-tight">
+                <h1 className="text-4xl lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
                   Sparkling
                 </h1>
-                <h1 className="text-4xl md:text-[56px] xsm:text-[20px] font-bold tracking-[0.07em] leading-tight">
+                <h1 className="text-4xl lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
                   Clean Spaces
                 </h1>
               </div>
@@ -122,7 +122,7 @@ const Supakling = () => {
                 <p className="font-bold  font-lexend text-lg md:text-[24px] xsm:text-[10px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[10px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
+                <p className="text-sm md:text-[10px] xl:text-[19px] lg:text-[20px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[20%] lg:absolute lg:right-32 lg:bottom-2  text-white rounded-full px-4 py-2 md:w-full  xsm:w-24 xsm:px-2 xsm:text-sm hover:scale-105 relative xsm:-left-10 xsm:-top-12 "
+                  className="bg-[#0054A5] lg:w-[20%] sm:w-[50%]  xl:absolute xl: xl:right-20 lg:absolute lg:right-28 lg:-bottom-16 2xl:w-[15%] 2xl:mb-40 2xl:mr-20  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
                   onClick={handleGoContact}
                 >
                   Learn More
@@ -141,9 +141,9 @@ const Supakling = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-screen pt-10 md:pt-[40vh]">
+      <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-full pt-10 md:pt-[40vh]">
         <div
-          className="bg-[#0054A5] w-full h-auto md:w-full  xsm:h-[20vh] md:h-[60vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
+          className="bg-[#0054A5] w-full h-auto md:w-full lg:h-full  xsm:h-[20vh] md:h-[30vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
           onMouseMove={handleMouseMove}
         >
           {/* Video Embed */}
@@ -152,7 +152,7 @@ const Supakling = () => {
               autoPlay
               loop
               ref={videoRef}
-              className="w-full md:w-[60vw] h-[30vh]  md:h-[60vh] 2xl:w-[100vw] xsm:h-[20vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
+              className="w-full md:w-[60vw] h-[30vh]  md:h-[30vh] lg:h-[60vh] 2xl:w-[100vw] xsm:h-[20vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
               src="/Images/solar.mp4"
             ></video>
 
