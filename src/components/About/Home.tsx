@@ -11,7 +11,7 @@ const Home = () => {
                 </p>
                 <div className="flex flex-col md:flex-row items-center md:items-start justify-between  px-[10%] mt-4">
                     {/* Left Section: Heading */}
-                    <h2 className="text-5xl font-lexend md:text-5xl font-bold text-gray-900 md:w-1/2  font-dm-sans tracking-wide leading-relaxed ">
+                    <h2 className="text-5xl  font-lexend md:text-3xl font-bold text-gray-900 md:w-1/2  font-dm-sans tracking-wide leading-relaxed ">
                         Elevating Cleanliness to Perfection
                     </h2>
 
@@ -45,7 +45,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="flex flex-col items-center justify-center">
-                        <div className="bg-[rgba(94,147,198,1)] w-full h-full rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+                        <div className="bg-[rgba(94,147,198,1)] w-full h-full  rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
                             <video
                                 className="absolute top-0 left-0 w-full h-full object-cover"
                                 src="/Images/solar.mp4"
