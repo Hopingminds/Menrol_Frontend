@@ -4,10 +4,10 @@ import { BiSolidOffer } from "react-icons/bi";
 
 const ServicesHeader = () => {
   return (
-    <div>
+    <div className="border border-black xsm:w-full">
       <div className="flex flex-col md:flex-row px-[10%] py-10 lg:mt-8">
         {/* Left Section: Image */}
-        <div className="md:w-1/2 flex  items-center mb-10 md:mb-0">
+        <div className="md:w-1/2 flex items-center mb-10 md:mb-0 xsm:order-2">
           <Image
             src="/Images/Services_01.png"
             alt="Service Image"
@@ -18,7 +18,7 @@ const ServicesHeader = () => {
         </div>
 
         {/* Right Section: Text Content */}
-        <div className="md:w-full space-y-6 lg:space-y-3   lg:leading-relaxed">
+        <div className="md:w-full space-y-6 lg:space-y-3 lg:leading-relaxed xsm:order-1">
           {/* Discount */}
           <div className="flex flex-row justify-between items-center">
             <div className="bg-[#C1F458] text-black text-[14px] px-3 rounded-full h-8 flex items-center">
@@ -56,20 +56,22 @@ const ServicesHeader = () => {
                 ))}
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">
-            Description
-          </h2>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800 font-dm-sans tracking-wide leading-relaxed">
+              Description
+            </h2>
 
-          {/* Description */}
-          <p className="text-gray-600 max-w-[40vw] lg:max-w-[50vw] font-dm-sans tracking-wide leading-relaxed lg:gap-2  ">
-            Purus vel lacus erat iaculis augue sed mauris mauris. Dolor sit
-            purus adipiscing amet et cras. Nulla volutpat purus pellentesque
-            amet pharetra. Nulla ut sit odio integer hac. Sit cras vestibulum
-            amet nibh faucibus proin.
-          </p>
+            {/* Description */}
+            <p className="text-gray-600 max-w-[40vw] lg:max-w-[50vw] font-dm-sans tracking-wide leading-relaxed lg:gap-2">
+              Purus vel lacus erat iaculis augue sed mauris mauris. Dolor sit purus
+              adipiscing amet et cras. Nulla volutpat purus pellentesque amet
+              pharetra. Nulla ut sit odio integer hac. Sit cras vestibulum amet nibh
+              faucibus proin.
+            </p>
+          </div>
 
           {/* Order Now Button */}
-          <div className="py-[9vh] lg:py-[3vh]">
+          <div className="py-[9vh] lg:py-[3vh] xsm:order-3">
             <button className="bg-[#0054A5] text-white font-semibold px-6 items-center rounded-full h-[6vh] shadow hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Order Now
             </button>
@@ -78,12 +80,12 @@ const ServicesHeader = () => {
       </div>
 
       {/* Company Logos */}
-      <div className="pt-6 px-[14%] ">
+      <div className="pt-6 px-[14%] xsm:order-4 ">
         <div className="border-b-2 pb-10">
           <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
             Our Trusted Partners
           </h3>
-          <div className="flex justify-between items-center space-x-4 ">
+          <div className="flex justify-between items-center space-x-4">
             {[
               "/Images/CompaniesLogo/logo-1.png",
               "/Images/CompaniesLogo/logo-2.png",
@@ -95,7 +97,7 @@ const ServicesHeader = () => {
                 key={index}
                 src={logo}
                 alt={`Company Logo ${index + 1}`}
-                className="w-20 h-auto"
+                className="w-20 h-auto xsm:w-12"
                 height={200}
                 width={200}
               />
@@ -104,6 +106,7 @@ const ServicesHeader = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

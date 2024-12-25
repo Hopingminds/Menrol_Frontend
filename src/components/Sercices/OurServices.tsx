@@ -37,7 +37,7 @@ const OurServises = () => {
       {/* Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 pt-10">
         {/* Card 1 */}
-        <div className="relative shadow-lg">
+        <div className="relative shadow-lg ">
           <Image
             src="/Images/AllImages/card-01.png"
             alt="Placeholder"
