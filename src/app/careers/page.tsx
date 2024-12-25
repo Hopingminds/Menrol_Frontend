@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CultureSection from "../../components/Careers/CultureSection";

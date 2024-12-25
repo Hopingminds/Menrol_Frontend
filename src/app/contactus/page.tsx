@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import FAQSection from "../../components/About/FaqSection";
 import DynamicHeader from '@/components/About/DynamicHeader';

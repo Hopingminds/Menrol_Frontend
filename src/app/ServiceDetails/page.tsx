@@ -1,4 +1,4 @@
-
+"use client";
 import DynamicHeader from "@/components/About/DynamicHeader";
 import Layout from "@/components/Layout";
 import HowItWorks from "@/components/Sercices/HowItWorks";

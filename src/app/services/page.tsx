@@ -1,3 +1,4 @@
+"use client";
 import Layout from "@/components/Layout";
 import HowItWorks from "@/components/Sercices/HowItWorks";
 import LatestProjects from "@/components/Sercices/LatestProjects";

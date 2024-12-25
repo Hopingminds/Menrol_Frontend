@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CoreValues from "../../components/About/CoreValues";

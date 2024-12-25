@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import HowToApply from "@/components/Careers/HowToApply";
 import DynamicHeader from "@/components/About/DynamicHeader";
