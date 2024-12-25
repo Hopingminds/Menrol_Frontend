@@ -57,9 +57,9 @@ const OurServices: React.FC = () => {
 
   const handleServiceDetails = (id: string) => {
     setLoading(true);
-    setTimeout(() => {
-      router.push(`/IndividualServices?data=${id}`); // Use query parameter format
-    }, 1000);
+
+    router.push(`/IndividualServices?data=${id}`); 
+   
   };
 
 

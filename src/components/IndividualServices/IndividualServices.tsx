@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Image from "next/image";
-import { Suspense } from "react";
+
 
 interface Subcategory {
   _id: string;
