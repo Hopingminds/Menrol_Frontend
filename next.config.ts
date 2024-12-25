@@ -10,7 +10,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ["example.com", "menrol.s3.ap-south-1.amazonaws.com"], // Add the required domain here

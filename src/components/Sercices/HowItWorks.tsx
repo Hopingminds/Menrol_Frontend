@@ -32,26 +32,26 @@ const HowItWorks: React.FC = () => {
       </h2>
       <div className="flex mb-12 items-center xsm:flex-col">
         {steps.map((step, index) => (
-          <div key={index} className=" p-6">
-            <div className="flex">
-              <div className="border w-16 h-5 rounded-xl bg-[rgba(193,244,88,1)] text-[rgba(36,35,42,1)]">
+          <div key={index} className=" p-6 sm:w-[30%]">
+            <div className="flex ">
+              <div className="border w-20 px-1 h-6 text-center rounded-xl bg-[rgba(193,244,88,1)] text-[rgba(36,35,42,1)] xsm:z-10">
                 {step.heading}
               </div>
-              <div className="text-[rgba(188,187,201,1)] tracking-wider xsm:rotate-90 xsm:absolute xsm:left-1">
+              <div className="text-[rgba(188,187,201,1)] tracking-wider sm:tracking-tighter xsm:hidden sm:hidden">
                 ---------------------------------
               </div>
             </div>
 
-            <h3 className="text-xl text-[rgba(36,35,42,1)] font-bold mb-4">
+            <h3 className="text-xl text-[rgba(36,35,42,1)] font-bold mb-4 xsm:text-base sm:text-sm">
               {step.title}
             </h3>
-            <p className="text-gray-600">{step.description}</p>
+            <p className="text-gray-600 xsm:text-sm sm:text-xs">{step.description}</p>
           </div>
         ))}
       </div>
-      <div className="bg-[rgba(94,147,198,1)] w-[95%] h-80 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+      <div className="bg-[rgba(94,147,198,1)] w-[95%] h-80 rounded-2xl xsm:h-[26vh] shadow-md flex items-center justify-center text-center relative overflow-hidden">
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="absolute top-0 left-0 w-full xsm:w-full  h-full object-cover"
           src="/Images/solar.mp4"
           autoPlay
           loop
