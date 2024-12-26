@@ -9,7 +9,7 @@ const Testimonials: React.FC = () => {
       {/* Header Section */}
       <div className="px-4 mt-6">
         <h1
-          className="text-[#51DC98] uppercase"
+          className="text-[#51DC98] uppercase xsm:text-[10px] sm:text-[15px]"
           style={{ wordSpacing: "0.1em" }}
         >
           {"/Testimonials".split("").join(" ")}
@@ -17,7 +17,7 @@ const Testimonials: React.FC = () => {
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] font-bold tracking-[0.05em] w-[70%] font-dm-sans leading-relaxed">
+            <h1 className="text-[#24232A] text-[56px] xsm:text-xl sm:text-2xl font-bold tracking-[0.05em] w-[70%] font-dm-sans leading-relaxed">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>
@@ -29,10 +29,10 @@ const Testimonials: React.FC = () => {
       </div>
 
       {/* Testimonial Cards Section */}
-      <div className="container mx-auto py-10">
+      <div className="container mx-auto py-10 xsm:overflow-x-scroll sm:overflow-x-auto xsm:w-screen">
         <div className="flex flex-row gap-6">
           {/* Card 1 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm min-w-[300px] py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
                 src="/Images/AllImages/person6.webp"
@@ -56,7 +56,7 @@ const Testimonials: React.FC = () => {
 
 
           {/* Card 2 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg min-w-[300px] p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
                 src="/Images/AllImages/person7.jpg"
@@ -81,7 +81,7 @@ const Testimonials: React.FC = () => {
 
 
           {/* Card 3 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full min-w-[300px]  max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
                 src="/Images/AllImages/person8.webp"
@@ -108,10 +108,9 @@ const Testimonials: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="grid">
-        <div className="grid grid-cols-3">
-          <div className="flex flex-col items-center justify-center col-span-2">
-            <div className="bg-[rgba(94,147,198,1)] w-full h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+      <div className="flex justify-between lg:mt-10  lg:justify-between items-center xsm:flex-col sm:flex-col lg:flex-row lg:space-y-0  sm:space-y-11 xsm:items-center xsm:space-y-10">
+          
+            <div className="bg-[rgba(94,147,198,1)] w-[60%] 2xl:w-[65%] xsm:w-full sm:w-full xsm:h-[30vh] h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
               <video
                 className="absolute top-0 left-0 w-full h-full object-cover"
                 src="/Images/solar.mp4"
@@ -120,36 +119,17 @@ const Testimonials: React.FC = () => {
                 muted
                 playsInline
               ></video>
-            </div>
-
-            <div className="col-span-2 grid grid-cols-2 gap-10 font-dm-sans tracking-wide leading-relaxed">
-              <Feature
-                title="Flexible Scheduling"
-                description="We offer flexible scheduling, making it easy to book cleaning services at your convenience."
-              />
-              <Feature
-                title="Attention to Detail"
-                description="We focus on the small details, ensuring your space is cleaned with precision and care."
-              />
-            </div>
           </div>
 
-          <div className=" flex flex-col pt-8">
-            <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 h-72 w-full">
+          <div className=" flex flex-col w-[40%] xsm:w-[70%] sm:w-[70%] 2xl:w-[33%]">
+            <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 xsm:right-3 xsm:h-[25vh] h-72 w-full">
 
-              <div className="text-6xl font-bold text-white mt-9 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div>
+              <div className="text-6xl font-bold text-white mt-9 xsm:mt-0 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div>
               <p className="text-gray-600 mt-2 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Satisfied Clients</p>
               <div className="absolute top-4 left-4 text-lg">⭐</div>
               <div className="absolute bottom-4 right-4 text-gray-700 text-lg">★</div>
             </div>
-            <div className=" flex font-dm-sans tracking-wide leading-relaxed items-center justify-center font-lg">
-              <Feature
-                title="Professional Cleaners"
-                description="Our professional cleaners offer expert cleaning services, transforming your space into a fresh, hygienic haven"
-              />
-            </div>
           </div>
-        </div>
       </div>
     </section>
   );
