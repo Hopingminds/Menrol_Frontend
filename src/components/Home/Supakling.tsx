@@ -69,8 +69,8 @@ const Supakling = () => {
           <div className="loader"></div>
         </div>
       )}
-      <div className="gap-4 px-4 md:px-[10%] 2xl:px-14 xl:px-10 xl:mr-20 xsm:mr-7 mb-[10vh] xsm:-mt-10">
-        <div className="flex 2xl:gap-0 gap-6 xl:gap-0 xl:items-center ">
+      <div className="gap-4 px-4 md:px-[10%] 2xl:px-52  xl:px-10 xl:mr-20 xsm:mr-7 mb-[10vh] xsm:-mt-10">
+        <div className="flex 2xl:gap-0  gap-6 xl:gap-0 xl:items-center ">
           {/* Left Section */}
           <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14 lg:mt-10 lg:-ml-4">
             <Image
@@ -92,12 +92,12 @@ const Supakling = () => {
           </div>
 
           {/* Middle Section */}
-          <div className="flex flex-col 2xl:w-full 2xl:-ml-16 xl:w-full md:w-2/2 pl-0 relative ">
-            <div className="flex flex-row justify-between md:flex-col md:items-start xsm:items-start ">
-              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-[10px] sm:text-[12px] xsm:relative xsm:top-9">
+          <div className="flex flex-col 2xl:w-full  xl:w-full md:w-2/2 pl-0 relative ">
+            <div className="flex flex-row justify-between md:flex-col md:items-start xsm:items-start  ">
+              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-[10px] sm:text-[12px]  xsm:relative xsm:top-9">
                 {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
               </h1>
-              <div className=" hidden xsm:block lg:block">
+              <div className=" hidden xsm:block lg:block 2xl:-ml-40">
                 <Image
                   src="/Images/Home_Star_Image.png"
                   alt="Star Icon"
@@ -109,16 +109,16 @@ const Supakling = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex flex-col xl:gap-24 xsm:gap-0 xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
-              <div className=" 2xl:-ml-10 xsm:mt-4 lg:-ml-14" >
-                <h1 className="text-4xl xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
+            <div className="flex flex-col 2xl:justify-end 2xl:gap-0 xl:gap-24 xsm:gap-0 xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
+              <div className=" 2xl:-ml-0 xsm:mt-4 lg:-ml-14" >
+                <h1 className="text-4xl 2xl:text-7xl xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
                   Sparkling
                 </h1>
-                <h1 className="text-4xl 2xl:w-[150%] xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
+                <h1 className="text-4xl 2xl:text-7xl 2xl:w-[100%] xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
                   Clean Spaces
                 </h1>
               </div>
-              <div className="w-full md:w-[26vw] md:-mr-9 md:pt-10 xsm:w-screen xsm:-ml-7 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
+              <div className="w-full md:w-[26vw] 2xl:-mr-40 md:-mr-9 md:pt-10 xsm:w-screen xsm:-ml-7 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
                 <p className="font-bold  font-lexend text-lg md:text-[24px] xsm:text-[10px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-2 xl:right-14  2xl:w-[15%] 2xl:absolute 2xl:-bottom-10 2xl:right-20  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-3 xsm:-top-10 "
+                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-2 xl:right-14  2xl:w-[25%] 2xl:absolute 2xl:-bottom-10 2xl:right-10  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-3 xsm:-top-10 "
                   onClick={handleGoContact}
                 >
                   Learn More
