@@ -46,7 +46,7 @@ const FAQSection: FC = () => {
                 <h1 className="text-7xl xsm:text-2xl  font-bold mt-6 text-[rgba(36,35,42,1)] md:text-3xl  font-lexend font-dm-sans tracking-wide leading-relaxed">
                     Frequently Asked Questions
                 </h1>
-                <div className="mt-8 2xl:space-y-8 xsm:space-y-2">
+                <div className="mt-8 2xl:space-y-8 xl:space-y-7 xsm:space-y-2">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button
@@ -65,9 +65,9 @@ const FAQSection: FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:hidden xl:flex xl:w-full">
+            <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:block xl:flex xl:w-full">
                 <div
-                    className="w-full h-[600px] bg-[rgba(94,147,198,1)] rounded-xl"
+                    className="w-full xl:w-[80%] h-[40vh] bg-[rgba(94,147,198,1)] rounded-xl lg:h-"
                     style={{
                         backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')",
                         backgroundSize: "cover",

@@ -69,14 +69,14 @@ const Supakling = () => {
           <div className="loader"></div>
         </div>
       )}
-      <div className="gap-4 px-4 md:px-[10%] xsm:mr-7 mb-[10vh] xsm:-mt-12">
-        <div className="flex gap-6">
+      <div className="gap-4 px-4 md:px-[10%] 2xl:px-14 xl:px-10 xl:mr-20 xsm:mr-7 mb-[10vh] xsm:-mt-10">
+        <div className="flex 2xl:gap-0 gap-6 xl:gap-0 xl:items-center ">
           {/* Left Section */}
-          <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14">
+          <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14 lg:mt-10 lg:-ml-4">
             <Image
               src="/Images/AllImages/Home_image_01.png"
               alt="Placeholder"
-              className="w-[15vw] h-auto rounded-lg md:w-[20vw] xsm:w-[30vw]"
+              className="w-[15vw] h-auto rounded-lg md:w-[24vw] lg:w-[20vw] xsm:w-[30vw] xl:w-[15vw]"
               height={200}
               width={200}
             />
@@ -85,23 +85,23 @@ const Supakling = () => {
               <span className="text-[#AEADF1] font-bold text-lg md:text-[24px]">
                 +
               </span>
-              <p className="text-sm md:text-[16px] w-auto font-dm-sans tracking-wide xsm:text-[5px] leading-relaxed text-[#6B6A7E]">
+              <p className="text-sm md:text-[16px] xl:w-1 md:w-1 w-auto font-dm-sans tracking-wide xsm:text-[5px] leading-relaxed text-[#6B6A7E]">
                 Professional Tools
               </p>
             </div>
           </div>
 
           {/* Middle Section */}
-          <div className="flex flex-col w-full md:w-2/2 pl-0 ">
-            <div className="flex flex-row justify-between md:flex-col md:items-start ">
-              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-xs xsm:relative xsm:top-9">
+          <div className="flex flex-col 2xl:w-full 2xl:-ml-16 xl:w-full md:w-2/2 pl-0 relative ">
+            <div className="flex flex-row justify-between md:flex-col md:items-start xsm:items-start ">
+              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-[10px] sm:text-[12px] xsm:relative xsm:top-9">
                 {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
               </h1>
               <div className=" hidden xsm:block lg:block">
                 <Image
                   src="/Images/Home_Star_Image.png"
                   alt="Star Icon"
-                  className="w-12 md:w-[6vw] md:ml-[35vw] md:bottom-0 h-auto object-contain xsm:-ml-32 xsm:mt-16   xsm:absolute"
+                  className="w-12 md:w-[6vw] md:ml-[35vw]  md:bottom-0 h-auto object-contain xsm:left-32 xsm:top-20 xsm:absolute"
                   height={100}
                   width={100}
                 />
@@ -109,20 +109,20 @@ const Supakling = () => {
             </div>
 
             {/* Right Section */}
-            <div className="flex flex-col  xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
-              <div >
-                <h1 className="text-4xl text-black lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
+            <div className="flex flex-col xl:gap-24 xsm:gap-0 xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
+              <div className=" 2xl:-ml-10 xsm:mt-4 lg:-ml-14" >
+                <h1 className="text-4xl xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
                   Sparkling
                 </h1>
-                <h1 className="text-4xl text-black lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
+                <h1 className="text-4xl 2xl:w-[150%] xl:text-8xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
                   Clean Spaces
                 </h1>
               </div>
-              <div className="w-full md:w-[15vw] md:pt-10 xsm:w-screen xsm:-ml-3 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
+              <div className="w-full md:w-[26vw] md:-mr-9 md:pt-10 xsm:w-screen xsm:-ml-7 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
                 <p className="font-bold  font-lexend text-lg md:text-[24px] xsm:text-[10px] text-[rgba(36,35,42,1)]">
                   Exceptional Service
                 </p>
-                <p className="text-sm md:text-[10px] xl:text-[19px] lg:text-[20px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
+                <p className="text-sm  xsm:w-[30%] xsm:text-justify sm:w-[70%] md:w-full md:text-[15px] xl:text-[19px] lg:text-[15px]  xsm:text-[10px] mb-3 pt-5 xsm:pt-1  lg:w-[20vw] font-dm-sans tracking-wide xsm:tracking-tight md:tracking-tight md:leading-tight leading-relaxed xsm:leading-tight text-[#6B6A7E]" >
                   Choose our exceptional services for quality, efficiency, and
                   attention to detail that meets every need
                 </p>
@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:bottom-36 xl:right-20  2xl:w-[15%] 2xl:absolute 2xl:bottom-10 2xl:right-40  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
+                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-2 xl:right-14  2xl:w-[15%] 2xl:absolute 2xl:-bottom-10 2xl:right-20  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-3 xsm:-top-10 "
                   onClick={handleGoContact}
                 >
                   Learn More
@@ -141,9 +141,9 @@ const Supakling = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-full lg:-mt-64 pt-10 xl:mt-[40vh]">
+      <div className="flex flex-col justify-between h-auto xsm:-mt-14 lg:mt-[25vh] md:h-full pt-10 xl:mt-[30vh]">
         <div
-          className="bg-[#0054A5] w-full h-auto md:w-full lg:h-[30vh]  xsm:h-[20vh] md:h-[30vh] xl:h-[60vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
+          className="bg-[#0054A5] w-full h-auto md:w-full lg:h-[40vh]  xsm:h-[20vh] md:h-[30vh] xl:h-[60vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
           onMouseMove={handleMouseMove}
         >
           {/* Video Embed */}
@@ -152,7 +152,7 @@ const Supakling = () => {
               autoPlay
               loop
               ref={videoRef}
-              className="w-full md:w-[60vw] h-[30vh]  md:h-[30vh] lg:h-[30vh] lg:w-full 2xl:w-[100vw] xsm:h-[20vh] xl:h-[70vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
+              className="w-full md:w-[60vw] h-[30vh] sm:h-[20vh]  md:h-[30vh] lg:h-[40vh] lg:w-[70vw] 2xl:w-[100vw] xsm:h-[20vh] xl:h-[50vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
               src="/Images/solar.mp4"
             ></video>
 

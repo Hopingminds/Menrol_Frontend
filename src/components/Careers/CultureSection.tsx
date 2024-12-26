@@ -3,10 +3,10 @@ import React from 'react';
 
 const CultureSection: React.FC = () => {
     return (
-        <section className="flex md:flex-row items-center md:items-start p-8 bg-white px-[10%] gap-10 justify-between">
-            <div className="flex flex-col items-center md:items-start w-[20vw] border  p-2">
+        <section className="flex xsm:flex-col xsm:items-center sm:items-center sm:flex-col md:flex-row lg:items-center md:items-start p-8 bg-white px-[10%] gap-10 justify-between">
+            <div className="flex flex-col items-center md:mt-20 w-[20vw]  p-2">
                 <div
-                    className="w-full h-64 bg-blue-400 mb-8 p-8 rounded-lg shadow-md "
+                    className="w-full h-64 bg-blue-400 mb-8 p-8 xsm:w-[90vw] sm:w-[90vw] lg:h-64 md:w-full md:h-40 rounded-lg shadow-md "
                     style={{
                         backgroundImage: "url('/Images/culture.jpg')",
                         backgroundSize: "cover",
@@ -17,14 +17,14 @@ const CultureSection: React.FC = () => {
                     {/* Content inside the div (if any) */}
                 </div>
 
-                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full h-64 flex flex-col justify-center items-center">
-                    <div className="text-6xl font-bold">90%</div>
+                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full xsm:w-[90vw] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
+                    <div className="text-6xl font-bold md:text-5xl">90%</div>
                     <div className="text-xl mt-2 font-dm-sans tracking-wide leading-relaxed">Job Satisfaction</div>
                     <div className="text-sm mt-2 font-dm-sans tracking-wide leading-relaxed">Our employees love working for Supaklin</div>
                 </div>
             </div>
-            <div className="md:w-2/3 border h-[100%] p-5">
-                <div className="text-[rgba(81,220,152,1)] uppercase text-lg tracking-wide font-lexend">/Our culture</div>
+            <div className="md:w-2/3 h-[100%] md:p-0 p-5">
+                <div className="text-[rgba(81,220,152,1)] uppercase text-lg sm:text-[13px] tracking-wide font-lexend xsm:text-[10px]">/Our culture</div>
                 <h2 className="text-3xl font-bold mb-8 text-[rgba(36,35,42,1)] mt-3 font-dm-sans tracking-wide leading-relaxed">Collaboration and Growth</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
                     {[

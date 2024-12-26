@@ -105,7 +105,7 @@ const OurServices: React.FC = () => {
 
       {/* Heading */}
       <h1
-        className="text-[#51DC98] uppercase font-bold pl-4 sm:flex sm:justify-center"
+        className="text-[#51DC98] xsm:text-[10px] sm:text-[13px] uppercase font-bold pl-4 sm:flex sm:justify-center"
         style={{ wordSpacing: "0.1em" }}
       >
         {"/ Our Service".split("").join(" ")}
@@ -114,10 +114,10 @@ const OurServices: React.FC = () => {
       {/* Subheading */}
       <div className="flex flex-row justify-between w-full items-center">
         <div>
-          <h1 className="text-[#24232A] text-[56px] xsm:text-[18px] md:text-[56px] font-bold font-dm-sans tracking-wide leading-relaxed">
+          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px]  font-bold font-dm-sans tracking-wide leading-relaxed">
             Elevate Your Cleanliness
           </h1>
-          <h1 className="text-[#24232A] text-[32px] xsm:text-[18px] md:text-[56px] font-bold tracking-[0.05em]">
+          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px] font-bold tracking-[0.05em]">
             with Supaklin
           </h1>
         </div>
@@ -150,10 +150,10 @@ const OurServices: React.FC = () => {
               {/* Service description */}
               <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
                 <div className="text-center px-5 xsm:px-2">
-                  <h3 className="font-bold text-[#24232A] xl:text-[16px] lg:text-2xl text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
+                  <h3 className="font-bold text-[#24232A] xl:text-[16px] text-[16px] sm:text-[18px] lg:text-[23px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
                     {service?.category}
                   </h3>
-                  <p className="text-xs sm:text-sm xsm:text-xs xl:tracking-wide lg:text-base xl:text-[12px]  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                  <p className="text-xs sm:text-sm xsm:text-xs xl:tracking-wide xl:text-[17px]  xsm:leading-none lg:leading-none lg:tracking-normal lg:text-[15px] md:text-[12px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                     {service?.categoryDescription}
                   </p>
                 </div>

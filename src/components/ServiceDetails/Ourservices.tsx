@@ -104,12 +104,12 @@ const Ourservices: React.FC = () => {
   {services?.map((service) => (
     <div
       key={service?._id}
-      className="p-4 shadow-lg rounded-lg xsm:min-w-[80%] sm:w-auto   md:w-full md:h-full xl:w-full"
+      className="p-4 shadow-lg rounded-lg xsm:min-w-[80%] sm:w-auto md:w-full md:h-full xl:w-full"
     >
       <Image
         src={service?.categoryImage}
         alt={service?.category}
-        className="w-full h-[30vh] xsm:h-[35vh] sm:h-[40vh] md:h-[30vh] lg:h-[40vh] rounded-lg object-cover"
+        className="w-full h-[30vh] xsm:h-[20vh] sm:h-[40vh] md:h-[20vh] xl:h-[20vh] 2xl:h-[40vh] lg:h-[30vh] rounded-lg object-cover"
         height={400}
         width={400}
       />
@@ -123,10 +123,10 @@ const Ourservices: React.FC = () => {
 
         <div className="flex w-full justify-center gap-40 xsm:gap-20 p-5">
         <button
-          className="h-[5vh] w-[10vw] xsm:w-[30vw] sm:w-[10vw] md:w-[10vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
+          className="h-[5vh] w-[10vw] xsm:w-[15vw] sm:w-[10vw] md:w-[20vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
           onClick={() => handleServiceDetails(service._id)}
         >
-          <FaArrowRightLong className="h-6 w-6 sm:w-4 " />
+          <FaArrowRightLong className="h-6 w-6 sm:w-4 md:w-5 " />
         </button>
         <div></div>
         </div>
