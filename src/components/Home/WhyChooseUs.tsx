@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { BsEmojiSmile } from "react-icons/bs";
@@ -49,10 +50,10 @@ const WhyChooseUs = () => {
                 <FiUsers />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Reliable Cleaning Crew
                 </h1>
-                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="text-[14px] xsm:text-[10px] lg:text-sm text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
                   Trusted cleaning experts making every space <br />
                   Shine with care and precision
                 </p>
@@ -64,7 +65,7 @@ const WhyChooseUs = () => {
                 <MdOutlineWatchLater />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">On-Time Services</h1>
+                <h1 className="text-[18px]  xsm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">On-Time Services</h1>
                 <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
                   Timely delivery of services, ensuring reliability and customer
                   satisfaction. <br /> Satisfaction, reliability, and customer
@@ -82,10 +83,10 @@ const WhyChooseUs = () => {
                 <IoCubeOutline />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Flexible Packages
                 </h1>
-                <p className="text-[14px] xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="text-[14px] lg:text-sm xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
                   Affordable and adaptable packages for all your cleaning and
                   service needs. <br /> For all your cleaning and service needs.
                 </p>
@@ -97,10 +98,10 @@ const WhyChooseUs = () => {
                 <BsEmojiSmile />
               </div>
               <div>
-                <h1 className="text-[18px] xsm:text-[15px] xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
+                <h1 className="text-[18px] xsm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[24px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
                   Transparent Pricing
                 </h1>
-                <p className="pl-1 text-[14px] xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
+                <p className="pl-1 text-[14px] lg:text-sm xsm:text-[10px] text-[#24232A] md:text-[14px] font-dm-sans tracking-wide leading-relaxed ">
                   Fair and transparent pricing, <br /> Ensuring clarity on every
                   service we provide.
                 </p>

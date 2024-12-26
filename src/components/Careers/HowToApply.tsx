@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 
 const HowToApply: React.FC = () => {
@@ -23,7 +24,7 @@ const HowToApply: React.FC = () => {
         <section className="p-8 bg-gray-100 px-[10%]">
             <p className='text-[rgba(81,220,152,1)] uppercase font-medium text-lg font-lexend font-dm-sans tracking-wide leading-relaxed'>/ HOW IT WORKS</p>
             <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4 font-dm-sans tracking-wide leading-relaxed">How to Apply</h2>
-            <div className="flex   gap-8 mb-12 items-center">
+            <div className="flex  xsm:flex-col gap-8 mb-12 items-center">
                 {steps.map((step, index) => (
                     <div key={index} className=" p-6">
                         <div className='flex'>
@@ -38,11 +39,17 @@ const HowToApply: React.FC = () => {
 
                 ))}
             </div>
-            <div className="bg-[rgba(36,35,42,1)] text-white p-8 text-center rounded-xl shadow-md w-[100%]  h-72   ">
-                <h3 className="text-4xl font-bold mb-4 mt-8 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Join Our  Dream Team!</h3>
-                <p className="text-lg mb-4 mt-4 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Be a part of our expert team and bring cleanliness and joy to every
-                    space.</p>
-                <button className="bg-[rgba(0,84,165,1)] text-[rgba(255,255,255,1)] font-bold py-2 px-4 rounded-md hover:bg-gray- transition mt-4 ">
+            <div>
+
+            </div>
+            <div className="bg-[rgba(36,35,42,1)] text-white p-8 text-center rounded-xl shadow-md w-full h-72 sm:h-auto sm:p-6 xsm:p-4">
+                <h3 className="text-4xl font-bold mb-4 mt-8 font-dm-sans tracking-wide leading-relaxed sm:text-3xl sm:mt-6 xsm:text-3xl xsm:mt-4">
+                    Join Our Dream Team!
+                </h3>
+                <p className="text-lg mb-4 mt-4 font-dm-sans tracking-wide leading-relaxed sm:text-base xsm:text-sm">
+                    Be a part of our expert team and bring cleanliness and joy to every space.
+                </p>
+                <button className="bg-[rgba(0,84,165,1)] text-[rgba(255,255,255,1)] font-bold py-2 px-4 rounded-md hover:bg-gray-500 transition mt-4 sm:py-2 sm:px-3 xsm:py-1 xsm:px-2">
                     Join Our Team
                 </button>
             </div>

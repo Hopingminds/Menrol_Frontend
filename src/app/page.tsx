@@ -1,3 +1,4 @@
+"use client";
 import Supakling from "@/components/Home/Supakling";
 import OurServises from "@/components/Home/OurServises";
 import WhyChooseUs from "@/components/Home/WhyChooseUs";

@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 
 const CleaningTechnician = () => {
@@ -14,9 +15,9 @@ const CleaningTechnician = () => {
         ],
     };
     return (
-        <div className="flex  items-start  text-[#24232A] justify-between gap-20 px-24 mt-8">
-            <div className="w-[70%]   ">
-                <h1 className="font-semibold text-4xl text-[#24232A]">Cleaning Technician</h1>
+        <div className="xsm:flex-col xsm:gap-0 xsm:px-0 xsm:justify-start flex items-start  text-[#24232A] justify-between gap-20 px-24 mt-8 xsm:h-[1650px] md:border md:border-black">
+            <div className="w-[70%] xsm:w-full  xsm:px-4 md:gap-4">
+                <h1 className="font-semibold text-4xl text-[#24232A] xsm:text-justify">Cleaning Technician</h1>
                 <section className="space-x-2 text-[12px] font-normal text-[#24232A] mt-7 mb-8">
                     <button className="rounded-full bg-[#C1F458] px-5 py-2">Full-time</button>
                     <button className="rounded-full bg-[#F9F9FE] px-5 py-2">Part-time</button>
@@ -49,11 +50,11 @@ const CleaningTechnician = () => {
                     </ul>
                 </section>
             </div>
-            <div className="flex  items-start min-h-screen   w-[40%]">
-                <div className="bg-[#24232A] text-[#FFFFFF] rounded-xl p-8 w-[100%] h-[353px] ">
+            <div className="flex  items-start min-h-screen   w-[40%]  xsm:w-full xsm:px-10 xsm:mt-8">
+                <div className="bg-[#24232A] text-[#FFFFFF] rounded-xl p-8 w-[100%] h-[353px]  xsm:px-10 xsm:w-[270px] xsm:h-[285px] xsm:p-5">
 
-                    <h2 className="text-xl font-normal mb-4">Salary :</h2>
-                    <p className="text-4xl font-bold">$12 - $15</p>
+                    <h2 className="xsm:text-lg text-xl font-normal mb-4">Salary :</h2>
+                    <p className=" xsm:text-2xl text-4xl font-bold">$12 - $15</p>
                     <p className="text-[16px] font-normal mt-2 mb-4">per hour</p>
 
                     <div className="text-[#F9F9FE] space-y-2 mb-6 ml-4">
@@ -62,7 +63,7 @@ const CleaningTechnician = () => {
                             • <span className="text-[#C1F458] font-normal ml-1">25 Applicant</span>
                         </p>
                     </div>
-                    <button className="bg-[#0054A5] text-white font-semibold py-2 px-4 rounded-full w-full mt-3 h-14">
+                    <button className="xsm:h-10 bg-[#0054A5] text-white font-semibold py-2 px-4 rounded-full w-full mt-3 h-14">
                         Apply
                     </button>
                 </div>

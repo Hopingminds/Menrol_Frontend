@@ -57,9 +57,9 @@ const OurServices: React.FC = () => {
 
   const handleServiceDetails = (id: string) => {
     setLoading(true);
-    setTimeout(() => {
-      router.push(`/IndividualServices?data=${id}`); // Use query parameter format
-    }, 1000);
+
+    router.push(`/IndividualServices?data=${id}`); 
+   
   };
 
 
@@ -88,7 +88,7 @@ const OurServices: React.FC = () => {
   };
 
   return (
-    <div className="gap-4 px-[10%] xsm:p-6 relative">
+    <div className="gap-4 px-[10%] lg:px-[4%] md:px-[4%] xsm:p-6 relative xl:mt-20">
       {/* Show loading spinner while data is being fetched */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
@@ -150,10 +150,10 @@ const OurServices: React.FC = () => {
               {/* Service description */}
               <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
                 <div className="text-center px-5 xsm:px-2">
-                  <h3 className="font-bold text-[#24232A]  text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
+                  <h3 className="font-bold text-[#24232A] xl:text-[16px] lg:text-2xl text-[16px] sm:text-[18px] lg:text-[12px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
                     {service?.category}
                   </h3>
-                  <p className="text-xs sm:text-sm xsm:text-xs  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                  <p className="text-xs sm:text-sm xsm:text-xs xl:tracking-wide lg:text-base xl:text-[12px]  xsm:leading-none lg:leading-none lg:tracking-tighter lg:text-[10px] md:text-[13px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
                     {service?.categoryDescription}
                   </p>
                 </div>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Feature from "../../components/About/Feature";
 import Image from "next/image";

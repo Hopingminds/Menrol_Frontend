@@ -16,6 +16,6 @@
 
 body {
   background: var(--background); /* Dynamically set background color */
-  color: var(--foreground); /* Dynamically set text color */
+  color: '#00000' !important; /* Dynamically set text color */
   font-family: Arial, Helvetica, sans-serif;
 }

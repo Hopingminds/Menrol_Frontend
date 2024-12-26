@@ -1,8 +1,74 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
+interface Pricing {
+  pricingtype: string;
+  from: number;
+  to: number;
+  _id: string;
+}
+
+interface Subcategory {
+  description: string | null;
+  dailyWageWorker: number;
+  hourlyWorker: number;
+  contractWorker: number;
+  title: string;
+  image: string;
+  _id: string;
+  pricing: Pricing[];
+}
+
+interface Service {
+  _id: string;
+  category: string;
+  categoryDescription: string;
+  categoryImage: string;
+  subcategory: Subcategory[];
+}
+
+interface ApiResponse {
+  success: boolean;
+  all: Service[];
+}
 
 const FooterPage = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch(
+          "https://api.menrol.com/api/v1/getServices"
+        );
+        const data: ApiResponse = await response.json();
+
+        if (data.success) {
+          setServices(data.all);
+        } else {
+          setError("Failed to load services.");
+        }
+      } catch (error) {
+        setError("Failed to load services.");
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  const handleServiceDetails = (serviceId: string) => {
+    router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
+  };
+
   return (
     <footer className="px-[10%] pt-10 bg-[#121212] text-white mt-[10vh]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -57,30 +123,26 @@ const FooterPage = () => {
           </ul>
         </div>
 
-        {/* Services Section */}
+        {/* Services Section - Updated to use dynamic data */}
         <div>
           <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Services</h3>
           <ul className="space-y-2">
-            <li>
-              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
-                Home Cleaning
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
-                Office Cleaning
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
-                Kitchen Cleaning
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
-                Vehicle Cleaning
-              </Link>
-            </li>
+            {loading ? (
+              <li>Loading services...</li>
+            ) : error ? (
+              <li>{error}</li>
+            ) : (
+              services.slice(0, 4).map((service) => (
+                <li key={service._id}>
+                  <button
+                    onClick={() => handleServiceDetails(service._id)}
+                    className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed text-left"
+                  >
+                    {service.category}
+                  </button>
+                </li>
+              ))
+            )}
           </ul>
         </div>
 
@@ -95,7 +157,7 @@ const FooterPage = () => {
               placeholder="Enter your email"
               className="w-full pl-6 mb-4 rounded-full p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="w-[9vw] xsm:w-full md:w-full rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
+            <button className="w-[9vw] xsm:w-full sm:w-full md:w-full rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Subscribe
             </button>
           </form>

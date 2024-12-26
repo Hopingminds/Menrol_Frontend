@@ -40,10 +40,10 @@ const FAQSection: FC = () => {
         <div className="flex flex-col md:flex-row items-start py-12 bg-white px-[10%] justify-between gap-40">
             {/* Left Section - FAQ */}
             <div className="w-full">
-                <p className="text-lg font-bold text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
+                <p className="text-lg font-bold xsm:text-[10px] text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
                     / Questions & Answers
                 </p>
-                <h1 className="text-7xl xsm:text-4xl font-bold mt-6 text-[rgba(36,35,42,1)]  font-lexend font-dm-sans tracking-wide leading-relaxed">
+                <h1 className="text-7xl xsm:text-2xl  font-bold mt-6 text-[rgba(36,35,42,1)] md:text-3xl  font-lexend font-dm-sans tracking-wide leading-relaxed">
                     Frequently Asked Questions
                 </h1>
                 <div className="mt-8 2xl:space-y-8 xsm:space-y-2">
@@ -53,13 +53,13 @@ const FAQSection: FC = () => {
                                 onClick={() => toggleQuestion(index)}
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
-                                <h2 className="text-3xl xsm:text-lg font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
-                                <span className="text-2xl font-bold  items-center p-2">
+                                <h2 className="text-3xl xsm:text-sm xsm:font-normal md:text-lg font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
+                                <span className="text-2xl font-bold xsm:text-xs  items-center p-2">
                                     {openQuestionIndex === index ? <FaWindowMinimize /> : <FaPlusCircle />}
                                 </span>
                             </button>
                             {openQuestionIndex === index && (
-                                <p className="mt-2 text-lg text-[rgba(107,106,126,1)] font-sans font-dm-sans tracking-wide leading-relaxed">{faq.answer}</p>
+                                <p className="mt-2 text-lg xsm:text-xs text-[rgba(107,106,126,1)] font-sans font-dm-sans tracking-wide leading-relaxed">{faq.answer}</p>
                             )}
                         </div>
                     ))}

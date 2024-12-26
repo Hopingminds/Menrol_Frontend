@@ -1,9 +1,10 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 
 const ScanAndDownload = () => {
   return (
-    <div className="bg-[#0054A5] h-[80vh] xsm:h-[50vh] w-full flex  justify-center  relative xsm:w-full">
+    <div className="bg-[#0054A5] h-[80vh] xsm:h-[50vh] xl:h-[80vh] md:h-[50vh] lg:h-[50vh] w-full flex  justify-center  relative xsm:w-full">
       {/* Text Section */}
       
         <div className="text-white pt-10 xsm:p-6">

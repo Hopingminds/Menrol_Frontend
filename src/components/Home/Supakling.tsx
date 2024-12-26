@@ -81,7 +81,7 @@ const Supakling = () => {
               width={200}
             />
             <div className="flex flex-row pt-3 xsm:pt-1 justify-start items-center gap-y-2 gap-5 xsm:gap-2">
-              <p className="text-lg md:text-[24px] xsm:text-[10px] font-dm-sans tracking-wide leading-relaxed ">126</p>
+              <p className="text-lg md:text-[24px] xsm:text-[10px] text-black font-bold font-dm-sans tracking-wide leading-relaxed ">126</p>
               <span className="text-[#AEADF1] font-bold text-lg md:text-[24px]">
                 +
               </span>
@@ -111,10 +111,10 @@ const Supakling = () => {
             {/* Right Section */}
             <div className="flex flex-col  xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
               <div >
-                <h1 className="text-4xl lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
+                <h1 className="text-4xl text-black lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
                   Sparkling
                 </h1>
-                <h1 className="text-4xl lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
+                <h1 className="text-4xl text-black lg:text-6xl md:text-[36px] xsm:text-[20px] font-bold tracking-[0.07em] lg:leading-none leading-tight">
                   Clean Spaces
                 </h1>
               </div>
@@ -131,7 +131,7 @@ const Supakling = () => {
             </div>
             
               <button
-                  className="bg-[#0054A5] lg:w-[20%] sm:w-[50%]  xl:absolute xl: xl:right-20 lg:absolute lg:right-28 lg:-bottom-16 2xl:w-[15%] 2xl:mb-40 2xl:mr-20  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
+                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:bottom-36 xl:right-20  2xl:w-[15%] 2xl:absolute 2xl:bottom-10 2xl:right-40  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-8 xsm:-top-12 "
                   onClick={handleGoContact}
                 >
                   Learn More
@@ -141,9 +141,9 @@ const Supakling = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-full pt-10 md:pt-[40vh]">
+      <div className="flex flex-col justify-between h-auto xsm:-mt-14 md:h-full lg:-mt-64 pt-10 xl:mt-[40vh]">
         <div
-          className="bg-[#0054A5] w-full h-auto md:w-full lg:h-full  xsm:h-[20vh] md:h-[30vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
+          className="bg-[#0054A5] w-full h-auto md:w-full lg:h-[30vh]  xsm:h-[20vh] md:h-[30vh] xl:h-[60vh] flex justify-center items-center 2xl:items-start 2xl:justify-start  relative "
           onMouseMove={handleMouseMove}
         >
           {/* Video Embed */}
@@ -152,7 +152,7 @@ const Supakling = () => {
               autoPlay
               loop
               ref={videoRef}
-              className="w-full md:w-[60vw] h-[30vh]  md:h-[30vh] lg:h-[60vh] 2xl:w-[100vw] xsm:h-[20vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
+              className="w-full md:w-[60vw] h-[30vh]  md:h-[30vh] lg:h-[30vh] lg:w-full 2xl:w-[100vw] xsm:h-[20vh] xl:h-[70vh] xsm:w-[70vw] object-cover rounded-xl shadow-sm"
               src="/Images/solar.mp4"
             ></video>
 

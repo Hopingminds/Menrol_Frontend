@@ -1,4 +1,5 @@
 // Gallery.tsx
+"use client";
 import Image from 'next/image';
 import React from 'react';
 
@@ -11,8 +12,8 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
         <section className="p-8 bg-white px-[10%]">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h5 className="text-green-600 uppercase font-bold mb-2 font-lexend font-dm-sans tracking-wide leading-relaxed font-lg py-10">/ Our Gallery</h5>
-                    <h1 className="text-4xl font-bold text-gray-900 font-lexend font-dm-sans tracking-wide leading-relaxed">Witness Our service Magic Explore Now</h1>
+                    <h5 className="text-green-600 uppercase font-bold mb-2 font-lexend font-dm-sans tracking-wide leading-relaxed font-lg py-10 xsm:text-[10px]">/ Our Gallery</h5>
+                    <h1 className="text-4xl font-bold text-gray-900 font-lexend font-dm-sans tracking-wide leading-relaxed xsm:text-sm">Witness Our service Magic Explore Now</h1>
                 </div>
                 <button className="bg-[rgba(0,84,165,1)] text-white text-sm font-medium px-4 py-2 rounded-full shadow-md hover:bg-blue-700 font-lexend"><a href="ServiceDetails">View All</a></button>
             </div>

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CoreValues from "../../components/About/CoreValues";
@@ -86,7 +87,8 @@ const AboutUs: React.FC = () => {
   ];
   return (
     <Layout>
-      <DynamicHeader title="About Us" />
+     <div className=" md:overflow-hidden xsm:overflow-hidden">
+     <DynamicHeader title="About Us" />
       <Home />
       <Content />
       <Ourmission missions={missionData} />
@@ -94,6 +96,7 @@ const AboutUs: React.FC = () => {
       <Gallery images={images} />
       <Discount />
       <FAQSection />
+     </div>
     </Layout>
   );
 };

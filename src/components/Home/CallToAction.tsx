@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 
@@ -12,7 +13,7 @@ const CallToAction = () => {
         >
           {"/ Call to Action".split("").join(" ")}
         </h1>
-        <p className=" text-[45px] 2xl:text-[4.5rem] xsm:text-[20px] xsm:font-bold text-[#24232A]">
+        <p className=" text-[45px] 2xl:text-[4.5rem] xsm:text-[20px] font-bold xsm:font-bold text-[#24232A]">
           Time for a Refresh: Book Your Cleaning Today
         </p>
         <p className="mt-2 text-[20px] text-[#6B6A7E] xsm:text-[10px]">

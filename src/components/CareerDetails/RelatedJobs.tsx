@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import JobCard from './JobCard'
 
@@ -26,10 +27,11 @@ const RelatedJobs = () => {
         }
     ]
     return (
-        <div className=" px-24 border  flex items-center mx-auto">
-            <div className="flex justify-between flex-col">
-                <h1 className="text-5xl font-semibold mb-10 mt-20 ml-8">Related Jobs</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-x-9">
+        <div className="xsm:px-4 px-24 border  flex items-center mx-auto xsm:border">
+            <div className="flex justify-between flex-col xsm:overflow-x-scroll  ">
+                <h1 className="text-5xl font-semibold mb-10 mt-20 ml-8 xsm:text-3xl
+                xsm:ml-0">Related Jobs</h1>
+                <div className="grid   xsm:flex xsm:gap-4  md:grid-cols-2 lg:grid-cols-3 gap-6 space-x-9">
                     {jobData.map((job, index) => (
                         <JobCard
                             key={index}
