@@ -18,6 +18,7 @@ export default {
       },
       screens: {
         'xsm': { 'min': '320px', 'max': '480px' },
+
       },
     },
 

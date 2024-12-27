@@ -69,7 +69,7 @@ const Supakling = () => {
           <div className="loader"></div>
         </div>
       )}
-      <div className="gap-4 px-4 md:px-[10%] 2xl:px-52  xl:px-10 xl:mr-20 xsm:mr-7 mb-[10vh] xsm:-mt-10">
+      <div className="gap-4 px-4 md:px-[10%] 2xl:px-[10%]  xl:px-10 xl:mr-20 xsm:mr-7 mb-[10vh] xsm:-mt-10 border border-black">
         <div className="flex 2xl:gap-0  gap-6 xl:gap-0 xl:items-center ">
           {/* Left Section */}
           <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14 lg:mt-10 lg:-ml-4">
@@ -127,16 +127,16 @@ const Supakling = () => {
                   attention to detail that meets every need
                 </p>
               </div>
-              
+
             </div>
-            
-              <button
-                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-2 xl:right-14  2xl:w-[25%] 2xl:absolute 2xl:-bottom-10 2xl:right-10  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-3 xsm:-top-10 "
-                  onClick={handleGoContact}
-                >
-                  Learn More
-                </button>
-           
+
+            <button
+              className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-2 xl:right-14  2xl:w-[25%] 2xl:absolute 2xl:-bottom-10 2xl:right-10  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-24 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-3 xsm:-top-10 "
+              onClick={handleGoContact}
+            >
+              Learn More
+            </button>
+
           </div>
         </div>
       </div>
