@@ -73,18 +73,6 @@ const Ourservices: React.FC = () => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
   };
 
-  const toggleDescription = (serviceId: string) => {
-    setExpandedServices((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(serviceId)) {
-        newSet.delete(serviceId);
-      } else {
-        newSet.add(serviceId);
-      }
-      return newSet;
-    });
-  };
-
   return (
     <div className="gap-4 px-[10%] relative py-10 ">
       {loading && (
@@ -132,9 +120,7 @@ const Ourservices: React.FC = () => {
                 {service.category}
               </h3>
               <p
-                className={`text-xs xsm:text-[12px] sm:text-[10px] md:text-[16px] lg:text-[18px] sm:w-full text-[#24232A] font-dm-sans tracking-wide leading-relaxed ${
-                  expandedServices.has(service._id) ? "" : "line-clamp-3"
-                }`}
+                className={`text-xs xsm:text-[12px] sm:text-[10px] md:text-[16px] lg:text-[18px] sm:w-full text-[#24232A] font-dm-sans tracking-wide leading-relaxed line-clamp-3`}
               >
                 {service.categoryDescription}
               </p>

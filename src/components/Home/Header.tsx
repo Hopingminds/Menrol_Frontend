@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useTransition } from "react";
-import { FaRegClock, FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";

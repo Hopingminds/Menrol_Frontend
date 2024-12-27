@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
-              className="absolute top-2 right-5 w-auto h-auto object-cover"
+              className="absolute top-2 right-5 w-auto md:w-[20px] h-auto object-cover"
               height={100}
               width={100}
             />

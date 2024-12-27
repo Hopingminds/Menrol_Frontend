@@ -141,7 +141,7 @@ const OurServices: React.FC = () => {
               {/* Arrow button to navigate to service details */}
               <div className="absolute top-4 right-4 md:top-8 md:right-6 ">
                 <button
-                  className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[8vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#1F1E24]"
+                  className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[70px] lg:w-[60px] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#1F1E24]"
                   onClick={() => handleServiceDetails(service._id)}
                 >
                   <FaArrowRightLong className="h-4 w-4 sm:h-6 sm:w-6" />
