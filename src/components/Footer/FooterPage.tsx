@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface Pricing {
   pricingtype: string;
@@ -36,6 +36,7 @@ interface ApiResponse {
 }
 
 const FooterPage = () => {
+  const pathname = usePathname();
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -69,6 +70,9 @@ const FooterPage = () => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
   };
 
+  const isActive = (link: string) =>
+    pathname === link ? "text-blue-500 font-bold" : "text-white";
+
   return (
     <footer className="px-[10%] pt-10 bg-[#121212] text-white mt-[10vh]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -90,42 +94,68 @@ const FooterPage = () => {
 
         {/* Navigation Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Navigation</h3>
+          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
+            Navigation
+          </h3>
           <ul className="space-y-2">
             <li>
-              <Link href="/" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
+              <Link
+                href="/"
+                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/"
+                )}`}
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
+              <Link
+                href="/about"
+                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/about"
+                )}`}
+              >
                 About Us
               </Link>
             </li>
             <li>
               <Link
                 href="/ServiceDetails"
-                className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed"
+                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/ServiceDetails"
+                )}`}
               >
                 Our Services
               </Link>
             </li>
             <li>
-              <Link href="/careers" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
+              <Link
+                href="/careers"
+                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/careers"
+                )}`}
+              >
                 Careers
               </Link>
             </li>
             <li>
-              <Link href="/contactus" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
+              <Link
+                href="/contactus"
+                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/contactus"
+                )}`}
+              >
                 Contact Us
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Services Section - Updated to use dynamic data */}
+        {/* Services Section */}
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">Services</h3>
+          <h3 className="text-lg font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
+            Services
+          </h3>
           <ul className="space-y-2">
             {loading ? (
               <li>Loading services...</li>
@@ -136,7 +166,14 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed text-left"
+                    className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed text-left ${
+                      pathname ===
+                      `/IndividualServices?data=${encodeURIComponent(
+                        service._id
+                      )}`
+                        ? "text-blue-500 font-bold"
+                        : "text-white"
+                    }`}
                   >
                     {service.category}
                   </button>
@@ -173,7 +210,10 @@ const FooterPage = () => {
             Terms of Use
           </Link>
           <span>|</span>
-          <Link href="#" className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed">
+          <Link
+            href="#"
+            className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed"
+          >
             Privacy Policy
           </Link>
         </p>

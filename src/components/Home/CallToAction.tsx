@@ -13,7 +13,7 @@ const CallToAction = () => {
         >
           {"/ Call to Action".split("").join(" ")}
         </h1>
-        <p className=" text-[45px] 2xl:text-[3.5rem]  xsm:text-[20px] sm:text-[29px] font-bold xsm:font-bold text-[#24232A]">
+        <p className=" text-[45px] 2xl:text-[3.5rem]  xsm:text-[20px] sm:text-[29px] font-bold font-lexend text-[#24232A]">
           Time for a Refresh: Book Your Cleaning Today
         </p>
         <p className="mt-2 text-[20px] 2xl:text-[30px] text-[#6B6A7E] xsm:text-[13px]">

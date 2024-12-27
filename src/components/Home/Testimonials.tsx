@@ -15,7 +15,7 @@ const Testimonials = () => {
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] 2xl:mt-6 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full  w-[70%] font-dm-sans tracking-wide leading-relaxed ">
+            <h1 className="text-[#24232A] text-[56px] 2xl:mt-6 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full  w-[70%] font-lexend tracking-wide leading-relaxed ">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>

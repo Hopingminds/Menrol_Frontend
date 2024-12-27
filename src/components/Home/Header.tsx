@@ -29,7 +29,7 @@ const Header = () => {
 
   const isActive = (path: string) =>
     pathname === path
-      ? "font-bold underline text-blue-500" 
+      ? "font-bold  text-blue-500" 
       : "text-gray-800";
 
   return (

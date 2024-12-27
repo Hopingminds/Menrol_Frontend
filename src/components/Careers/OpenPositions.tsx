@@ -55,7 +55,7 @@ const OpenPositions = () => {
     ];
     return (
         <div className=" px-[10%] py-10">
-            <div className="flex  flex-col">
+            {/* <div className="flex  flex-col">
                 <p className="text-green-500 mt-20 xsm:text-[10px]  uppercase text-[20px] pb-6">
                     /Available job positions
                 </p>
@@ -74,7 +74,7 @@ const OpenPositions = () => {
                         />
                     ))}
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

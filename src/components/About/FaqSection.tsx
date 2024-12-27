@@ -54,7 +54,7 @@ const FAQSection: FC = () => {
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
                                 <h2 className="text-3xl xsm:text-sm xsm:font-normal md:text-lg font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
-                                <span className="text-2xl font-bold xsm:text-xs  items-center p-2">
+                                <span className="text-xl font-bold xsm:text-xs  items-center p-2">
                                     {openQuestionIndex === index ? <FaWindowMinimize /> : <FaPlusCircle />}
                                 </span>
                             </button>
@@ -67,7 +67,7 @@ const FAQSection: FC = () => {
             </div>
             <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:block xl:flex xl:w-full">
                 <div
-                    className="w-full xl:w-[80%] xl:h-[60vh] lg:h-[60vh] h-[40vh] 2xl:h-[60vh] bg-[rgba(94,147,198,1)] rounded-xl lg:h-"
+                    className="w-full xl:w-[80%] xl:h-[80vh] lg:h-[80vh] 2xl:h-[60vh] bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
                         backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')",
                         backgroundSize: "cover",
