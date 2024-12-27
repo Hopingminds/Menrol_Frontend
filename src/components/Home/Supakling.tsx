@@ -110,7 +110,7 @@ const Supakling = () => {
 
             {/* Right Section */}
             <div className="flex flex-col 2xl:justify-end 2xl:gap-0 xl:gap-24 xsm:gap-0 xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
-              <div className=" 2xl:-ml-0 xsm:mt-4 lg:-ml-14" >
+              <div className=" 2xl:-ml-0 xsm:mt-4 lg:-ml-14 font-lexend" >
                 <h1 className="text-4xl 2xl:text-7xl xl:text-6xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
                   Sparkling
                 </h1>

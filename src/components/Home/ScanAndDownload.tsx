@@ -8,7 +8,7 @@ const ScanAndDownload = () => {
       {/* Text Section */}
       
         <div className="text-white pt-10 xsm:p-6">
-          <h1 className="text-[56px] font-bold xsm:text-[20px] 2xl:text-[80px]">Scan to Download App</h1>
+          <h1 className="text-[56px] font-bold xsm:text-[20px] font-lexend 2xl:text-[80px]">Scan to Download App</h1>
           <p className="text-[20px] mb-4 xsm:text-[14px] 2xl:text-[30px]">
             Available on your favorite store. Start your premium experience now
           </p>

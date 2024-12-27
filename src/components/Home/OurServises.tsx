@@ -113,8 +113,8 @@ const OurServices: React.FC = () => {
 
       {/* Subheading */}
       <div className="flex flex-row justify-between w-full items-center">
-        <div>
-          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px]  font-bold font-dm-sans tracking-wide leading-relaxed">
+        <div className="font-lexend">
+          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px]  font-bold tracking-wide leading-relaxed">
             Elevate Your Cleanliness
           </h1>
           <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px] font-bold tracking-[0.05em]">

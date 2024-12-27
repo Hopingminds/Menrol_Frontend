@@ -137,7 +137,7 @@ const IndividualServices: React.FC = () => {
   }
 
   return (
-    <div className="p-6">
+    <div className="px-[10%]">
       {/* Category Header */}
       <div className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-[#24232A] mb-4">{service.category}</h1>
