@@ -61,6 +61,7 @@ const GetInTouch = () => {
                 });
             }
         } catch (error) {
+            console.log(error);
             setStatus({
                 type: 'error',
                 message: 'An error occurred. Please try again later.'

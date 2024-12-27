@@ -1,58 +1,7 @@
 "use client";
 import React from 'react'
-import JobCard from '../CareerDetails/JobCard'
 
 const OpenPositions = () => {
-    const jobData = [
-        {
-            title: "Janitorial Crew Member",
-            salary: "$13 - $16 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-        {
-            title: "Eco-Cleaning Supervisor",
-            salary: "$17 - $20 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-        {
-            title: "Remote Quality Control",
-            salary: "$14 - $17 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-        {
-            title: "Remote Quality Control",
-            salary: "$14 - $17 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-        {
-            title: "Remote Quality Control",
-            salary: "$14 - $17 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-        {
-            title: "Remote Quality Control",
-            salary: "$14 - $17 per hour",
-            tags: ["Full-time", "Part-time", "Remote"],
-            description:
-                "A malesuada morbi odio amet sagittis bibendum nulla. Ac egestas non magna volutpat mi massa lorem amet. Proin.",
-            buttonText: "Learn More",
-        },
-    ];
     return (
         <div className=" px-[10%] py-10">
             {/* <div className="flex  flex-col">
