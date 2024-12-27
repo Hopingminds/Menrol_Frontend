@@ -1,7 +1,5 @@
 "use client";
-import Image from "next/image";
 import React from "react";
-import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import CoreValues from "../About/CoreValues";
 
 const OurValue = () => {
