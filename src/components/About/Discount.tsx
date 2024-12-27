@@ -31,13 +31,13 @@ const Discount = () => {
           <Image
             src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
-            className="w-[20vw] h-[55vh] md:w-[70%] xsm:w-[70%] xsm:h-[20vh] xsm:ml-9 md:h-[50%] lg:h-[50%] xl:h-[50vh] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 "
+            className="w-[20vw] h-[55vh] md:w-[70%] xsm:w-[70%] xsm:h-[20vh] xsm:ml-9 lg:h-[50%] xl:h-[50vh] 2xl:h-[70vh] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9 "
             height={300}
             width={300}
           />
 
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xsm:ml-20 xsm:h-[10vh] md:h-[17vw] md:w-[13vw] 2xl:h-[30vh] w-[10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[30vh] xsm:ml-20 xsm:h-[10vh] md:h-[17vw] md:w-[13vw] 2xl:h-[30vh] w-[10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
@@ -63,10 +63,10 @@ const Discount = () => {
             {"/ / Discount Up To 50%".split(" ").join("  ")}
           </h1>
 
-          <h1 className="text-[45px] font-bold mb-4 md:text-[40px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
+          <h1 className="text-[45px] font-bold mb-4 md:text-[40px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
             Big Savings, Big Clean: Limited Time Offer
           </h1>
-          <p className="text-lg mb-4 font-dm-sans tracking-wide xsm:text-xs leading-relaxed ">
+          <p className="text-lg mb-4 2xl:text-2xl font-dm-sans tracking-wide xsm:text-xs leading-relaxed ">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
           <p

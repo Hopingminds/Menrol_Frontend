@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
            <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose Supaklin</h1></div>
           </div>
 
-          <div className="bg-[#24232A] h-[23.1vh] lg:h-[15vh] lg:w-[20vw] w-[15vw] 2xl:w-[20%] 2xl:h-[24vh] xsm:w-full sm:h-[13vh] sm:top-5 md:w-[24vh] md:h-[20vh] rounded-lg mt-[6vh] text-white relative flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[23.1vh] lg:h-[20vh] lg:w-[20vw] w-[15vw] 2xl:w-[20%] 2xl:h-[24vh] xsm:w-full sm:h-[13vh] sm:w-[20vw] sm:top-5 md:w-[24vh] md:h-[20vh] rounded-lg mt-[6vh] text-white relative flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
 
             <div className="text-left 2xl:text-center sm:text-right">
               <div className="flex items-end sm:ml-6">
-                <h1 className="text-[48px] font-bold md:text-5xl  sm:text-xl">231</h1>
+                <h1 className="text-[48px] font-bold md:text-5xl  sm:text-base">231</h1>
                 <span className="text-[40px] sm:text-xl md:text-5xl">+</span>
               </div>
               <h1 className="text-[16px] sm:text-xs md:text-base">Project Finished</h1>
