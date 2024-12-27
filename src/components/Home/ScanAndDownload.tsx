@@ -4,11 +4,11 @@ import React from "react";
 
 const ScanAndDownload = () => {
   return (
-    <div className="bg-[#0054A5] h-[80vh] 2xl:h-[80vh] xsm:h-[50vh] sm:h-[60vh] xl:h-[60vh] md:h-[50vh] lg:h-[55vh] w-full flex  justify-center  relative xsm:w-full">
+    <div className="bg-[#0054A5] h-[80vh] 2xl:h-[90vh] xsm:h-[50vh] sm:h-[60vh] xl:h-[85vh] md:h-[60vh] lg:h-[59vh] w-full flex  justify-center  relative xsm:w-full">
       {/* Text Section */}
       
         <div className="text-white pt-10 xsm:p-6">
-          <h1 className="text-[56px] font-bold xsm:text-[30px] 2xl:text-[80px]">Scan to Download App</h1>
+          <h1 className="text-[56px] font-bold xsm:text-[20px] 2xl:text-[80px]">Scan to Download App</h1>
           <p className="text-[20px] mb-4 xsm:text-[14px] 2xl:text-[30px]">
             Available on your favorite store. Start your premium experience now
           </p>
@@ -23,7 +23,7 @@ const ScanAndDownload = () => {
             <Image
               src="/Images/Scanner.png"
               alt="Scanner"
-              className=" w-[80%] 2xl:w-full pt-10"
+              className=" w-[80%] xsm:w-[80%] 2xl:w-full pt-10"
               height={200}
               width={200}
             />
@@ -40,7 +40,7 @@ const ScanAndDownload = () => {
             <Image
               src="/Images/Scanner.png"
               alt="Scanner"
-              className=" w-[80%] 2xl:w-full pt-10 object-cover"
+              className=" w-[80%] xsm:w-[80%] 2xl:w-full pt-10 object-cover"
               height={200}
               width={200}
             />
@@ -58,7 +58,7 @@ const ScanAndDownload = () => {
           <div className="xsm:hidden sm:hidden lg:hidden md:hidden xl:block"><Image
             src="/Images/iPhone12_Screen.png"
             alt="iPhone Screen"
-            className="h-[55vh] w-[30vw] lg:h-full xl:h-full 2xl:h-[50vh] 2xl:-top-[1px] xl:w-full xl:relative xl:top-[19px] lg:relative lg:top-[50px] shadow-sm object-contain ml-[4vw] "
+            className="h-[55vh] w-[30vw] lg:h-full xl:h-full 2xl:h-[50vh] 2xl:-top-[1px] xl:w-full xl:relative xl:top-[1px] lg:relative lg:top-[50px] shadow-sm object-contain ml-[4vw] "
             height={1000}
             width={1000}
           /></div>

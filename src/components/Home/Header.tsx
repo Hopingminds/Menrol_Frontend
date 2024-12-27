@@ -46,15 +46,15 @@ const Header = () => {
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
             <FaRegClock />
-            <p className="font-dm-sans tracking-wide leading-relaxed">Mon-Fri 08:00 - 17:00</p>
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Mon-Fri 08:00 - 17:00</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt />
-            <p className="font-dm-sans tracking-wide leading-relaxed">+91 9193700050</p>
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">+91 9193700050</p>
           </div>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
-          <p className="font-dm-sans tracking-wide leading-relaxed">Request an Estimate</p>
+          <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Request an Estimate</p>
           <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6"
             onClick={handleGoContact}
           />

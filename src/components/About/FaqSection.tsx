@@ -67,7 +67,7 @@ const FAQSection: FC = () => {
             </div>
             <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:block xl:flex xl:w-full">
                 <div
-                    className="w-full xl:w-[80%] h-[40vh] bg-[rgba(94,147,198,1)] rounded-xl lg:h-"
+                    className="w-full xl:w-[80%] xl:h-[60vh] lg:h-[60vh] h-[40vh] 2xl:h-[60vh] bg-[rgba(94,147,198,1)] rounded-xl lg:h-"
                     style={{
                         backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')",
                         backgroundSize: "cover",
