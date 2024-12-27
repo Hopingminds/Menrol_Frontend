@@ -77,7 +77,7 @@ const Blogs = () => {
   </div>
 
   {/* Blog Cards Section */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap lg:flex lg:flex-nowrap lg:overflow-x-auto xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
+  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap  xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
     {blogsData.map((blog) => (
       <div
         key={blog.id}

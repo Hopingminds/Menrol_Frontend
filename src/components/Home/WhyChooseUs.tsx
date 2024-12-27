@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
            <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose Supaklin</h1></div>
           </div>
 
-          <div className="bg-[#24232A] h-[23.1vh] lg:h-[20vh] lg:w-[20vw] w-[15vw] 2xl:w-[20%] 2xl:h-[24vh] xsm:w-full sm:h-[13vh] sm:w-[20vw] sm:top-5 md:w-[24vh] md:h-[20vh] rounded-lg mt-[6vh] text-white relative flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[23.1vh] lg:h-[9rem] lg:w-[20vw] w-[15vw] 2xl:w-[20%] 2xl:h-[24vh] xsm:w-full sm:h-[13vh] sm:w-[20vw] sm:top-5 md:w-[8rem] md:h-[20vh] rounded-lg mt-[6vh] text-white relative flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
@@ -34,10 +34,10 @@ const WhyChooseUs = () => {
 
             <div className="text-left 2xl:text-center sm:text-right">
               <div className="flex items-end sm:ml-6">
-                <h1 className="text-[48px] font-bold md:text-5xl  sm:text-base">231</h1>
-                <span className="text-[40px] sm:text-xl md:text-5xl">+</span>
+                <h1 className="text-[48px] font-bold md:text-xl xsm:text-[40px]  sm:text-base">231</h1>
+                <span className="text-[40px] sm:text-xl md:text-xl">+</span>
               </div>
-              <h1 className="text-[16px] sm:text-xs md:text-base">Project Finished</h1>
+              <h1 className="text-[16px] sm:text-xs md:text-xs">Project Finished</h1>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
           {/* First Row */}
           <div className="flex flex-col sm:flex-row sm:justify-between w-full mb-10">
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] 2xl:w-[4vw] sm:w-[15vw] md:w-[15vw] md:h-[7vh] lg:w-[6vw] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] 2xl:w-[4vw] sm:w-[15vw] md:w-[6rem] md:h-[3rem] lg:w-[6vw] xsm:h-[3rem] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
                 <FiUsers />
               </div>
               <div>
@@ -61,7 +61,7 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] xl:w-[8vw] sm:w-[24vw] md:w-[20vw] 2xl:w-[5vw] lg:w-[9vw] md:h-[7vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] xl:w-[8vw] sm:w-[24vw] md:w-[10rem] 2xl:w-[5vw] lg:w-[9vw] md:h-[3rem] xsm:w-[40vw] xsm:h-[3rem] rounded-lg flex items-center justify-center text-white">
                 <MdOutlineWatchLater />
               </div>
               <div>
@@ -79,7 +79,7 @@ const WhyChooseUs = () => {
           {/* Second Row */}
           <div className="flex flex-col sm:flex-row sm:justify-between w-full xsm:-mt-10 py-10 xsm:py-0">
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] xl:w-[8vw] sm:w-[24vw] lg:w-[10vw] 2xl:w-[5vw] md:w-[23vw] md:h-[7vh] xsm:w-[40vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] xl:w-[8vw] sm:w-[24vw] lg:w-[10vw] 2xl:w-[5vw] md:w-[10rem] md:h-[3rem] xsm:w-[40vw] xsm:h-[3rem] rounded-lg flex items-center justify-center text-white">
                 <IoCubeOutline />
               </div>
               <div>
@@ -94,7 +94,7 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="flex flex-row items-center gap-5 sm:flex-1 sm:w-[48%] w-full mb-5 sm:mb-0">
-              <div className="bg-[#0054A5] h-[7vh] w-[5vw] sm:w-[15vw] lg:w-[6vw] 2xl:w-[4vw] md:w-[15vw] md:h-[7vh] xsm:w-[25vw] rounded-lg flex items-center justify-center text-white">
+              <div className="bg-[#0054A5] h-[7vh] w-[5vw] sm:w-[15vw] lg:w-[6vw] 2xl:w-[4vw] md:w-[6rem] md:h-[3rem] xsm:w-[25vw] xsm:h-[3rem] rounded-lg flex items-center justify-center text-white">
                 <BsEmojiSmile />
               </div>
               <div>

@@ -105,11 +105,11 @@ const Ourservices: React.FC = () => {
       >
         {"/ Our Service".split("").join(" ")}
       </h1>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className="text-[45px] xsm:text-base  font-dm-sans tracking-wide leading-relaxed">
+      <div className="flex flex-col justify-center font-lexend lg:font-bold items-center">
+        <h1 className="text-[45px] xsm:text-base  tracking-wide leading-relaxed">
           Elevate Your Cleanliness
         </h1>
-        <h1 className="text-[45px] xsm:text-base font-dm-sans tracking-wide leading-relaxed">
+        <h1 className="text-[45px] xsm:text-base tracking-wide leading-relaxed">
           With Supaklin
         </h1>
       </div>
@@ -123,7 +123,7 @@ const Ourservices: React.FC = () => {
             <Image
               src={service.categoryImage}
               alt={service.category}
-              className="w-full h-[30vh] xsm:h-[20vh] sm:h-[40vh] md:h-[20vh] xl:h-[20vh] 2xl:h-[40vh] lg:h-[30vh] rounded-lg object-cover"
+              className="w-full h-[30vh] xsm:h-[20vh] sm:h-[40vh] md:h-[50%] lg:h-[50%] rounded-lg object-cover"
               height={400}
               width={400}
             />

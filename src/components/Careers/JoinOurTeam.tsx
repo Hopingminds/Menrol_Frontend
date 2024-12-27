@@ -16,7 +16,7 @@ const JoinOurTeam = () => {
                     /JOIN OUR TEAM
                 </p>
                 <p className="text-5xl xsm:leading-tight sm:leading-tight sm:tracking-tight  xsm:tracking-tight font-lexend font-semibold leading-relaxed xsm:text-2xl sm:text-4xl xl:text-5xl xl:tracking-tight text-start lg:leading-normal tracking-[0.1em] lg:tracking-tighter">Elevate Your Career While Changing the World </p>
-                <p className="mt-2 xsm:mt-5 sm:mt-6 font-dm-sans tracking-wide xsm:text-lg xsm:text-start leading-relaxed">
+                <p className="mt-2 xsm:mt-5 sm:mt-6 font-dm-sans tracking-wide xsm:text-sm xsm:text-start leading-relaxed">
                     Lead with purpose and grow professionally while making the world a better place.{" "}
                 </p>
                 <button className="bg-[rgba(0,84,165,1)] text-white rounded-full mt-10 h-12 xsm:w-32 w-40 font-dm-sans tracking-wide leading-relaxed hover:scale-105"
