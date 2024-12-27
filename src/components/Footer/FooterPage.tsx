@@ -166,7 +166,7 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed text-left ${
+                    className={` decoration-blue-500 hover:text-blue-600 font-dm-sans tracking-wide leading-relaxed text-left ${
                       pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id

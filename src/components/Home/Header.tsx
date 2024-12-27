@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState, useTransition } from "react";
 import { FaRegClock, FaPhoneAlt } from "react-icons/fa";
+import { CiMail } from "react-icons/ci";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { usePathname, useRouter } from "next/navigation";
@@ -45,8 +46,8 @@ const Header = () => {
       <div className="h-10 bg-[#F9F9FE] text-black flex items-center justify-between xsm:p-10 px-4 md:px-[10%] text-sm md:text-base">
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
-            <FaRegClock />
-            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Mon-Fri 08:00 - 17:00</p>
+            <CiMail/>
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed hover:text-blue-500 hover:cursor-pointer transition-all duration-300">hr@menrol.com</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt />
