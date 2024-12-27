@@ -31,12 +31,12 @@ const Discount = () => {
           <Image
             src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
-            className="w-[20vw] h-[55vh] md:h-[20rem] md:w-[70%] xsm:w-[70%] xsm:h-[20vh] xsm:ml-9 lg:h-[20rem] xl:h-[24rem] 2xl:h-[25rem] 2xl:w-[25rem] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9  "
+            className="w-[20vw] h-[55vh] md:h-[20rem] md:w-[70%] xsm:w-[70%] xsm:h-[10rem] xsm:ml-9 lg:h-[20rem] xl:h-[24rem] 2xl:h-[25rem] 2xl:w-[25rem] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9  "
             height={300}
             width={300}
           />
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[10vh] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend ">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend ">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"

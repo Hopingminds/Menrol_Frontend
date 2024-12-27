@@ -6,7 +6,7 @@ const CultureSection: React.FC = () => {
         <section className="flex xsm:flex-col xsm:items-center sm:items-center sm:flex-col md:flex-row lg:items-center md:items-start p-8 bg-white  px-[10%] gap-10 justify-between">
             <div className="flex flex-col items-center md:mt-52 lg:mt-0 w-[20vw]  p-2">
                 <div
-                    className="w-full h-64 bg-blue-400 mb-8 p-8 xsm:w-[90vw] sm:w-[90vw] lg:h-64 md:w-full md:h-40 rounded-lg shadow-md "
+                    className="w-full h-64 bg-blue-400 mb-8 p-8 xsm:w-[20rem] sm:w-[90vw] lg:h-64 md:w-full md:h-40 rounded-lg shadow-md "
                     style={{
                         backgroundImage: "url('/Images/culture.jpg')",
                         backgroundSize: "cover",
@@ -17,7 +17,7 @@ const CultureSection: React.FC = () => {
                     {/* Content inside the div (if any) */}
                 </div>
 
-                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full xsm:w-[90vw] xsm:h-[20vh] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
+                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full xsm:w-[20rem] xsm:h-[20rem] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
                     <div className="text-6xl font-bold md:text-4xl ">90%</div>
                     <div className="text-xl mt-2 font-dm-sans tracking-wide leading-relaxed">Job Satisfaction</div>
                     <div className="text-sm mt-2 font-dm-sans tracking-wide leading-relaxed">Our employees love working for Supaklin</div>

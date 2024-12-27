@@ -4,7 +4,7 @@ import React from "react";
 
 const ScanAndDownload = () => {
   return (
-    <div className="bg-[#0054A5] h-[80vh] 2xl:h-[90vh] xsm:h-[50vh] sm:h-[60vh] xl:h-[85vh] md:h-[60vh] lg:h-[59vh] w-full flex  justify-center  relative xsm:w-full">
+    <div className="bg-[#0054A5] h-[80vh] 2xl:h-[90vh] xsm:h-[19rem] sm:h-[60vh] xl:h-[28rem] md:h-[20rem] lg:h-[28rem] w-full flex  justify-center  relative xsm:w-full">
       {/* Text Section */}
       
         <div className="text-white pt-10 xsm:p-6">
@@ -55,10 +55,10 @@ const ScanAndDownload = () => {
           </div>
           </div>
 
-          <div className="xsm:hidden sm:hidden lg:hidden md:hidden xl:block"><Image
+          <div className="xsm:hidden sm:hidden lg:block md:hidden xl:block"><Image
             src="/Images/iPhone12_Screen.png"
             alt="iPhone Screen"
-            className="h-[55vh] w-[30vw] lg:h-full xl:h-full 2xl:h-[50vh] 2xl:-top-[1px] xl:w-full xl:relative xl:top-[1px] lg:relative lg:top-[50px] shadow-sm object-contain ml-[4vw] "
+            className="h-[55vh] w-[30vw] xl:h-full 2xl:h-[50vh] 2xl:-top-[1px] xl:w-full xl:relative xl:top-[1px] lg:relative  shadow-sm object-contain ml-[4vw] "
             height={1000}
             width={1000}
           /></div>

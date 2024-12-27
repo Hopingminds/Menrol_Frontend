@@ -26,10 +26,10 @@ const Testimonials = () => {
         </div>
       </div>
 
-      <div className="container mx-auto sm:overflow-x-scroll 2xl:mt-6 xl:mt-5 xsm:overflow-x-scroll xsm:w-screen">
-        <div className="flex flex-row gap-6  ">
+      <div className="container mx-auto sm:overflow-x-scroll 2xl:mt-6 xl:mt-5 xsm:overflow-x-scroll ">
+        <div className="flex flex-row gap-6 ">
           {/* Card 1 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px]  py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[260px]  py-10 mx-auto">
             <div className="flex items-start  space-x-4">
               <Image
                 src="/Images/AllImages/person3.webp"
@@ -52,7 +52,7 @@ const Testimonials = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px]  py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[260px]  py-10 mx-auto">
             <div className="flex items-start space-x-4 ">
               <Image
                 src="/Images/AllImages/person4.jpg"
@@ -77,7 +77,7 @@ const Testimonials = () => {
 
 
           {/* Card 3 */}
-          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[450px] py-10 mx-auto">
+          <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[260px] py-10 mx-auto">
             <div className="flex items-start space-x-4 ">
               <Image
                 src="/Images/AllImages/person5.jpg"

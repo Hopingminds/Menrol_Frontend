@@ -37,7 +37,7 @@ const FAQSection: FC = () => {
     ];
 
     return (
-        <div className="flex flex-col md:flex-row items-start py-12 bg-white px-[10%] justify-between gap-40">
+        <div className="flex flex-col md:flex-row items-start py-12 bg-white px-[10%] justify-between md:gap-10 gap-40">
             {/* Left Section - FAQ */}
             <div className="w-full">
                 <p className="text-lg font-bold xsm:text-[10px] text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
@@ -65,9 +65,9 @@ const FAQSection: FC = () => {
                     ))}
                 </div>
             </div>
-            <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:hidden lg:block xl:flex xl:w-full">
+            <div className="mt-6 w-2/3 flex flex-col items-start xsm:hidden md:block lg:block xl:flex xl:w-full">
                 <div
-                    className="w-full xl:w-[80%] xl:h-[80vh] lg:h-[80vh] 2xl:h-[60vh] bg-[rgba(94,147,198,1)] rounded-xl"
+                    className="w-full  xl:h-[24rem] lg:h-[18rem] md:h-[23rem] 2xl:h-[23rem] bg-[rgba(94,147,198,1)] rounded-xl"
                     style={{
                         backgroundImage: "url('/Images/AllImages/FAQ(1).jpg')",
                         backgroundSize: "cover",
