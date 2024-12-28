@@ -24,7 +24,6 @@ const CultureSection: React.FC = () => {
                 </div>
             </div>
             <div className="md:w-2/3 h-[100%] md:p-0 p-5">
-                <div className="text-[rgba(81,220,152,1)] uppercase text-lg sm:text-[13px] tracking-wide font-lexend xsm:text-[10px]">/Our culture</div>
                 <h2 className="text-3xl font-bold mb-8 text-[rgba(36,35,42,1)] mt-3 font-dm-sans tracking-wide leading-relaxed">Collaboration and Growth</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
                     {[

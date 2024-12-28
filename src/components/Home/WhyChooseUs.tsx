@@ -8,16 +8,11 @@ import { MdOutlineWatchLater } from "react-icons/md";
 
 const WhyChooseUs = () => {
   return (
-    <div className="px-[10%] py-[10vh] shadow-sm border ">
-      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%]  border ">
+    <div className="px-[10%] py-[10vh] shadow-sm  ">
+      <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%] ">
         <div className="flex flex-row justify-between 2xl:items-center xsm:flex-col  font-lexend">
           <div className="py-[8%]">
-            <h1
-              className="text-[#51DC98] xsm:text-[10px] uppercase font-bold py-[2vh]"
-              style={{ wordSpacing: "0.1em" }}
-            >
-              {"/Why Choose Us".split("").join(" ")}
-            </h1>
+            
             <div className="xsm:text-center">
               <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose perfection,</h1>
               <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose superior service</h1></div>

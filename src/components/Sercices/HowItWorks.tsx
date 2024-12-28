@@ -25,9 +25,7 @@ const HowItWorks: React.FC = () => {
 
   return (
     <section className="pb-[10vh] p-10 mt-[15vh] bg-gray-100 px-[10%]">
-      <p className="text-[rgba(81,220,152,1)] uppercase font-medium text-sm tracking-wide font-lexend sm:text-[15px] lg:text-lg xsm:text-[10px]">
-        /HOW IT WORKS
-      </p>
+      
       <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4 xsm:text-base">
         How to Apply
       </h2>

@@ -87,12 +87,7 @@ const Ourservices: React.FC = () => {
         </div>
       )}
 
-      <h1
-        className="text-[#51DC98] uppercase font-bold text-center"
-        style={{ wordSpacing: "0.1em" }}
-      >
-        {"/ Our Service".split("").join(" ")}
-      </h1>
+      
       <div className="flex flex-col justify-center font-lexend lg:font-bold items-center">
         <h1 className="text-[45px] xsm:text-base  tracking-wide leading-relaxed">
           Elevate Your Cleanliness
@@ -102,11 +97,11 @@ const Ourservices: React.FC = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 xsm:flex xsm:overflow-x-auto xsm:w-full xsm:gap-4 sm:flex sm:w-full sm:overflow-x-auto md:grid-cols-2 md:grid lg:grid xl:grid xl:grid-cols-3 gap-6 pt-10">
+      <div className="grid  grid-cols-1 xsm:flex xsm:overflow-x-auto xsm:w-full xsm:gap-4 sm:flex sm:w-full sm:overflow-x-auto md:grid-cols-2 md:grid lg:grid xl:grid xl:grid-cols-3 gap-6 pt-10">
         {services?.map((service) => (
           <div
             key={service._id}
-            className="p-4 shadow-lg rounded-lg xsm:min-w-[80%] sm:w-auto md:w-full md:h-full xl:w-full"
+            className="p-4 shadow-xl bg-slate-50 rounded-lg xsm:min-w-[80%] sm:w-auto md:w-full md:h-[90%] xl:w-full"
           >
             <Image
               src={service.categoryImage}

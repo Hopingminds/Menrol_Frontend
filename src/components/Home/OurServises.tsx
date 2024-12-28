@@ -92,7 +92,7 @@ const OurServices: React.FC = () => {
       {/* Show loading spinner while data is being fetched */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
-          <div className="animate-spin w-16 h-16 border-4 border-t-transparent rounded-full"></div>
+          <div className="animate-spin w-16 h-16 rounded-full"></div>
         </div>
       )}
 
@@ -104,12 +104,6 @@ const OurServices: React.FC = () => {
       )}
 
       {/* Heading */}
-      <h1
-        className="text-[#51DC98] xsm:text-[10px] sm:text-[13px] uppercase font-bold pl-4 sm:flex sm:justify-center"
-        style={{ wordSpacing: "0.1em" }}
-      >
-        {"/ Our Service".split("").join(" ")}
-      </h1>
 
       {/* Subheading */}
       <div className="flex flex-row justify-between w-full items-center">

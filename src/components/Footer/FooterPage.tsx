@@ -87,7 +87,7 @@ const FooterPage = () => {
               width={200}
             />
           </Link>
-          <p className="text-sm pt-6 font-dm-sans tracking-wide leading-relaxed">
+          <p className="text-sm w-[80%] pt-6 font-dm-sans tracking-wide leading-relaxed">
             Trusted home services at your fingertips, anytime, anywhere.
           </p>
         </div>
@@ -101,7 +101,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/"
-                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/"
                 )}`}
               >
@@ -111,7 +111,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/about"
-                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/about"
                 )}`}
               >
@@ -121,7 +121,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/ServiceDetails"
-                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/ServiceDetails"
                 )}`}
               >
@@ -131,7 +131,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/careers"
-                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/careers"
                 )}`}
               >
@@ -141,7 +141,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/contactus"
-                className={`hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/contactus"
                 )}`}
               >
@@ -166,7 +166,7 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={` decoration-blue-500 hover:text-blue-600 font-dm-sans tracking-wide leading-relaxed text-left ${
+                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${
                       pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id
@@ -204,8 +204,8 @@ const FooterPage = () => {
       {/* Footer Bottom Section */}
       <hr className="my-8 border-gray-700" />
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
-        <p>Copyright &copy; 2024 Menrol</p>
-        <p className="flex space-x-4">
+        <p className="mb-10">Copyright &copy; 2024 Menrol</p>
+        <p className="flex space-x-4 mb-10">
           <Link href="#" className="hover:underline decoration-blue-500">
             Terms of Use
           </Link>

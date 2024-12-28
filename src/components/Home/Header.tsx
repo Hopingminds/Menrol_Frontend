@@ -46,11 +46,11 @@ const Header = () => {
       <div className="h-10 bg-[#F9F9FE] text-black flex items-center justify-between xsm:p-10 px-4 md:px-[10%] text-sm md:text-base">
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
-            <CiMail/>
+            <CiMail className="text-lg"/>
             <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed hover:text-blue-500 hover:cursor-pointer transition-all duration-300">hr@menrol.com</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
-            <FaPhoneAlt />
+            <FaPhoneAlt className="text-base"/>
             <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">+91 9193700050</p>
           </div>
         </div>
