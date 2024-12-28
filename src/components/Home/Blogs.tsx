@@ -68,9 +68,6 @@ const Blogs = () => {
     <div className="px-4 sm:px-6 lg:px-[10%] md:px-[10%] py-10">
       {/* Header Section */}
       <div className="flex flex-col items-center text-center">
-        <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.3em] py-4 xsm:text-[10px] sm:text-[12px] xl:text-[18px]">
-          / BLOGS
-        </h1>
         <h1 className="text-[#24232A] text-[24px] sm:text-[36px] font-bold xsm:text-[18px] pb-6 font-lexend tracking-wide leading-snug">
           Top-Notch Services, Anytime You Need
         </h1>

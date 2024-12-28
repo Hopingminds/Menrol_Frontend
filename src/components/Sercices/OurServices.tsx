@@ -23,10 +23,10 @@ const OurServises = () => {
       <div className="flex flex-row justify-between w-full items-center">
         <div>
           <h1 className="text-[#24232A] text-[32px] md:text-[56px] font-bold font-dm-sans tracking-wide leading-relaxed">
-            Elevate Your Cleanliness
+            Experience Excellence
           </h1>
           <h1 className="text-[#24232A] text-[32px] md:text-[56px] font-bold font-dm-sans tracking-wide leading-relaxed">
-            with Supaklin
+            with Every Service
           </h1>
         </div>
         <button className="bg-[#0054A5] rounded-full h-[5vh] w-[30vw] sm:w-[50vw] md:w-[7vw] items-center text-[#FFFFFF] text-[14px] md:text-[16px] tracking-[0.07em]" onClick={HandleGoAbout}>

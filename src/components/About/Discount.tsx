@@ -59,13 +59,13 @@ const Discount = () => {
         {/* Right Side Text */}
         <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col lg:px-20  md:h-[20rem] lg:[5rem] xl:[24rem] 2xl:[25rem]
         ">
-          
+
 
           <h1 className="text-[45px] font-bold mb-4 md:text-[30px] md:leading-normal lg:text-[35px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
             Big Savings, Big Service: Limited Time Offer
           </h1>
           <p className="text-lg mb-4  md:text-lg lg:text-xl 2xl:text-2xl font-dm-sans tracking-wide xsm:text-xs leading-relaxed ">
-            Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
+            Don’t miss out! Limited-time savings on professional services for a spotless experience.
           </p>
           <p
             className="text-lg font-semibold cursor-pointer xsm:text-xs pt-10 tracking-[0.2em]"

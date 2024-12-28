@@ -12,12 +12,6 @@ const WhyChooseUs = () => {
       <div className="bg-[#F9F9FE] rounded-lg w-full h-[100%] px-[10%]  border ">
         <div className="flex flex-row justify-between 2xl:items-center xsm:flex-col  font-lexend">
           <div className="py-[8%]">
-            <h1
-              className="text-[#51DC98] xsm:text-[10px] uppercase font-bold py-[2vh]"
-              style={{ wordSpacing: "0.1em" }}
-            >
-              {"/Why Choose Us".split("").join(" ")}
-            </h1>
             <div className="xsm:text-center">
               <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Excellence
                 in </h1>
@@ -52,10 +46,10 @@ const WhyChooseUs = () => {
               </div>
               <div>
                 <h1 className="text-[18px] xsm:text-[15px] 2xl:text-[20px] sm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
-                  Reliable Cleaning Crew
+                  Reliable  Crew
                 </h1>
                 <p className="text-[14px] 2xl:text-[15px] xsm:text-[10px] lg:w-[80%] sm:text-[12px] text-[#24232A] md:text-[13px] font-dm-sans tracking-wide leading-relaxed ">
-                  Trusted cleaning experts making every space <br />
+                  Trusted  experts making every space <br />
                   Shine with care and precision
                 </p>
               </div>
@@ -88,8 +82,8 @@ const WhyChooseUs = () => {
                   Flexible Packages
                 </h1>
                 <p className="text-[14px] xsm:text-[10px] 2xl:text-[15px] lg:w-[80%] sm:text-[12px] text-[#24232A] md:text-[13px] font-dm-sans tracking-wide leading-relaxed 2xl:w-[90%] ">
-                  Affordable and adaptable packages for all your cleaning and
-                  service needs. <br /> For all your cleaning and service needs.
+                  Affordable and adaptable packages for all your
+                  service needs. <br /> For all your required service needs.
                 </p>
               </div>
             </div>
