@@ -94,9 +94,7 @@ const Supakling = () => {
           {/* Middle Section */}
           <div className="flex flex-col 2xl:w-full  xl:w-full md:w-2/2 pl-0 relative ">
             <div className="flex flex-row justify-between md:flex-col md:items-start xsm:items-start  ">
-              <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-[10px] sm:text-[12px]  xsm:relative xsm:top-9">
-                {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
-              </h1>
+              
               <div className=" hidden xsm:block lg:block 2xl:-ml-40">
                 <Image
                   src="/Images/Home_Star_Image.png"

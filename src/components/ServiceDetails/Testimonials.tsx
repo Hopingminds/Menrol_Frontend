@@ -7,12 +7,7 @@ const Testimonials: React.FC = () => {
     <section className="bg-white py-16 px-[10%]">
       {/* Header Section */}
       <div className="px-4 mt-6">
-        <h1
-          className="text-[#51DC98] uppercase xsm:text-[10px] sm:text-[15px]"
-          style={{ wordSpacing: "0.1em" }}
-        >
-          {"/Testimonials".split("").join(" ")}
-        </h1>
+       
 
         <div className="flex flex-row justify-between">
           <div>

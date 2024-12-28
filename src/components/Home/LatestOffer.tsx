@@ -59,9 +59,7 @@ const LatestOffer = () => {
             {/* Right Side Text */}
             <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col lg:px-20  md:h-[20rem] lg:[5rem] xl:[24rem] 2xl:[25rem]
             ">
-              <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.08em] py-10 md:py-4 xsm:text-[10px]">
-                {"/ / Discount Up To 50%".split(" ").join("  ")}
-              </h1>
+              
     
               <h1 className="text-[45px] font-bold mb-4 md:text-[30px] md:leading-normal lg:text-[35px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
                 Big Savings, Big Clean: Limited Time Offer

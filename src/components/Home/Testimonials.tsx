@@ -6,16 +6,11 @@ const Testimonials = () => {
   return (
     <div className="px-[10%] h-[100%] py-10 ">
       <div className="px-4 mt-6">
-        <h1
-          className="text-[#51DC98] uppercase sm:text-[12px] xsm:text-[10px] 2xl:text-[20px] "
-          style={{ wordSpacing: "0.1em" }}
-        >
-          {"/Testimonials".split("").join(" ")}
-        </h1>
+        
 
         <div className="flex flex-row justify-between">
           <div>
-            <h1 className="text-[#24232A] text-[56px] 2xl:mt-6 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full  w-[70%] font-lexend tracking-wide leading-relaxed ">
+            <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full  w-[70%] font-lexend tracking-wide leading-relaxed ">
               Real Testimonials from Satisfied Customers
             </h1>
           </div>
@@ -26,7 +21,7 @@ const Testimonials = () => {
         </div>
       </div>
 
-      <div className="container mx-auto sm:overflow-x-scroll 2xl:mt-6 xl:mt-5 xsm:overflow-x-scroll ">
+      <div className="container mx-auto sm:overflow-x-scroll xl:overflow-hidden 2xl:mt-6 xl:mt-5 xsm:overflow-x-scroll ">
         <div className="flex flex-row gap-6 ">
           {/* Card 1 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-[450px] min-w-[260px]  py-10 mx-auto">
