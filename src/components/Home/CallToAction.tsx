@@ -7,12 +7,7 @@ const CallToAction = () => {
     <div className="px-[10%] flex justify-between mt-[18vh]">
       {/* Text Section */}
       <div className="w-[50%] pt-5">
-        <h1
-          className="text-[#51DC98] uppercase pl-4 xsm:text-[10px] sm:text-[12px] 2xl:text-[20px]"
-          style={{ wordSpacing: "0.1em" }}
-        >
-          {"/ Call to Action".split("").join(" ")}
-        </h1>
+        
         <p className=" text-[45px] 2xl:text-[3.5rem]  xsm:text-[15px] sm:text-[29px] font-bold font-lexend text-[#24232A]">
           Time for a Refresh: Book Your Cleaning Today
         </p>

@@ -22,13 +22,12 @@ const HowToApply: React.FC = () => {
 
     return (
         <section className="p-8 bg-gray-100 px-[10%]">
-            <p className='text-[rgba(81,220,152,1)] uppercase font-medium text-lg xsm:text-[10px] font-lexend font-dm-sans tracking-wide leading-relaxed'>/ HOW IT WORKS</p>
             <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4 font-dm-sans tracking-wide leading-relaxed">How to Apply</h2>
             <div className="flex mb-12 xsm:items-start items-center xsm:flex-col sm:items-center sm:justify-between">
                 {steps.map((step, index) => (
                     <div key={index} className=" p-6 sm:w-[30%] xl:w-full">
                         <div className="flex sm:items-center ">
-                            <div className="border w-20 px-1 h-6  text-center rounded-xl bg-[rgba(193,244,88,1)] text-[rgba(36,35,42,1)] xsm:z-10">
+                            <div className=" w-20 px-1 h-6  text-center rounded-xl bg-[rgba(193,244,88,1)] text-[rgba(36,35,42,1)] xsm:z-10">
                                 {step.heading}
                             </div>
                             <div className="text-[rgba(188,187,201,1)] tracking-wider sm:tracking-tighter xsm:hidden lg:block sm:hidden xl:block">
