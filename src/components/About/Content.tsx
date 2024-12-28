@@ -18,7 +18,7 @@ const Content = () => {
                 {/* Content Section */}
                 <div className=" flex flex-col h-[100%] xsm:leading-tight sm:leading-tight sm:gap-2 xsm:gap-2 leading-loose 2xl:leading-normal gap-5 ">
                     <h1 className="text-black text-[45px] xl:text-[45px] lg:text-[36px] xl:leading-relaxed 2xl:text-[45px] xsm:text-[5px] sm:text-lg md:text-2xl font-bold font-lexend tracking-widest w-full lg:tracking-wider 2xl:tracking-wide 2xl:w-[90%] 2xl:leading-normal ">
-                        Embracing Cleanliness and Beyond:
+                        Quality service, spotless results:
                     </h1>
                     {/* <h1 className="text-black text-[45px] font-bold mb-2 font-lexend tracking-widest w-full 2xl:text-6xl">
                         and Beyond:
@@ -33,7 +33,7 @@ const Content = () => {
 
 
                     <p className="text-gray-600 font-sans 2xl:text-xl xl:text-xl xsm:tracking-tight tracking-wider 2xl:tracking-wider 2xl:mt-6 xsm:text-[8px] md:text-base ">
-                        With our embrace of cleanliness and beyond, we promise a level of service that ensures perfection. Every space we clean is carefully attended to, providing you with a healthy and welcoming environment.
+                        This reflects our commitment to providing exceptional service with an unwavering focus on attention. Whether it's your home, office, or any space that needs attention, we ensure every corner is immaculate.
                     </p>
                 </div>
             </div>

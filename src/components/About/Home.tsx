@@ -13,14 +13,14 @@ const Home = () => {
                 <div className="flex flex-col xsm:items-start md:flex-row md:gap-32 2xl:px-[10%] items-center md:items-start justify-between md:px-[10%] lg:px-[10%] xl:px-[10%]  px-[10%] mt-4 ">
                     {/* Left Section: Heading */}
                     <h2 className="text-5xl xsm:text-xl md:text-2xl 2xl:text-5xl 2xl:w-[50%]  lg:text-3xl  font-bold text-gray-900 md:w-1/2 font-lexend tracking-wide leading-relaxed">
-                        Elevating Cleanliness to Perfection
+                        Excellence Delivered, Every Time
                     </h2>
 
                     {/* Right Section: Paragraph */}
                     <div className="flex justify-end w-2/3 md:w-1/2 mt-6 md:mt-1">
                         <div className="flex justify-end">
                             <p className="text-gray-500 md:tracking-tight xsm:mr-4 xsm:text-xs xsm:text-start md:leading-tight 2xl:text-lg 2xl:tracking-wide 2xl:leading-relaxed md:text-sm text-lg self-end  text-justify font-dm-sans tracking-wide leading-relaxed " >
-                                We perfect cleanliness, transforming every space into a spotless, fresh, and hygienic environment
+                                We perfect  transforming every space into a spotless, fresh, and hygienic environment
                             </p>
                         </div>
                     </div>
@@ -40,8 +40,8 @@ const Home = () => {
                         <div className="col-span-1 font-dm-sans tracking-wide leading-relaxed text-[18px] xsm:w-[40%] 2xl:text-justify ">
                             {" "}
                             <Feature
-                                title="Professional Cleaners"
-                                description="Our professional cleaners offer expert cleaning services, transforming your space into a fresh, hygienic haven"
+                                title="Professional Experts"
+                                description="Our professional experts offer excelllent services, transforming your space into a fresh, hygienic haven"
                             />
                         </div>
                     </div>
@@ -62,11 +62,11 @@ const Home = () => {
                             {/* Reduced gap and added margin top */}
                             <Feature
                                 title="Flexible Scheduling"
-                                description="We offer flexible scheduling, making it easy to book cleaning services at your convenience."
+                                description="We offer flexible scheduling, making it easy to book  services at your convenience."
                             />
                             <Feature
                                 title="Attention to Detail"
-                                description="We focus on the small details, ensuring your space is cleaned with precision and care."
+                                description="We focus on the small details, ensuring your space is dealed  with precision and care."
                             />
                         </div>
                     </div>

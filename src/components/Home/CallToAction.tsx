@@ -14,10 +14,10 @@ const CallToAction = () => {
           {"/ Call to Action".split("").join(" ")}
         </h1>
         <p className=" text-[45px] 2xl:text-[3.5rem]  xsm:text-[15px] sm:text-[29px] font-bold font-lexend text-[#24232A]">
-          Time for a Refresh: Book Your Cleaning Today
+          Time for a Refresh: Book Your Service Today
         </p>
         <p className="mt-2 text-[20px] 2xl:text-[30px] text-[#6B6A7E] xsm:text-[10px]">
-          Enjoy a fresh, clean environment by booking our cleaning service today and feel the difference.
+          Enjoy a fresh, clean environment by booking our  service today and feel the difference.
         </p>
         <button className="bg-[#0054A5] rounded-full h-[7vh] xsm:text-[10px]  sm:w-[25vw] w-[11vw] xsm:w-full  items-center text-[#FFFFFF] font-[16px] tracking-[0.07em] mt-5 hover:scale-105">
           Contact Us

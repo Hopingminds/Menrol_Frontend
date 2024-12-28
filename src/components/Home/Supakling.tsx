@@ -95,7 +95,7 @@ const Supakling = () => {
           <div className="flex flex-col 2xl:w-full  xl:w-full md:w-2/2 pl-0 relative ">
             <div className="flex flex-row justify-between md:flex-col md:items-start xsm:items-start  ">
               <h1 className="text-[#51DC98] uppercase font-bold text-md md:text-md xsm:text-[10px] sm:text-[12px]  xsm:relative xsm:top-9">
-                {"/ Supaklin - Cleaning - Service".split(" ").join(" ")}
+                {"/ Crystal - Clean - Service".split(" ").join(" ")}
               </h1>
               <div className=" hidden xsm:block lg:block 2xl:-ml-40">
                 <Image
@@ -112,10 +112,10 @@ const Supakling = () => {
             <div className="flex flex-col 2xl:justify-end 2xl:gap-0 xl:gap-24 xsm:gap-0 xsm:flex-row md:flex-row justify-between pt-10 md:pt-0">
               <div className=" 2xl:-ml-0 xsm:mt-4 lg:-ml-14 font-lexend" >
                 <h1 className="text-4xl 2xl:text-7xl xl:text-6xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
-                  Sparkling
+                  Excellence
                 </h1>
                 <h1 className="text-4xl 2xl:text-7xl 2xl:w-[80%] xl:text-6xl xl:tracking-normal text-black lg:text-6xl md:text-[36px] xsm:text-[20px] xsm:font-bold font-semibold tracking-[0.07em] lg:leading-none leading-tight">
-                  Clean Spaces
+                  in Every Service
                 </h1>
               </div>
               <div className="w-full md:w-[26vw] 2xl:-mr-40 md:-mr-9 md:pt-10 xsm:w-screen xsm:-ml-12 xsm:mr-10 mt-4 md:mt-0 xsm:mt-20">
@@ -127,16 +127,16 @@ const Supakling = () => {
                   attention to detail that meets every need
                 </p>
               </div>
-              
+
             </div>
-            
-              <button
-                  className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-10 xl:right-28  2xl:w-[25%] 2xl:absolute 2xl:-bottom-10 2xl:right-10  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-20 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-4 xsm:-top-10 "
-                  onClick={handleGoContact}
-                >
-                  Learn More
-                </button>
-           
+
+            <button
+              className="bg-[#0054A5] lg:w-[30%] lg:-right-80 sm:w-[50%] xl:w-[20%]  xl:absolute xl:-bottom-10 xl:right-28  2xl:w-[25%] 2xl:absolute 2xl:-bottom-10 2xl:right-10  text-white rounded-full px-4 py-2 md:w-[50%]  xsm:w-20 xsm:px-2 xsm:text-xs hover:scale-105 relative xsm:-left-4 xsm:-top-10 "
+              onClick={handleGoContact}
+            >
+              Learn More
+            </button>
+
           </div>
         </div>
       </div>

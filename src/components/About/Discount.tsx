@@ -64,7 +64,7 @@ const Discount = () => {
           </h1>
 
           <h1 className="text-[45px] font-bold mb-4 md:text-[30px] md:leading-normal lg:text-[35px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
-            Big Savings, Big Clean: Limited Time Offer
+            Big Savings, Big Service: Limited Time Offer
           </h1>
           <p className="text-lg mb-4  md:text-lg lg:text-xl 2xl:text-2xl font-dm-sans tracking-wide xsm:text-xs leading-relaxed ">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.

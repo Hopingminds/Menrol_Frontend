@@ -18,9 +18,9 @@ const WhyChooseUs = () => {
             >
               {"/Why Choose Us".split("").join(" ")}
             </h1>
-           <div className="xsm:text-center"> 
-            <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose Excellence,</h1>
-           <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose Supaklin</h1></div>
+            <div className="xsm:text-center">
+              <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose perfection,</h1>
+              <h1 className="text-[#24232A] 2xl:text-[56px] xsm:text-[19px] sm:text-[36px] md:text-[30px] font-bold ">Choose superior service</h1></div>
           </div>
 
           <div className="bg-[#24232A] h-[23.1vh] lg:h-[9rem] lg:w-[20vw] w-[15vw] 2xl:w-[20%] 2xl:h-[24vh] xsm:w-full sm:h-[13vh] sm:w-[20vw] sm:top-5 md:w-[8rem] md:h-[20vh] rounded-lg mt-[6vh] text-white relative flex items-center justify-center font-lexend">
@@ -51,10 +51,10 @@ const WhyChooseUs = () => {
               </div>
               <div>
                 <h1 className="text-[18px] xsm:text-[15px] 2xl:text-[20px] sm:text-[15px] lg:text-base xsm:font-bold md:font-bold md:text-[18px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed ">
-                  Reliable Cleaning Crew
+                  Reliable  Crew
                 </h1>
                 <p className="text-[14px] 2xl:text-[15px] xsm:text-[10px] lg:w-[80%] sm:text-[12px] text-[#24232A] md:text-[13px] font-dm-sans tracking-wide leading-relaxed ">
-                  Trusted cleaning experts making every space <br />
+                  Trusted  experts making every space <br />
                   Shine with care and precision
                 </p>
               </div>
@@ -87,8 +87,8 @@ const WhyChooseUs = () => {
                   Flexible Packages
                 </h1>
                 <p className="text-[14px] xsm:text-[10px] 2xl:text-[15px] lg:w-[80%] sm:text-[12px] text-[#24232A] md:text-[13px] font-dm-sans tracking-wide leading-relaxed 2xl:w-[90%] ">
-                  Affordable and adaptable packages for all your cleaning and
-                  service needs. <br /> For all your cleaning and service needs.
+                  Affordable and adaptable packages for all your
+                  service needs. <br /> For all your service needs.
                 </p>
               </div>
             </div>

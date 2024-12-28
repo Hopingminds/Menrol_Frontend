@@ -66,42 +66,42 @@ const blogsData = [
 const Blogs = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-[10%] md:px-[10%] py-10">
-  {/* Header Section */}
-  <div className="flex flex-col items-center text-center">
-    <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.3em] py-4 xsm:text-[10px] sm:text-[12px] xl:text-[18px]">
-      / BLOGS
-    </h1>
-    <h1 className="text-[#24232A] text-[24px] sm:text-[36px] font-bold xsm:text-[18px] pb-6 font-lexend tracking-wide leading-snug">
-      Comfortable Cleanliness, Supaklin&apos;s Standard
-    </h1>
-  </div>
-
-  {/* Blog Cards Section */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap  xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
-    {blogsData.map((blog) => (
-      <div
-        key={blog.id}
-        className="shadow-lg rounded-xl bg-[#0054A5] overflow-hidden flex flex-col min-w-[80%] lg:min-w-[75%] xsm:min-w-[75%] sm:min-w-0"
-      >
-        <Image
-          src={blog.image}
-          alt={blog.title}
-          className="w-full h-[25vh] sm:h-[30vh] hover:scale-105 transition-transform duration-300 cursor-pointer object-cover"
-          height={200}
-          width={300}
-        />
-        <div className="flex flex-col gap-y-3 flex-grow p-4">
-          <h3 className="text-md sm:text-xl font-bold text-white font-dm-sans tracking-wide leading-relaxed">
-            {blog.title}
-          </h3>
-          <p className="text-sm sm:text-md text-white flex-grow font-dm-sans tracking-wide leading-relaxed">
-            {blog.description}
-          </p>
-        </div>
+      {/* Header Section */}
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-[#51DC98] uppercase font-bold tracking-[0.3em] py-4 xsm:text-[10px] sm:text-[12px] xl:text-[18px]">
+          / BLOGS
+        </h1>
+        <h1 className="text-[#24232A] text-[24px] sm:text-[36px] font-bold xsm:text-[18px] pb-6 font-lexend tracking-wide leading-snug">
+          Top-Notch Services, Anytime You Need
+        </h1>
       </div>
-    ))}
-  </div>
-</div>
+
+      {/* Blog Cards Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap  xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
+        {blogsData.map((blog) => (
+          <div
+            key={blog.id}
+            className="shadow-lg rounded-xl bg-[#0054A5] overflow-hidden flex flex-col min-w-[80%] lg:min-w-[75%] xsm:min-w-[75%] sm:min-w-0"
+          >
+            <Image
+              src={blog.image}
+              alt={blog.title}
+              className="w-full h-[25vh] sm:h-[30vh] hover:scale-105 transition-transform duration-300 cursor-pointer object-cover"
+              height={200}
+              width={300}
+            />
+            <div className="flex flex-col gap-y-3 flex-grow p-4">
+              <h3 className="text-md sm:text-xl font-bold text-white font-dm-sans tracking-wide leading-relaxed">
+                {blog.title}
+              </h3>
+              <p className="text-sm sm:text-md text-white flex-grow font-dm-sans tracking-wide leading-relaxed">
+                {blog.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
 
   );
 };
