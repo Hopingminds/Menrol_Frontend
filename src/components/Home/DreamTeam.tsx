@@ -26,8 +26,7 @@ const DreamTeam = () => {
       <div className="bg-[#24232A] rounded-lg h-[50vh] w-full flex flex-col items-center justify-center text-center px-6 shadow-sm">
         <h1 className="text-white text-[48px] xsm:text-[20px] mb-4 font-dm-sans tracking-wide leading-relaxed ">Join Our Dream Team!</h1>
         <p className="text-[#BCBBC9] mb-6 font-dm-sans tracking-wide leading-relaxed md:text-[20px] ">
-          Be a part of our expert team and bring cleanliness and joy to every
-          space.
+          Join our expert team and deliver top-notch services that transform lives.
         </p>
         <button
           className="text-white bg-[#0054A5] px-6 mt-5 xsm:px-3 xsm:py-2 h-[7vh] shadow-sm  rounded-full transition"
