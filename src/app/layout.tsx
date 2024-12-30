@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "./globals.css";
+import Image from "next/image";
 
 export default function RootLayout({
   children,
@@ -24,10 +25,13 @@ export default function RootLayout({
       <body>
         {isLoading ? (
           <div className="loading-container">
-            <img
-              src="/firstscreen-unscreen.gif" // Ensure this GIF is in the public folder
+            <Image
+              src="/firstscreen-unscreen.gif" 
               alt="Menrol Logo"
               className="loading-image"
+
+              width={400}
+              height={400}
             />
             <h1 className="loading-text">WELCOME TO MENROL</h1>
           </div>
