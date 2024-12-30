@@ -74,7 +74,7 @@ const FooterPage = () => {
     pathname === link ? "text-blue-500 font-bold" : "text-white";
 
   return (
-    <footer className="px-[10%] pt-10 bg-[#121212] text-white mt-[10vh]">
+    <footer className="px-[10%] pt-10 bg-[#121212] text-white mt-[3vh]">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Logo Section */}
         <div>

@@ -7,7 +7,7 @@ const Home = () => {
         <div>
             <div className="mb-12 md:mb-1 mt-4  md:overflow-hidden ">
 
-                
+
                 <div className="flex flex-col xsm:items-start md:flex-row md:gap-32 2xl:px-[10%] items-center md:items-start justify-between md:px-[10%] lg:px-[10%] xl:px-[10%]  px-[10%] mt-4 ">
                     {/* Left Section: Heading */}
                     <h2 className="text-5xl xsm:text-xl md:text-2xl 2xl:text-5xl 2xl:w-[50%]  lg:text-3xl  font-bold text-gray-900 md:w-1/2 font-lexend tracking-wide leading-relaxed">
@@ -47,7 +47,7 @@ const Home = () => {
                         <div className="bg-[rgba(94,147,198,1)]  lg:-ml-0  w-full lg:w-full md:w-[90%]  md:h-[14rem] lg:h-full h-full rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
                             <video
                                 className="absolute top-0 xsm:relative  md:w-full lg:w-full xsm:w-full 2xl:w-full left-0  h-full object-cover"
-                                src="/Images/solar.mp4"
+                                src="/Images/majdur.mp4"
                                 autoPlay
                                 loop
                                 muted
