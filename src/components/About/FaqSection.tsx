@@ -75,10 +75,6 @@ const FAQSection: FC = () => {
                         backgroundRepeat: "no-repeat",
                     }}
                 ></div>
-
-                <p className="mt-4 text-lg text-gray-500 gap-3">
-                    More Information <span className="text-orange-500">+91 9193700050</span>
-                </p>
             </div>
 
         </div>

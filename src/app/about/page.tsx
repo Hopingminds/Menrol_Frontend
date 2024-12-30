@@ -104,7 +104,7 @@ const AboutUs: React.FC = () => {
 
   return (
     <Layout>
-      <div className="md:overflow-hidden xsm:overflow-hidden">
+      <div className="md:overflow-hidden xsm:overflow-hidden ">
         {isXsm && <DynamicHeader title="About Us" />}
         <Home />
         <Content />

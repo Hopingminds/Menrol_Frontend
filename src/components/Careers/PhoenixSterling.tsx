@@ -7,28 +7,20 @@ const PhoenixSterling = () => {
       <div className="w-[60%] text-justify  xsm:w-full lg:w-full">
         <div className="flex items-center">
           <p className="text-[56px] 2xl:text-[57px] lg:text-[48px] md:text-2xl xsm:text-3xl text-white font-dm-sans lg:leading-normal tracking-wide leading-relaxed">
-            Phoenix Sterling
+            Menrol Force Skilled Worker
           </p>
           <span className="text-green-500 text-[50px] xsm:text-[20px] lg:pl-1 pl-5">✔</span>
         </div>
 
-        <p className="text-white text-xl 2xl:text-2xl lg:text-xl md:text-base font-dm-sans tracking-wide leading-relaxed">
-          Supaklin Employee
-        </p>
+
         <p className="mt-4 text-lg lg:text-lg 2xl:text-xl xsm:text-sm md:text-sm text-white font-dm-sans tracking-wide leading-relaxed">
-          “Working at Supaklin has been a rewarding experience. The
-          company&apos;s dedication to excellence and sustainable practices has
-          inspired me to grow both professionally and personally.
+          Being a part of MenrolForce has been a truly rewarding journey. The company’s commitment to quality and connecting skilled workers with the right opportunities has greatly enhanced my professional growth and confidence.
+
         </p>
 
         <p className="mt-4 2xl:text-xl text-lg lg:text-lg xsm:text-sm md:text-sm
          text-white font-dm-sans tracking-wide leading-relaxed">
-          The supportive and close-knit team has made every day enjoyable, and
-          knowing that our efforts contribute to creating healthier and safer
-          spaces for our clients gives me a sense of fulfillment in my work.
-          Supaklin is more than just a workplace; it feels like a family where
-          everyone&apos;s contributions are valued, and I am grateful to be a part of
-          it.”
+          The supportive environment and collaborative approach make every day enjoyable. Knowing that my efforts contribute to successful projects and satisfied clients fills me with pride. MenrolForce is more than just a platform; it feels like a community that values and uplifts its members. I’m proud to be a part of it.
         </p>
       </div>
       <div

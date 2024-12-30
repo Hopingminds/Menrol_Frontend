@@ -7,7 +7,7 @@ const Testimonials: React.FC = () => {
     <section className="bg-white py-16 px-[10%]">
       {/* Header Section */}
       <div className="px-4 mt-6">
-       
+
 
         <div className="flex flex-row justify-between">
           <div>
@@ -103,27 +103,27 @@ const Testimonials: React.FC = () => {
 
       {/* Features Section */}
       <div className="flex justify-between lg:mt-10  lg:justify-between items-center xsm:flex-col sm:flex-col lg:flex-row lg:space-y-0  sm:space-y-11 xsm:items-center xsm:space-y-10">
-          
-            <div className="bg-[rgba(94,147,198,1)] w-[60%] 2xl:w-[65%] xsm:w-full sm:w-full xsm:h-[30vh] h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
-              <video
-                className="absolute top-0 left-0 w-full h-full object-cover"
-                src="/Images/solar.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-              ></video>
-          </div>
 
-          <div className=" flex flex-col w-[40%]  xsm:w-[70%] sm:w-[70%] 2xl:w-[33%]">
-            <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 xsm:right-3 xsm:h-[12rem] h-72 w-full">
+        <div className="bg-[rgba(94,147,198,1)] w-[60%] 2xl:w-[65%] xsm:w-full sm:w-full xsm:h-[30vh] h-72 rounded-2xl shadow-md flex items-center justify-center text-center relative overflow-hidden">
+          <video
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            src="/Images/majdur2.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          ></video>
+        </div>
 
-              <div className="text-6xl font-bold text-white mt-9 xsm:mt-0 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div>
-              <p className="text-gray-600 mt-2 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Satisfied Clients</p>
-              <div className="absolute top-4 left-4 text-lg">⭐</div>
-              <div className="absolute bottom-4 right-4 text-gray-700 text-lg">★</div>
-            </div>
+        <div className=" flex flex-col w-[40%]  xsm:w-[70%] sm:w-[70%] 2xl:w-[33%]">
+          <div className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 xsm:right-3 xsm:h-[12rem] h-72 w-full">
+
+            <div className="text-6xl font-bold text-white mt-9 xsm:mt-0 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div>
+            <p className="text-gray-600 mt-2 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Satisfied Clients</p>
+            <div className="absolute top-4 left-4 text-lg">⭐</div>
+            <div className="absolute bottom-4 right-4 text-gray-700 text-lg">★</div>
           </div>
+        </div>
       </div>
     </section>
   );
