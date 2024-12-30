@@ -57,7 +57,7 @@ const Header = () => {
       setCurrentLocation("Location not supported");
       return;
     }
-  
+
     navigator.geolocation.getCurrentPosition(
       async (position) => {
         const { latitude, longitude } = position.coords;
@@ -66,9 +66,9 @@ const Header = () => {
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
           );
           const data = await response.json();
-  
+
           console.log("Geolocation API response:", data);
-  
+
           const city =
             data.address.city ||
             data.address.town ||
@@ -76,7 +76,7 @@ const Header = () => {
             data.address.hamlet ||
             "Unknown city";
           const state = data.address.state || "Unknown state";
-  
+
           setCurrentLocation(`${city}, ${state}`);
         } catch (error) {
           console.error("Error fetching location from API:", error);
@@ -90,9 +90,6 @@ const Header = () => {
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 } // Improve accuracy and handle timeouts
     );
   };
-  
-  
-  
 
   const handleLocationClick = () => {
     fetchCurrentLocation();
@@ -123,9 +120,10 @@ const Header = () => {
             </select>
             {currentLocation && (
               <div className=" text-gray-600 flex flex-row pl-2 justify-center items-center">
-                <span><FaLocationDot /> </span>
+                <span>
+                  <FaLocationDot />{" "}
+                </span>
                 <span>{currentLocation}</span>
-                
               </div>
             )}
           </div>
