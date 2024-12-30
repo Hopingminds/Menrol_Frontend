@@ -73,7 +73,7 @@ const GetInTouch = () => {
 
     return (
         <div>
-            <div className="flex flex-col lg:flex-row p-8 bg-gray-50 px-[10%] justify-between">
+            <div className="flex flex-col lg:flex-row p-8 px-[10%] justify-between">
                 {/* Left Section */}
                 <div className="space-y-8 text-center xsm:text-start lg:text-left">
                     <h2 className="text-5xl font-bold text-gray-800">Get in Touch</h2>
@@ -100,7 +100,7 @@ const GetInTouch = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full h-1 bg-blue-200"></div>
+                    <div className="w-full lg:w-[80%] xl:w-[90%] 2xl:w-full h-1 bg-blue-200"></div>
                     <div className="text-gray-700 flex items-center">
                         <span className="text-green-600 bg-[rgba(36,35,42,1)] border border-green-600 rounded-md px-3 py-3">
                             12+
@@ -110,14 +110,14 @@ const GetInTouch = () => {
                 </div>
 
                 {/* Right Section */}
-                <div className="flex flex-col p-6 xsm:p-4 xsm:w-full rounded-lg w-[60%] items-center">
+                <div className="flex flex-col p-6 xsm:p-4 xsm:w-full rounded-lg md:w-full sm:mt-10 xsm:mt-10 sm:w-full lg:w-[40%] w-[40%] bg-[#F9F9FE] items-center">
                     {status.message && (
                         <div className={`w-full p-4 mb-4 rounded ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                             {status.message}
                         </div>
                     )}
-                    <form onSubmit={handleSubmit} className="space-y-6 xsm:justify-center xsm:items-center xsm:mt-4">
-                        <div>
+                    <form onSubmit={handleSubmit} className="space-y-6 xsm:justify-center  xsm:items-center xsm:mt-4 w-[80%]">
+                        <div className=' w-full'>
                             <label htmlFor="name" className="block text-sm font-medium font-lexend text-[rgba(36,35,42,1)]">
                                 Your Name*
                             </label>
@@ -126,7 +126,7 @@ const GetInTouch = () => {
                                 id="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="mt-1 w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="mt-1 w-full p-3 focus:outline-none rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Enter your fullname..."
                                 required
                             />
@@ -140,7 +140,7 @@ const GetInTouch = () => {
                                 id="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="mt-1 w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="mt-1 w-full p-3 focus:outline-none rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Enter your email..."
                                 required
                             />
@@ -153,7 +153,7 @@ const GetInTouch = () => {
                                 id="message"
                                 value={formData.message}
                                 onChange={handleChange}
-                                className="mt-1 w-full p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                className="mt-1 w-full p-3 focus:outline-none rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Write your message here..."
                                 rows={3}
                                 required
