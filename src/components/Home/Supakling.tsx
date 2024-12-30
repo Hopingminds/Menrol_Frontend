@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { PiBuildingsBold } from "react-icons/pi";
+import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
-import { PiBuildingsBold } from 'react-icons/pi';
-import { IoLocationOutline } from 'react-icons/io5';
+
 interface Service {
   id: number;
-  category: string;  // Title of the category
-  categoryImage: string;  // Image for the category
+  category: string;
+  subcategory: Array<{
+    title: string;
+    image: string;
+  }>;
 }
 
 const Supakling: React.FC = () => {
@@ -18,11 +22,13 @@ const Supakling: React.FC = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('https://api.menrol.com/api/v1/getServices');
+        const response = await fetch(
+          "https://api.menrol.com/api/v1/getServices"
+        );
         const data = await response.json();
-        setServices(data.services); // Assuming `services` is the key holding the list
+        setServices(data.all || []);
       } catch (error) {
-        console.error('Error fetching services:', error);
+        console.error("Error fetching services:", error);
       }
     };
 
@@ -41,13 +47,16 @@ const Supakling: React.FC = () => {
   }, [services]);
 
   const getServiceImage = (offset: number) => {
-    if (services.length === 0) return '';
-    return services[(currentIndex + offset) % services.length]?.categoryImage || '';
+    if (services?.length > 0) {
+      const subcategory = services[currentIndex]?.subcategory[offset];
+      return subcategory?.image || ""; // Return subcategory image
+    }
+    return ""; // Return empty string if services are empty
   };
-  const handleService = () => {
-    router.push("/ServiceDetails")
-  }
 
+  const handleService = () => {
+    router.push("/ServiceDetails");
+  };
 
   return (
     <div className="min-h-screen p-8">
@@ -56,22 +65,18 @@ const Supakling: React.FC = () => {
           {/* Left Column */}
           <div className="flex flex-col justify-center items-center h-full space-y-8">
             <div className="w-[70%] h-[500px] flex flex-col justify-between p-4">
-
-
-              <h1 className="text-5xl  flex flex-col lg:text-5xl font-bold text-navy-900 leading-relaxed  gap-8  h-60">
+              <h1 className="text-5xl  flex flex-col lg:text-5xl font-bold text-navy-900 leading-relaxed gap-8 h-60">
                 Welcome to Menrol Force Hub
                 <br />
                 Your Trusted Skilled
                 <br />
                 Labor Partner!
               </h1>
-
-
               <p className="text-gray-600 text-lg">
-                Looking for reliable workers for construction, plumbing, electrical work, or renovation? We connect you with skilled professionals, making hiring effortless and efficient.
+                Looking for reliable workers for construction, plumbing,
+                electrical work, or renovation? We connect you with skilled
+                professionals, making hiring effortless and efficient.
               </p>
-
-
             </div>
           </div>
 
@@ -82,7 +87,11 @@ const Supakling: React.FC = () => {
                 className="bg-cover bg-center flex items-center justify-center"
                 style={{ backgroundImage: `url('${getServiceImage(0)}')` }}
               >
-                <p className="text-white font-bold">{services[currentIndex]?.category || 'Loading...'}</p>
+                <p className="text-white font-bold">
+                  {services.length > 0
+                    ? services[currentIndex]?.subcategory[0]?.title
+                    : "Loading..."}
+                </p>
               </div>
               <div className="bg-pink-500 flex items-center justify-center rounded-l-full">
                 <p className="text-white font-bold">Square 2</p>
@@ -95,7 +104,9 @@ const Supakling: React.FC = () => {
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
                 <p className="text-white font-bold">
-                  {services[(currentIndex + 1) % services.length]?.category || 'Loading...'}
+                  {services.length > 0
+                    ? services[currentIndex]?.subcategory[1]?.title
+                    : "Loading..."}
                 </p>
               </div>
             </div>
@@ -128,13 +139,17 @@ const Supakling: React.FC = () => {
 
         {/* Description Section */}
         <div className="text-center mt-12 w-[70%]">
-          <h2 className="text-5xl font-bold text-gray-800">Best Service We Offer</h2>
+          <h2 className="text-5xl font-bold text-gray-800">
+            Best Service We Offer
+          </h2>
           <p className="mt-4 text-gray-600 text-lg ">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            It has been the industry's standard dummy text ever since the 1500s.
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. It has been the industry's standard dummy text ever since
+            the 1500s.
           </p>
         </div>
       </div>
+
       <section className="flex flex-col lg:flex-row items-center justify-between px-[10%] lg:px-20 py-12 bg-white">
         {/* Left Section - Image */}
         <div className="relative w-full flex justify-center items-center lg:w-1/2">
@@ -166,7 +181,6 @@ const Supakling: React.FC = () => {
           </div>
         </div>
 
-
         {/* Right Section - Content */}
         <div className="w-full lg:w-1/2 mt-12 lg:mt-0 text-center lg:text-left">
           <p className="text-sm text-gray-500 flex items-center justify-center lg:justify-start">
@@ -190,20 +204,20 @@ const Supakling: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
             {/* Get Started Button */}
             <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
-              {/* Get Started Button */}
               <button
                 className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95 relative overflow-hidden"
                 onClick={handleService}
               >
                 <div className="flex flex-col">
-                  <span className="relative group-hover:-translate-y-full">Get Started →</span>
+                  <span className="relative group-hover:-translate-y-full">
+                    Get Started →
+                  </span>
                   <span className="absolute left-0 bottom-0 w-full transition-transform duration-300 transform translate-y-full group-hover:translate-y-0">
                     Get Started →
                   </span>
                 </div>
               </button>
             </div>
-
           </div>
         </div>
       </section>

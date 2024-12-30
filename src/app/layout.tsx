@@ -26,7 +26,7 @@ export default function RootLayout({
         {isLoading ? (
           <div className="loading-container">
             <Image
-              src="/Comp.gif" 
+              src="/Comp-unscreen.gif" 
               alt="Menrol Logo"
               className="loading-image"
 
