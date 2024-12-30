@@ -11,6 +11,7 @@ import ScanAndDownload from "@/components/Home/ScanAndDownload";
 import CallToAction from "@/components/Home/CallToAction";
 import Layout from "@/components/Layout";
 import DynamicHeader from "@/components/About/DynamicHeader";
+import SubCatogeries from "@/components/Home/SubCatogeries";
 
 export default function Home() {
   const [isXsm, setIsXsm] = useState(false);
@@ -35,6 +36,7 @@ export default function Home() {
       {isXsm && <DynamicHeader title="" />}
       <Supakling />
       <OurServises />
+      <SubCatogeries />
       <WhyChooseUs />
       <LatestOffer />
       <Blogs />
