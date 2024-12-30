@@ -99,38 +99,35 @@ const Ourservices: React.FC = () => {
 
       <div className="grid  grid-cols-1 xsm:flex xsm:overflow-x-auto xsm:w-full xsm:gap-4 sm:flex sm:w-full sm:overflow-x-auto md:grid-cols-2 md:grid lg:grid xl:grid xl:grid-cols-3 gap-6 pt-10">
         {services?.map((service) => (
-          <div
-            key={service._id}
-            className="p-4 shadow-xl bg-slate-50 rounded-lg xsm:min-w-[80%] sm:w-auto md:w-full md:h-[90%] xl:w-full"
-          >
-            <Image
-              src={service.categoryImage}
-              alt={service.category}
-              className="w-full h-[30vh] xsm:h-[20vh] sm:h-[40vh] md:h-[50%] lg:h-[50%] rounded-lg object-cover"
-              height={400}
-              width={400}
-            />
-            <div className="text-center px-2 mt-4">
-              <h3 className="font-bold text-[#24232A] text-[16px] xsm:text-[14px] sm:text-[12px] md:text-[20px] lg:text-[24px] font-dm-sans tracking-wide leading-relaxed">
-                {service.category}
-              </h3>
-              <p
-                className={`text-xs xsm:text-[12px] sm:text-[10px] md:text-[16px] lg:text-[18px] sm:w-full text-[#24232A] font-dm-sans tracking-wide leading-relaxed line-clamp-3`}
-              >
-                {service.categoryDescription}
-              </p>
-
-              <div className="flex w-full justify-center gap-40 xsm:gap-20 p-5">
-                <button
-                  className="h-[5vh] w-[10vw] xsm:w-[15vw] sm:w-[10vw] md:w-[20vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"
-                  onClick={() => handleServiceDetails(service._id)}
-                >
-                  <FaArrowRightLong className="h-6 w-6 sm:w-4 md:w-5 " />
-                </button>
-                <div></div>
-              </div>
-            </div>
-          </div>
+         <div className="min-w-[75vw] xsm:min-w-[5rem] sm:min-w-0 relative shadow-lg">
+                       <Image
+                         src={service?.categoryImage}
+                         alt={service?.category}
+                         className="w-full h-[40vh] sm:h-[45vh] md:h-[55vh] rounded-lg object-cover"
+                         height={400}
+                         width={400}
+                       />
+                       {/* Arrow button to navigate to service details */}
+                       <div className="absolute top-4 right-4 md:top-8 md:right-6 ">
+                         <button
+                           className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[70px] lg:w-[60px] bg-[#24232A] rounded-full shadow-md text-white flex items-center justify-center hover:bg-[#1F1E24]"
+                           onClick={() => handleServiceDetails(service._id)}
+                         >
+                           <FaArrowRightLong className="h-4 w-4 sm:h-6 sm:w-6" />
+                         </button>
+                       </div>
+                       {/* Service description */}
+                       <div className="absolute bottom-4 md:bottom-7 left-1/2 transform -translate-x-1/2 w-[90%] xsm:w-[80%] xsm:h-[50%] sm:h-[60%] h-[35%] lg:h-[40%] bg-white flex items-center justify-center rounded-lg">
+                         <div className="text-center px-5 xsm:px-2">
+                           <h3 className="font-bold text-[#24232A] xl:text-[16px] text-[16px] xsm:text-[10px] sm:text-[15px] lg:text-[15px]  md:text-[24px] font-dm-sans  tracking-wide leading-relaxed">
+                             {service?.category}
+                           </h3>
+                           <p className="text-xs sm:text-[7px] xsm:text-[5px] xl:tracking-wide xl:text-[12px]  xsm:leading-none lg:leading-none lg:tracking-normal lg:text-[7px] md:text-[12px] text-[#24232A] font-dm-sans tracking-wide leading-relaxed">
+                             {service?.categoryDescription}
+                           </p>
+                         </div>
+                       </div>
+                     </div>
         ))}
       </div>
     </div>

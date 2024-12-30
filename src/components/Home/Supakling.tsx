@@ -63,16 +63,16 @@ const Supakling = () => {
   };
 
   return (
-    <div className="p-5 overflow-hidden ">
+    <div className=" overflow-hidden ">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
         </div>
       )}
-      <div className="gap-4 px-4 md:px-[10%] 2xl:px-56 3xl:px-[80px]  xl:px-40  xsm:mr-7 mb-[10vh] xsm:-mt-10">
+      <div className="gap-4 px-4 md:px-[10%] md:mt-6 2xl:px-[10%] 3xl:px-[80px]  xl:px-[10%]  xsm:mr-7 mb-[10vh] xsm:-mt-10">
         <div className="flex 2xl:gap-0  gap-6 xl:gap-0  ">
           {/* Left Section */}
-          <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14 lg:mt-10 lg:-ml-4">
+          <div className="flex xsm:flex-col sm:flex-col md:flex-col md:w-1/2 md:xsm-1/2 mb-4 md:mb-0 xsm:mt-14 lg:mt-10 ">
             <Image
               src="/Images/AllImages/Home_image_01.png"
               alt="Placeholder"

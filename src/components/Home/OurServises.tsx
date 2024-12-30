@@ -88,7 +88,7 @@ const OurServices: React.FC = () => {
   };
 
   return (
-    <div className="gap-4 px-[10%] lg:px-[4%] md:px-[4%] xsm:p-6 relative xl:mt-20">
+    <div className="gap-4 px-[10%]  xsm:p-6 relative xl:mt-20">
       {/* Show loading spinner while data is being fetched */}
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
@@ -106,12 +106,12 @@ const OurServices: React.FC = () => {
       {/* Heading */}
 
       {/* Subheading */}
-      <div className="flex flex-row justify-between w-full items-center">
+      <div className="flex flex-row justify-between w-full items-center ">
         <div className="font-lexend">
-          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px]  font-bold tracking-wide leading-relaxed">
+          <h1 className="text-[#24232A] xl:text-[50px] xsm:text-[15px] sm:text-[36px] md:text-[26px]  font-bold tracking-wide leading-relaxed">
             Make Life Simple with our
           </h1>
-          <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px] font-bold tracking-[0.05em]">
+          <h1 className="text-[#24232A] xl:text-[50px] xsm:text-[15px] sm:text-[36px] md:text-[26px] font-bold tracking-[0.05em]">
             go-to Service app
           </h1>
         </div>
@@ -121,9 +121,9 @@ const OurServices: React.FC = () => {
       </div>
 
       {/* Slider for displaying services */}
-      <Slider {...settings} className="pt-10">
+      <Slider {...settings} className="pt-10 ">
         {services?.map((service) => (
-          <div key={service?._id} className="p-4 ">
+          <div key={service?._id} className="p-4">
             <div className="min-w-[75vw] xsm:min-w-[5rem] sm:min-w-0 relative shadow-lg">
               <Image
                 src={service?.categoryImage}
@@ -135,7 +135,7 @@ const OurServices: React.FC = () => {
               {/* Arrow button to navigate to service details */}
               <div className="absolute top-4 right-4 md:top-8 md:right-6 ">
                 <button
-                  className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[70px] lg:w-[60px] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#1F1E24]"
+                  className="h-[6vh] w-[12vw] sm:w-[10vw] md:w-[70px] lg:w-[60px] bg-[#24232A] rounded-full shadow-md text-white flex items-center justify-center hover:bg-[#1F1E24]"
                   onClick={() => handleServiceDetails(service._id)}
                 >
                   <FaArrowRightLong className="h-4 w-4 sm:h-6 sm:w-6" />
