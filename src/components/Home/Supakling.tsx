@@ -18,7 +18,7 @@ const Supakling: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
-  const [hover,setHover]=useState(false)
+  const [hover, setHover] = useState(false)
 
   // Fetch services data from the API
   useEffect(() => {
@@ -240,14 +240,14 @@ const Supakling: React.FC = () => {
           <p className="text-sm text-gray-500 flex items-center justify-center lg:justify-start">
             We are{" "}
             <span className="bg-pink-100 text-pink-600 font-medium px-2 py-1 ml-2 rounded-full">
-            Menrol Force
+              Menrol Force
             </span>
           </p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mt-4">
-          Our Commitment to Excellence
+            Our Commitment to Excellence
           </h1>
           <p className="text-gray-600 mt-4">
-          At MenrolForce, client satisfaction is our top priority. We focus on delivering skilled solutions that drive success for every project.
+            At MenrolForce, client satisfaction is our top priority. We focus on delivering skilled solutions that drive success for every project.
 
           </p>
           <ul className="list-disc list-inside text-gray-600 mt-6 space-y-2">
@@ -258,34 +258,32 @@ const Supakling: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
             {/* Get Started Button */}
             <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
-      <button
-        className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full w-[12rem] shadow-lg hover:bg-blue-700 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
-        onClick={handleService}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
-        <div className="relative h-full flex flex-col justify-center items-center">
-          {/* First Span */}
-          <span
-            className={`absolute flex items-center justify-center gap-3 transition-all duration-300 -ml-2 ${
-              hover ? "translate-y-[-130%]" : "translate-y-0"
-            }`}
-          >
-            Get Started 
-          </span>
-          {/* Second Span */}
-          <span
-            className={`absolute flex items-center justify-center gap-3  transition-all duration-300 -ml-2 ${
-              hover ? "translate-y-0" : "translate-y-[130%]"
-            }`}
-          >
-            Get Started 
-          </span>
-          
-        </div>
-        <span className="absolute right-9 top-4"><FaArrowRightLong className="-rotate-45" /></span>
-      </button>
-    </div>
+              <button
+                className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full w-[12rem] shadow-lg hover:bg-blue-700 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
+                onClick={handleService}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+              >
+                <div className="relative h-full flex flex-col justify-center items-center">
+                  {/* First Span */}
+                  <span
+                    className={`absolute flex items-center justify-center gap-3 transition-all duration-300 -ml-2 ${hover ? "translate-y-[-130%]" : "translate-y-0"
+                      }`}
+                  >
+                    Get Started
+                  </span>
+                  {/* Second Span */}
+                  <span
+                    className={`absolute flex items-center justify-center gap-3  transition-all duration-300 -ml-2 ${hover ? "translate-y-0" : "translate-y-[130%]"
+                      }`}
+                  >
+                    Get Started
+                  </span>
+
+                </div>
+                <span className="absolute right-9 top-4"><FaArrowRightLong className="-rotate-45" /></span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
