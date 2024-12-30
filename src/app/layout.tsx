@@ -26,14 +26,14 @@ export default function RootLayout({
         {isLoading ? (
           <div className="loading-container">
             <Image
-              src="/firstscreen-unscreen.gif" 
+              src="/Comp.gif" 
               alt="Menrol Logo"
               className="loading-image"
 
               width={400}
               height={400}
             />
-            <h1 className="loading-text">WELCOME TO MENROL</h1>
+            {/* <h1 className="loading-text">WELCOME TO MENROL</h1> */}
           </div>
         ) : (
           children
