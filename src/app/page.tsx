@@ -10,6 +10,7 @@ import ScanAndDownload from "@/components/Home/ScanAndDownload";
 import CallToAction from "@/components/Home/CallToAction";
 import Layout from "@/components/Layout";
 import DynamicHeader from "@/components/About/DynamicHeader";
+import SubCatogeries from "@/components/Home/SubCatogeries";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <DynamicHeader title=""/>
       <Supakling />
       <OurServises />
+      <SubCatogeries />
       <WhyChooseUs />
       <LatestOffer />
       <Blogs />
