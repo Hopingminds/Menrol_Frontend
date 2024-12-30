@@ -25,7 +25,7 @@ const CallToAction = () => {
           alt="Call to Action"
           className="w-full h-auto object-cover"
           height={100}
-          width={100}
+          width={500}
         />
       </div>
     </div>

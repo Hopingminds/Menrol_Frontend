@@ -67,14 +67,14 @@ const Blogs = () => {
   return (
     <div className="px-4 sm:px-6 lg:px-[10%] md:px-[10%] py-10">
       {/* Header Section */}
-      <div className="flex flex-col items-center text-center">
+      {/* <div className="flex flex-col items-center text-center">
         <h1 className="text-[#24232A] text-[24px] sm:text-[36px] font-bold xsm:text-[18px] pb-6 font-lexend tracking-wide leading-snug">
           Top-Notch Services, Anytime You Need
         </h1>
-      </div>
+      </div> */}
 
       {/* Blog Cards Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap  xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid lg:grid-cols-4 gap-6 xsm:flex xsm:flex-nowrap  xsm:overflow-x-auto xsm:gap-4 xsm:w-full">
         {blogsData.map((blog) => (
           <div
             key={blog.id}
@@ -97,7 +97,7 @@ const Blogs = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
 
   );
