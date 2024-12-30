@@ -1,26 +1,29 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import FAQSection from "../../components/About/FaqSection";
-import DynamicHeader from '@/components/About/DynamicHeader';
-import GetInTouch from '@/components/Contactus/GetInTouch';
-import Layout from '@/components/Layout';
-import Gallery from '@/components/Contactus/Gallery';
+import DynamicHeader from "@/components/About/DynamicHeader";
+import GetInTouch from "@/components/Contactus/GetInTouch";
+import Layout from "@/components/Layout";
+import Gallery from "@/components/Contactus/Gallery";
 
+const ContactUs: React.FC = () => {
+    const [isXsm, setIsXsm] = useState(false);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setIsXsm(window.innerWidth <= 480); // Adjust according to xsm breakpoint (320px - 480px)
+        };
+        handleResize(); // Set initial state
+        window.addEventListener("resize", handleResize); // Listen for window resize
+        return () => {
+            window.removeEventListener("resize", handleResize); // Clean up
+        };
+    }, []);
 
-const contactus: React.FC = () => {
-    // const images = [
-    //     '/Images/plumber1.jpg',
-    //     '/Images/plumber2.jpg',
-    //     '/Images/plumber3.jpg',
-    //     '/Images/plumber4.jpg',
-    //     '/Images/plumber5.jpg',
-    //     '/Images/plumber6.jpg',
-    // ];
     return (
         <Layout>
             <div>
-                <DynamicHeader title="contactus" />
+                {isXsm && <DynamicHeader title="contactus" />}
                 <GetInTouch />
                 <Gallery />
                 <FAQSection />
@@ -28,4 +31,5 @@ const contactus: React.FC = () => {
         </Layout>
     );
 };
-export default contactus;
+
+export default ContactUs;

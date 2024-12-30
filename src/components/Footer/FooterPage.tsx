@@ -166,14 +166,13 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${
-                      pathname ===
+                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id
                       )}`
-                        ? "text-blue-500 font-bold"
-                        : "text-white"
-                    }`}
+                      ? "text-blue-500 font-bold"
+                      : "text-white"
+                      }`}
                   >
                     {service.category}
                   </button>
@@ -183,10 +182,9 @@ const FooterPage = () => {
           </ul>
         </div>
 
-        {/* Subscribe to Newsletter Section */}
         <div>
           <h3 className="text-[18px] text-[#FFFFFF] font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
-            Subscribe to Newsletter
+            Subscribe for updates
           </h3>
           <form>
             <input

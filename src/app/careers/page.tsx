@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CultureSection from "../../components/Careers/CultureSection";
 import HowToApply from "../../components/Careers/HowToApply";
@@ -11,6 +11,19 @@ import PhoenixSterling from "@/components/Careers/PhoenixSterling";
 import Layout from "@/components/Layout";
 
 const Careers: React.FC = () => {
+  const [isXsm, setIsXsm] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsm(window.innerWidth <= 480); // Adjust according to xsm breakpoint (320px - 480px)
+    };
+    handleResize(); // Set initial state
+    window.addEventListener("resize", handleResize); // Listen for window resize
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up
+    };
+  }, []);
+
   const missionData = [
     {
       number: "01",
@@ -46,30 +59,21 @@ const Careers: React.FC = () => {
       number: "06",
       title: "Timeless Connections",
       description:
-        "Creating timeless connections by delivering value and trust, ensuring relationships that stand the test of tim",
+        "Creating timeless connections by delivering value and trust, ensuring relationships that stand the test of time",
     },
   ];
 
   return (
     <Layout>
       <section className="bg-white">
-
-        <DynamicHeader title="careers" />
+        {isXsm && <DynamicHeader title="careers" />}
         <JoinOurTeam />
-
         <Content />
-
-
         <Ourmission missions={missionData} />
-
         <CultureSection />
-
-
         <PhoenixSterling />
         <OpenPositions />
-
         <HowToApply />
-
       </section>
     </Layout>
   );

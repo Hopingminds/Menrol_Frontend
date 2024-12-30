@@ -58,8 +58,8 @@ const OurServices: React.FC = () => {
   const handleServiceDetails = (id: string) => {
     setLoading(true);
 
-    router.push(`/IndividualServices?data=${id}`); 
-   
+    router.push(`/IndividualServices?data=${id}`);
+
   };
 
 
@@ -109,10 +109,10 @@ const OurServices: React.FC = () => {
       <div className="flex flex-row justify-between w-full items-center">
         <div className="font-lexend">
           <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px]  font-bold tracking-wide leading-relaxed">
-            Elevate Your Cleanliness
+            Make Life Simple with our
           </h1>
           <h1 className="text-[#24232A] text-[56px] xsm:text-[15px] sm:text-[36px] md:text-[56px] font-bold tracking-[0.05em]">
-            with Supaklin
+            go-to Service app
           </h1>
         </div>
         <div >

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CoreValues from "../../components/About/CoreValues";
 import FAQSection from "../../components/About/FaqSection";
@@ -11,6 +11,19 @@ import Discount from "@/components/About/Discount";
 import Layout from "@/components/Layout";
 
 const AboutUs: React.FC = () => {
+  const [isXsm, setIsXsm] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsXsm(window.innerWidth <= 480); // Adjust according to xsm breakpoint (320px - 480px)
+    };
+    handleResize(); // Set initial state
+    window.addEventListener("resize", handleResize); // Listen for window resize
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up
+    };
+  }, []);
+
   const missionData = [
     {
       number: "01",
@@ -46,9 +59,10 @@ const AboutUs: React.FC = () => {
       number: "06",
       title: "Timeless Connections",
       description:
-        "Creating timeless connections by delivering value and trust, ensuring relationships that stand the test of tim",
+        "Creating timeless connections by delivering value and trust, ensuring relationships that stand the test of time",
     },
   ];
+
   const values = [
     {
       title: "Excellence in Every Detail",
@@ -58,25 +72,27 @@ const AboutUs: React.FC = () => {
     {
       title: "Personalized Care",
       description:
-        "We achieve excellence in every detail, paying meticulous attention to create exceptional outcomes every tim",
+        "Experience personalized care with services designed to address your specific needs for optimal satisfaction",
     },
     {
       title: "Transparent Communication",
       description:
-        "Experience personalized care with services designed to address your specific needs for optimal satisfaction",
+        "Our commitment to transparent communication means no surprises—just clear, honest, and consistent updates every time.",
     },
     {
       title: "Eco-Friendly Approach",
       description:
-        "Our commitment to transparent communication means no surprises—just clear, honest, and consistent updates every time.",
+        "Our eco-friendly approach focuses on sustainability and reducing our environmental impact.",
     },
   ];
+
   const progressBars = [
     { label: "Experienced", percentage: 98 },
     { label: "Reliable", percentage: 86 },
     { label: "Skilled & Capable", percentage: 90 },
     { label: "Flexible", percentage: 80 },
   ];
+
   const images = [
     "/Images/ServiceImg/Image-1.png",
     "/Images/ServiceImg/Image-2.png",
@@ -85,18 +101,19 @@ const AboutUs: React.FC = () => {
     "/Images/ServiceImg/Image-5.png",
     "/Images/ServiceImg/Image-6.png",
   ];
+
   return (
     <Layout>
-     <div className=" md:overflow-hidden xsm:overflow-hidden">
-     <DynamicHeader title="About Us" />
-      <Home />
-      <Content />
-      <Ourmission missions={missionData} />
-      <CoreValues values={values} progressBars={progressBars} />
-      <Gallery images={images} />
-      <Discount />
-      <FAQSection />
-     </div>
+      <div className="md:overflow-hidden xsm:overflow-hidden">
+        {isXsm && <DynamicHeader title="About Us" />}
+        <Home />
+        <Content />
+        <Ourmission missions={missionData} />
+        <CoreValues values={values} progressBars={progressBars} />
+        <Gallery images={images} />
+        <Discount />
+        <FAQSection />
+      </div>
     </Layout>
   );
 };
