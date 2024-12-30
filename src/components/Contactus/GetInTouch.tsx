@@ -110,7 +110,7 @@ const GetInTouch = () => {
                 </div>
 
                 {/* Right Section */}
-                <div className="flex flex-col p-6 xsm:p-4 xsm:w-full rounded-lg md:w-full sm:mt-10 xsm:mt-10 sm:w-full lg:w-[40%] w-[40%] bg-[#F9F9FE] items-center">
+                <div className="flex flex-col p-6 xsm:p-4 xsm:w-full rounded-lg md:w-full sm:mt-10 xsm:mt-10 lg:mt-0 sm:w-full lg:w-[40%] w-[40%] bg-[#F9F9FE] items-center">
                     {status.message && (
                         <div className={`w-full p-4 mb-4 rounded ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                             {status.message}
