@@ -82,7 +82,7 @@ const Supakling: React.FC = () => {
 
           {/* Right Column */}
           <div className="flex items-center justify-center h-full">
-            <div className="grid grid-cols-2 grid-rows-2 bg-gray-200 rounded-3xl w-full h-full min-h-[50vh] overflow-hidden">
+            <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden">
               <div
                 className="bg-cover bg-center flex items-center justify-center"
                 style={{ backgroundImage: `url('${getServiceImage(0)}')` }}
@@ -93,12 +93,76 @@ const Supakling: React.FC = () => {
                     : "Loading..."}
                 </p>
               </div>
-              <div className="bg-pink-500 flex items-center justify-center rounded-l-full">
-                <p className="text-white font-bold">Square 2</p>
+              <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
+                <div className="text-white font-bold text-center">
+                  <p className="text-7xl">150+</p>
+                  <p className="text-xl max-w-[200px] mx-auto break-words">
+                    Worldwide Country has lots of clients
+                  </p>
+
+                  {/* Circles below the second paragraph */}
+                  <div className="flex justify-center mt-4 space-x-[-12px]">
+                    {/* First circle with an image */}
+                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                      <Image
+                        src="/Images/ServiceImg/Image-6.png"
+                        alt="Image 1"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    {/* Second circle with an image */}
+                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                      <Image
+                        src="/Images/majdur6.jpg"
+                        alt="Image 2"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    {/* Third circle with an image */}
+                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                      <Image
+                        src="/Images/majdur5.jpg"
+                        alt="Image 3"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    {/* Fourth circle with text */}
+                    <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                      5k+
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-blue-900 flex items-center justify-center rounded-tr-[50%]">
-                <p className="text-white font-bold">Square 3</p>
+
+              <div className="bg-pink-500 flex flex-col items-center justify-center rounded-tr-[50%]">
+                <div className="flex items-center group">
+                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    Data Security
+                  </button>
+                  <button className="border border-gray-300 text-white  py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                </div>
+
+                <div className="flex items-center group">
+                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    Web Development
+                  </button>
+                </div>
+
+                <div className="flex items-center group">
+                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    Analytics & Optimization
+                  </button>
+                  <button className="border border-gray-300 text-white   py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                </div>
+
               </div>
+
+
+
               <div
                 className="bg-cover bg-center flex items-center justify-center"
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
