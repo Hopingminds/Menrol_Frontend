@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useState, useTransition } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
-import { CiMail } from "react-icons/ci";
 import { LiaClockSolid } from "react-icons/lia";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
@@ -27,12 +26,10 @@ const Header = () => {
 
   const handleGoContact = () => {
     router.push("contactus");
-  }
+  };
 
   const isActive = (path: string) =>
-    pathname === path
-      ? "font-bold  text-blue-500"
-      : "text-gray-800";
+    pathname === path ? "font-bold text-blue-500" : "text-gray-800";
 
   return (
     <>
@@ -48,16 +45,23 @@ const Header = () => {
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
             <LiaClockSolid className="text-lg" />
-            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Mon-Fri 08.00-17.00</p>
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">
+              Mon-Fri 08.00-17.00
+            </p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
             <FaPhoneAlt className="text-base" />
-            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">+91 9193700050</p>
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">
+              +91 9193700050
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
-          <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Request an Estimate</p>
-          <MdKeyboardDoubleArrowRight className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6"
+          <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">
+            Request an Estimate
+          </p>
+          <MdKeyboardDoubleArrowRight
+            className="cursor-pointer transform hover:scale-125 transition-transform duration-200 h-5 w-5 md:h-6 md:w-6"
             onClick={handleGoContact}
           />
         </div>
@@ -90,42 +94,61 @@ const Header = () => {
         >
           <Link
             href="/"
-            className={`${isActive("/")} font-dm-sans tracking-wide leading-relaxed`}
+            className={`${isActive(
+              "/"
+            )} font-dm-sans tracking-wide leading-relaxed group`}
           >
-            Home
+            <span className="relative">
+              Home
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+            </span>
           </Link>
           <Link
             href="/about"
-            className={`${isActive("/about")} font-dm-sans tracking-wide leading-relaxed`}
+            className={`${isActive(
+              "/about"
+            )} font-dm-sans tracking-wide leading-relaxed group`}
           >
-            About Us
+            <span className="relative">
+              About Us
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+            </span>
           </Link>
           <Link
             href="/ServiceDetails"
-
-            className={`${isActive("/ServiceDetails")} font-dm-sans tracking-wide leading-relaxed`}
+            className={`${isActive(
+              "/ServiceDetails"
+            )} font-dm-sans tracking-wide leading-relaxed group`}
           >
-            Services
+            <span className="relative">
+              Services
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+            </span>
           </Link>
           <Link
             href="/careers"
-            className={`${isActive("/careers")} font-dm-sans tracking-wide leading-relaxed`}
+            className={`${isActive(
+              "/careers"
+            )} font-dm-sans tracking-wide leading-relaxed group`}
           >
-            Careers
+            <span className="relative">
+              Careers
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+            </span>
           </Link>
           <Link
             href="/contactus"
-            className={`${isActive("/contactus")} font-dm-sans tracking-wide leading-relaxed`}
+            className={`${isActive(
+              "/contactus"
+            )} font-dm-sans tracking-wide leading-relaxed group`}
           >
-            Contact Us
+            <span className="relative">
+              Contact Us
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all group-hover:w-full"></span>
+            </span>
           </Link>
-
-          {/* <button className="bg-[#0054A5] text-white h-10 md:h-[6vh] w-32 md:w-40 rounded-full mt-4 md:mt-0">
-            Signup/Login
-          </button> */}
         </div>
       </div>
-      <hr />
     </>
   );
 };
