@@ -40,7 +40,7 @@ const Supakling: React.FC = () => {
     if (services.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
-      }, 1000);
+      }, 3000);
 
       return () => clearInterval(interval);
     }
@@ -58,8 +58,8 @@ const Supakling: React.FC = () => {
     router.push("/ServiceDetails");
   };
   const HandleGoServices = () => {
-    router.push("/ServiceDetails")
-  }
+    router.push("/ServiceDetails");
+  };
 
   return (
     <div className="min-h-screen pt-8 bg-gray-50 px-[7%]">
@@ -125,7 +125,10 @@ const Supakling: React.FC = () => {
 
                     <span className="relative z-10 block px-6 py-3 rounded-xl bg-blue-600">
                       <div className="relative z-10 flex items-center space-x-2">
-                        <span className="transition-all duration-500 translate-x-1 animate-move-text" onClick={HandleGoServices}> 
+                        <span
+                          className="transition-all duration-500 translate-x-1 animate-move-text"
+                          onClick={HandleGoServices}
+                        >
                           Let's get started
                         </span>
                         <svg
@@ -154,20 +157,22 @@ const Supakling: React.FC = () => {
           <div className="flex items-center justify-center h-[90%]">
             <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden">
               <div
-                className="bg-cover bg-center flex items-center justify-center"
+                className="relative bg-cover bg-center flex items-center justify-center group"
                 style={{ backgroundImage: `url('${getServiceImage(0)}')` }}
               >
-                <p className="text-white font-bold">
+                <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
+                <p className="text-white font-bold group-hover:text-white z-10 text-3xl cursor-pointer">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[0]?.title
                     : "Loading..."}
                 </p>
               </div>
+
               <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
                 <div className="text-white font-bold text-center">
-                  <p className="text-7xl">150+</p>
+                  <p className="text-7xl"></p>
                   <p className="text-xl max-w-[200px] mx-auto break-words">
-                    Worldwide Country has lots of clients
+                  Providing Skilled Labor Across Multiple Categories
                   </p>
 
                   {/* Circles below the second paragraph */}
@@ -210,7 +215,9 @@ const Supakling: React.FC = () => {
               <div className="bg-pink-500 flex flex-col items-center justify-center rounded-tr-[50%]">
                 <div className="flex items-center group">
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
-                    Data Security
+                    {services.length > 0
+                      ? services[currentIndex]?.subcategory[0]?.title
+                      : "Loading..."}
                   </button>
                   <button className="border border-gray-300 text-white  py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
@@ -222,13 +229,15 @@ const Supakling: React.FC = () => {
                     +
                   </button>
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
-                    Web Development
+                    Plumber
                   </button>
                 </div>
 
                 <div className="flex items-center group">
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
-                    Analytics & Optimization
+                    {services.length > 0
+                      ? services[currentIndex]?.subcategory[3]?.title
+                      : "Loading..."}
                   </button>
                   <button className="border border-gray-300 text-white   py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
@@ -237,10 +246,11 @@ const Supakling: React.FC = () => {
               </div>
 
               <div
-                className="bg-cover bg-center flex items-center justify-center"
+                className="relative bg-cover bg-center flex items-center justify-center group"
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
-                <p className="text-white font-bold">
+                <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
+                <p className="text-white font-bold group-hover:text-white z-10 text-3xl cursor-pointer">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[1]?.title
                     : "Loading..."}
@@ -250,7 +260,7 @@ const Supakling: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-[10%] md:my-[15vh] md:pt-10">
+      <div className="flex flex-col items-center justify-center px-[10%] md:my-[10vh] md:pt-5">
         {/* Buttons Section */}
         <div className="flex space-x-8">
           {/* Commercial Plumbing Button */}
