@@ -6,7 +6,7 @@ const Testimonials = () => {
   return (
     <div className="px-[10%] h-[100%] py-10 ">
       <div className="px-4 mt-6">
-        
+
 
         <div className="flex flex-row justify-between">
           <div>
@@ -40,9 +40,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Home Cleaning</h3>
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Home Service</h3>
             <p className="text-gray-600 xsm:leading-tight text-sm font-dm-sans tracking-wide leading-relaxed " >
-              Such a great experience! The cleaners were punctual and did a detailed job throughout my home.
+              Such a great experience! The experts were punctual and did a detailed job throughout my home.
             </p>
           </div>
 
@@ -64,9 +64,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Office Cleaning</h3>
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Office Service</h3>
             <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed ">
-              Our office space has never looked this clean! The cleaners were efficient, friendly, and thorough.
+              Our office space has never looked like this, The service providers were efficient, friendly, and thorough.
             </p>
           </div>
 
@@ -88,9 +88,9 @@ const Testimonials = () => {
             <div className="flex items-center mt-2">
               <span className="text-yellow-500 text-sm">⭐⭐⭐⭐⭐</span>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Kitchen Cleaning</h3>
+            <h3 className="mt-4 text-lg font-semibold text-gray-900 font-dm-sans tracking-wide leading-relaxed ">Kitchen Service</h3>
             <p className="text-gray-600 mt-2 text-sm font-dm-sans tracking-wide leading-relaxed ">
-              Highly recommend this kitchen cleaning service! They left the kitchen spotless and completely odor-free.
+              Highly recommend this kitchen  services! They left the kitchen spotless and completely odor-free.
             </p>
           </div>
 

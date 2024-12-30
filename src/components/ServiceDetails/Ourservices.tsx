@@ -87,13 +87,13 @@ const Ourservices: React.FC = () => {
         </div>
       )}
 
-      
+
       <div className="flex flex-col justify-center font-lexend lg:font-bold items-center">
         <h1 className="text-[45px] xsm:text-base  tracking-wide leading-relaxed">
-          Elevate Your Cleanliness
+          Simplify your Tasks
         </h1>
         <h1 className="text-[45px] xsm:text-base tracking-wide leading-relaxed">
-          With Supaklin
+          with our services
         </h1>
       </div>
 
@@ -119,7 +119,7 @@ const Ourservices: React.FC = () => {
               >
                 {service.categoryDescription}
               </p>
-              
+
               <div className="flex w-full justify-center gap-40 xsm:gap-20 p-5">
                 <button
                   className="h-[5vh] w-[10vw] xsm:w-[15vw] sm:w-[10vw] md:w-[20vw] lg:w-[6vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]"

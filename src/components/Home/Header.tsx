@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState, useTransition } from "react";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CiMail } from "react-icons/ci";
+import { LiaClockSolid } from "react-icons/lia";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 import { usePathname, useRouter } from "next/navigation";
@@ -24,13 +25,13 @@ const Header = () => {
     });
   };
 
-  const handleGoContact=()=>{
+  const handleGoContact = () => {
     router.push("contactus");
   }
 
   const isActive = (path: string) =>
     pathname === path
-      ? "font-bold  text-blue-500" 
+      ? "font-bold  text-blue-500"
       : "text-gray-800";
 
   return (
@@ -46,11 +47,11 @@ const Header = () => {
       <div className="h-10 bg-[#F9F9FE] text-black flex items-center justify-between xsm:p-10 px-4 md:px-[10%] text-sm md:text-base">
         <div className="flex flex-wrap gap-2 md:gap-4">
           <div className="flex items-center gap-1 md:gap-2">
-            <CiMail className="text-lg"/>
-            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed hover:text-blue-500 hover:cursor-pointer transition-all duration-300">hr@menrol.com</p>
+            <LiaClockSolid className="text-lg" />
+            <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">Mon-Fri 08.00-17.00</p>
           </div>
           <div className="flex items-center gap-1 md:gap-2">
-            <FaPhoneAlt className="text-base"/>
+            <FaPhoneAlt className="text-base" />
             <p className="font-dm-sans tracking-wide xsm:text-[10px] leading-relaxed">+91 9193700050</p>
           </div>
         </div>
@@ -88,20 +89,20 @@ const Header = () => {
             } flex-col md:flex md:flex-row md:justify-end items-center space-y-4 md:space-y-0 space-x-0 md:space-x-6 text-md md:text-md w-full md:w-auto`}
         >
           <Link
-              href="/"
+            href="/"
             className={`${isActive("/")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Home
           </Link>
           <Link
-              href="/about"
+            href="/about"
             className={`${isActive("/about")} font-dm-sans tracking-wide leading-relaxed`}
           >
             About Us
           </Link>
           <Link
             href="/ServiceDetails"
-           
+
             className={`${isActive("/ServiceDetails")} font-dm-sans tracking-wide leading-relaxed`}
           >
             Services
