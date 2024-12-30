@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { PiBuildingsBold } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 interface Service {
   id: number;
@@ -17,6 +18,7 @@ const Supakling: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
+  const [hover,setHover]=useState(false)
 
   // Fetch services data from the API
   useEffect(() => {
@@ -113,40 +115,28 @@ const Supakling: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-[10%] py-12 ">
+      <div className="flex flex-col items-center justify-center px-[10%] py-10 ">
         {/* Buttons Section */}
         <div className="flex space-x-8">
           {/* Commercial Plumbing Button */}
-          <button className="flex items-center space-x-3 px-20 py-12 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center space-x-3 px-16 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8  flex items-center justify-center rounded">
-              <PiBuildingsBold className="text-5xl" />
+              <PiBuildingsBold className="text-3xl" />
             </div>
             {/* Text */}
-            <span className="text-2xl font-medium">Commercial Plumbing</span>
+            <span className="text-lg font-medium">Commercial Plumbing</span>
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center space-x-3 px-20 py-4 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center space-x-3 px-16 py-4 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
-              <IoLocationOutline className="text-5xl" />
+              <IoLocationOutline className="text-3xl" />
             </div>
             {/* Text */}
             <span className="text-2xl font-medium">Residential Plumbing</span>
           </button>
-        </div>
-
-        {/* Description Section */}
-        <div className="text-center mt-12 w-[70%]">
-          <h2 className="text-5xl font-bold text-gray-800">
-            Best Service We Offer
-          </h2>
-          <p className="mt-4 text-gray-600 text-lg ">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. It has been the industry's standard dummy text ever since
-            the 1500s.
-          </p>
         </div>
       </div>
 
@@ -161,7 +151,7 @@ const Supakling: React.FC = () => {
             width={1000}
           />
           {/* Floating Elements */}
-          <div className="absolute top-20 left-10">
+          <div className="absolute top-20 left-4">
             <Image
               src="/Images/glob.webp"
               alt="glob"
@@ -170,7 +160,7 @@ const Supakling: React.FC = () => {
               width={50}
             />
           </div>
-          <div className="absolute bottom-20 right-10">
+          <div className="absolute bottom-20 right-20">
             <Image
               src="/Images/about.webp"
               alt="about"
@@ -186,38 +176,52 @@ const Supakling: React.FC = () => {
           <p className="text-sm text-gray-500 flex items-center justify-center lg:justify-start">
             We are{" "}
             <span className="bg-pink-100 text-pink-600 font-medium px-2 py-1 ml-2 rounded-full">
-              Techco
+            Menrol Force
             </span>
           </p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mt-4">
-            Our Commitment to Client Satisfaction
+          Our Commitment to Excellence
           </h1>
           <p className="text-gray-600 mt-4">
-            At Techco, our commitment to client satisfaction is at the core of
-            everything we do. We understand clients’ success.
+          At MenrolForce, client satisfaction is our top priority. We focus on delivering skilled solutions that drive success for every project.
+
           </p>
           <ul className="list-disc list-inside text-gray-600 mt-6 space-y-2">
-            <li>Grow your business the right way.</li>
-            <li>Let business growth help your business grow.</li>
-            <li>Helping you to get better.</li>
+            <li>Build Better, Together.</li>
+            <li>Empowering your projects to achieve excellence.</li>
+            <li>Helping you transform visions into reality.</li>
           </ul>
           <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
             {/* Get Started Button */}
             <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
-              <button
-                className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95 relative overflow-hidden"
-                onClick={handleService}
-              >
-                <div className="flex flex-col">
-                  <span className="relative group-hover:-translate-y-full">
-                    Get Started →
-                  </span>
-                  <span className="absolute left-0 bottom-0 w-full transition-transform duration-300 transform translate-y-full group-hover:translate-y-0">
-                    Get Started →
-                  </span>
-                </div>
-              </button>
-            </div>
+      <button
+        className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full w-[12rem] shadow-lg hover:bg-blue-700 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
+        onClick={handleService}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <div className="relative h-full flex flex-col justify-center items-center">
+          {/* First Span */}
+          <span
+            className={`absolute flex items-center justify-center gap-3 transition-all duration-300 -ml-2 ${
+              hover ? "translate-y-[-130%]" : "translate-y-0"
+            }`}
+          >
+            Get Started 
+          </span>
+          {/* Second Span */}
+          <span
+            className={`absolute flex items-center justify-center gap-3  transition-all duration-300 -ml-2 ${
+              hover ? "translate-y-0" : "translate-y-[130%]"
+            }`}
+          >
+            Get Started 
+          </span>
+          
+        </div>
+        <span className="absolute right-9 top-4"><FaArrowRightLong className="-rotate-45" /></span>
+      </button>
+    </div>
           </div>
         </div>
       </section>
