@@ -80,7 +80,7 @@ const OurServices = () => {
   };
 
   return (
-    <div className="gap-4 px-[10%] xsm:p-6 relative xl:mt-20">
+    <div className="gap-4 px-[7%] xsm:p-6 relative xl:mt-20">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
           <div className="animate-spin w-16 h-16 rounded-full" />
@@ -145,7 +145,7 @@ const OurServices = () => {
           {services?.map((service) => (
             <div key={service._id} className="p-1">
               <div className="flex flex-col items-center">
-                <div className="relative w-[280px] h-[220px] mx-auto rounded-lg border border-black transition-all duration-300 hover:shadow-xl shadow-lg">
+                <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg">
                   <Image
                     src={service.categoryImage}
                     alt={service.category}

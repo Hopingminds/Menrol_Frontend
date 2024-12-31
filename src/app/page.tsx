@@ -40,7 +40,7 @@ export default function Home() {
       <WhyChooseUs />
       <LatestOffer />
       <Blogs />
-      <DreamTeam />
+      {/* <DreamTeam /> */}
       <Testimonials />
       <ScanAndDownload />
       <CallToAction />
