@@ -36,7 +36,7 @@ const ScanAndDownload = () => {
               />
             </div>
 
-            <div className="flex flex-col items-center gap-3 top-6 xsm:mt-64 border border-black">
+            <div className="flex flex-col items-center gap-3 top-6 xsm:mt-64 ">
               <Image
                 src="/Images/Scanner.png"
                 alt="Scanner"

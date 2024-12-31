@@ -45,7 +45,7 @@ const Supakling: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [services]);
-  const HandleGoServicesDetails =()=>{
+  const HandleGoServicesDetails = () => {
     router.push("/ServiceDetails")
   }
 
@@ -175,7 +175,7 @@ const Supakling: React.FC = () => {
                 <div className="text-white font-bold text-center">
                   <p className="text-7xl"></p>
                   <p className="text-xl max-w-[200px] mx-auto break-words">
-                  Providing Skilled Labor Across Multiple Categories
+                    Providing Skilled Labor Across Multiple Categories
                   </p>
 
                   {/* Circles below the second paragraph */}
@@ -239,17 +239,17 @@ const Supakling: React.FC = () => {
                 </div> */}
 
                 <div className="flex items-center group pt-2">
-                <button className="border border-gray-300 text-white   py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white   py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
                   <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
-                   onClick={HandleGoServicesDetails}
+                    onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
                       ? services[currentIndex]?.subcategory[3]?.title
                       : "Loading..."}
                   </button>
-                
+
                 </div>
               </div>
 
