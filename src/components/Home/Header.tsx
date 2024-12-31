@@ -1,8 +1,5 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
 import { useRouter } from "next/navigation";
 import { FaLocationDot } from "react-icons/fa6";
 
@@ -11,15 +8,15 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false); // Unified modal state
+  const [isLoginMode, setIsLoginMode] = useState(true); // Toggles between Login and Sign In
 
   const router = useRouter();
 
-  // Handle search query input
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  // Fetch search results based on query
   useEffect(() => {
     if (searchQuery.length < 3) {
       setSearchResults([]);
@@ -50,7 +47,6 @@ const Header = () => {
     return () => clearTimeout(delayDebounceFn);
   }, [searchQuery]);
 
-  // Fetch the current location using geolocation API
   const fetchCurrentLocation = async () => {
     if (!("geolocation" in navigator)) {
       console.error("Geolocation is not supported by this browser.");
@@ -66,8 +62,6 @@ const Header = () => {
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
           );
           const data = await response.json();
-
-          console.log("Geolocation API response:", data);
 
           const city =
             data.address.city ||
@@ -87,7 +81,7 @@ const Header = () => {
         console.error("Error fetching geolocation:", error);
         setCurrentLocation("Location not available");
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 } // Improve accuracy and handle timeouts
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
     );
   };
 
@@ -97,7 +91,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[10%] bg-white shadow-md">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md">
         <div className="flex items-center space-x-2">
           <img
             src="/menrol-logo.png"
@@ -107,25 +101,24 @@ const Header = () => {
           />
         </div>
 
-        <div className="flex justify-end ml-[40%]">
+        <div className="flex justify-end ml-[30%]">
           <div className="flex flex-1 items-center px-2">
             <select
               name="location"
               id="location"
-              className="w-[10vw] h-10 px-2 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none bg-white"
+              className="w-[15vw] h-10 px-2 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none bg-white"
               onClick={handleLocationClick}
+              value={currentLocation}
+              onChange={(e) => setCurrentLocation(e.target.value)}
             >
               <option value="">Choose location</option>
-              <option value="current-location">Your current location</option>
+              <option value="current-location">Current location</option>
+              {currentLocation && (
+                <option value={currentLocation} disabled>
+                  {currentLocation}
+                </option>
+              )}
             </select>
-            {currentLocation && (
-              <div className=" text-gray-600 flex flex-row pl-2 justify-center items-center">
-                <span>
-                  <FaLocationDot />{" "}
-                </span>
-                <span>{currentLocation}</span>
-              </div>
-            )}
           </div>
 
           <div className="flex flex-1 items-center mx-6">
@@ -142,29 +135,136 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center">
-          <button className="focus:outline-none">
-            <CgProfile className="text-xl" />
+        <div className="flex items-center space-x-4">
+          <button
+            className="focus:outline-none"
+            onClick={() => {
+              setIsModalOpen(true);
+              setIsLoginMode(true); // Open modal in login mode
+            }}
+          >
+            Login
           </button>
+          
         </div>
       </header>
 
-      {searchResults.length > 0 && searchQuery.length >= 3 && (
-        <div className="absolute top-[60px] left-0 w-full bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1">
-          <ul>
-            {searchResults.map((result) => (
-              <li key={result._id} className="border-b hover:bg-blue-100">
-                <div
-                  className="p-4 cursor-pointer hover:text-blue-600"
-                  onClick={() =>
-                    router.push(`/IndividualServices?data=${result._id}`)
-                  }
-                >
-                  <h4 className="font-semibold text-sm">{result?.category}</h4>
-                </div>
-              </li>
-            ))}
-          </ul>
+      {/* Modal */}
+      {isModalOpen && (
+        <div onClick={() => setIsModalOpen(false)} className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            {isLoginMode ? (
+              <>
+                <h2 className="text-lg font-semibold mb-4">Login</h2>
+                <form>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      className="bg-gray-500 text-white px-4 py-2 rounded-lg"
+                      onClick={() => setIsModalOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                    >
+                      Login
+                    </button>
+                  </div>
+                </form>
+                <p className="mt-4 text-sm">
+                  Don't have an account?{" "}
+                  <button
+                    className="text-blue-600 underline"
+                    onClick={() => setIsLoginMode(false)}
+                  >
+                    Sign In
+                  </button>
+                </p>
+              </>
+            ) : (
+              <>
+                <h2 className="text-lg font-semibold mb-4">Sign In</h2>
+                <form>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
+                      placeholder="Create a password"
+                    />
+                  </div>
+                  <div className="flex justify-end space-x-4">
+                    <button
+                      type="button"
+                      className="bg-gray-500 text-white px-4 py-2 rounded-lg"
+                      onClick={() => setIsModalOpen(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                </form>
+                <p className="mt-4 text-sm">
+                  Already have an account?{" "}
+                  <button
+                    className="text-blue-600 underline"
+                    onClick={() => setIsLoginMode(true)}
+                  >
+                    Login
+                  </button>
+                </p>
+              </>
+            )}
+          </div>
         </div>
       )}
     </>

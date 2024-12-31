@@ -45,6 +45,9 @@ const Supakling: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [services]);
+  const HandleGoServicesDetails =()=>{
+    router.push("/ServiceDetails")
+  }
 
   const getServiceImage = (offset: number) => {
     if (services?.length > 0) {
@@ -140,9 +143,9 @@ const Supakling: React.FC = () => {
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            clip-rule="evenodd"
+                            clipRule="evenodd"
                             d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                           ></path>
                         </svg>
                       </div>
@@ -212,36 +215,41 @@ const Supakling: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-pink-500 flex flex-col items-center justify-center rounded-tr-[50%]">
+              <div className="bg-blue-800 flex flex-col items-center justify-center rounded-tr-[50%]">
                 <div className="flex items-center group">
-                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                    onClick={HandleGoServicesDetails}
+                  >
                     {services.length > 0
                       ? services[currentIndex]?.subcategory[0]?.title
                       : "Loading..."}
                   </button>
-                  <button className="border border-gray-300 text-white  py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white  py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
                 </div>
 
-                <div className="flex items-center group">
+                {/* <div className="flex items-center group">
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     Plumber
                   </button>
-                </div>
+                </div> */}
 
-                <div className="flex items-center group">
-                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                <div className="flex items-center group pt-2">
+                <button className="border border-gray-300 text-white   py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    +
+                  </button>
+                  <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                   onClick={HandleGoServicesDetails}
+                  >
                     {services.length > 0
                       ? services[currentIndex]?.subcategory[3]?.title
                       : "Loading..."}
                   </button>
-                  <button className="border border-gray-300 text-white   py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
-                    +
-                  </button>
+                
                 </div>
               </div>
 
