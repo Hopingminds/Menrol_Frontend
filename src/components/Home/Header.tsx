@@ -137,7 +137,7 @@ const Header = () => {
 
         <div className="flex items-center space-x-4">
           <button
-            className="focus:outline-none"
+            className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
             onClick={() => {
               setIsModalOpen(true);
               setIsLoginMode(true); // Open modal in login mode
@@ -145,14 +145,19 @@ const Header = () => {
           >
             Login
           </button>
-          
         </div>
       </header>
 
       {/* Modal */}
       {isModalOpen && (
-        <div onClick={() => setIsModalOpen(false)} className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+        <div
+          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()} // Prevent click event from propagating to parent
+            className="bg-white p-6 rounded-lg shadow-lg w-1/3"
+          >
             {isLoginMode ? (
               <>
                 <h2 className="text-lg font-semibold mb-4">Login</h2>
