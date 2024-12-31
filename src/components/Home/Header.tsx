@@ -2,18 +2,28 @@ import React, { useState, useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import LoginModal from "./LoginModal";
-
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user-info");
+    setIsLoggedIn(!!storedUser); // Set isLoggedIn based on the presence of user info
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    setIsLoggedIn(false); // Update state to trigger re-render
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -138,7 +148,34 @@ const Header = () => {
         </div>
 
         <div>
-          <div className="flex items-center space-x-4">
+          {isLoggedIn ? (
+            <div className="relative">
+              <button
+                onClick={() => setIsMenuOpen((prev) => !prev)}
+                className="bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2"
+              >
+                <FaUserCircle />
+              </button>
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                  <ul>
+                    <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                      onClick={() => router.push("/profile")}
+                    >
+                      Profile
+                    </li>
+                    <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                      onClick={logout}
+                    >
+                      Logout
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          ) : (
             <button
               className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
               onClick={() => {
@@ -148,7 +185,7 @@ const Header = () => {
             >
               Login
             </button>
-          </div>
+          )}
 
           {/* Conditionally render the LoginModal */}
           <LoginModal
