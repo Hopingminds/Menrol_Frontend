@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { PiBuildingsBold } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaAnglesRight, FaArrowRightLong } from "react-icons/fa6";
 
 interface Service {
   id: number;
@@ -18,9 +18,8 @@ const Supakling: React.FC = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
 
-  // Fetch services data from the API
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -37,53 +36,122 @@ const Supakling: React.FC = () => {
     fetchServices();
   }, []);
 
-  // Cycle through images
   useEffect(() => {
     if (services.length > 0) {
       const interval = setInterval(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
-      }, 1000); // Change image every second
+      }, 1000);
 
-      return () => clearInterval(interval); // Cleanup interval on unmount
+      return () => clearInterval(interval);
     }
   }, [services]);
 
   const getServiceImage = (offset: number) => {
     if (services?.length > 0) {
       const subcategory = services[currentIndex]?.subcategory[offset];
-      return subcategory?.image || ""; // Return subcategory image
+      return subcategory?.image || "";
     }
-    return ""; // Return empty string if services are empty
+    return "";
   };
 
   const handleService = () => {
     router.push("/ServiceDetails");
   };
+  const HandleGoServices = () => {
+    router.push("/ServiceDetails")
+  }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen pt-8 bg-gray-50 px-[7%]">
       <div className="max-w-[95%] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full min-h-[70vh]">
           {/* Left Column */}
           <div className="flex flex-col justify-center items-center h-full space-y-8">
-            <div className="w-[70%] h-[500px] flex flex-col justify-between p-4">
-              <h1 className="text-5xl  flex flex-col lg:text-5xl font-bold text-navy-900 leading-relaxed gap-8 h-60">
-                Welcome to Menrol Force Hub
-                <br />
-                Your Trusted Skilled
-                <br />
-                Labor Partner!
-              </h1>
-              <p className="text-gray-600 text-lg">
-                Looking for reliable workers for construction, plumbing,
-                electrical work, or renovation? We connect you with skilled
-                professionals, making hiring effortless and efficient.
-              </p>
+            <div className="w-full  h-[500px] flex flex-col p-4">
+              <div className="font-bold text-navy-900 leading-relaxed">
+                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-5 xl:pt-5">
+                  Welcome to Menrol Force Hub
+                </p>
+
+                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-2">
+                  Your Trusted Skilled
+                </p>
+
+                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-3">
+                  Labor Partner!
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-6 mt-[10vh]">
+                <div className="flex items-center space-x-4 group relative inline-block">
+                  <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
+
+                  <p className="text-gray-600 text-lg">
+                    Reliable workers for construction.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-4 group relative inline-block">
+                  <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
+                  <p
+                    className="text-gray-600 text-lg"
+                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  >
+                    Skilled professionals for plumbing.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-4 group relative inline-block">
+                  <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
+                  <p
+                    className="text-gray-600 text-lg"
+                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  >
+                    Experts for electrical work.
+                  </p>
+                </div>
+                <div className="flex items-center space-x-4 group relative inline-block">
+                  <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
+                  <p
+                    className="text-gray-600 text-lg"
+                    style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  >
+                    Professionals for renovation.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center py-10 mt-6">
+                <div className="relative group">
+                  <button className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 animate-bounce">
+                    <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-100 animate-pulse"></span>
+
+                    <span className="relative z-10 block px-6 py-3 rounded-xl bg-blue-600">
+                      <div className="relative z-10 flex items-center space-x-2">
+                        <span className="transition-all duration-500 translate-x-1 animate-move-text" onClick={HandleGoServices}>
+                          Let's get started
+                        </span>
+                        <svg
+                          className="w-6 h-6 transition-transform duration-500 translate-x-1 animate-move-icon"
+                          data-slot="icon"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                            fill-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                    </span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Right Column */}
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-[90%]">
             <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden">
               <div
                 className="bg-cover bg-center flex items-center justify-center"
@@ -144,11 +212,15 @@ const Supakling: React.FC = () => {
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     Data Security
                   </button>
-                  <button className="border border-gray-300 text-white  py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                  <button className="border border-gray-300 text-white  py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    +
+                  </button>
                 </div>
 
                 <div className="flex items-center group">
-                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                  <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    +
+                  </button>
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     Web Development
                   </button>
@@ -158,12 +230,11 @@ const Supakling: React.FC = () => {
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     Analytics & Optimization
                   </button>
-                  <button className="border border-gray-300 text-white   py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">+</button>
+                  <button className="border border-gray-300 text-white   py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                    +
+                  </button>
                 </div>
-
               </div>
-
-
 
               <div
                 className="bg-cover bg-center flex items-center justify-center"
@@ -179,7 +250,7 @@ const Supakling: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-[10%] py-10 ">
+      <div className="flex flex-col items-center justify-center px-[10%] md:my-[15vh] md:pt-10">
         {/* Buttons Section */}
         <div className="flex space-x-8">
           {/* Commercial Plumbing Button */}
@@ -247,13 +318,13 @@ const Supakling: React.FC = () => {
             Our Commitment to Excellence
           </h1>
           <p className="text-gray-600 mt-4">
-            At MenrolForce, client satisfaction is our top priority. We focus on delivering skilled solutions that drive success for every project.
-
+            At MenrolForce, client satisfaction is our top priority. We focus on
+            delivering skilled solutions that drive success for every project.
           </p>
           <ul className="list-disc list-inside text-gray-600 mt-6 space-y-2">
             <li>Build Better, Together.</li>
             <li>Empowering your projects to achieve excellence.</li>
-            <li>Helping you transform visions into reality.</li>
+            <li>Helping you transform visions into reality.</li>
           </ul>
           <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
             {/* Get Started Button */}
@@ -279,9 +350,10 @@ const Supakling: React.FC = () => {
                   >
                     Get Started
                   </span>
-
                 </div>
-                <span className="absolute right-9 top-4"><FaArrowRightLong className="-rotate-45" /></span>
+                <span className="absolute right-9 top-4">
+                  <FaArrowRightLong className="-rotate-45" />
+                </span>
               </button>
             </div>
           </div>
