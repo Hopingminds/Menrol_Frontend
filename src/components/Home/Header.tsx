@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import { FaLocationDot } from "react-icons/fa6";
+import LoginModal from "./LoginModal";
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState(false); // Unified modal state
-  const [isLoginMode, setIsLoginMode] = useState(true); // Toggles between Login and Sign In
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   const router = useRouter();
 
@@ -135,143 +137,28 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
-          <button
-            className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
-            onClick={() => {
-              setIsModalOpen(true);
-              setIsLoginMode(true); // Open modal in login mode
-            }}
-          >
-            Login
-          </button>
+        <div>
+          <div className="flex items-center space-x-4">
+            <button
+              className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
+              onClick={() => {
+                setIsModalOpen(true);
+                setIsLoginMode(true); // Open modal in login mode
+              }}
+            >
+              Login
+            </button>
+          </div>
+
+          {/* Conditionally render the LoginModal */}
+          <LoginModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            isLoginMode={isLoginMode}
+            setIsLoginMode={setIsLoginMode}
+          />
         </div>
       </header>
-
-      {/* Modal */}
-      {isModalOpen && (
-        <div
-          onClick={() => setIsModalOpen(false)}
-          className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()} // Prevent click event from propagating to parent
-            className="bg-white p-6 rounded-lg shadow-lg w-1/3"
-          >
-            {isLoginMode ? (
-              <>
-                <h2 className="text-lg font-semibold mb-4">Login</h2>
-                <form>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                      placeholder="Enter your password"
-                    />
-                  </div>
-                  <div className="flex justify-end space-x-4">
-                    <button
-                      type="button"
-                      className="bg-gray-500 text-white px-4 py-2 rounded-lg"
-                      onClick={() => setIsModalOpen(false)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </form>
-                <p className="mt-4 text-sm">
-                  Don't have an account?{" "}
-                  <button
-                    className="text-blue-600 underline"
-                    onClick={() => setIsLoginMode(false)}
-                  >
-                    Sign In
-                  </button>
-                </p>
-              </>
-            ) : (
-              <>
-                <h2 className="text-lg font-semibold mb-4">Sign In</h2>
-                <form>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                      placeholder="Enter your full name"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                      placeholder="Create a password"
-                    />
-                  </div>
-                  <div className="flex justify-end space-x-4">
-                    <button
-                      type="button"
-                      className="bg-gray-500 text-white px-4 py-2 rounded-lg"
-                      onClick={() => setIsModalOpen(false)}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-                    >
-                      Sign In
-                    </button>
-                  </div>
-                </form>
-                <p className="mt-4 text-sm">
-                  Already have an account?{" "}
-                  <button
-                    className="text-blue-600 underline"
-                    onClick={() => setIsLoginMode(true)}
-                  >
-                    Login
-                  </button>
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 };
