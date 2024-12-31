@@ -3,7 +3,6 @@ import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import LoginModal from "./LoginModal";
 
-
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
