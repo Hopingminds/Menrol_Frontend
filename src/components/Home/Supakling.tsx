@@ -96,7 +96,7 @@ const Supakling: React.FC = () => {
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
                   <p
                     className="text-gray-600 text-lg"
-                    // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
                   >
                     Skilled professionals for plumbing.
                   </p>
@@ -105,7 +105,7 @@ const Supakling: React.FC = () => {
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
                   <p
                     className="text-gray-600 text-lg"
-                    // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
                   >
                     Experts for electrical work.
                   </p>
@@ -356,17 +356,15 @@ const Supakling: React.FC = () => {
                 <div className="relative h-full flex flex-col justify-center items-center">
                   {/* First Span */}
                   <span
-                    className={`absolute flex items-center justify-center gap-3 transition-all duration-300 -ml-2 ${
-                      hover ? "translate-y-[-130%]" : "translate-y-0"
-                    }`}
+                    className={`absolute flex items-center justify-center gap-3 transition-all duration-300 -ml-2 ${hover ? "translate-y-[-130%]" : "translate-y-0"
+                      }`}
                   >
                     Get Started
                   </span>
                   {/* Second Span */}
                   <span
-                    className={`absolute flex items-center justify-center gap-3  transition-all duration-300 -ml-2 ${
-                      hover ? "translate-y-0" : "translate-y-[130%]"
-                    }`}
+                    className={`absolute flex items-center justify-center gap-3  transition-all duration-300 -ml-2 ${hover ? "translate-y-0" : "translate-y-[130%]"
+                      }`}
                   >
                     Get Started
                   </span>

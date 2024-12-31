@@ -3,40 +3,40 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import "../Lodder.css"
+import "../Lodder.css";
 
 const LatestOffer = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false); // State to track loading
+  const [loading, setLoading] = useState(false);
 
   const handleGoContact = () => {
-    setLoading(true); // Show loader
+    setLoading(true);
     router.push("/contactus");
     setTimeout(() => {
-      setLoading(false); // Hide loader
-    }, 1000); // Adjust time to suit the actual duration
+      setLoading(false);
+    }, 1000);
   };
 
   return (
-    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative xsm:py-5 py-10 my-10 gap-10" >
+    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative xsm:py-5 py-10 my-10 gap-10">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
         </div>
       )}
 
-      <div className="px-[10%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4  ">
+      <div className="px-[10%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
             src="/Images/AllImages/OfferImage(1).jpg"
             alt="Offer"
-            className="w-[20vw] h-[55vh] md:h-[20rem] md:w-[70%] xsm:w-[70%] xsm:h-[10rem] xsm:ml-9 lg:h-[20rem] xl:h-[24rem] 2xl:h-[25rem] 2xl:w-[25rem] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9  "
+            className="w-[20vw] h-[55vh] md:h-[20rem] md:w-[70%] xsm:w-[70%] xsm:h-[10rem] xsm:ml-9 lg:h-[20rem] xl:h-[24rem] 2xl:h-[25rem] 2xl:w-[25rem] sm:w-[30vw] object-cover rounded-lg shadow-sm mt-9"
             height={300}
             width={300}
           />
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend ">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
@@ -57,22 +57,61 @@ const LatestOffer = () => {
         </div>
 
         {/* Right Side Text */}
-        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col lg:px-20  md:h-[20rem] lg:[5rem] xl:[24rem] 2xl:[25rem]
-            ">
-
-
-          <h1 className="text-[45px] font-bold mb-4 md:text-[30px] md:leading-normal lg:text-[35px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed ">
+        <div className="flex-1 text-white pl-10 md:pl-3 flex flex-col lg:px-20 md:h-[20rem] lg:[5rem] xl:[24rem] 2xl:[25rem]">
+          <h1 className="text-[45px] font-bold mb-4 md:text-[30px] md:leading-normal lg:text-[35px] 2xl:text-[50px] xsm:text-sm font-dm-sans tracking-wide leading-relaxed">
             Big Savings, Big Service: Limited Time Offer
           </h1>
-          <p className="text-lg mb-4  md:text-lg lg:text-xl 2xl:text-2xl font-dm-sans tracking-wide xsm:text-xs leading-relaxed ">
+          <p className="text-lg mb-4 md:text-lg lg:text-xl 2xl:text-2xl font-dm-sans tracking-wide xsm:text-xs leading-relaxed">
             Don’t miss out! Limited-time savings on professional cleaning services for a spotless experience.
           </p>
-          <p
-            className="text-lg font-semibold cursor-pointer xsm:text-xs pt-10 tracking-[0.2em]"
-            onClick={handleGoContact}
+
+          {/* Contact Us Button */}
+          <button
+            onClick={handleGoContact} // Add the onClick handler
+            className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[160px] h-[60px]"
           >
-            Contact Us
-          </p>
+            {/* Gradient background (blue tones) */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
+
+            {/* White blur effect */}
+            <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
+
+            {/* Glitter effect */}
+            <div className="absolute inset-0 overflow-hidden rounded-full">
+              <div className="glitter-container">
+                <div className="glitter"></div>
+                <div className="glitter"></div>
+                <div className="glitter"></div>
+              </div>
+            </div>
+
+            {/* White border with hover effect */}
+            <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
+
+            {/* Wave effect */}
+            <div className="absolute inset-0 rounded-full overflow-hidden">
+              <div className="wave"></div>
+            </div>
+
+            {/* Button Text with arrow */}
+            <span className="relative z-10 flex items-center gap-2">
+              <span className="tracking-wider">Contact us</span>
+              <svg
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                fill="none"
+                className="w-5 h-5 transform transition-transform duration-300 group-hover:translate-x-1"
+              >
+                <path
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  strokeWidth="2"
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </span>
+          </button>
         </div>
       </div>
     </div>
