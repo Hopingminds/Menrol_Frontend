@@ -164,6 +164,9 @@ const IndividualServices: React.FC = () => {
                 }}
               />
             </div>
+            <div className="w-full mt-3">
+              <button className="w-full bg-blue-500 p-4 rounded-lg text-white hover:shadow-xl transition-all duration-300">Buy</button>
+            </div>
 
             <div className="mt-4">
               <h3 className="font-bold text-[#24232A] text-xl mb-2">
