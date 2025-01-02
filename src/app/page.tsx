@@ -36,9 +36,10 @@ export default function Home() {
       {isXsm && <DynamicHeader title="" />}
       <Supakling />
       <OurServises />
+      <LatestOffer />
       <SubCatogeries />
       {/* <WhyChooseUs /> */}
-      <LatestOffer />
+      
       <Blogs />
       {/* <DreamTeam /> */}
 
