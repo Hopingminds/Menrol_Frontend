@@ -13,7 +13,7 @@ const OurServises = () => {
 
   return (
     <div className="gap-4 px-[10%] lg:mt-8 ">
-      <h1
+      {/* <h1
         className="text-[#51DC98] uppercase font-bold pl-4 sm:flex sm:justify-center"
         style={{ wordSpacing: "0.1em" }}
       >
@@ -34,9 +34,9 @@ const OurServises = () => {
         </button>
       </div>
 
-      {/* Cards Section */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 pt-10">
-        {/* Card 1 */}
+       
         <div className="relative shadow-lg ">
           <Image
             src="/Images/AllImages/card-01.png"
@@ -45,7 +45,7 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
+          
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
             <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
               <FaArrowRightLong className="h-6 w-6" />
@@ -63,7 +63,7 @@ const OurServises = () => {
           </div>
         </div>
 
-        {/* Card 2 */}
+        
         <div className="relative shadow-lg">
           <Image
             src="/Images/AllImages/card-01.png"
@@ -72,7 +72,7 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
+          
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
             <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
               <FaArrowRightLong className="h-6 w-6" />
@@ -90,7 +90,7 @@ const OurServises = () => {
           </div>
         </div>
 
-        {/* Card 3 */}
+       
         <div className="relative shadow-lg">
           <Image
             src="/Images/AllImages/card-01.png"
@@ -99,7 +99,7 @@ const OurServises = () => {
             height={200}
             width={200}
           />
-          {/* Back arrow */}
+          
           <div className="absolute top-4 right-4 md:top-8 md:right-6">
             <button className="h-[5vh] w-[10vw] md:w-[4vw] bg-[#24232A] rounded-full shadow-md text-[#C1F458] flex items-center justify-center hover:bg-[#24232A]">
               <FaArrowRightLong className="h-6 w-6" />
@@ -116,7 +116,7 @@ const OurServises = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

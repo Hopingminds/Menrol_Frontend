@@ -15,7 +15,7 @@ const LatestProjects = () => {
 
   return (
     <div className="px-[10%] py-8">
-      <div className="flex flex-row justify-between items-center mb-6">
+      {/* <div className="flex flex-row justify-between items-center mb-6">
         <h1 className="text-[#24232A] text-[30px] font-bold tracking-[0.05em]">
           Latest Projects
         </h1>
@@ -27,7 +27,7 @@ const LatestProjects = () => {
             className="shadow-lg rounded-lg overflow-hidden group"
           >
             <Image
-              src={photo} // Use the URL from the photos array
+              src={photo} 
               alt={`Project ${index + 1}`}
               className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
               width={400}
@@ -35,7 +35,7 @@ const LatestProjects = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

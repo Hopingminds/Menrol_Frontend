@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 
-
 interface LoginModalProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  
   isLoginMode: boolean;
   setIsLoginMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -25,7 +23,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
     e.preventDefault();
     setLoading(true);
     setError(null);
-    
 
     try {
       const response = await fetch("https://api.menrol.com/api/v1/sendOtp", {
@@ -65,8 +62,12 @@ const LoginModal: React.FC<LoginModalProps> = ({
       if (response.ok && data.token) {
         console.log("OTP verified:", data);
 
-        // Store the token in localStorage
-        localStorage.setItem("user-info", JSON.stringify(data.token));
+        // Store the token and phone number in localStorage
+        localStorage.setItem(
+          "user-info",
+          JSON.stringify({ token: data.token, phone })
+        );
+
         setIsModalOpen(false);
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
@@ -87,7 +88,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
           className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50"
         >
           <div
-            onClick={(e) => e.stopPropagation()} // Prevent click propagation
+            onClick={(e) => e.stopPropagation()}
             className="bg-white p-6 rounded-lg shadow-lg w-1/3"
           >
             <h2 className="text-lg font-semibold mb-4">
@@ -156,7 +157,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   className="text-blue-600 underline"
                   onClick={() => setIsLoginMode(!isLoginMode)}
                 >
-
                   {isLoginMode ? "Sign Up" : "Login"}
                 </button>
               </p>
