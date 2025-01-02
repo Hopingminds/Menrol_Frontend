@@ -32,7 +32,7 @@ const CallToAction = () => {
         className="w-[50%] pt-5 leading-relaxed"
         data-aos="fade-right" // AOS animation
       >
-        <p className="text-[45px] 2xl:text-[3.5rem] xsm:text-[15px] sm:text-[29px] font-bold font-lexend text-[#24232A]">
+        <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
           Time for a Refresh: Book Your Service Today
         </p>
         <p className="mt-2 text-[20px] 2xl:text-[25px] text-[#6B6A7E] xsm:text-[10px]">
