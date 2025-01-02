@@ -29,9 +29,9 @@ export default function RootLayout({
               src="/Comp-unscreen.gif" 
               alt="Menrol Logo"
               className="loading-image"
-
               width={400}
               height={400}
+              unoptimized // Add this property
             />
             {/* <h1 className="loading-text">WELCOME TO MENROL</h1> */}
           </div>

@@ -2,9 +2,9 @@
 
 
 
-import AddtoCart from '@/components/AddTocart/Addtocart';
-import Layout from '@/components/Layout'
-import React from 'react'
+import AddtoCart from '@/components/AddTocart/AddTocart';
+import Layout from '@/components/Layout';
+
 
 const page = () => {
   return (
