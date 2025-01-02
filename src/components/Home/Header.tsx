@@ -24,7 +24,6 @@ const Header = () => {
     email: string;
     [key: string]: string | number | boolean | null;
   }
-
   
 
   // Define the type for a single search result item
