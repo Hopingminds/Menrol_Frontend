@@ -33,3 +33,25 @@
   color: white !important; /* Ensure the arrow matches the design */
   font-size: 16px; /* Adjust arrow size if needed */
 }
+
+
+/* Ensure the parent container uses flexbox */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: flex; /* Flexbox layout for inline arrangement */
+  align-items: center; /* Vertically align items */
+  gap: 5px; /* Add spacing between the span and image */
+  text-decoration: none; /* Remove any underline or link styles */
+  color: inherit; /* Keep inherited text color */
+}
+
+/* Optional: Style the span for better alignment */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed span {
+  font-size: 16px; /* Adjust text size */
+  line-height: 1; /* Maintain consistent vertical alignment */
+}
+
+/* Optional: Style the image for better alignment */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed img {
+  width: auto; /* Ensure image scales proportionally */
+  height: auto; /* Ensure image scales proportionally */
+}

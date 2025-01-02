@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
+import Script from "next/script";
+import "./Language.css"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -91,6 +93,10 @@ const Header = () => {
           </div>
         </div>
 
+         {/* Language Dropdown */}
+
+         <div id="google_translate_element" className="check-text"></div>
+
         {/* Right Section: Profile & Login */}
         <div>
           {isLoggedIn ? (
@@ -145,6 +151,38 @@ const Header = () => {
           />
         </div>
       </header>
+
+       {/* Google Translate Scripts */}
+       <Script
+        id="google-translate"
+        strategy="lazyOnload"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      />
+      <Script id="google-translate-init" strategy="lazyOnload">
+        {`
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              {
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,pa', // Add languages as needed
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              },
+              'google_translate_element'
+            );
+          }
+        `}
+      </Script>
+
+      <style jsx global>{`
+        .VIpgJd-ZVi9od-ORHb-OEVmcd {
+          display: none !important;
+          visibility: hidden !important;
+        }
+
+        body {
+          top: 0 !important;
+        }
+      `}</style>
     </>
   );
 };
