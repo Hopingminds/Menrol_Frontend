@@ -2,26 +2,26 @@
 import React from "react";
 
 const HowItWorks: React.FC = () => {
-  const steps = [
-    {
-      heading: "STEP 1",
-      title: "Request a Quote",
-      description:
-        "One step closer to your solution—request a service quote and receive timely responses.",
-    },
-    {
-      heading: "STEP 2",
-      title: "Schedule for service",
-      description:
-        "Choose your desired time slot and schedule professional services with ease.",
-    },
-    {
-      heading: "STEP 3",
-      title: "Service Team Arrives",
-      description:
-        "Our team arrives as scheduled, ensuring your service experience is smooth and stress-free.",
-    },
-  ];
+  // const steps = [
+  //   {
+  //     heading: "STEP 1",
+  //     title: "Request a Quote",
+  //     description:
+  //       "One step closer to your solution—request a service quote and receive timely responses.",
+  //   },
+  //   {
+  //     heading: "STEP 2",
+  //     title: "Schedule for service",
+  //     description:
+  //       "Choose your desired time slot and schedule professional services with ease.",
+  //   },
+  //   {
+  //     heading: "STEP 3",
+  //     title: "Service Team Arrives",
+  //     description:
+  //       "Our team arrives as scheduled, ensuring your service experience is smooth and stress-free.",
+  //   },
+  // ];
 
   return (
     <section className="pb-[10vh] p-10 mt-[15vh] bg-gray-100 px-[10%]">

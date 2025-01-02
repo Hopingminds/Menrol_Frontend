@@ -1,43 +1,50 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+
+interface UserInfo {
+  phone: string;
+  name: string;
+  email: string;
+}
 
 interface ProfileModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  userData: any;
+  userData: UserInfo | null; // Add userData here
 }
 
 const ProfileModal: React.FC<ProfileModalProps> = ({
   isModalOpen,
   setIsModalOpen,
-  
+  userData, // Access userData here
 }) => {
-  const [userInfo, setUserInfo] = useState<any>(null);
-
-  useEffect(() => {
-    if (isModalOpen) {
-      const storedUser = localStorage.getItem("user-info");
-      if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        setUserInfo(parsedUser);
-      }
-    }
-  }, [isModalOpen]);
-
   if (!isModalOpen) return null;
 
   return (
-    <div onClick={() => setIsModalOpen(false)} className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50">
-      <div onClick={(e) => e.stopPropagation()} className="bg-white p-8 rounded-lg shadow-lg w-[90%] md:w-[40%]">
-        <h2 className="text-2xl font-semibold mb-4 text-center text-blue-600">Profile Information</h2>
-        {userInfo ? (
+    <div
+      onClick={() => setIsModalOpen(false)}
+      className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white p-8 rounded-lg shadow-lg w-[90%] md:w-[40%]"
+      >
+        <h2 className="text-2xl font-semibold mb-4 text-center text-blue-600">
+          Profile Information
+        </h2>
+        {userData ? (
           <div>
-            
             <div className="mb-4">
               <p className="text-lg">
-                <strong className="text-blue-500">Phone:</strong> {userInfo.phone}
+                <strong className="text-blue-500">Name:</strong> {userData.name}
+              </p>
+              <p className="text-lg">
+                <strong className="text-blue-500">Email:</strong> {userData.email}
+              </p>
+              <p className="text-lg">
+                <strong className="text-blue-500">Phone:</strong> {userData.phone}
               </p>
             </div>
-            {/* You can add more fields here */}
+            {/* Add more fields here */}
           </div>
         ) : (
           <p className="text-red-500 text-center">No user data available.</p>

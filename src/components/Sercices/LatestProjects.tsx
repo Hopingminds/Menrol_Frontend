@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 
 const LatestProjects = () => {
-  const photos = [
-    "/Images/ServiceImg/Image-1.png",
-    "/Images/ServiceImg/Image-2.png",
-    "/Images/ServiceImg/Image-3.png",
-    "/Images/ServiceImg/Image-4.png",
-    "/Images/ServiceImg/Image-5.png",
-    "/Images/ServiceImg/Image-6.png",
-  ];
+  // const photos: string[] = [
+  //   "/Images/ServiceImg/Image-1.png",
+  //   "/Images/ServiceImg/Image-2.png",
+  //   "/Images/ServiceImg/Image-3.png",
+  //   "/Images/ServiceImg/Image-4.png",
+  //   "/Images/ServiceImg/Image-5.png",
+  //   "/Images/ServiceImg/Image-6.png",
+  // ];
 
   return (
     <div className="px-[10%] py-8">

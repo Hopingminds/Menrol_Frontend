@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
 import Script from "next/script";
-import "./Language.css"
+import "./Language.css";
 import Cart from "./Cart";
+import Image from "next/image";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -16,8 +17,24 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [userData, setUserData] = useState<any>(null);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  interface UserInfo {
+    token: string;
+    name: string;
+    phone: string;
+    email: string;
+    [key: string]: string | number | boolean | null;
+  }
+
+  // Define the type for a single search result item
+interface SearchResult {
+  _id: string;
+  category: string;
+}
+
+  const [userData, setUserData] = useState<UserInfo | null>(null);
+
+ // Use this type for the search results state
+const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   const router = useRouter();
 
@@ -59,16 +76,10 @@ const Header = () => {
     fetchLocation();
   }, []);
 
-  // Fetch search results on query change with debounce
-  useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      fetchData();
-    }, 500); // Adjust debounce delay as needed
+ 
+  
 
-    return () => clearTimeout(delayDebounceFn); // Cleanup on component unmount
-  }, [searchQuery]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const url = `https://api.menrol.com/api/v1/searchCategory?service=${searchQuery}`;
       const response = await fetch(url);
@@ -83,7 +94,8 @@ const Header = () => {
       console.error("Error fetching search data:", error);
       setSearchResults([]); // Reset results in case of an error
     }
-  };
+  }, [searchQuery]);
+  
 
   const handleSearchResultClick = (resultTitle: string) => {
     // Encode the resultTitle to handle special characters and spaces
@@ -92,6 +104,15 @@ const Header = () => {
     // Navigate to the page with the query parameter
     router.push(`/IndividualServices?data=${encodedTitle}`);
   };
+
+   // Fetch search results on query change with debounce
+   useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchData();
+    }, 500); // Adjust debounce delay as needed
+  
+    return () => clearTimeout(delayDebounceFn); // Cleanup on component unmount
+  }, [searchQuery, fetchData]);
 
   const logout = () => {
     localStorage.clear();
@@ -108,11 +129,13 @@ const Header = () => {
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2">
-          <img
+          <Image
             src="/menrol-logo.png"
             alt="Logo"
             className="h-16 w-auto md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
+            width={200}
+            height={200}
           />
         </div>
 

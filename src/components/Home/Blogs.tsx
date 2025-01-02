@@ -1,65 +1,65 @@
 "use client";
-import Image from "next/image";
+// import Image from "next/image";
 import React from "react";
 
-const truncateText = (text: string, maxLength: number): string => {
-  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
-};
+// const truncateText = (text: string, maxLength: number): string => {
+//   return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+// };
 
-const blogsData = [
-  {
-    id: 1,
-    title: truncateText(
-      "Menrol: Your Trusted Partner for All Home Services",
-      30 // Adjust the maximum length for the title as needed
-    ),
-    description: truncateText(
-      "Managing home maintenance has never been easier! Menrol is a one-stop solution for all your household needs, offering services like cleaning, plumbing, carpentry, electrical repairs, and more.",
-      120 // Adjust the maximum length for the description as needed
-    ),
-    image: "/Images/AllImages/Blog1.jpg",
-    link: "https://pizzazzpainting.com/blog/diy-guide-condo-painting/",
-  },
-  {
-    id: 2,
-    title: truncateText(
-      "Simplify Your Life with Menrol",
-      30
-    ),
-    description: truncateText(
-      "Life is busy, but your household chores don’t have to be. Menrol brings skilled professionals to your fingertips, offering on-demand services for every need.",
-      120
-    ),
-    image: "/Images/AllImages/Blog2.jpg",
-    link: "https://pizzazzpainting.com/blog/popular-paint-colors-and-how-they-affect-your-mood/",
-  },
-  {
-    id: 3,
-    title: truncateText(
-      "Transform Your Home with Menrol’s Expert Services",
-      30
-    ),
-    description: truncateText(
-      "Your home deserves the best care, and that’s exactly what Menrol provides. Our app connects you with experienced professionals who specialize in cleaning, repairs, and installations.",
-      120
-    ),
-    image: "/Images/AllImages/Blog3.png",
-    link: "https://pulseelectrix.co.uk/stay-connected-and-safe-a-guide-to-using-extension-leads/",
-  },
-  {
-    id: 4,
-    title: truncateText(
-      "Connecting You with Verified Experts for Quality Home Services",
-      30
-    ),
-    description: truncateText(
-      "Finding reliable home service providers can be challenging. That’s where Menrol steps in. Our app connects you with trusted, verified professionals who deliver top-quality work for tasks big and small.",
-      120
-    ),
-    image: "/Images/AllImages/Blog4.png",
-    link: "https://pulseelectrix.co.uk/everything-you-need-to-know-about-portable-appliance-testing/",
-  },
-];
+// const blogsData = [
+//   {
+//     id: 1,
+//     title: truncateText(
+//       "Menrol: Your Trusted Partner for All Home Services",
+//       30 // Adjust the maximum length for the title as needed
+//     ),
+//     description: truncateText(
+//       "Managing home maintenance has never been easier! Menrol is a one-stop solution for all your household needs, offering services like cleaning, plumbing, carpentry, electrical repairs, and more.",
+//       120 // Adjust the maximum length for the description as needed
+//     ),
+//     image: "/Images/AllImages/Blog1.jpg",
+//     link: "https://pizzazzpainting.com/blog/diy-guide-condo-painting/",
+//   },
+//   {
+//     id: 2,
+//     title: truncateText(
+//       "Simplify Your Life with Menrol",
+//       30
+//     ),
+//     description: truncateText(
+//       "Life is busy, but your household chores don’t have to be. Menrol brings skilled professionals to your fingertips, offering on-demand services for every need.",
+//       120
+//     ),
+//     image: "/Images/AllImages/Blog2.jpg",
+//     link: "https://pizzazzpainting.com/blog/popular-paint-colors-and-how-they-affect-your-mood/",
+//   },
+//   {
+//     id: 3,
+//     title: truncateText(
+//       "Transform Your Home with Menrol’s Expert Services",
+//       30
+//     ),
+//     description: truncateText(
+//       "Your home deserves the best care, and that’s exactly what Menrol provides. Our app connects you with experienced professionals who specialize in cleaning, repairs, and installations.",
+//       120
+//     ),
+//     image: "/Images/AllImages/Blog3.png",
+//     link: "https://pulseelectrix.co.uk/stay-connected-and-safe-a-guide-to-using-extension-leads/",
+//   },
+//   {
+//     id: 4,
+//     title: truncateText(
+//       "Connecting You with Verified Experts for Quality Home Services",
+//       30
+//     ),
+//     description: truncateText(
+//       "Finding reliable home service providers can be challenging. That’s where Menrol steps in. Our app connects you with trusted, verified professionals who deliver top-quality work for tasks big and small.",
+//       120
+//     ),
+//     image: "/Images/AllImages/Blog4.png",
+//     link: "https://pulseelectrix.co.uk/everything-you-need-to-know-about-portable-appliance-testing/",
+//   },
+// ];
 
 
 

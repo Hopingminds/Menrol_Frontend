@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { IoSearchOutline } from "react-icons/io5";
-import { useRouter } from "next/navigation";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useState } from "react";
+// import { IoSearchOutline } from "react-icons/io5";
+// import { useRouter } from "next/navigation";
+// import { FaUserCircle } from "react-icons/fa";
 
 interface LoginModalProps {
   isModalOpen: boolean;
@@ -9,6 +9,8 @@ interface LoginModalProps {
   isLoginMode: boolean;
   setIsLoginMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+
 
 const LoginModal: React.FC<LoginModalProps> = ({
   isModalOpen,

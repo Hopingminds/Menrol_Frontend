@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 // Define types for pricing, service request, and API response structure
-interface Pricing {
-  hourly: string;
-  daily: string;
-  contract: string;
-}
+// interface Pricing {
+//   hourly: string;
+//   daily: string;
+//   contract: string;
+// }
 
 interface ScheduledTiming {
   startTime: string;
@@ -60,11 +60,18 @@ interface ApiResponse {
   };
 }
 
+interface UserInfo {
+  token: string;
+  name?: string;  // Example of a specific dynamic property
+  email?: string; // Example of a specific dynamic property
+  // Add more known properties as needed
+}
+
 const AddtoCart: React.FC = () => {
   const router = useRouter();
   const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null); 
 
   // Fetch data from API with authentication token
   useEffect(() => {

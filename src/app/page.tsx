@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Supakling from "@/components/Home/Supakling";
 import OurServises from "@/components/Home/OurServises";
-import WhyChooseUs from "@/components/Home/WhyChooseUs";
+// import WhyChooseUs from "@/components/Home/WhyChooseUs";
 import LatestOffer from "@/components/Home/LatestOffer";
 import Blogs from "@/components/Home/Blogs";
 

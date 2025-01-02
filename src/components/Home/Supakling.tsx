@@ -135,7 +135,7 @@ const Supakling: React.FC = () => {
                           className="transition-all duration-500 translate-x-1 animate-move-text"
                           onClick={HandleGoServices}
                         >
-                          Let's get started
+                          Let&apos;s get started
                         </span>
                         <svg
                           className="w-6 h-6 transition-transform duration-500 translate-x-1 animate-move-icon"

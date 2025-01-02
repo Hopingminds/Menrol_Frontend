@@ -29,6 +29,14 @@ interface Service {
   categoryImage: string;
   subcategory: Subcategory[];
 }
+interface UserInfo {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  token: string;
+}
+
 interface ServiceRequest {
   instImages: File | null;
   service: string;
@@ -84,7 +92,8 @@ const Modal: React.FC<{
   const [workers, setWorkers] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
@@ -161,7 +170,7 @@ const Modal: React.FC<{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${userInfo.token}`,
+          "Authorization": `Bearer ${userInfo?.token}`,
         },
         body: jsonData, // Send JSON data
       });

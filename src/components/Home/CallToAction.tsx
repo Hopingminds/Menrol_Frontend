@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useRouter } from "next/navigation";
 
 const CallToAction = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -17,12 +17,16 @@ const CallToAction = () => {
     });
   }, []);
 
+  // const handleGoContact = () => {
+  //   setLoading(true);
+  //   router.push("/contactus");
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // };
+
   const handleGoContact = () => {
-    setLoading(true);
     router.push("/contactus");
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
   };
 
   return (
