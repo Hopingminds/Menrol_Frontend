@@ -29,7 +29,7 @@ const Testimonials: React.FC = () => {
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full max-w-sm min-w-[300px] py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
-                src="/Images/AllImages/person6.webp"
+                src="/Images/testimonials/pics/person6.jpg"
                 alt="Rinki Beniwal"
                 className="w-16 h-16 rounded-full object-cover"
                 height={200}
@@ -53,7 +53,7 @@ const Testimonials: React.FC = () => {
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg min-w-[300px] p-6 w-full max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
-                src="/Images/AllImages/person7.jpg"
+                src="/Images/testimonials/pics/person7.jpeg"
                 alt="Aditya Raj"
                 className="w-16 h-16 rounded-full object-cover"
 
@@ -78,7 +78,7 @@ const Testimonials: React.FC = () => {
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full min-w-[300px]  max-w-sm py-10 mx-auto">
             <div className="flex items-center space-x-4">
               <Image
-                src="/Images/AllImages/person8.webp"
+                src="/Images/testimonials/pics/person8.jpg"
                 alt="Ankit Raj"
                 className="w-16 h-16 rounded-full object-cover"
 
