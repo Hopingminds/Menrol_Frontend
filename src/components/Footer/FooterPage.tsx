@@ -43,6 +43,7 @@ const FooterPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -182,13 +183,14 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${pathname ===
+                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${
+                      pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id
                       )}`
-                      ? "text-blue-500 font-bold"
-                      : "text-white"
-                      }`}
+                        ? "text-blue-500 font-bold"
+                        : "text-white"
+                    }`}
                   >
                     {service.category}
                   </button>
@@ -217,8 +219,9 @@ const FooterPage = () => {
 
       {/* Footer Bottom Section */}
       <hr className="my-8 border-gray-700" />
+
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
-        <p className="mb-10">Copyright &copy; 2024 Menrol</p>
+        <p className="mb-10">Copyright &copy; {currentYear} Menrol</p>
         <p className="flex space-x-4 mb-10">
           <Link href="#" className="hover:underline decoration-blue-500">
             Terms of Use
@@ -232,6 +235,7 @@ const FooterPage = () => {
           </Link>
         </p>
       </div>
+
       <ToastContainer />
     </footer>
   );
