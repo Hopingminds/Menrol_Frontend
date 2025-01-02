@@ -175,7 +175,7 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
               />
             </div>
             {/* Dropdown for displaying search results */}
-            {searchResults.length > 0 && searchQuery.length >= 3 && (
+            {searchResults?.length > 0 && searchQuery?.length >= 3 && (
               <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1 ">
                 <ul>
                   {searchResults?.map((result) => (
@@ -209,7 +209,7 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
             <div className="relative">
               <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
-                className="bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2"
+                className="bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2 ml-3"
               >
                 <FaUserCircle />
               </button>
@@ -234,7 +234,7 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
             </div>
           ) : (
             <button
-              className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
+              className="focus:outline-none bg-blue-500 text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
               onClick={() => setIsModalOpen(true)}
             >
               Login

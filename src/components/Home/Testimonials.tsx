@@ -80,7 +80,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6">
+    <div className="container mx-auto px-6 my-[10vh]">
       <Slider {...settings} className="gap-8">
         {testimonialsData.map((testimonial, index) => (
           <div key={index} className="px-4">

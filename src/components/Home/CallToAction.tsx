@@ -30,10 +30,10 @@ const CallToAction = () => {
   };
 
   return (
-    <div className="px-[10%] flex justify-between mt-[18vh]">
+    <div className="px-[10%] flex flex-row justify-between mt-[10vh]">
       {/* Text Section */}
       <div
-        className="w-[50%] pt-5 leading-relaxed"
+        className="w-[50%]"
         data-aos="fade-right" // AOS animation
       >
         <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
@@ -45,7 +45,8 @@ const CallToAction = () => {
         </p>
         <button
           onClick={handleGoContact}
-          className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[20rem] h-[60px] 2xl:mt-28"
+          className="group relative inline-flex items-center justify-center px-4  text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[20rem] h-[60px] 2xl:mt-28
+          mb-[5vh]"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
           <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
@@ -87,7 +88,7 @@ const CallToAction = () => {
         <Image
           src="/Images/AllImages/BookingImage.png"
           alt="Call to Action"
-          className="w-full h-auto object-cover"
+          className="w-full h-[68vh] xl:h-auto lg:h-auto md:h-auto sm:h-auto xsm:h-auto rounded-lg object-cover pt-8"
           height={100}
           width={500}
         />

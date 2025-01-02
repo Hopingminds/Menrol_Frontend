@@ -6,7 +6,7 @@ const ScanAndDownload = () => {
   return (
     <div className="bg-[#0054A5] w-full relative flex justify-center h-[50vh] xsm:h-[35vh] sm:h-[40vh] md:h-[20rem] lg:h-[26rem] xl:h-[30rem] 2xl:h-[30rem]">
       {/* Text Section */}
-      <div className="text-white pt-8 xsm:pt-4 sm:pt-6 md:pt-8 xsm:px-4 sm:px-6">
+      <div className="flex flex-col items-center text-white pt-8 xsm:pt-4 sm:pt-6 md:pt-8 xsm:px-4 sm:px-6">
         <h1 className="font-lexend font-bold text-2xl xsm:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[40px] 2xl:text-[48px]">
           Scan to Download App
         </h1>

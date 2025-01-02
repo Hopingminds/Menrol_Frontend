@@ -28,10 +28,10 @@ export default function RootLayout({
             <Image
               src="/Comp-unscreen.gif" 
               alt="Menrol Logo"
-              className="loading-image"
+              className="loading-image h-[10vh] w-[10vw]"
               width={400}
               height={400}
-              unoptimized // Add this property
+              unoptimized 
             />
             {/* <h1 className="loading-text">WELCOME TO MENROL</h1> */}
           </div>
