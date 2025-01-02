@@ -84,8 +84,14 @@ const Modal: React.FC<{
   const [workers, setWorkers] = useState<number>(1);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [userInfo, setUserInfo] = useState<any>(null);
 
   useEffect(() => {
+    const storedUser = localStorage.getItem("user-info");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserInfo(parsedUser);
+    }
     if (selectedItem) {
       const currentPricing = selectedItem.pricing.find(p => p.pricingtype === pricingType);
       if (currentPricing) {
@@ -112,12 +118,12 @@ const Modal: React.FC<{
     try {
       setIsSubmitting(true);
       setError(null);
-
+  
       // Validate inputs
       if (!startDate || !endDate) {
         throw new Error("Please select both start and end dates");
       }
-
+  
       const serviceRequest: ServiceRequest = {
         instImages: uploadedImage,
         service: serviceId,
@@ -134,24 +140,36 @@ const Modal: React.FC<{
           },
         },
       };
-
+  
       // Create FormData for file upload
       const formData = new FormData();
       if (uploadedImage) {
         formData.append("instImages", uploadedImage);
       }
-      formData.append("service", serviceRequest.service);
-      formData.append("subcategory", JSON.stringify(serviceRequest.subcategory));
-
-      const response = await fetch("http://localhost:3027/api/v1/addServiceRequest", {
+  
+      // Send the other data as JSON, not as FormData
+      const payload = {
+        service: serviceRequest.service,
+        subcategory: JSON.stringify(serviceRequest.subcategory), // Stringify the subcategory object
+      };
+  
+      // Combine FormData and the payload
+      const jsonData = JSON.stringify(payload);
+  
+      // Make the API call with FormData and JSON body
+      const response = await fetch("https://api.menrol.com/api/v1/addServiceRequest", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${userInfo.token}`,
+        },
+        body: jsonData, // Send JSON data
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const data = await response.json();
       if (data.success) {
         alert("Service request added successfully!");
@@ -165,7 +183,7 @@ const Modal: React.FC<{
     } finally {
       setIsSubmitting(false);
     }
-  };
+  };  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
