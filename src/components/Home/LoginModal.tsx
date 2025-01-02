@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { IoSearchOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { FaUserCircle } from "react-icons/fa";
 
 interface LoginModalProps {
   isModalOpen: boolean;
@@ -60,14 +63,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
       const data = await response.json();
       if (response.ok && data.token) {
-        console.log("OTP verified:", data);
-
-        // Store the token and phone number in localStorage
-        localStorage.setItem(
-          "user-info",
-          JSON.stringify({ token: data.token, phone })
-        );
-
+        const userInfo = { token: data.token, phone };
+        localStorage.setItem("user-info", JSON.stringify(userInfo));
+        window.dispatchEvent(new Event("storage")); // Notify state change
         setIsModalOpen(false);
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
@@ -167,5 +165,4 @@ const LoginModal: React.FC<LoginModalProps> = ({
     </>
   );
 };
-
-export default LoginModal;
+export default LoginModal

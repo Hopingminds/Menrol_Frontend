@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
+import Script from "next/script";
+import "./Language.css"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -11,27 +13,36 @@ const Header = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<any>(null);
 
   const router = useRouter();
 
+  // Update login state and user data on storage change
   useEffect(() => {
-    const storedUser = localStorage.getItem("user-info");
-    setIsLoggedIn(!!storedUser); // Check if user is logged in
-    if (storedUser) setUserData(JSON.parse(storedUser)); // Parse stored user data
+    const syncLoginState = () => {
+      const storedUser = localStorage.getItem("user-info");
+      setIsLoggedIn(!!storedUser);
+      if (storedUser) setUserData(JSON.parse(storedUser));
+    };
+
+    window.addEventListener("storage", syncLoginState);
+
+    // Initial state check
+    syncLoginState();
+
+    return () => window.removeEventListener("storage", syncLoginState);
   }, []);
 
   const logout = () => {
     localStorage.clear();
-    setIsLoggedIn(false); // Update state to trigger re-render
-    setUserData(null); // Clear user data
+    setIsLoggedIn(false);
+    setUserData(null);
   };
 
   const handleProfileClick = () => {
-    setIsProfileModalOpen(true); // Open profile modal
+    setIsProfileModalOpen(true);
   };
 
   return (
@@ -49,7 +60,6 @@ const Header = () => {
 
         {/* Middle Section: Search & Location */}
         <div className="flex justify-end ml-[30%]">
-          {/* Location Dropdown */}
           <div className="flex flex-1 items-center px-2">
             <select
               name="location"
@@ -82,6 +92,10 @@ const Header = () => {
             </div>
           </div>
         </div>
+
+         {/* Language Dropdown */}
+
+         <div id="google_translate_element" className="check-text"></div>
 
         {/* Right Section: Profile & Login */}
         <div>
@@ -137,6 +151,38 @@ const Header = () => {
           />
         </div>
       </header>
+
+       {/* Google Translate Scripts */}
+       <Script
+        id="google-translate"
+        strategy="lazyOnload"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      />
+      <Script id="google-translate-init" strategy="lazyOnload">
+        {`
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              {
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,pa', // Add languages as needed
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+              },
+              'google_translate_element'
+            );
+          }
+        `}
+      </Script>
+
+      <style jsx global>{`
+        .VIpgJd-ZVi9od-ORHb-OEVmcd {
+          display: none !important;
+          visibility: hidden !important;
+        }
+
+        body {
+          top: 0 !important;
+        }
+      `}</style>
     </>
   );
 };

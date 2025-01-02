@@ -1,0 +1,57 @@
+/* Ensure the Google Translate container uses flexbox */
+#google_translate_element {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  gap: 5px; /* Optional: Add spacing between elements */
+}
+
+/* Style the dropdown */
+.goog-te-gadget-simple {
+  display: flex !important; /* Keep child elements in one row */
+  align-items: center; /* Vertically align elements */
+  border: 1px solid white !important; /* Optional: Add a white border */
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: transparent; /* Optional: Transparent background */
+  cursor: pointer; /* Add a pointer cursor for better UX */
+}
+
+/* Hide "Select Language" text */
+.goog-te-gadget-simple .goog-te-menu-value span:nth-child(1) {
+  display: none !important; /* Hide "Select Language" text */
+}
+
+/* Hide the Google Translate icon */
+#google_translate_element .goog-te-gadget-icon {
+  display: none !important; /* Remove the Google Translate icon */
+}
+
+/* Style the dropdown arrow */
+.goog-te-gadget-simple .goog-te-menu-value span:nth-child(3) {
+  display: inline-block !important; /* Show only the arrow */
+  margin-left: 5px; /* Optional: Adjust spacing */
+  color: white !important; /* Ensure the arrow matches the design */
+  font-size: 16px; /* Adjust arrow size if needed */
+}
+
+
+/* Ensure the parent container uses flexbox */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: flex; /* Flexbox layout for inline arrangement */
+  align-items: center; /* Vertically align items */
+  gap: 5px; /* Add spacing between the span and image */
+  text-decoration: none; /* Remove any underline or link styles */
+  color: inherit; /* Keep inherited text color */
+}
+
+/* Optional: Style the span for better alignment */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed span {
+  font-size: 16px; /* Adjust text size */
+  line-height: 1; /* Maintain consistent vertical alignment */
+}
+
+/* Optional: Style the image for better alignment */
+.VIpgJd-ZVi9od-xl07Ob-lTBxed img {
+  width: auto; /* Ensure image scales proportionally */
+  height: auto; /* Ensure image scales proportionally */
+}
