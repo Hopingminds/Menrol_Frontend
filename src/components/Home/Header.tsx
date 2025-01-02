@@ -1,125 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
-import LoginModal from "./LoginModal";
 import { FaUserCircle } from "react-icons/fa";
+import LoginModal from "./LoginModal";
+import ProfileModal from "./ProfileModal";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoginMode, setIsLoginMode] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userData, setUserData] = useState<any>(null);
 
   const router = useRouter();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
-    setIsLoggedIn(!!storedUser); // Set isLoggedIn based on the presence of user info
+    setIsLoggedIn(!!storedUser); // Check if user is logged in
+    if (storedUser) setUserData(JSON.parse(storedUser)); // Parse stored user data
   }, []);
 
   const logout = () => {
     localStorage.clear();
     setIsLoggedIn(false); // Update state to trigger re-render
+    setUserData(null); // Clear user data
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
-
-  useEffect(() => {
-    if (searchQuery.length < 3) {
-      setSearchResults([]);
-      return;
-    }
-
-    const fetchData = async () => {
-      try {
-        const url = `https://api.menrol.com/api/v1/searchCategory?service=${searchQuery}`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if (Array.isArray(data.data)) {
-          setSearchResults(data.data);
-        } else {
-          setSearchResults([]);
-        }
-      } catch (error) {
-        console.error("Error fetching search data:", error);
-        setSearchResults([]);
-      }
-    };
-
-    const delayDebounceFn = setTimeout(() => {
-      fetchData();
-    }, 500);
-
-    return () => clearTimeout(delayDebounceFn);
-  }, [searchQuery]);
-
-  const fetchCurrentLocation = async () => {
-    if (!("geolocation" in navigator)) {
-      console.error("Geolocation is not supported by this browser.");
-      setCurrentLocation("Location not supported");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        try {
-          const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
-          );
-          const data = await response.json();
-
-          const city =
-            data.address.city ||
-            data.address.town ||
-            data.address.village ||
-            data.address.hamlet ||
-            "Unknown city";
-          const state = data.address.state || "Unknown state";
-
-          setCurrentLocation(`${city}, ${state}`);
-        } catch (error) {
-          console.error("Error fetching location from API:", error);
-          setCurrentLocation("Unable to fetch location");
-        }
-      },
-      (error) => {
-        console.error("Error fetching geolocation:", error);
-        setCurrentLocation("Location not available");
-      },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
-    );
-  };
-
-  const handleLocationClick = () => {
-    fetchCurrentLocation();
+  const handleProfileClick = () => {
+    setIsProfileModalOpen(true); // Open profile modal
   };
 
   return (
     <>
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md">
+        {/* Left Section: Logo */}
         <div className="flex items-center space-x-2">
           <img
             src="/menrol-logo.png"
             alt="Logo"
-            className="h-16 w-auto md:h-20 md:w-auto cursor-pointer hover:scale-105"
+            className="h-16 w-auto md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
           />
         </div>
 
+        {/* Middle Section: Search & Location */}
         <div className="flex justify-end ml-[30%]">
+          {/* Location Dropdown */}
           <div className="flex flex-1 items-center px-2">
             <select
               name="location"
               id="location"
               className="w-[15vw] h-10 px-2 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none bg-white"
-              onClick={handleLocationClick}
               value={currentLocation}
               onChange={(e) => setCurrentLocation(e.target.value)}
             >
@@ -133,6 +68,7 @@ const Header = () => {
             </select>
           </div>
 
+          {/* Search Bar */}
           <div className="flex flex-1 items-center mx-6">
             <div className="relative w-full">
               <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
@@ -140,13 +76,14 @@ const Header = () => {
                 type="text"
                 placeholder="Search for a category"
                 value={searchQuery}
-                onChange={handleSearchChange}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none"
               />
             </div>
           </div>
         </div>
 
+        {/* Right Section: Profile & Login */}
         <div>
           {isLoggedIn ? (
             <div className="relative">
@@ -161,7 +98,7 @@ const Header = () => {
                   <ul>
                     <li
                       className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                      onClick={() => router.push("/profile")}
+                      onClick={handleProfileClick}
                     >
                       Profile
                     </li>
@@ -178,21 +115,25 @@ const Header = () => {
           ) : (
             <button
               className="focus:outline-none bg-blue-500 text-white px-4 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
-              onClick={() => {
-                setIsModalOpen(true);
-                setIsLoginMode(true); // Open modal in login mode
-              }}
+              onClick={() => setIsModalOpen(true)}
             >
               Login
             </button>
           )}
 
-          {/* Conditionally render the LoginModal */}
+          {/* Login Modal */}
           <LoginModal
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
             isLoginMode={isLoginMode}
             setIsLoginMode={setIsLoginMode}
+          />
+
+          {/* Profile Modal */}
+          <ProfileModal
+            isModalOpen={isProfileModalOpen}
+            setIsModalOpen={setIsProfileModalOpen}
+            userData={userData}
           />
         </div>
       </header>

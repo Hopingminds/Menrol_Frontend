@@ -5,7 +5,7 @@ import React from "react";
 const Reviews = () => {
   return (
     <div className="px-[10%]">
-      <div className=" mt-6">
+      {/* <div className=" mt-6">
         <div className="flex flex-row justify-between items-center">
           <div>
             <h1 className="text-[#24232A] text-[30px] items-center font-bold tracking-[0.05em] w-[70%]">
@@ -13,15 +13,12 @@ const Reviews = () => {
             </h1>
           </div>
 
-          {/* <button className="bg-[#0054A5] my-[5vh] rounded-full h-[6vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
-            View All
-          </button> */}
         </div>
       </div>
 
       <div className="container mx-auto py-10">
         <div className="flex flex-row gap-6">
-          {/* Card 1 */}
+          
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <Image
@@ -40,7 +37,7 @@ const Reviews = () => {
                 {Array(5)
                   .fill(null)
                   .map((_, index) => (
-                    <span key={index}>&#9733;</span> // Unicode star icon
+                    <span key={index}>&#9733;</span> 
                   ))}
               </div>
             </div>
@@ -51,7 +48,6 @@ const Reviews = () => {
           </div>
 
 
-          {/* Card 2 */}
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <Image
@@ -70,7 +66,7 @@ const Reviews = () => {
                 {Array(5)
                   .fill(null)
                   .map((_, index) => (
-                    <span key={index}>&#9733;</span> // Unicode star icon
+                    <span key={index}>&#9733;</span> 
                   ))}
               </div>
             </div>
@@ -81,7 +77,7 @@ const Reviews = () => {
           </div>
 
 
-          {/* Card 3 */}
+         
           <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-4 w-1/3 py-10">
             <div className="flex items-center space-x-4">
               <Image
@@ -100,7 +96,7 @@ const Reviews = () => {
                 {Array(5)
                   .fill(null)
                   .map((_, index) => (
-                    <span key={index}>&#9733;</span> // Unicode star icon
+                    <span key={index}>&#9733;</span> 
                   ))}
               </div>
             </div>
@@ -111,7 +107,7 @@ const Reviews = () => {
           </div>
 
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

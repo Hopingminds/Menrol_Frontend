@@ -40,15 +40,14 @@ const formatPrice = (price: number) => {
 
 const PricingDisplay: React.FC<{ pricing: PricingType[] }> = ({ pricing }) => {
   return (
-    <div className="mt-4 space-y-2">
-      {pricing.map((price) => (
-        <div key={price._id} className="flex justify-between items-center text-sm">
-          <span className="capitalize">{price.pricingtype}:</span>
-          <span className="font-medium">
-            {formatPrice(price.from)} - {formatPrice(price.to)}
-          </span>
-        </div>
-      ))}
+    <div className="mt-2">
+      {pricing.map((price) => 
+  price.pricingtype === 'daily' && (
+    <div key={price._id} className="text-2xl font-semibold text-gray-900">
+      {formatPrice(price.to)}
+    </div>
+  )
+)}
     </div>
   );
 };
@@ -105,7 +104,7 @@ const IndividualServices: React.FC = () => {
     return (
       <div className="p-6 flex items-center justify-center min-h-[50vh]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-[#24232A] border-t-transparent"></div>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-900 border-t-transparent"></div>
           <p className="mt-2 text-gray-600">Loading services...</p>
         </div>
       </div>
@@ -137,26 +136,28 @@ const IndividualServices: React.FC = () => {
   }
 
   return (
-    <div className="px-[10%]">
+    <div className="px-[10%] py-8">
       {/* Category Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[#24232A] mb-4">{service.category}</h1>
-        <p className="text-gray-600 max-w-3xl mx-auto">{service.categoryDescription}</p>
+      <div className="mb-12 text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">{service.category}</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">{service.categoryDescription}</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {service.subcategory.map((item) => (
           <div
             key={item._id}
-            className="p-4 shadow-lg rounded-lg transition-transform hover:scale-105 bg-white"
+            className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
           >
-            <div className="relative">
+            {/* Image Container with Fixed Height */}
+            <div className="flex items-center justify-center mt-4">
+            <div className="relative p-10 w-[90%] rounded-2xl  h-64 bg-gray-400">
               <Image
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[250px] rounded-lg object-cover"
-                height={400}
-                width={400}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw "
+                className="object-cover rounded-2xl"
                 priority={true}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
@@ -164,22 +165,22 @@ const IndividualServices: React.FC = () => {
                 }}
               />
             </div>
-            <div className="w-full mt-3">
-              <button className="w-full bg-blue-500 p-4 rounded-lg text-white hover:shadow-xl transition-all duration-300">Buy</button>
             </div>
-
-            <div className="mt-4">
-              <h3 className="font-bold text-[#24232A] text-xl mb-2">
-                {item.title}
-              </h3>
-              <p className="text-gray-600 text-sm mb-4">
-                {item.description || "No description available"}
-              </p>
-
-              <div className="border-t pt-4">
-                <h4 className="font-semibold text-[#24232A] mb-2">Pricing Options</h4>
+            
+            <div className="p-6">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold text-gray-900">
+                  {item.title}
+                </h3>
                 <PricingDisplay pricing={item.pricing} />
               </div>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                {item.description || "No description available"}
+              </p>
+              
+              <button className="w-full mt-4 bg-gray-100 py-3 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors">
+                ADD TO CART
+              </button>
             </div>
           </div>
         ))}
