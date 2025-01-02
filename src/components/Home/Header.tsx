@@ -11,27 +11,36 @@ const Header = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<any>(null);
 
   const router = useRouter();
 
+  // Update login state and user data on storage change
   useEffect(() => {
-    const storedUser = localStorage.getItem("user-info");
-    setIsLoggedIn(!!storedUser); // Check if user is logged in
-    if (storedUser) setUserData(JSON.parse(storedUser)); // Parse stored user data
+    const syncLoginState = () => {
+      const storedUser = localStorage.getItem("user-info");
+      setIsLoggedIn(!!storedUser);
+      if (storedUser) setUserData(JSON.parse(storedUser));
+    };
+
+    window.addEventListener("storage", syncLoginState);
+
+    // Initial state check
+    syncLoginState();
+
+    return () => window.removeEventListener("storage", syncLoginState);
   }, []);
 
   const logout = () => {
     localStorage.clear();
-    setIsLoggedIn(false); // Update state to trigger re-render
-    setUserData(null); // Clear user data
+    setIsLoggedIn(false);
+    setUserData(null);
   };
 
   const handleProfileClick = () => {
-    setIsProfileModalOpen(true); // Open profile modal
+    setIsProfileModalOpen(true);
   };
 
   return (
@@ -49,7 +58,6 @@ const Header = () => {
 
         {/* Middle Section: Search & Location */}
         <div className="flex justify-end ml-[30%]">
-          {/* Location Dropdown */}
           <div className="flex flex-1 items-center px-2">
             <select
               name="location"
