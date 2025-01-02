@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Pricing {
   pricingtype: string;
@@ -68,6 +70,20 @@ const FooterPage = () => {
 
   const handleServiceDetails = (serviceId: string) => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
+  };
+
+  const handleSubscribe = (event: React.FormEvent) => {
+    event.preventDefault();
+    toast.success("Thank you for subscribing!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   };
 
   const isActive = (link: string) =>
@@ -186,7 +202,7 @@ const FooterPage = () => {
           <h3 className="text-[18px] text-[#FFFFFF] font-semibold mb-4 font-dm-sans tracking-wide leading-relaxed">
             Subscribe for updates
           </h3>
-          <form>
+          <form onSubmit={handleSubscribe}>
             <input
               type="email"
               placeholder="Enter your email"
@@ -216,6 +232,7 @@ const FooterPage = () => {
           </Link>
         </p>
       </div>
+      <ToastContainer />
     </footer>
   );
 };
