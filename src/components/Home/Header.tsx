@@ -5,7 +5,8 @@ import { FaUserCircle } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
 import Script from "next/script";
-import "./Language.css";
+import "./Language.css"
+import Cart from "./Cart";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -231,6 +232,7 @@ const Header = () => {
             userData={userData}
           />
         </div>
+        <Cart />
       </header>
 
       {/* Google Translate Scripts */}
