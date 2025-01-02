@@ -137,12 +137,12 @@ const OurServices = () => {
 
       <div className="flex flex-row justify-between w-full items-center">
         <div className="font-lexend">
-          <h1 className="text-[#24232A] xl:text-[50px] xsm:text-[15px] sm:text-[36px] md:text-[26px] font-bold tracking-wide leading-relaxed">
-            Make Life Simple with our
+          <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
+            Make Life Simple <br /> with our  go-to Service app.
           </h1>
-          <h1 className="text-[#24232A] xl:text-[50px] xsm:text-[15px] sm:text-[36px] md:text-[26px] font-bold tracking-[0.05em]">
-            go-to Service app
-          </h1>
+          {/* <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
+            
+          </h1> */}
         </div>
 
         <button

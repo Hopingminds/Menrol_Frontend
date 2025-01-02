@@ -1,12 +1,15 @@
 "use client";
-import AddToCart from '@/components/AddTocart/AddToCart'
+
+
+
+import AddtoCart from '@/components/AddTocart/Addtocart';
 import Layout from '@/components/Layout'
 import React from 'react'
 
 const page = () => {
   return (
     <Layout>
-        <AddToCart/>
+        <AddtoCart/>
     </Layout>
   )
 }

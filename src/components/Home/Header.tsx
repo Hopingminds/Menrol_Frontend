@@ -6,6 +6,7 @@ import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
 import Script from "next/script";
 import "./Language.css"
+import Cart from "./Cart";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -16,6 +17,7 @@ const Header = () => {
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<any>(null);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   const router = useRouter();
 
@@ -34,6 +36,62 @@ const Header = () => {
 
     return () => window.removeEventListener("storage", syncLoginState);
   }, []);
+
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        // Use ip-api.com to fetch the user's location
+        const response = await fetch("http://ip-api.com/json");
+        const data = await response.json();
+
+        // Check if the location data is available
+        if (data.city && data.region) {
+          setCurrentLocation(`${data.city}, ${data.region}`);
+        } else {
+          setCurrentLocation("Location data unavailable");
+        }
+      } catch (error) {
+        console.error("Error fetching location:", error);
+        setCurrentLocation("Unable to fetch location");
+      }
+    };
+
+    fetchLocation();
+  }, []);
+
+  // Fetch search results on query change with debounce
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      fetchData();
+    }, 500); // Adjust debounce delay as needed
+
+    return () => clearTimeout(delayDebounceFn); // Cleanup on component unmount
+  }, [searchQuery]);
+
+  const fetchData = async () => {
+    try {
+      const url = `https://api.menrol.com/api/v1/searchCategory?service=${searchQuery}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (Array.isArray(data.data)) {
+        setSearchResults(data.data);
+      } else {
+        setSearchResults([]); // Reset if the structure is unexpected
+      }
+    } catch (error) {
+      console.error("Error fetching search data:", error);
+      setSearchResults([]); // Reset results in case of an error
+    }
+  };
+
+  const handleSearchResultClick = (resultTitle: string) => {
+    // Encode the resultTitle to handle special characters and spaces
+    const encodedTitle = encodeURIComponent(resultTitle);
+
+    // Navigate to the page with the query parameter
+    router.push(`/IndividualServices?data=${encodedTitle}`);
+  };
 
   const logout = () => {
     localStorage.clear();
@@ -68,8 +126,10 @@ const Header = () => {
               value={currentLocation}
               onChange={(e) => setCurrentLocation(e.target.value)}
             >
-              <option value="">Choose location</option>
-              <option value="current-location">Current location</option>
+              <option value="" disabled selected>
+                Choose location
+              </option>
+              {/* <option value="current-location">Current location</option> */}
               {currentLocation && (
                 <option value={currentLocation} disabled>
                   {currentLocation}
@@ -90,12 +150,34 @@ const Header = () => {
                 className="w-full pl-10 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none"
               />
             </div>
+            {/* Dropdown for displaying search results */}
+            {searchResults.length > 0 && searchQuery.length >= 3 && (
+              <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1 ">
+                <ul>
+                  {searchResults?.map((result) => (
+                    <li key={result._id} className="border-b hover:bg-blue-100">
+                      <div
+                        className="p-4 cursor-pointer hover:text-blue-600"
+                        onClick={() => handleSearchResultClick(result?._id)} // Adjust routing based on your requirements
+                      >
+                        <h4 className="font-semibold text-sm">
+                          {result?.category}
+                        </h4>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
 
-         {/* Language Dropdown */}
+        {/* Language Dropdown */}
 
-         <div id="google_translate_element" className="check-text"></div>
+        <div
+          id="google_translate_element"
+          className="check-text border p-3 rounded-xl"
+        ></div>
 
         {/* Right Section: Profile & Login */}
         <div>
@@ -150,10 +232,11 @@ const Header = () => {
             userData={userData}
           />
         </div>
+        <Cart />
       </header>
 
-       {/* Google Translate Scripts */}
-       <Script
+      {/* Google Translate Scripts */}
+      <Script
         id="google-translate"
         strategy="lazyOnload"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"

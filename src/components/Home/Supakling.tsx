@@ -65,26 +65,29 @@ const Supakling: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-8 bg-gray-50 px-[7%]">
+    <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
       <div className="max-w-[95%] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full min-h-[70vh]">
           {/* Left Column */}
           <div className="flex flex-col justify-center items-center h-full space-y-8">
             <div className="w-full  h-[500px] flex flex-col p-4">
-              <div className="font-bold text-navy-900 leading-relaxed">
-                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-5 xl:pt-5">
-                  Welcome to Menrol Force Hub
-                </p>
-
-                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-2">
-                  Your Trusted Skilled
-                </p>
-
-                <p className="md:text-4xl xl:text-3xl lg:text-4xl pt-3">
+              <div className="font-bold text-navy-900">
+                <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend ">
+                  Welcome to Menrol Hub
                   Labor Partner!
+                  {/* Your Trusted Skilled <br /> */}
+                  
                 </p>
+
+                {/* <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
+                  Your Trusted Skilled
+                </p> */}
+
+                {/* <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
+                 Labor Partner!
+                </p> */}
               </div>
-              <div className="grid grid-cols-2 gap-6 mt-[10vh]">
+              <div className="grid grid-cols-2 gap-6 mt-[4vh]">
                 <div className="flex items-center space-x-4 group relative inline-block">
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
 
