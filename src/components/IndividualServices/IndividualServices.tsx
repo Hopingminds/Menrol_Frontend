@@ -149,11 +149,11 @@ const Modal: React.FC<{
 
   if (!isOpen || !selectedItem) return null;
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setUploadedImage(event.target.files[0]);
-    }
-  };
+  // const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     setUploadedImage(event.target.files[0]);
+  //   }
+  // };`
 
   const getCurrentPriceRange = () => {
     return selectedItem.pricing.find(p => p.pricingtype === pricingType) || null;
