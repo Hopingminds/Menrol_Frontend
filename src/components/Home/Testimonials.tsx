@@ -53,7 +53,7 @@ const Testimonials = () => {
       image: "/Images/testimonials/pics/person2.jpg",
       rating: "⭐⭐⭐⭐⭐",
       service: "Kitchen Service",
-      feedback: "Highly recommend these kitchen services! They left the kitchen spotless and completely odor-free.",
+      feedback: "Highly recommend these kitchen services! They left the kitchen spotless and completely odor-free,friendly,and good.",
     },
     {
       name: "Akhil",
@@ -80,7 +80,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="container mx-auto px-6 my-[10vh]">
+    <div className="container mx-auto px-[7%] my-[10vh]">
       <Slider {...settings} className="gap-8">
         {testimonialsData.map((testimonial, index) => (
           <div key={index} className="px-4">

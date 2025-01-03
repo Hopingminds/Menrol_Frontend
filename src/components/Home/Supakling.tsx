@@ -161,13 +161,13 @@ const Supakling: React.FC = () => {
 
           {/* Right Column */}
           <div className="flex items-center justify-center h-[90%]">
-            <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden">
+            <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden ">
               <div
-                className="relative bg-cover bg-center flex items-center justify-center group"
+                className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
                 style={{ backgroundImage: `url('${getServiceImage(0)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
-                <p className="text-white font-bold group-hover:text-white z-10 text-3xl cursor-pointer">
+                <p className="text-white font-bold group-hover:text-white z-10 text-2xl cursor-pointer w-[50%] text-center">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[0]?.title
                     : "Loading..."}
@@ -177,14 +177,14 @@ const Supakling: React.FC = () => {
               <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
                 <div className="text-white font-bold text-center">
                   <p className="text-7xl"></p>
-                  <p className="text-xl max-w-[200px] mx-auto break-words">
+                  <p className="text-xl xsm:text-sm max-w-[200px] mx-auto break-words">
                     Providing Skilled Labor Across Multiple Categories
                   </p>
 
                   {/* Circles below the second paragraph */}
                   <div className="flex justify-center mt-4 space-x-[-12px]">
                     {/* First circle with an image */}
-                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                    <div className="w-12 xsm:w-8 xsm:h-8 h-12 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/ServiceImg/Image-6.png"
                         alt="Image 1"
@@ -193,7 +193,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Second circle with an image */}
-                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur6.jpg"
                         alt="Image 2"
@@ -202,7 +202,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Third circle with an image */}
-                    <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur5.jpg"
                         alt="Image 3"
@@ -211,16 +211,16 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Fourth circle with text */}
-                    <div className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
                       5k+
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-blue-800 flex flex-col items-center justify-center rounded-tr-[50%]">
+              <div className="bg-blue-800 flex flex-col items-center justify-center rounded-tr-[50%] transition-all duration-500">
                 <div className="flex items-center group">
-                  <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                  <button className="border border-gray-300 w-[13rem] text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
@@ -245,7 +245,7 @@ const Supakling: React.FC = () => {
                   <button className="border border-gray-300 text-white   py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
-                  <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                  <button className="border border-gray-300 h-[4rem] w-[13rem] text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
@@ -257,11 +257,11 @@ const Supakling: React.FC = () => {
               </div>
 
               <div
-                className="relative bg-cover bg-center flex items-center justify-center group"
+                className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
-                <p className="text-white font-bold group-hover:text-white z-10 text-3xl cursor-pointer">
+                <p className="text-white font-bold group-hover:text-white z-10 text-2xl cursor-pointer w-[50%] text-center">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[1]?.title
                     : "Loading..."}
@@ -273,7 +273,7 @@ const Supakling: React.FC = () => {
       </div>
       <div className="flex flex-col items-center justify-center px-[10%] md:my-[10vh] md:pt-5">
         {/* Buttons Section */}
-        <div className="flex space-x-8">
+        <div className="flex xsm:flex-col xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
           {/* Commercial Plumbing Button */}
           <button className="flex items-center space-x-3 px-16 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
@@ -285,7 +285,7 @@ const Supakling: React.FC = () => {
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center space-x-3 px-16 py-4 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center space-x-3 px-16 py-5 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
               <IoLocationOutline className="text-3xl" />

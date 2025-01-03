@@ -195,19 +195,22 @@ const Modal: React.FC<{
   };  
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-[90%] max-w-4xl h-[80%] overflow-auto relative flex">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl"
-        >
-          ×
-        </button>
-
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-50">
+    <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-3xl relative">
+      {/* Close Button */}
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-2xl transition-colors"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+  
+      {/* Modal Content */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Side: Image */}
-        <div className="flex-shrink-0 w-1/2 h-full">
-          <div className="relative w-full h-full bg-gray-300 rounded-lg overflow-hidden">
+        <div className="flex-shrink-0">
+          <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden shadow-md">
             <Image
               src={selectedItem.image}
               alt={selectedItem.title}
@@ -220,78 +223,52 @@ const Modal: React.FC<{
             />
           </div>
         </div>
-
+  
         {/* Right Side: Form */}
-        <div className="flex-grow pl-6 flex flex-col justify-start space-y-4 h-full">
-          <h2 className="text-2xl font-bold text-gray-900">{selectedItem.title}</h2>
-
-          {/* Start Date */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Select starting Date for Service
-            </label>
-            <input
-              type="datetime-local"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
-            />
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-xl font-semibold text-gray-800">{selectedItem.title}</h2>
+  
+          {/* Date Inputs */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
+              <input
+                type="datetime-local"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+              <input
+                type="datetime-local"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
           </div>
-
-          {/* End Date */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Select Ending Date for Service
-            </label>
-            <input
-              type="datetime-local"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
-            />
-          </div>
-
+  
           {/* Instructions */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Instructions (optional)
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Instructions (optional)</label>
             <textarea
               rows={3}
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
-              placeholder="Any specific instructions..."
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
+              placeholder="Add any specific instructions..."
+              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
-
-          {/* Image Upload */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Upload Reference Image (optional)
-            </label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
-            />
-            {uploadedImage && (
-              <p className="mt-2 text-sm text-gray-500">
-                Uploaded: {uploadedImage.name}
-              </p>
-            )}
-          </div>
-
+  
           {/* Pricing Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Pricing Type
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Pricing Type</label>
             <select
               value={pricingType}
               onChange={(e) => setPricingType(e.target.value)}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
+              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               {selectedItem.pricing.map((price) => (
                 <option key={price._id} value={price.pricingtype}>
@@ -300,7 +277,7 @@ const Modal: React.FC<{
               ))}
             </select>
           </div>
-
+  
           {/* Price Range */}
           {priceRange && (
             <div>
@@ -316,49 +293,41 @@ const Modal: React.FC<{
                 className="w-full"
                 step={(priceRange.to - priceRange.from) / 100}
               />
-              <p className="mt-1 text-gray-500">
-                Selected Price: {formatPrice(selectedPrice)}
-              </p>
+              <p className="text-sm text-gray-500 mt-1">Selected Price: {formatPrice(selectedPrice)}</p>
             </div>
           )}
-
+  
           {/* Workers */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Number of Workers Required
-            </label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Workers Required</label>
             <select
               value={workers}
               onChange={(e) => setWorkers(parseInt(e.target.value))}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
+              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
-              {Array.from({ length: 10000 }, (_, i) => i + 1).map((num) => (
+              {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
                 <option key={num} value={num}>
                   {num}
                 </option>
               ))}
             </select>
           </div>
-
+  
           {/* Total Price */}
-          <div className="mt-4">
-            <p className="text-lg font-semibold">
-              Total Price: {formatPrice(selectedPrice * workers)}
-            </p>
+          <div>
+            <p className="text-lg font-semibold text-gray-800">Total Price: {formatPrice(selectedPrice * workers)}</p>
           </div>
-
+  
           {/* Error Display */}
           {error && (
-            <div className="text-red-500 text-sm">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm">{error}</div>
           )}
-
+  
           {/* Action Buttons */}
-          <div className="mt-4 flex space-x-4">
+          <div className="flex space-x-4 mt-4">
             <button
               onClick={onClose}
-              className="w-full bg-gray-100 py-2 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
+              className="flex-1 bg-gray-100 py-2 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
               disabled={isSubmitting}
             >
               Cancel
@@ -366,7 +335,7 @@ const Modal: React.FC<{
             <button
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className="w-full bg-blue-500 py-2 rounded-lg text-white font-medium hover:bg-blue-600 transition-colors disabled:bg-blue-300"
+              className="flex-1 bg-blue-500 py-2 rounded-lg text-white font-medium hover:bg-blue-600 transition-colors disabled:bg-blue-300"
             >
               {isSubmitting ? "Submitting..." : "Add to Cart"}
             </button>
@@ -374,6 +343,8 @@ const Modal: React.FC<{
         </div>
       </div>
     </div>
+  </div>
+  
   );
 };
 

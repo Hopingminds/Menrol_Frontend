@@ -78,7 +78,7 @@ const SubCategories = () => {
             disableOnInteraction: false,
             pauseOnMouseEnter: true, // Stop autoplay on hover
           }}
-          navigation
+          
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
