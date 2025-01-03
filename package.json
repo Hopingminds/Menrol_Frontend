@@ -11,6 +11,7 @@
   "dependencies": {
     "@fontsource/dm-sans": "^5.1.0",
     "@fontsource/lexend": "^5.1.1",
+    "@stripe/react-stripe-js": "^3.1.1",
     "aos": "^2.3.4",
     "next": "^15.1.0",
     "react": "^19.0.0",
