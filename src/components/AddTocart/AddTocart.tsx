@@ -216,24 +216,24 @@ const AddtoCart: React.FC = () => {
                           <span className="text-gray-500">{requestedService.service.category}</span>
                         </div>
                         <div className="flex items-center gap-2">
-  <span>
-    {new Date(subcategory.scheduledTiming.startTime).toLocaleString('en-IN', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Kolkata'
-    })}
-  </span>
-  To
-  <span>
-    {new Date(subcategory.scheduledTiming.endTime).toLocaleString('en-IN', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Kolkata'
-    })}
-  </span>
-</div>
+                          <span>
+                            {new Date(subcategory.scheduledTiming.startTime).toLocaleString('en-IN', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: true,
+                              timeZone: 'Asia/Kolkata'
+                            })}
+                          </span>
+                          To
+                          <span>
+                            {new Date(subcategory.scheduledTiming.endTime).toLocaleString('en-IN', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: true,
+                              timeZone: 'Asia/Kolkata'
+                            })}
+                          </span>
+                        </div>
                       </div>
                       <div className="flex justify-between items-center pt-4">
                         <span className="text-2xl font-bold">₹{subcategory.selectedAmount}</span>

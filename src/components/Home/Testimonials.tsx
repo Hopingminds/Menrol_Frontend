@@ -80,10 +80,10 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="container mx-auto px-[7%] my-[10vh]">
+    <div className="container  mx-auto px-[7%] xsm:px-[2%] my-[10vh]">
       <Slider {...settings} className="gap-8">
         {testimonialsData.map((testimonial, index) => (
-          <div key={index} className="px-4">
+          <div key={index} className="px-4 xsm:px-0">
             <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full py-10">
               <div className="flex items-start space-x-4">
                 <Image

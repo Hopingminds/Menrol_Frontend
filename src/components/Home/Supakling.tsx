@@ -160,14 +160,14 @@ const Supakling: React.FC = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex items-center justify-center h-[90%]">
-            <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full min-h-[50vh] overflow-hidden ">
+          <div className="flex items-center justify-center h-[90%] md:h-full">
+            <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full  min-h-[50vh] overflow-hidden ">
               <div
                 className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
                 style={{ backgroundImage: `url('${getServiceImage(0)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
-                <p className="text-white font-bold group-hover:text-white z-10 text-2xl cursor-pointer w-[50%] text-center">
+                <p className="text-white font-bold group-hover:text-white z-10 xsm:text-base text-2xl cursor-pointer w-[50%] text-center">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[0]?.title
                     : "Loading..."}
@@ -177,14 +177,14 @@ const Supakling: React.FC = () => {
               <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
                 <div className="text-white font-bold text-center">
                   <p className="text-7xl"></p>
-                  <p className="text-xl xsm:text-sm max-w-[200px] mx-auto break-words">
+                  <p className="text-xl xsm:text-[12px] xsm:leading-tight xsm:w-[80%]  md:text-base md:p-7 max-w-[200px] mx-auto break-words">
                     Providing Skilled Labor Across Multiple Categories
                   </p>
 
                   {/* Circles below the second paragraph */}
-                  <div className="flex justify-center mt-4 space-x-[-12px]">
+                  <div className="flex justify-center mt-4 md:mb-2  space-x-[-12px]">
                     {/* First circle with an image */}
-                    <div className="w-12 xsm:w-8 xsm:h-8 h-12 rounded-full overflow-hidden relative">
+                    <div className="w-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 h-12 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/ServiceImg/Image-6.png"
                         alt="Image 1"
@@ -193,7 +193,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Second circle with an image */}
-                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
+                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur6.jpg"
                         alt="Image 2"
@@ -202,7 +202,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Third circle with an image */}
-                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
+                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur5.jpg"
                         alt="Image 3"
@@ -211,7 +211,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Fourth circle with text */}
-                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
                       5k+
                     </div>
                   </div>
@@ -220,14 +220,14 @@ const Supakling: React.FC = () => {
 
               <div className="bg-blue-800 flex flex-col items-center justify-center rounded-tr-[50%] transition-all duration-500">
                 <div className="flex items-center group">
-                  <button className="border border-gray-300 w-[13rem] text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                  <button className="border border-gray-300 w-[13rem] lg:w-[9rem] xsm:h-[2rem] xsm:w-[5rem] lg:leading-tight lg:text-xs xsm:leading-tight xsm:text-[9px] text-white xsm:py-1 xsm:px-1 py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
                       ? services[currentIndex]?.subcategory[0]?.title
                       : "Loading..."}
                   </button>
-                  <button className="border border-gray-300 text-white  py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white xsm:py-0 xsm:px-2  py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
                 </div>
@@ -242,10 +242,10 @@ const Supakling: React.FC = () => {
                 </div> */}
 
                 <div className="flex items-center group pt-2">
-                  <button className="border border-gray-300 text-white   py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white xsm:py-0 xsm:px-2 py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
-                  <button className="border border-gray-300 h-[4rem] w-[13rem] text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                  <button className="border border-gray-300 h-[4rem] xsm:h-[2rem] w-[13rem] lg:w-[9rem] xsm:w-[5rem] lg:leading-tight lg:text-xs xsm:leading-tight xsm:text-[9px] xsm:py-1 xsm:px-1  text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
@@ -261,7 +261,7 @@ const Supakling: React.FC = () => {
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
-                <p className="text-white font-bold group-hover:text-white z-10 text-2xl cursor-pointer w-[50%] text-center">
+                <p className="text-white font-bold group-hover:text-white z-10 xsm:text-base text-2xl cursor-pointer w-[50%] text-center">
                   {services.length > 0
                     ? services[currentIndex]?.subcategory[1]?.title
                     : "Loading..."}
@@ -271,27 +271,27 @@ const Supakling: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-[10%] md:my-[10vh] md:pt-5">
+      <div className="flex flex-col items-center justify-center px-[10%] xsm:my-[3rem] md:my-[10vh] md:pt-5">
         {/* Buttons Section */}
-        <div className="flex xsm:flex-col xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
+        <div className="flex xsm:flex-col xsm:space-x-0 xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
           {/* Commercial Plumbing Button */}
-          <button className="flex items-center space-x-3 px-16 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8  flex items-center justify-center rounded">
-              <PiBuildingsBold className="text-3xl" />
+              <PiBuildingsBold className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-lg font-medium">Commercial Plumbing</span>
+            <span className="text-lg xsm:text-base font-medium">Commercial Plumbing</span>
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center space-x-3 px-16 py-5 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
-              <IoLocationOutline className="text-3xl" />
+              <IoLocationOutline className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-2xl font-medium">Residential Plumbing</span>
+            <span className="text-2xl xsm:text-base font-medium">Residential Plumbing</span>
           </button>
         </div>
       </div>
@@ -302,25 +302,25 @@ const Supakling: React.FC = () => {
           <Image
             src="/Images/laptop.webp"
             alt="Placeholder"
-            className="w-full -ml-40"
+            className="w-full -ml-40 xsm:ml-3"
             height={1000}
             width={1000}
           />
           {/* Floating Elements */}
-          <div className="absolute top-20 left-4">
+          <div className="absolute top-20 left-4 xsm:left-9">
             <Image
               src="/Images/glob.webp"
               alt="glob"
-              className="w-full"
+              className="w-full xsm:w-10"
               height={50}
               width={50}
             />
           </div>
-          <div className="absolute bottom-20 right-20">
+          <div className="absolute bottom-20 right-20 xsm:right-3">
             <Image
               src="/Images/about.webp"
               alt="about"
-              className="w-full"
+              className="w-full xsm:w-10"
               height={50}
               width={50}
             />
