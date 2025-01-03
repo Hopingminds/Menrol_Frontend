@@ -67,7 +67,7 @@ const Ourservices: React.FC = () => {
     };
 
     fetchServices();
-  }, []);
+  },[ ]);
 
   const handleServiceDetails = (serviceId: string) => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);

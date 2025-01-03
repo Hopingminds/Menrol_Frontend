@@ -26,7 +26,7 @@ const PhoenixSterling = () => {
       <div
         className="relative bg-[rgba(94,147,198,1)] text-white p-4 rounded-xl 2xl:h-[25rem] xl:h-[25rem] w-[30%] lg:h-[25rem] sm:h-[20rem] md:h-[20rem] md:w-[50%] lg:w-[75%] xsm:h-[200px] xsm:w-[200px] xsm:items-center xsm:justify-center"
         style={{
-          backgroundImage: "url('/Images/plumber.jpeg')",
+          backgroundImage: "url('/Images/pics2/pics2/worker12.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
