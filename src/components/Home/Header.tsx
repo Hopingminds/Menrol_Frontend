@@ -9,6 +9,85 @@ import "./Language.css";
 import Cart from "./Cart";
 import Image from "next/image";
 
+// Custom hook for typing effect
+const useTypingEffect = () => {
+  const [currentText, setCurrentText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const words = ["Electrician", "Painter", "Cleaning services", "Plumber"];
+
+  useEffect(() => {
+    let mounted = true;
+    let typingTimeout: NodeJS.Timeout;
+    let pauseTimeout: NodeJS.Timeout;
+    let wordTimeout: NodeJS.Timeout;
+
+    const typeWord = () => {
+      const currentWord = words[currentIndex];
+      let charIndex = 0;
+
+      const type = () => {
+        if (!mounted) return;
+
+        if (charIndex <= currentWord.length) {
+          setCurrentText(currentWord.slice(0, charIndex));
+          charIndex++;
+          typingTimeout = setTimeout(type, 100);
+        } else {
+          pauseTimeout = setTimeout(deleteWord, 2000);
+        }
+      };
+
+      type();
+    };
+
+    const deleteWord = () => {
+      const currentWord = words[currentIndex];
+      let charIndex = currentWord.length;
+
+      const erase = () => {
+        if (!mounted) return;
+
+        if (charIndex >= 0) {
+          setCurrentText(currentWord.slice(0, charIndex));
+          charIndex--;
+          typingTimeout = setTimeout(erase, 50);
+        } else {
+          const nextIndex = (currentIndex + 1) % words.length;
+          setCurrentIndex(nextIndex);
+          wordTimeout = setTimeout(typeWord, 500);
+        }
+      };
+
+      erase();
+    };
+
+    typeWord();
+
+    return () => {
+      mounted = false;
+      clearTimeout(typingTimeout);
+      clearTimeout(pauseTimeout);
+      clearTimeout(wordTimeout);
+    };
+  }, [currentIndex]);
+
+  return currentText;
+};
+
+// Types
+interface UserInfo {
+  token: string;
+  name: string;
+  phone: string;
+  email: string;
+  [key: string]: string | number | boolean | null;
+}
+
+interface SearchResult {
+  _id: string;
+  category: string;
+}
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -17,27 +96,12 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  interface UserInfo {
-    token: string;
-    name: string;
-    phone: string;
-    email: string;
-    [key: string]: string | number | boolean | null;
-  }
-  
-
-  // Define the type for a single search result item
-interface SearchResult {
-  _id: string;
-  category: string;
-}
-
   const [userData, setUserData] = useState<UserInfo | null>(null);
-
- // Use this type for the search results state
-const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
   const router = useRouter();
+  const typedText = useTypingEffect();
+  const dynamicPlaceholder = `Search for a ${typedText}`;
 
   // Update login state and user data on storage change
   useEffect(() => {
@@ -48,21 +112,17 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     };
 
     window.addEventListener("storage", syncLoginState);
-
-    // Initial state check
     syncLoginState();
-
     return () => window.removeEventListener("storage", syncLoginState);
   }, []);
 
+  // Fetch location
   useEffect(() => {
     const fetchLocation = async () => {
       try {
-        // Use ip-api.com to fetch the user's location
         const response = await fetch("http://ip-api.com/json");
         const data = await response.json();
 
-        // Check if the location data is available
         if (data.city && data.region) {
           setCurrentLocation(`${data.city}, ${data.region}`);
         } else {
@@ -77,9 +137,7 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     fetchLocation();
   }, []);
 
- 
-  
-
+  // Search functionality
   const fetchData = useCallback(async () => {
     try {
       const url = `https://api.menrol.com/api/v1/searchCategory?service=${searchQuery}`;
@@ -89,30 +147,27 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
       if (Array.isArray(data.data)) {
         setSearchResults(data.data);
       } else {
-        setSearchResults([]); // Reset if the structure is unexpected
+        setSearchResults([]);
       }
     } catch (error) {
       console.error("Error fetching search data:", error);
-      setSearchResults([]); // Reset results in case of an error
+      setSearchResults([]);
     }
   }, [searchQuery]);
-  
 
   const handleSearchResultClick = (resultTitle: string) => {
-    // Encode the resultTitle to handle special characters and spaces
     const encodedTitle = encodeURIComponent(resultTitle);
-
-    // Navigate to the page with the query parameter
     router.push(`/IndividualServices?data=${encodedTitle}`);
   };
 
-   // Fetch search results on query change with debounce
-   useEffect(() => {
+  useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      fetchData();
-    }, 500); // Adjust debounce delay as needed
-  
-    return () => clearTimeout(delayDebounceFn); // Cleanup on component unmount
+      if (searchQuery) {
+        fetchData();
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [searchQuery, fetchData]);
 
   const logout = () => {
@@ -153,7 +208,6 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
               <option value="" disabled selected>
                 Choose location
               </option>
-              {/* <option value="current-location">Current location</option> */}
               {currentLocation && (
                 <option value={currentLocation} disabled>
                   {currentLocation}
@@ -168,21 +222,21 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
               <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
               <input
                 type="text"
-                placeholder="Search for a category"
+                placeholder={dynamicPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none"
               />
             </div>
-            {/* Dropdown for displaying search results */}
+            {/* Search Results Dropdown */}
             {searchResults?.length > 0 && searchQuery?.length >= 3 && (
-              <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1 ">
+              <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1">
                 <ul>
                   {searchResults?.map((result) => (
                     <li key={result._id} className="border-b hover:bg-blue-100">
                       <div
                         className="p-4 cursor-pointer hover:text-blue-600"
-                        onClick={() => handleSearchResultClick(result?._id)} // Adjust routing based on your requirements
+                        onClick={() => handleSearchResultClick(result?._id)}
                       >
                         <h4 className="font-semibold text-sm">
                           {result?.category}
@@ -197,7 +251,6 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
         </div>
 
         {/* Language Dropdown */}
-
         <div
           id="google_translate_element"
           className="check-text border p-3 rounded-xl"
@@ -271,7 +324,7 @@ const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
             new google.translate.TranslateElement(
               {
                 pageLanguage: 'en',
-                includedLanguages: 'en,hi,pa', // Add languages as needed
+                includedLanguages: 'en,hi,pa',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
               },
               'google_translate_element'

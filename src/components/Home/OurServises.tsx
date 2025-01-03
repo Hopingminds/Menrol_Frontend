@@ -187,15 +187,17 @@ const OurServices = () => {
           {services?.map((service) => (
             <div key={service._id} className="p-1">
               <div className="flex flex-col items-center">
-                <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg">
+                <div className="relative w-[280px] h-[220px] mx-auto rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl shadow-lg">
                   <Image
                     src={service.categoryImage}
                     alt={service.category}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover rounded-lg cursor-pointer transition-transform duration-300 hover:scale-110"
                     height={220}
                     width={280}
+                    onClick={() => handleServiceDetails(service._id)}
                   />
                 </div>
+
                 <h3 className="mt-3 text-center font-semibold text-[#24232A]">
                   {service.category}
                 </h3>
@@ -212,7 +214,7 @@ const OurServices = () => {
             {service.subcategory?.map((subCat) => (
               <div key={subCat._id} className="p-1">
                 <div className="flex flex-col items-center">
-                  <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg">
+                  <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
                     <Image
                       src={subCat.image}
                       alt={subCat.title}
