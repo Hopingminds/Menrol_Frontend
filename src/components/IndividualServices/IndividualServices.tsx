@@ -209,7 +209,7 @@ const Modal: React.FC<{
       {/* Modal Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Side: Image */}
-        <div className="flex-shrink-0">
+        <div className=" flex flex-col gap-7 justify-center">
           <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden shadow-md">
             <Image
               src={selectedItem.image}
@@ -221,6 +221,11 @@ const Modal: React.FC<{
                 target.src = "/placeholder-image.jpg";
               }}
             />
+          </div>
+          <div>
+            <p className=" text-base font-lexend">
+              {selectedItem.description}
+            </p>
           </div>
         </div>
   
@@ -268,7 +273,7 @@ const Modal: React.FC<{
             <select
               value={pricingType}
               onChange={(e) => setPricingType(e.target.value)}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full h-[70%] border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               {selectedItem.pricing.map((price) => (
                 <option key={price._id} value={price.pricingtype}>
@@ -303,7 +308,7 @@ const Modal: React.FC<{
             <select
               value={workers}
               onChange={(e) => setWorkers(parseInt(e.target.value))}
-              className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full h-[70%] border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
                 <option key={num} value={num}>
