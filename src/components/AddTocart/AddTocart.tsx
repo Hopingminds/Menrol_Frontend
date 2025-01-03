@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -14,8 +14,6 @@ interface Subcategory {
   subcategoryId: {
     image: string;
     title: string;
-    _id:string;
-    description:string;
   };
   title: string;
   requestType: string;
@@ -30,7 +28,6 @@ interface Subcategory {
 interface RequestedService {
   service: {
     category: string;
-    _id: string;
     categoryImage: string;
     categoryDescription: string;
   };
@@ -62,7 +59,6 @@ const AddtoCart: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
-  // Fetch user info from localStorage on component mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
     if (storedUser) {
@@ -71,117 +67,44 @@ const AddtoCart: React.FC = () => {
     }
   }, []);
 
-  const fetchServiceData = async () => {
-    try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/getUserServiceRequests",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${userInfo?.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data: ApiResponse = await response.json();
-      if (data.success) {
-        setServiceRequest(data.serviceRequests);
-        setTotalAmount(data.totalAmount.totalAmount);
-        // Save the data to localStorage
-        // localStorage.setItem('serviceRequest', JSON.stringify(data.serviceRequests));
-      }
-    } catch (error) {
-      console.error("Error fetching service data:", error);
-    }
-  };
-  // Fetch service requests when user info is set
   useEffect(() => {
     if (userInfo) {
+      const fetchServiceData = async () => {
+        try {
+          const response = await fetch("https://api.menrol.com/api/v1/getUserServiceRequests", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${userInfo.token}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!response.ok) throw new Error("Failed to fetch service data");
+
+          const data: ApiResponse = await response.json();
+          if (data.success) {
+            setServiceRequest(data.serviceRequests);
+            setTotalAmount(data.totalAmount.totalAmount);
+          }
+        } catch (error) {
+          console.error("Error fetching service data:", error);
+        }
+      };
+
       fetchServiceData();
     }
   }, [userInfo]);
 
-  // Handle navigating back to home
   const handleBackToHome = (): void => {
     router.push("/");
   };
 
-  // Handle removing subcategory from both state and backend
-  const handleRemoveSubcategory = async (serviceId: string, subcategoryId: string) => {
-    if (!userInfo) return;
-
-    console.log("Attempting to remove subcategory:", { serviceId, subcategoryId });
-
-    try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/removeServiceRequest",
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${userInfo.token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            service: serviceId,
-            subcategoryId: subcategoryId,
-          }),
-        }
-      );
-
-      // if (!response.ok) {
-      //   const errorData = await response.json();
-      //   console.error("Failed to fetch:", errorData);
-      //   throw new Error(errorData.message || "Failed to remove subcategory");
-      // }
-
-      const data = await response.json();
-      console.log("API Response:", data);
-
-      if (data.success) {
-        // Remove subcategory from local state immediately
-        // setServiceRequest((prevRequest) => {
-        //   if (!prevRequest) return null;
-
-        //   const updatedServices = prevRequest.requestedServices.map((service) => {
-        //     // Filter out the removed subcategory
-        //     const updatedSubcategory = service.subcategory.filter(
-        //       (subcat) => subcat._id !== subcategoryId
-        //     );
-        //     return {
-        //       ...service,
-        //       subcategory: updatedSubcategory,
-        //     };
-        //   });
-
-        //   return {
-        //     ...prevRequest,
-        //     requestedServices: updatedServices,
-        //   };
-        // });
-        fetchServiceData();
-
-        // Update the total amount immediately
-        setTotalAmount((prevAmount) => prevAmount - data.removedAmount);
-
-        // Persist the updated serviceRequest to localStorage
-        // localStorage.setItem('serviceRequest', JSON.stringify(serviceRequest));
-      }
-    } catch (error) {
-      console.error("Error removing subcategory:", error);
-    }
-  };
-
-  // Handle adding to cart (for now it shows an alert)
   const handleAddToCart = (): void => {
     alert("Added to cart!");
   };
 
   if (!serviceRequest) {
-    return (
-      <div className="flex items-center justify-center h-[20rem] text-xl">
-        Nothing in the <span className="text-3xl font-bold text-red-500 ml-2">Cart</span> 
-      </div>
-    );
+    return <div className="flex items-center justify-center min-h-screen text-xl">Loading...</div>;
   }
 
   return (
@@ -276,23 +199,29 @@ const AddtoCart: React.FC = () => {
                   <span>₹{totalAmount}</span>
                 </div>
               </div>
-
-              <p className="text-xs text-gray-500 mt-4">
-                By completing your purchase you agree to terms of services
-              </p>
-
-              <button 
-                onClick={() => router.push("/checkout")}
-                className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Checkout
-              </button>
-            </div>
+            ))}
+          </div>
+        ))}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-900">Total Amount</h2>
+          <p className="text-gray-700 text-lg mt-2">₹{totalAmount}</p>
+          <div className="mt-6 flex justify-between">
+            <button
+              onClick={handleBackToHome}
+              className="px-6 py-2 rounded-lg bg-gray-300 text-gray-700 hover:bg-gray-400 transition"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleAddToCart}
+              className="px-6 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition"
+            >
+              Check Out
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

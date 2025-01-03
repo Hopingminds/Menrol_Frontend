@@ -174,7 +174,7 @@ const Supakling: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
+              <div className= "bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
                 <div className="text-white font-bold text-center">
                   <p className="text-7xl"></p>
                   <p className="text-xl xsm:text-[12px] xsm:leading-tight xsm:w-[80%]  md:text-base md:p-7 max-w-[200px] mx-auto break-words">
@@ -211,16 +211,16 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Fourth circle with text */}
-                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
-                      5k+
+                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                      1k+
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-blue-800 flex flex-col items-center justify-center rounded-tr-[50%] transition-all duration-500">
-                <div className="flex items-center group">
-                  <button className="border border-gray-300 w-[13rem] lg:w-[9rem] xsm:h-[2rem] xsm:w-[5rem] lg:leading-tight lg:text-xs xsm:leading-tight xsm:text-[9px] text-white xsm:py-1 xsm:px-1 py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                <div className="flex items-center group pb-3">
+                  <button className="border border-gray-300 w-[13rem] text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-900 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0
@@ -242,10 +242,10 @@ const Supakling: React.FC = () => {
                 </div> */}
 
                 <div className="flex items-center group pt-2">
-                  <button className="border border-gray-300 text-white xsm:py-0 xsm:px-2 py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
+                  <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
-                  <button className="border border-gray-300 h-[4rem] xsm:h-[2rem] w-[13rem] lg:w-[9rem] xsm:w-[5rem] lg:leading-tight lg:text-xs xsm:leading-tight xsm:text-[9px] xsm:py-1 xsm:px-1  text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white"
+                  <button className="border border-gray-300 h-[3rem] w-[13rem] text-white py-3 px-1 text-sm rounded-full group-hover:bg-blue-900 group-hover:text-white"
                     onClick={HandleGoServicesDetails}
                   >
                     {services.length > 0

@@ -35,21 +35,21 @@ const Testimonials = () => {
 
   const testimonialsData = [
     {
-      name: "Rahul Rana",
+      name: "Simran Kaur",
       image: "/Images/testimonials/pics/person.jpg",
       rating: "⭐⭐⭐⭐",
       service: "Home Service",
       feedback: "Such a great experience! The experts were punctual and did a detailed job throughout my home.",
     },
     {
-      name: "Prajjwal Sharma",
+      name: "Jaspal singh",
       image: "/Images/testimonials/pics/person1.jpg",
       rating: "⭐⭐⭐⭐",
       service: "Office Service",
       feedback: "Our office space has never looked like this. The service providers were efficient, friendly, and thorough.",
     },
     {
-      name: "Kammal Prakash",
+      name: "Gurkirat singh",
       image: "/Images/testimonials/pics/person2.jpg",
       rating: "⭐⭐⭐⭐⭐",
       service: "Kitchen Service",
@@ -58,14 +58,14 @@ const Testimonials = () => {
     {
       name: "Akhil",
       image: "/Images/testimonials/pics/person3.jpg",
-      rating: "⭐⭐",
+      rating: "⭐⭐⭐",
       service: "Office Service",
       feedback: "Our office space has never looked like this. The service providers were efficient, friendly, and thorough.",
     },
     {
-      name: "Abhiraj",
+      name: "Preeti",
       image: "/Images/testimonials/pics/person4.jpg",
-      rating: "⭐⭐",
+      rating: "⭐⭐⭐⭐",
       service: "Office Service",
       feedback: "Our office space has never looked like this. The service providers were efficient, friendly, and thorough.",
     },
