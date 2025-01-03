@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -28,6 +28,7 @@ interface Subcategory {
 interface RequestedService {
   service: {
     category: string;
+    _id: string;
     categoryImage: string;
     categoryDescription: string;
   };
@@ -59,6 +60,7 @@ const AddtoCart: React.FC = () => {
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
+  // Fetch user info from localStorage on component mount
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
     if (storedUser) {
@@ -67,49 +69,129 @@ const AddtoCart: React.FC = () => {
     }
   }, []);
 
+  const fetchServiceData = async () => {
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/getUserServiceRequests",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${userInfo?.token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to fetch service data");
+
+      const data: ApiResponse = await response.json();
+      if (data.success) {
+        setServiceRequest(data.serviceRequests);
+        setTotalAmount(data.totalAmount.totalAmount);
+        // Save the data to localStorage
+        // localStorage.setItem('serviceRequest', JSON.stringify(data.serviceRequests));
+      }
+    } catch (error) {
+      console.error("Error fetching service data:", error);
+    }
+  };
+  // Fetch service requests when user info is set
   useEffect(() => {
     if (userInfo) {
-      const fetchServiceData = async () => {
-        try {
-          const response = await fetch("https://api.menrol.com/api/v1/getUserServiceRequests", {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${userInfo.token}`,
-              "Content-Type": "application/json",
-            },
-          });
 
-          if (!response.ok) throw new Error("Failed to fetch service data");
-
-          const data: ApiResponse = await response.json();
-          if (data.success) {
-            setServiceRequest(data.serviceRequests);
-            setTotalAmount(data.totalAmount.totalAmount);
-          }
-        } catch (error) {
-          console.error("Error fetching service data:", error);
-        }
-      };
 
       fetchServiceData();
     }
   }, [userInfo]);
 
+  // Handle navigating back to home
   const handleBackToHome = (): void => {
     router.push("/");
   };
 
+  // Handle removing subcategory from both state and backend
+  const handleRemoveSubcategory = async (serviceId: string, subcategoryId: string) => {
+    if (!userInfo) return;
+
+    console.log("Attempting to remove subcategory:", { serviceId, subcategoryId });
+
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/removeServiceRequest",
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            service: serviceId,
+            subcategoryId: subcategoryId,
+          }),
+        }
+      );
+
+      // if (!response.ok) {
+      //   const errorData = await response.json();
+      //   console.error("Failed to fetch:", errorData);
+      //   throw new Error(errorData.message || "Failed to remove subcategory");
+      // }
+
+      const data = await response.json();
+      console.log("API Response:", data);
+
+      if (data.success) {
+        // Remove subcategory from local state immediately
+        // setServiceRequest((prevRequest) => {
+        //   if (!prevRequest) return null;
+
+        //   const updatedServices = prevRequest.requestedServices.map((service) => {
+        //     // Filter out the removed subcategory
+        //     const updatedSubcategory = service.subcategory.filter(
+        //       (subcat) => subcat._id !== subcategoryId
+        //     );
+        //     return {
+        //       ...service,
+        //       subcategory: updatedSubcategory,
+        //     };
+        //   });
+
+        //   return {
+        //     ...prevRequest,
+        //     requestedServices: updatedServices,
+        //   };
+        // });
+        fetchServiceData();
+
+        // Update the total amount immediately
+        setTotalAmount((prevAmount) => prevAmount - data.removedAmount);
+
+        // Persist the updated serviceRequest to localStorage
+        // localStorage.setItem('serviceRequest', JSON.stringify(serviceRequest));
+      }
+    } catch (error) {
+      console.error("Error removing subcategory:", error);
+    }
+  };
+
+  // Handle adding to cart (for now it shows an alert)
   const handleAddToCart = (): void => {
     alert("Added to cart!");
   };
 
   if (!serviceRequest) {
-    return <div className="flex items-center justify-center min-h-screen text-xl">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen text-xl">
+        Loading...
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-[7%] ">
-      <h1 className="text-4xl font-extrabold text-gray-900 font-lexend text-center mb-10">My Cart</h1>
+      <h1 className="text-4xl font-extrabold text-gray-900 font-lexend text-center mb-10">
+        My Cart
+      </h1>
       <div className="space-y-8  mx-auto">
         {serviceRequest.requestedServices.map((requestedService) => (
           <div
@@ -132,28 +214,44 @@ const AddtoCart: React.FC = () => {
                   className="rounded-lg shadow-sm object-cover mb-4 lg:mb-0 lg:mr-6"
                 />
                 <div className="flex-grow space-y-2">
-                  <h3 className="text-lg font-bold text-gray-800">{subcategory.title}</h3>
-                  <p className="text-gray-600">{subcategory.instructions || "No instructions provided."}</p>
-                  <p className="text-gray-700"> <strong>Request Type:</strong> {subcategory.requestType}</p>
+                  <h3 className="text-lg font-bold text-gray-800">
+                    {subcategory.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {subcategory.instructions || "No instructions provided."}
+                  </p>
+                  <p className="text-gray-700">
+                    <strong>Request Type:</strong> {subcategory.requestType}
+                  </p>
                   <p className="text-gray-700">
                     <strong>Price:</strong> ₹{subcategory.selectedAmount}
                   </p>
                   <p className="text-gray-700">
-  <strong>Scheduled:</strong> 
-  {new Date(subcategory.scheduledTiming.startTime).toLocaleString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Asia/Kolkata",
-  })} - 
-  {new Date(subcategory.scheduledTiming.endTime).toLocaleString("en-IN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Asia/Kolkata",
-  })}
-</p>
-
+                    <strong>Scheduled:</strong>{" "}
+                    {new Date(
+                      subcategory.scheduledTiming.startTime
+                    ).toLocaleString("en-IN", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                      timeZone: "Asia/Kolkata",
+                    })}{" "}
+                    -{" "}
+                    {new Date(
+                      subcategory.scheduledTiming.endTime
+                    ).toLocaleString("en-IN", {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                      timeZone: "Asia/Kolkata",
+                    })}
+                  </p>
+                  <button
+                    onClick={() => handleRemoveSubcategory(requestedService.service._id, subcategory._id)}
+                    className="px-4 py-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition"
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             ))}
