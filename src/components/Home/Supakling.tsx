@@ -63,6 +63,7 @@ const Supakling: React.FC = () => {
   const HandleGoServices = () => {
     router.push("/ServiceDetails");
   };
+  
 
   return (
     <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
@@ -275,7 +276,7 @@ const Supakling: React.FC = () => {
         {/* Buttons Section */}
         <div className="flex xsm:flex-col xsm:space-x-0 xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
           {/* Commercial Plumbing Button */}
-          <button className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button onClick={HandleGoServices} className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8  flex items-center justify-center rounded">
               <PiBuildingsBold className="text-3xl xsm:text-base" />
@@ -285,7 +286,7 @@ const Supakling: React.FC = () => {
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-[#0054A5] text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button onClick={HandleGoServices} className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-[#0054A5] text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
               <IoLocationOutline className="text-3xl xsm:text-base" />

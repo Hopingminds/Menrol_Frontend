@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import Image from "next/image";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface PricingType {
   pricingtype: string;
@@ -170,6 +172,15 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
+      toast.success('Service request added successfully!', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setError(null);
 
       if (!startDate || !endDate) {
@@ -215,8 +226,8 @@ const Modal: React.FC<{
 
       const data = await response.json();
       if (data.success) {
-        alert("Service request added successfully!");
         handleClose();
+        
       } else {
         throw new Error(data.message || "Failed to add service request");
       }
@@ -229,7 +240,10 @@ const Modal: React.FC<{
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-50">
+      
       <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-3xl relative">
         {/* Close Button */}
         <button
@@ -409,6 +423,7 @@ const Modal: React.FC<{
         )}
       </div>
     </div>
+    </>
   );
 };
 
