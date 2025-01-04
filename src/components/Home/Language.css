@@ -55,8 +55,8 @@
   width: auto; /* Ensure image scales proportionally */
   height: auto; /* Ensure image scales proportionally */
 }
-/* @media (max-width: 480px) {
+@media (max-width: 480px) {
   #google_translate_element {
     display: none !important;
   }
-} */
+}
