@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-// import { IoSearchOutline } from "react-icons/io5";
-// import { useRouter } from "next/navigation";
-// import { FaUserCircle } from "react-icons/fa";
+import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
+
+
+// Import styles for react-toastify
+import "react-toastify/dist/ReactToastify.css";
 
 interface LoginModalProps {
   isModalOpen: boolean;
@@ -9,8 +11,6 @@ interface LoginModalProps {
   isLoginMode: boolean;
   setIsLoginMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-
 
 const LoginModal: React.FC<LoginModalProps> = ({
   isModalOpen,
@@ -38,13 +38,11 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
       const data = await response.json();
       if (response.ok) {
-        console.log("OTP sent:", data);
         setOtpSent(true);
       } else {
         setError(data.message || "Failed to send OTP. Please try again.");
       }
     } catch (err) {
-      console.error("Error during OTP send:", err);
       setError("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -68,12 +66,17 @@ const LoginModal: React.FC<LoginModalProps> = ({
         const userInfo = { token: data.token, phone };
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage")); // Notify state change
-        setIsModalOpen(false);
+        
+        // Show success toast message
+        toast.success("Login Successful!");
+
+        setTimeout(() => {
+          setIsModalOpen(false);
+        }, 2000); // Delay to let the toast message disappear
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
-      console.error("Error during OTP verification:", err);
       setError("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -82,6 +85,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
   return (
     <>
+      {/* Toast container */}
+      <ToastContainer />
+
       {isModalOpen && (
         <div
           onClick={() => setIsModalOpen(false)}
@@ -94,6 +100,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
             <h2 className="text-lg font-semibold mb-4">
               {otpSent ? "Verify OTP" : isLoginMode ? "Login" : "Sign Up"}
             </h2>
+
             <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
               {!otpSent ? (
                 <div className="mb-4">
@@ -124,7 +131,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   />
                 </div>
               )}
+
               {error && <p className="text-red-500 text-sm">{error}</p>}
+
               <div className="flex justify-end space-x-4">
                 <button
                   type="button"
@@ -148,6 +157,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 </button>
               </div>
             </form>
+
             {!otpSent && (
               <p className="mt-4 text-sm">
                 {isLoginMode
@@ -167,4 +177,5 @@ const LoginModal: React.FC<LoginModalProps> = ({
     </>
   );
 };
-export default LoginModal
+
+export default LoginModal;
