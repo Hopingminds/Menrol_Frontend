@@ -69,10 +69,10 @@ const Discount = () => {
           </p>
           <button
             onClick={handleGoContact} // Add the onClick handler
-            className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[160px] h-[60px]"
+            className="group relative inline-flex items-center justify-center  p-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:w-[130px] xsm:h-[40px] w-[160px] h-[60px] "
           >
             {/* Gradient background (blue tones) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
+            <div className="absolute inset-0 bg-[#0054A5] rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
 
             {/* White blur effect */}
             <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
@@ -87,7 +87,7 @@ const Discount = () => {
             </div>
 
             {/* White border with hover effect */}
-            <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
+            <div className="absolute inset-0 rounded-xl xsm:w-[130px] xsm:h-[40px] border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
 
             {/* Wave effect */}
             <div className="absolute inset-0 rounded-full overflow-hidden">

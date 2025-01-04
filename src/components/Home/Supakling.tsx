@@ -76,7 +76,7 @@ const Supakling: React.FC = () => {
                   Welcome to Menrol Hub
                   Labor Partner!
                   {/* Your Trusted Skilled <br /> */}
-                  
+
                 </p>
 
                 {/* <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
@@ -129,7 +129,7 @@ const Supakling: React.FC = () => {
                   <button className="relative inline-block p-px font-semibold leading-6 text-white bg-gray-800 shadow-2xl cursor-pointer rounded-xl shadow-zinc-900 transition-transform duration-300 ease-in-out hover:scale-105 active:scale-95 animate-bounce">
                     <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 p-[2px] opacity-100 animate-pulse"></span>
 
-                    <span className="relative z-10 block px-6 py-3 rounded-xl bg-blue-600">
+                    <span className="relative z-10 block px-6 py-3 rounded-xl bg-[#0054A5]">
                       <div className="relative z-10 flex items-center space-x-2">
                         <span
                           className="transition-all duration-500 translate-x-1 animate-move-text"
@@ -174,7 +174,7 @@ const Supakling: React.FC = () => {
                 </p>
               </div>
 
-              <div className= "bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
+              <div className="bg-orange-500 flex items-center justify-center rounded-l-full space-x-4">
                 <div className="text-white font-bold text-center">
                   <p className="text-7xl"></p>
                   <p className="text-xl xsm:text-[12px] xsm:leading-tight xsm:w-[80%]  md:text-base md:p-7 max-w-[200px] mx-auto break-words">
@@ -285,7 +285,7 @@ const Supakling: React.FC = () => {
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-blue-600 text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-[#0054A5] text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
               <IoLocationOutline className="text-3xl xsm:text-base" />
@@ -351,7 +351,7 @@ const Supakling: React.FC = () => {
             {/* Get Started Button */}
             <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
               <button
-                className="bg-blue-600 h-12 text-white px-6 py-3 rounded-full w-[12rem] shadow-lg hover:bg-blue-700 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
+                className="bg-[#0054A5] h-12 text-white px-6 py-3 rounded-xl w-[12rem] shadow-lg hover:bg-blue-800 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
                 onClick={handleService}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}

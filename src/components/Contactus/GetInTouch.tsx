@@ -162,7 +162,7 @@ const GetInTouch = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-[65%] py-3 bg-[rgba(0,84,165,1)] text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border border-black-500 disabled:opacity-50"
+                            className="w-[65%] py-3 bg-[#0054A5] text-white font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border border-black-500 disabled:opacity-50"
                         >
                             {loading ? 'Sending...' : 'Send Message'}
                         </button>

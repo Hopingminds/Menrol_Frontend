@@ -118,7 +118,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/"
-                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/"
                 )}`}
               >
@@ -128,7 +128,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/about"
-                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/about"
                 )}`}
               >
@@ -138,7 +138,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/ServiceDetails"
-                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/ServiceDetails"
                 )}`}
               >
@@ -148,7 +148,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/careers"
-                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/careers"
                 )}`}
               >
@@ -158,7 +158,7 @@ const FooterPage = () => {
             <li>
               <Link
                 href="/contactus"
-                className={`hover:text-blue-400 decoration-blue-500 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
                   "/contactus"
                 )}`}
               >
@@ -183,14 +183,13 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={` decoration-blue-500 hover:text-blue-400 transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${
-                      pathname ===
+                    className={` decoration-[#0054A5] hover:text-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id
                       )}`
-                        ? "text-blue-500 font-bold"
-                        : "text-white"
-                    }`}
+                      ? "text-[#0054A5] font-bold"
+                      : "text-white"
+                      }`}
                   >
                     {service.category}
                   </button>
@@ -208,9 +207,9 @@ const FooterPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full pl-6 mb-4 rounded-full p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-6 mb-4 rounded-xl p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="w-[9vw] xsm:w-full sm:w-full md:w-full rounded-full bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
+            <button className="w-[9vw] xsm:w-full sm:w-full md:w-full rounded-xl bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
               Subscribe
             </button>
           </form>
@@ -223,13 +222,13 @@ const FooterPage = () => {
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
         <p className="mb-10">Copyright &copy; {currentYear} Menrol</p>
         <p className="flex space-x-4 mb-10">
-          <Link href="#" className="hover:underline decoration-blue-500">
+          <Link href="#" className="hover:underline decoration-[#0054A5]">
             Terms of Use
           </Link>
           <span>|</span>
           <Link
             href="#"
-            className="hover:underline decoration-blue-500 font-dm-sans tracking-wide leading-relaxed"
+            className="hover:underline decoration-[#0054A5] font-dm-sans tracking-wide leading-relaxed"
           >
             Privacy Policy
           </Link>
