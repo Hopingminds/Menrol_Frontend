@@ -123,8 +123,7 @@ const Modal: React.FC<{
   useEffect(() => {
     if (isOpen && selectedItem) {
       resetForm();
-      // Set initial price based on default pricing type
-      const currentPricing = selectedItem.pricing.find(p => p.pricingtype === "daily");
+      const currentPricing = selectedItem.pricing.find((p) => p.pricingtype === "daily");
       if (currentPricing) {
         setSelectedPrice(currentPricing.from);
       }
@@ -134,7 +133,7 @@ const Modal: React.FC<{
   // Effect to update price when pricing type changes
   useEffect(() => {
     if (selectedItem) {
-      const currentPricing = selectedItem.pricing.find(p => p.pricingtype === pricingType);
+      const currentPricing = selectedItem.pricing.find((p) => p.pricingtype === pricingType);
       if (currentPricing) {
         setSelectedPrice(currentPricing.from);
       }
@@ -147,19 +146,16 @@ const Modal: React.FC<{
     onClose();
   };
 
-  if (!isOpen || !selectedItem) return null;
-
-  // const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files[0]) {
-  //     setUploadedImage(event.target.files[0]);
-  //   }
-  // };`
-
-  const getCurrentPriceRange = () => {
-    return selectedItem.pricing.find(p => p.pricingtype === pricingType) || null;
+  const calculateTotalDays = () => {
+    if (!startDate || !endDate) return 0;
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffInMs = end.getTime() - start.getTime();
+    return Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1); // At least 1 day
   };
 
-  const priceRange = getCurrentPriceRange();
+  const totalDays = calculateTotalDays();
+  const totalPrice = selectedPrice * workers * totalDays;
 
   const handleSubmit = async () => {
     if (!userInfo?.token) {
@@ -204,7 +200,7 @@ const Modal: React.FC<{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${userInfo?.token}`,
+          Authorization: `Bearer ${userInfo?.token}`,
         },
         body: jsonData,
       });
@@ -228,10 +224,13 @@ const Modal: React.FC<{
     }
   };
 
+  if (!isOpen || !selectedItem) return null;
+
+  const priceRange = selectedItem.pricing.find((p) => p.pricingtype === pricingType) || null;
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-50">
       <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-3xl relative">
-        {/* Close Button */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-2xl transition-colors"
@@ -248,7 +247,7 @@ const Modal: React.FC<{
             </p>
             <div className="flex gap-4">
               <button
-                onClick={() => window.location.href = '/login'}
+                onClick={() => (window.location.href = "/login")}
                 className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
               >
                 Log In
@@ -265,9 +264,7 @@ const Modal: React.FC<{
             </div>
           </div>
         ) : (
-          // Rest of the modal content remains the same...
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Left Side: Image */}
             <div className="flex flex-col gap-7 justify-center">
               <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden shadow-md">
                 <Image
@@ -282,17 +279,13 @@ const Modal: React.FC<{
                 />
               </div>
               <div>
-                <p className="text-base font-lexend">
-                  {selectedItem.description}
-                </p>
+                <p className="text-base font-lexend">{selectedItem.description}</p>
               </div>
             </div>
 
-            {/* Right Side: Form */}
             <div className="flex flex-col space-y-4">
               <h2 className="text-xl font-semibold text-gray-800">{selectedItem.title}</h2>
 
-              {/* Date Inputs */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
@@ -314,7 +307,6 @@ const Modal: React.FC<{
                 </div>
               </div>
 
-              {/* Instructions */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Instructions (optional)</label>
                 <textarea
@@ -326,7 +318,6 @@ const Modal: React.FC<{
                 />
               </div>
 
-              {/* Pricing Type */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Pricing Type</label>
                 <select
@@ -342,7 +333,6 @@ const Modal: React.FC<{
                 </select>
               </div>
 
-              {/* Price Range */}
               {priceRange && (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -361,7 +351,6 @@ const Modal: React.FC<{
                 </div>
               )}
 
-              {/* Workers */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Workers Required</label>
                 <select
@@ -377,17 +366,12 @@ const Modal: React.FC<{
                 </select>
               </div>
 
-              {/* Total Price */}
               <div>
-                <p className="text-lg font-semibold text-gray-800">Total Price: {formatPrice(selectedPrice * workers)}</p>
+                <p className="text-lg font-semibold text-gray-800">Total Price: {formatPrice(totalPrice)}</p>
               </div>
 
-              {/* Error Display */}
-              {error && (
-                <div className="text-red-500 text-sm">{error}</div>
-              )}
+              {error && <div className="text-red-500 text-sm">{error}</div>}
 
-              {/* Action Buttons */}
               <div className="flex space-x-4 mt-4">
                 <button
                   onClick={handleClose}

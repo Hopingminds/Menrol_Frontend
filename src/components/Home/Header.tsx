@@ -160,7 +160,7 @@ const Header = () => {
     setIsProfileModalOpen(true);
   };
 
-  const handleOrderDetails=()=>{
+  const handleOrderDetails = () => {
     router.push("/orderdetails")
   }
 
@@ -168,7 +168,7 @@ const Header = () => {
     <>
       <header className="sticky top-0 z-50 flex  items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 xsm:border xsm:border-black xsm:w-[10%]">
           <Image
             src="/menrol-logo.png"
             alt="Logo"
@@ -180,13 +180,13 @@ const Header = () => {
         </div>
 
         {/* Middle Section: Search & Location */}
-        <div className="flex justify-end ml-[30%]">
+        <div className="flex justify-end ml-[30%] xsm:ml-0 xsm:hidden">
           <div className="flex flex-row items-center justify-center px-2 pt-5">
             <Location />
           </div>
 
           {/* Search Bar */}
-          <div className="flex flex-1 items-center mx-6">
+          <div className="flex flex-1 items-center mx-6 ">
             <div className="relative w-full">
               <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
               <input
@@ -227,7 +227,7 @@ const Header = () => {
 
 
         {/* Right Section: Profile & Login */}
-        <div>
+        <div >
           {isLoggedIn ? (
             <div className="relative">
               <button
