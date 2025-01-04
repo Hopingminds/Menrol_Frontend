@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -56,7 +56,18 @@ interface UserInfo {
   token: string;
 }
 
-const AddtoCart: React.FC = () => {
+interface CheckoutProps {
+  address: string | null; 
+}
+
+// Declare Razorpay on the window object to avoid TypeScript errors
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+const Checkout: React.FC<CheckoutProps> = ({ address }) => {
   const router = useRouter();
   const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);
@@ -70,6 +81,13 @@ const AddtoCart: React.FC = () => {
       setUserInfo(parsedUser);
     }
   }, []);
+
+  // Fetch service data when user info is available
+  useEffect(() => {
+    if (userInfo) {
+      fetchServiceData();
+    }
+  }, [userInfo]);
 
   const fetchServiceData = async () => {
     try {
@@ -87,28 +105,78 @@ const AddtoCart: React.FC = () => {
       if (data.success) {
         setServiceRequest(data.serviceRequests);
         setTotalAmount(data.totalAmount.totalAmount);
-        // Save the data to localStorage
-        // localStorage.setItem('serviceRequest', JSON.stringify(data.serviceRequests));
       }
     } catch (error) {
       console.error("Error fetching service data:", error);
     }
   };
-  // Fetch service requests when user info is set
-  useEffect(() => {
-    if (userInfo) {
-      fetchServiceData();
+
+  // Add type annotation to the loadRazorpay function
+  const loadRazorpay: () => void = () => {
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.async = true;
+    document.body.appendChild(script);
+    script.onload = () => {
+      const options = {
+        key: "rzp_test_jmLsdK6FoWIRSe",
+        amount: totalAmount * 100, // Amount in paisa
+        currency: "INR",
+        name: "Menrol",
+        description: "Product description",
+        image: "https://www.menrol.com/_next/image?url=%2Fmenrol-logo.png&w=256&q=75",
+        handler: function (response: any) {
+          console.log("Payment successful!", response.razorpay_payment_id);
+          handleContinueCheckout();
+        },
+        prefill: {
+          name: "Customer Name",
+          email: "customer@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#0054a5",
+        },
+      };
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    };
+  };
+
+  const handleContinueCheckout = async () => {
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/purchaseService",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo?.token}`,
+          },
+          body: JSON.stringify({
+            // Payload as required
+            totalPayedAmount: totalAmount,
+            location: {
+              type: "Point",
+              coordinates: [-74.006, 40.7128],
+            },
+            address: "sector 75, E-314, Mohali"
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log("Checkout successful:", data);
+    } catch (error) {
+      console.log("Error during checkout:", error);
     }
-  }, [userInfo]);
-
-
-
+  };
 
   // Handle removing subcategory from both state and backend
-  const handleRemoveSubcategory = async (serviceId: string, subcategoryId: string) => {
+  const handleRemoveSubcategory = async (
+    serviceId: string,
+    subcategoryId: string
+  ) => {
     if (!userInfo) return;
-
-    console.log("Attempting to remove subcategory:", { serviceId, subcategoryId });
 
     try {
       const response = await fetch(
@@ -125,59 +193,21 @@ const AddtoCart: React.FC = () => {
           }),
         }
       );
-
-      // if (!response.ok) {
-      //   const errorData = await response.json();
-      //   console.error("Failed to fetch:", errorData);
-      //   throw new Error(errorData.message || "Failed to remove subcategory");
-      // }
-
       const data = await response.json();
-      console.log("API Response:", data);
-
       if (data.success) {
-        // Remove subcategory from local state immediately
-        // setServiceRequest((prevRequest) => {
-        //   if (!prevRequest) return null;
-
-        //   const updatedServices = prevRequest.requestedServices.map((service) => {
-        //     // Filter out the removed subcategory
-        //     const updatedSubcategory = service.subcategory.filter(
-        //       (subcat) => subcat._id !== subcategoryId
-        //     );
-        //     return {
-        //       ...service,
-        //       subcategory: updatedSubcategory,
-        //     };
-        //   });
-
-        //   return {
-        //     ...prevRequest,
-        //     requestedServices: updatedServices,
-        //   };
-        // });
         fetchServiceData();
-
-        // Update the total amount immediately
         setTotalAmount((prevAmount) => prevAmount - data.removedAmount);
-
-        // Persist the updated serviceRequest to localStorage
-        // localStorage.setItem('serviceRequest', JSON.stringify(serviceRequest));
       }
     } catch (error) {
       console.error("Error removing subcategory:", error);
     }
   };
 
-  // Handle adding to cart (for now it shows an alert)
-  // const handleAddToCart = (): void => {
-  //   alert("Added to cart!");
-  // };
-
   if (!serviceRequest) {
     return (
       <div className="flex items-center justify-center h-[20rem] text-xl">
-        Nothing in the <span className="text-3xl font-bold text-red-500 ml-2">Cart</span>
+        Nothing in the{" "}
+        <span className="text-3xl font-bold text-red-500 ml-2">Cart</span>
       </div>
     );
   }
@@ -191,7 +221,10 @@ const AddtoCart: React.FC = () => {
             {serviceRequest.requestedServices.map((requestedService) => (
               <div key={requestedService._id}>
                 {requestedService.subcategory.map((subcategory) => (
-                  <div key={subcategory._id} className="bg-white rounded-xl p-6 shadow-sm mb-6">
+                  <div
+                    key={subcategory._id}
+                    className="bg-white rounded-xl p-6 shadow-sm mb-6"
+                  >
                     <div className="flex flex-col md:flex-row gap-6">
                       <div className="w-full md:w-1/3">
                         <Image
@@ -210,33 +243,38 @@ const AddtoCart: React.FC = () => {
                           {subcategory.subcategoryId.description}
                         </p>
                         <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-gray-500">{requestedService.service.category}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span>
-                              {new Date(subcategory.scheduledTiming.startTime).toLocaleString('en-IN', {
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                hour12: true,
-                                timeZone: 'Asia/Kolkata'
-                              })}
-                            </span>
-                            To
-                            <span>
-                              {new Date(subcategory.scheduledTiming.endTime).toLocaleString('en-IN', {
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                hour12: true,
-                                timeZone: 'Asia/Kolkata'
-                              })}
-                            </span>
-                          </div>
+                          <span className="text-gray-500">
+                            {requestedService.service.category}
+                          </span>
+                          <span>
+                            {new Date(subcategory.scheduledTiming.startTime).toLocaleString("en-IN", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                              timeZone: "Asia/Kolkata",
+                            })}
+                          </span>
+                          <span>To</span>
+                          <span>
+                            {new Date(subcategory.scheduledTiming.endTime).toLocaleString("en-IN", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: true,
+                              timeZone: "Asia/Kolkata",
+                            })}
+                          </span>
                         </div>
                         <div className="flex justify-between items-center pt-4">
-                          <span className="text-2xl font-bold">₹{subcategory.selectedAmount}</span>
+                          <span className="text-2xl font-bold">
+                            ₹{subcategory.selectedAmount}
+                          </span>
                           <button
-                            onClick={() => handleRemoveSubcategory(requestedService.service._id, subcategory.subcategoryId._id)}
+                            onClick={() =>
+                              handleRemoveSubcategory(
+                                requestedService.service._id,
+                                subcategory.subcategoryId._id
+                              )
+                            }
                             className="text-red-500 hover:text-red-700 font-medium"
                           >
                             Remove
@@ -254,19 +292,27 @@ const AddtoCart: React.FC = () => {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-xl p-6 shadow-sm sticky top-6">
               <h2 className="text-2xl font-bold mb-6">Summary</h2>
-
               <div className="space-y-4">
                 <h3 className="font-medium text-gray-700">Original Price</h3>
                 {serviceRequest.requestedServices.map((service) =>
                   service.subcategory.map((subcategory) => (
-                    <div key={subcategory._id} className="flex justify-between items-center">
-                      <span className="text-gray-600 truncate flex-1">{subcategory.title}</span>
-                      <span className="text-gray-900">₹{subcategory.selectedAmount}</span>
+                    <div
+                      key={subcategory._id}
+                      className="flex justify-between items-center"
+                    >
+                      <span className="text-gray-600 truncate flex-1">
+                        {subcategory.title}
+                      </span>
+                      <span className="text-gray-900">
+                        ₹{subcategory.selectedAmount}
+                      </span>
                     </div>
                   ))
                 )}
 
-                <div className="text-blue-500 text-sm mt-4">Including all the taxes</div>
+                <div className="text-blue-500 text-sm mt-4">
+                  Including all the taxes
+                </div>
 
                 <div className="border-t pt-4 mt-4">
                   <div className="flex justify-between items-center font-bold">
@@ -280,7 +326,7 @@ const AddtoCart: React.FC = () => {
                 </p>
 
                 <button
-                  onClick={() => router.push("/checkout")}
+                  onClick={loadRazorpay}
                   className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   Checkout
@@ -294,4 +340,4 @@ const AddtoCart: React.FC = () => {
   );
 };
 
-export default AddtoCart;
+export default Checkout;

@@ -8,6 +8,7 @@ import Script from "next/script";
 import "./Language.css";
 import Cart from "./Cart";
 import Image from "next/image";
+import Location from "./Location";
 
 // Custom hook for typing effect
 const useTypingEffect = () => {
@@ -116,27 +117,6 @@ const Header = () => {
     return () => window.removeEventListener("storage", syncLoginState);
   }, []);
 
-  // Fetch location
-  useEffect(() => {
-    const fetchLocation = async () => {
-      try {
-        const response = await fetch("http://ip-api.com/json");
-        const data = await response.json();
-
-        if (data.city && data.region) {
-          setCurrentLocation(`${data.city}, ${data.region}`);
-        } else {
-          setCurrentLocation("Location data unavailable");
-        }
-      } catch (error) {
-        console.error("Error fetching location:", error);
-        setCurrentLocation("Unable to fetch location");
-      }
-    };
-
-    fetchLocation();
-  }, []);
-
   // Search functionality
   const fetchData = useCallback(async () => {
     try {
@@ -197,23 +177,8 @@ const Header = () => {
 
         {/* Middle Section: Search & Location */}
         <div className="flex justify-end ml-[30%]">
-          <div className="flex flex-1 items-center px-2">
-            <select
-              name="location"
-              id="location"
-              className="w-[15vw] h-10 px-2 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none bg-white"
-              value={currentLocation}
-              onChange={(e) => setCurrentLocation(e.target.value)}
-            >
-              <option value="" disabled selected>
-                Choose location
-              </option>
-              {currentLocation && (
-                <option value={currentLocation} disabled>
-                  {currentLocation}
-                </option>
-              )}
-            </select>
+          <div className="flex flex-row items-center justify-center px-2 pt-5">
+            <Location />
           </div>
 
           {/* Search Bar */}

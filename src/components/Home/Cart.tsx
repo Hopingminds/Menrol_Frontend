@@ -1,12 +1,12 @@
 import React from 'react';
 import { FaCartShopping } from "react-icons/fa6";
-import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import { useRouter } from 'next/navigation';
 
 const Cart = () => {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
 
   const handleCartClick = () => {
-    router.push("/addtocart"); // Navigate to the AddtoCart page
+    router.push("/checkout");
   };
 
   return (

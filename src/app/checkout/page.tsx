@@ -1,11 +1,16 @@
-import React from 'react'
+"use client";
+
+
+import Checkout from '@/components/AddTocart/Checkout';
+import Layout from '@/components/Layout';
+
 
 const page = () => {
   return (
-    <div>page</div>
+    <Layout>
+        <Checkout />
+    </Layout>
   )
-
 }
-
 
 export default page
