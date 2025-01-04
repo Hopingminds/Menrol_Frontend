@@ -4,7 +4,7 @@ import React from 'react'
 const Content = () => {
     return (
         <div className='md:overflow-hidden md:-ml-8 2xl:ml-1 '>
-            <div className="grid grid-cols-[1fr,2.5fr] md:gap-10 xsm:px-[7%] sm:gap-5 2xl:gap-20 xsm:gap-5 mt-10 px-[12%] my-8">
+            <div className="grid grid-cols-[1fr,2.5fr] md:gap-10 md:px-[13%] xsm:px-[10%] sm:gap-5 2xl:gap-20 xsm:gap-5 xsm:mt-4 mt-10 px-[7%] my-8">
                 <div
                     className="relative bg-[rgba(94,147,198,1)] p-8 rounded-lg shadow-md text-center col-span-1 h-full md:h-full xsm:w-[8rem] xsm:h-[8rem] sm:w-[30vw] w-80 xl:w-[30vw]  2xl:h-full"
                     style={{

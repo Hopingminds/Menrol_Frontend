@@ -24,7 +24,7 @@ const HowItWorks: React.FC = () => {
   // ];
 
   return (
-    <section className="pb-[10vh] p-10 mt-[15vh] bg-gray-100 px-[10%]">
+    <section className="pb-[10vh] xsm:pb-0 xsm:mt-0 xsm:p-0 p-10 mt-[15vh] bg-gray-100 px-[10%]">
       
       {/* <h2 className="text-5xl font-bold text-start mb-8 text-[rgba(36,35,42,1)] mt-4 xsm:text-base">
         How to Apply
