@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="bg-white py-16 px-[10%]">
+    <section className="bg-white py-16 xsm:py-0 px-[10%]">
       {/* Header Section */}
       <div className="px-4 mt-6">
 

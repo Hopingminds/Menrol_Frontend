@@ -18,7 +18,7 @@ type CoreValuesProps = {
 
 const CoreValues: React.FC<CoreValuesProps> = ({ values, progressBars }) => {
     return (
-        <section className="p-8 bg-gray-50 flex flex-col md:flex-row md:justify-center md:gap-44 lg:flex-row gap-12 justify-between px-[10%] my-10">
+        <section className="p-8 bg-gray-50 flex flex-col md:flex-row md:justify-center md:gap-44 lg:flex-row gap-12 justify-between px-[10%] xsm:my-0 my-10">
             {/* Values Section */}
             <div className="flex-col w-[45%] md:w-[50%] xsm:w-full justify-between">
                 <h5 className="text-green-600 uppercase  font-bold mb-2 xsm:text-[7px] font-lexend">/ Our Value</h5>
