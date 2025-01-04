@@ -257,7 +257,7 @@ const Supakling: React.FC = () => {
               </div>
 
               <div
-                className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
+                className="relative bg-cover bg-center flex items-center  justify-center group transition-all duration-500"
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>

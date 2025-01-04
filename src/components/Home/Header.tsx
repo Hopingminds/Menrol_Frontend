@@ -166,13 +166,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 flex  items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
+      <header className="sticky top-0 z-50 flex  items-center justify-between px-[7%] bg-white shadow-md xsm:w-[370px]">
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2 xsm:border xsm:border-black xsm:w-[10%]">
+        <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">
           <Image
             src="/menrol-logo.png"
             alt="Logo"
-            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer border border-black"
+            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
             width={200}
             height={200}
@@ -198,24 +198,27 @@ const Header = () => {
               />
             </div>
             {/* Search Results Dropdown */}
-            {searchResults?.length > 0 && searchQuery?.length >= 3 && (
+            {searchQuery?.length >= 3 && (
               <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1">
-                <ul>
-                  {searchResults?.map((result) => (
-                    <li key={result._id} className="border-b hover:bg-blue-100">
-                      <div
-                        className="p-4 cursor-pointer hover:text-blue-600"
-                        onClick={() => handleSearchResultClick(result?._id)}
-                      >
-                        <h4 className="font-semibold text-sm">
-                          {result?.category}
-                        </h4>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                {searchResults?.length > 0 ? (
+                  <ul>
+                    {searchResults.map((result) => (
+                      <li key={result._id} className="border-b hover:bg-blue-100">
+                        <div
+                          className="p-4 cursor-pointer hover:text-blue-600"
+                          onClick={() => handleSearchResultClick(result._id)}
+                        >
+                          <h4 className="font-semibold text-sm">{result.category}</h4>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="p-4 text-center text-gray-500">No results found</div>
+                )}
               </div>
             )}
+
           </div>
         </div>
 
@@ -232,7 +235,7 @@ const Header = () => {
             <div className="relative">
               <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
-                className="bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2 ml-3"
+                className="bg-[#0054A5] h-[3rem] rounded-full text-white px-4 py-2 ml-3"
               >
                 <FaUserCircle />
               </button>
