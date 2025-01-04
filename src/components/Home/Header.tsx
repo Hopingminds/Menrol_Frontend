@@ -166,13 +166,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md">
+      <header className="sticky top-0 z-50 flex  items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2">
           <Image
             src="/menrol-logo.png"
             alt="Logo"
-            className="h-16 w-auto md:h-20 md:w-auto cursor-pointer"
+            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer border border-black"
             onClick={() => router.push("/")}
             width={200}
             height={200}
@@ -222,8 +222,9 @@ const Header = () => {
         {/* Language Dropdown */}
         <div
           id="google_translate_element"
-          className="check-text border p-3 rounded-xl"
+          className="check-text p-3 rounded-xl border border-black"
         ></div>
+
 
         {/* Right Section: Profile & Login */}
         <div>

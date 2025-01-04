@@ -73,7 +73,7 @@ const GetInTouch = () => {
 
     return (
         <div>
-            <div className="flex flex-col lg:flex-row p-8 px-[10%] justify-between">
+            <div className="flex flex-col lg:flex-row p-8 px-[7%] justify-between">
                 {/* Left Section */}
                 <div className="space-y-8 text-center xsm:text-start lg:text-left">
                     <h2 className="text-5xl font-bold text-gray-800">Get in Touch</h2>
@@ -162,7 +162,7 @@ const GetInTouch = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-[65%] py-3 bg-[rgba(0,84,165,1)] text-white font-medium rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border border-black-500 disabled:opacity-50"
+                            className="w-[65%] py-3 bg-[#0054A5] text-white font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 border border-black-500 disabled:opacity-50"
                         >
                             {loading ? 'Sending...' : 'Send Message'}
                         </button>

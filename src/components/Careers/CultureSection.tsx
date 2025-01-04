@@ -17,7 +17,7 @@ const CultureSection: React.FC = () => {
                     {/* Content inside the div (if any) */}
                 </div>
 
-                <div className="bg-[rgba(94,147,198,1)] p-2 rounded-lg shadow-md text-center w-full xsm:w-[20rem] xsm:h-[20rem] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
+                <div className="bg-[#0054A5] p-2 rounded-lg shadow-md text-center w-full xsm:w-[20rem] xsm:h-[20rem] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
                     <div className="text-6xl font-bold md:text-4xl ">90%</div>
                     <div className="text-xl mt-2 font-dm-sans tracking-wide leading-relaxed">Job Satisfaction</div>
                     <div className="text-sm mt-2 font-dm-sans tracking-wide leading-relaxed">Our employees love working for Supaklin</div>
@@ -36,7 +36,7 @@ const CultureSection: React.FC = () => {
                     ].map((item, index) => (
                         <div key={index}>
                             <h3 className="text-xl font-bold flex items-center mt-2">
-                                <span className="mr-2 text-[rgba(86,83,225,1)] text-justify ">➡</span> {item.title}
+                                <span className="mr-2 text-[#0054A5] text-justify ">➡</span> {item.title}
                             </h3>
                             <p className="mt-2 text-[rgba(107,106,126,1)]">{item.description}</p>
                         </div>

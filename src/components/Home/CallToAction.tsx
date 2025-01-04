@@ -48,7 +48,7 @@ const CallToAction = () => {
           className="group relative inline-flex items-center justify-center px-4  text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:mt-3 lg:mt-20 xsm:w-[10rem] xsm:h-[40px] w-[20rem] h-[60px] 2xl:mt-28
           mb-[5vh]"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
+          <div className="absolute inset-0 bg-[#0054A5] rounded-xl xsm:w-[130px] xsm:h-[40px] transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
           <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div className="glitter-container">
@@ -57,11 +57,11 @@ const CallToAction = () => {
               <div className="glitter"></div>
             </div>
           </div>
-          <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
+          {/* <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div> */}
           <div className="absolute inset-0 rounded-full overflow-hidden">
             <div className="wave"></div>
           </div>
-          <span className="relative z-10 flex items-center gap-2">
+          <span className="relative z-10 flex items-center   gap-2 xsm:gap-0">
             <span className="tracking-wider">Contact us</span>
             <svg
               viewBox="0 0 24 24"

@@ -3,7 +3,7 @@ import React from "react";
 
 const PhoenixSterling = () => {
   return (
-    <div className="flex xsm:flex-col px-[10%] xsm:px-4 bg-[rgba(0,84,165,1)] my-10 lg:py-[10vh] md:py-[7vh] py-[20vh] items-center justify-between xsm:items-start xsm:py-[2vh] lg:gap-20 gap-10">
+    <div className="flex xsm:flex-col px-[10%] xsm:px-4 bg-[#0054A5] my-10 lg:py-[10vh] md:py-[7vh] py-[20vh] items-center justify-between xsm:items-start xsm:py-[2vh] lg:gap-20 gap-10">
       <div className="w-[60%] text-justify  xsm:w-full lg:w-full">
         <div className="flex items-center">
           <p className="text-[56px] 2xl:text-[57px] lg:text-[48px] md:text-2xl xsm:text-3xl text-white font-dm-sans lg:leading-normal tracking-wide leading-relaxed">

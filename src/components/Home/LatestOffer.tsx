@@ -25,7 +25,7 @@ const LatestOffer = () => {
         </div>
       )}
 
-      <div className="px-[10%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4">
+      <div className="px-[10%] flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center sm:top-4">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
@@ -36,7 +36,7 @@ const LatestOffer = () => {
             width={300}
           />
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[12rem] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[13rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[45%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
@@ -68,10 +68,10 @@ const LatestOffer = () => {
           {/* Contact Us Button */}
           <button
             onClick={handleGoContact} // Add the onClick handler
-            className="group relative inline-flex items-center justify-center  p-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[160px] h-[60px]"
+            className="group relative inline-flex items-center justify-center  p-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:w-[130px] xsm:h-[40px] w-[160px] h-[60px] "
           >
             {/* Gradient background (blue tones) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
+            <div className="absolute inset-0 bg-[#0054A5] rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
 
             {/* White blur effect */}
             <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
@@ -86,7 +86,7 @@ const LatestOffer = () => {
             </div>
 
             {/* White border with hover effect */}
-            <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
+            <div className="absolute inset-0 rounded-xl xsm:w-[130px] xsm:h-[40px] border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div>
 
             {/* Wave effect */}
             <div className="absolute inset-0 rounded-full overflow-hidden">

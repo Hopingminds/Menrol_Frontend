@@ -112,7 +112,7 @@ const Ourservices: React.FC = () => {
       />
       {/* Content Section */}
       <div className="p-5">
-        <h3 className="font-bold text-xl text-blue-600 mb-2 font-lexend tracking-wide">
+        <h3 className="font-bold text-xl text-[#0054A5] mb-2 font-lexend tracking-wide">
           {service?.category}
         </h3>
         <p className="text-gray-600 text-sm font-dm-sans tracking-wide leading-relaxed">
@@ -122,7 +122,7 @@ const Ourservices: React.FC = () => {
       {/* Button Section */}
       <div className="absolute top-4 right-4">
         <button
-          className="h-10 w-10 bg-blue-600 text-white rounded-full shadow-md flex items-center justify-center hover:bg-blue-700"
+          className="h-10 w-10 bg-[#0054A5] text-white rounded-full shadow-md flex items-center justify-center hover:bg-blue-700"
           onClick={() => handleServiceDetails(service._id)}
         >
           <FaArrowRightLong className="h-5 w-5" />
