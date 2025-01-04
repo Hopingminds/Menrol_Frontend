@@ -1,4 +1,5 @@
-// import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Map from "../../components/Map/Map";
 
 interface UserInfo {
   phone: string;
@@ -17,6 +18,93 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   setIsModalOpen,
   userData, // Access userData here
 }) => {
+  const [houseNumber, setHouseNumber] = useState<string>("");
+  const [sector, setSector] = useState<string>("");
+  const [city, setCity] = useState<string>("");
+  const [state, setState] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [currentLocation, setCurrentLocation] = useState<string>("");
+  const [isAddressFetched, setIsAddressFetched] = useState<boolean>(false);
+  const locations = [
+    { name: "Location 1", lat: 51.505, lng: -0.09 },
+    { name: "Location 2", lat: 51.515, lng: -0.1 },
+    { name: "Location 3", lat: 51.525, lng: -0.11 },
+  ];
+  const GOOGLE_API_KEY = "AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0";
+
+  // Function to fetch latitude and longitude based on IP address
+  const fetchLocation = async () => {
+    try {
+      const response = await fetch("http://ip-api.com/json");
+      const data = await response.json();
+
+      if (data.city && data.region) {
+        const { lat, lon } = data; // Fetching the latitude and longitude
+        setCurrentLocation(`${data.city}, ${data.region}`);
+        getAddressFromCoordinates(lat, lon);
+      } else {
+        setCurrentLocation("Location data unavailable");
+      }
+    } catch (error) {
+      console.error("Error fetching location:", error);
+      setCurrentLocation("Unable to fetch location");
+    }
+  };
+
+  // Function to fetch the address from coordinates (latitude and longitude)
+  const getAddressFromCoordinates = async (
+    latitude: number,
+    longitude: number
+  ) => {
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_API_KEY}`
+      );
+      const data = await response.json();
+      if (data.status === "OK") {
+        const fullAddress =
+          data.results[0]?.formatted_address || "Address not found";
+        extractCompleteAddress(fullAddress);
+        setIsAddressFetched(true); // Mark as fetched
+      } else {
+        setHouseNumber("Unable to fetch address");
+        setSector("Unable to fetch address");
+        setCity("Unable to fetch address");
+        setState("Unable to fetch address");
+        setCountry("Unable to fetch address");
+      }
+    } catch (error) {
+      console.error("Geocoding error:", error);
+      setHouseNumber("Error fetching address");
+      setSector("Error fetching address");
+      setCity("Error fetching address");
+      setState("Error fetching address");
+      setCountry("Error fetching address");
+    }
+  };
+
+  // Function to extract the complete address and fill separate fields
+  const extractCompleteAddress = (fullAddress: string) => {
+    const addressParts = fullAddress.split(",");
+
+    // Attempting to extract house number, sector, city, and state
+    setHouseNumber(addressParts[0]?.trim() || "House Number not available");
+    setSector(addressParts[1]?.trim() || "Sector not available");
+    setCity(
+      addressParts[addressParts.length - 3]?.trim() || "City not available"
+    );
+    setState(
+      addressParts[addressParts.length - 2]?.trim() || "State not available"
+    );
+    setCountry(
+      addressParts[addressParts.length - 1]?.trim() || "Country not available"
+    );
+  };
+
+  useEffect(() => {
+    fetchLocation();
+  }, []);
+
   if (!isModalOpen) return null;
 
   return (
@@ -38,13 +126,28 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <strong className="text-blue-500">Name:</strong> {userData.name}
               </p>
               <p className="text-lg">
-                <strong className="text-blue-500">Email:</strong> {userData.email}
+                <strong className="text-blue-500">Email:</strong>{" "}
+                {userData.email}
               </p>
               <p className="text-lg">
-                <strong className="text-blue-500">Phone:</strong> {userData.phone}
+                <strong className="text-blue-500">Phone:</strong>{" "}
+                {userData.phone}
               </p>
             </div>
-            {/* Add more fields here */}
+            {/* Address Section with separate input boxes for each field */}
+            <div className="mb-4">
+              <p className="text-lg">
+                <strong className="text-blue-500">Address:</strong>
+              </p>
+              <Map />
+              <input
+                type="text"
+                value={houseNumber}
+                onChange={(e) => setHouseNumber(e.target.value)}
+                className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
+                placeholder="Enter house number"
+              />
+            </div>
           </div>
         ) : (
           <p className="text-red-500 text-center">No user data available.</p>
