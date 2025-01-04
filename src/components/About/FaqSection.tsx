@@ -37,7 +37,7 @@ const FAQSection: FC = () => {
     ];
 
     return (
-        <div className="flex flex-col md:flex-row items-start py-12 xsm:py-0 bg-white px-[10%] justify-between md:gap-10 gap-40">
+        <div className="flex flex-col md:flex-row items-start py-12 mb-4 xsm:py-0 bg-white px-[7%] justify-between md:gap-10 gap-40">
             {/* Left Section - FAQ */}
             <div className="w-full">
                 <p className="text-lg font-bold xsm:text-[10px] text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">

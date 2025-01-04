@@ -18,14 +18,14 @@ const LatestOffer = () => {
   };
 
   return (
-    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative xsm:py-5 py-10 my-10 gap-10">
+    <div className="bg-[#0054A5] h-[100%] pb-10 w-full sm:h-[100%] flex items-center justify-center relative xsm:py-5 my-10 gap-10">
       {loading && (
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="loader"></div>
         </div>
       )}
 
-      <div className="px-[10%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4">
+      <div className="px-[7%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
@@ -36,7 +36,7 @@ const LatestOffer = () => {
             width={300}
           />
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[13rem] 2xl:w-[11rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"

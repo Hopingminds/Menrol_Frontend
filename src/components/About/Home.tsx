@@ -8,14 +8,14 @@ const Home = () => {
             <div className="mb-12 md:mb-1 mt-4  md:overflow-hidden ">
 
 
-                <div className="flex flex-col xsm:items-start md:flex-row md:gap-32 2xl:px-[7%] items-center md:items-start justify-between md:px-[10%] lg:px-[7%] xl:px-[7%]  px-[7%] mt-4 ">
+                <div className="flex flex-col xsm:items-start md:flex-row md:gap-32 2xl:px-[7%] items-center md:items-start justify-between xsm:px-[10%] md:px-[10%] lg:px-[7%] xl:px-[7%]  px-[7%] mt-4 ">
                     {/* Left Section: Heading */}
                     <h2 className="text-5xl xsm:text-xl md:text-2xl 2xl:text-5xl 2xl:w-[60%]  lg:text-3xl  font-bold text-gray-900 md:w-1/2 font-lexend tracking-wide leading-relaxed">
                         Excellence Delivered, Every Time
                     </h2>
 
                     {/* Right Section: Paragraph */}
-                    <div className="flex justify-end w-2/3 md:w-1/2 mt-6 md:mt-1">
+                    <div className="flex justify-end w-2/3 xsm:w-[60%] md:w-1/2 mt-6 md:mt-1">
                         <div className="flex justify-end">
                             <p className="text-gray-500 md:tracking-tight xsm:mr-4 xsm:text-xs xsm:text-start md:leading-tight 2xl:text-lg 2xl:tracking-wide 2xl:leading-relaxed md:text-sm text-lg self-end  text-justify font-dm-sans tracking-wide leading-relaxed " >
                                 We perfect  transforming every space into a spotless, fresh, and hygienic environment
