@@ -37,7 +37,7 @@ const FAQSection: FC = () => {
     ];
 
     return (
-        <div className="flex flex-col md:flex-row items-start py-12 bg-white px-[10%] justify-between md:gap-10 gap-40">
+        <div className="flex flex-col md:flex-row items-start py-12 mb-4 xsm:py-0 bg-white px-[7%] justify-between md:gap-10 gap-40">
             {/* Left Section - FAQ */}
             <div className="w-full">
                 <p className="text-lg font-bold xsm:text-[10px] text-green-500 uppercase font-lexend font-dm-sans tracking-wide leading-relaxed">
@@ -46,7 +46,7 @@ const FAQSection: FC = () => {
                 <h1 className="text-7xl xsm:text-2xl  font-bold mt-6 text-[rgba(36,35,42,1)] md:text-3xl  font-lexend font-dm-sans tracking-wide leading-relaxed">
                     Frequently Asked Questions
                 </h1>
-                <div className="mt-8 2xl:space-y-8 xl:space-y-7 xsm:space-y-2">
+                <div className="mt-8 2xl:space-y-8 xl:space-y-7 xsm:space-y-2 transition-all duration-300">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button

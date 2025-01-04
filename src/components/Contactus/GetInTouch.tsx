@@ -73,7 +73,7 @@ const GetInTouch = () => {
 
     return (
         <div>
-            <div className="flex flex-col lg:flex-row p-8 px-[10%] justify-between">
+            <div className="flex flex-col lg:flex-row p-8 px-[7%] justify-between">
                 {/* Left Section */}
                 <div className="space-y-8 text-center xsm:text-start lg:text-left">
                     <h2 className="text-5xl font-bold text-gray-800">Get in Touch</h2>

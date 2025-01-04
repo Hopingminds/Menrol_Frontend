@@ -25,7 +25,7 @@ const LatestOffer = () => {
         </div>
       )}
 
-      <div className="px-[10%] lg:px-8  flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center  sm:top-4">
+      <div className="px-[10%] flex flex-col-reverse md:flex-row md:justify-between md:px-2 w-full justify-between md:items-center sm:top-4">
         {/* Left Side Image */}
         <div className="flex-1 relative sm:flex sm:justify-center">
           <Image
@@ -36,7 +36,7 @@ const LatestOffer = () => {
             width={300}
           />
           {/* Overlay Content */}
-          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[20vh] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[15rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[50%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
+          <div className="bg-[#24232A] h-[20vw] xsm:w-[20vw] xl:h-[12rem] xsm:ml-20 xsm:h-[5rem] md:h-[10rem] md:w-[13vw] 2xl:h-[13rem] 2xl:w-[12rem] [10vw] sm:w-[18vw] rounded-lg text-white absolute top-[50%] left-[45%] transform -translate-x-[20%] sm:translate-x-[30%] md:translate-x-[90%] -translate-y-[50%] sm:-translate-y-[50%] flex items-center justify-center font-lexend">
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"

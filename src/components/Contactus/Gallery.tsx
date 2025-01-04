@@ -12,7 +12,7 @@ const Gallery = () => {
         '/Images/ServiceImg/Image-6.png',
     ];
     return (
-        <div><section className="p-8 bg-white px-[10%]">
+        <div><section className="p-8 bg-white px-[7%]">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {images?.map((image, index) => (
                     <div
@@ -24,7 +24,7 @@ const Gallery = () => {
                             alt={`Gallery item ${index + 1}`}
                             className="w-full h-full object-cover rounded-md"
                             height={100}
-                            width={100}
+                            width={500}
                         />
                     </div>
                 ))}
