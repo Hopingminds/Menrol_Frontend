@@ -184,7 +184,7 @@ const Supakling: React.FC = () => {
                   {/* Circles below the second paragraph */}
                   <div className="flex justify-center mt-4 md:mb-2  space-x-[-12px]">
                     {/* First circle with an image */}
-                    <div className="w-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 h-12 rounded-full overflow-hidden relative">
+                    <div className="xl:w-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 xl:h-12 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/ServiceImg/Image-6.png"
                         alt="Image 1"
@@ -193,7 +193,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Second circle with an image */}
-                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
+                    <div className="xl:w-12 xl:h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur6.jpg"
                         alt="Image 2"
@@ -202,7 +202,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Third circle with an image */}
-                    <div className="w-12 h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
+                    <div className="xl:w-12 xl:h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur5.jpg"
                         alt="Image 3"
@@ -211,7 +211,7 @@ const Supakling: React.FC = () => {
                       />
                     </div>
                     {/* Fourth circle with text */}
-                    <div className="w-12 h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                    <div className="xl:w-12 xl:h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
                       1k+
                     </div>
                   </div>

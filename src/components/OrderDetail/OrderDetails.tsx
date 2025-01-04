@@ -4,13 +4,27 @@ interface UserInfo {
   token: string;
 }
 
+interface Order {
+  _id: string;
+  location: {
+    address: string;
+  };
+  payment: {
+    status: string;
+  };
+  serviceRequest: {
+    title: string;
+  };
+  orderDate: string;
+}
+
 interface ApiResponse {
   success: boolean;
   data: {
-    pending: string[];
-    confirmed: string[];
-    completed: string[];
-    cancelled: string[];
+    pending: Order[];
+    confirmed: Order[];
+    completed: Order[];
+    cancelled: Order[];
   };
 }
 
@@ -79,7 +93,22 @@ const OrderDetails = () => {
                         key={index}
                         className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm hover:shadow-md"
                       >
-                        {order}
+                        <div>
+                          <strong>Order ID:</strong> {order._id}
+                        </div>
+                        <div>
+                          <strong>Location:</strong> {order.location?.address || "N/A"}
+                        </div>
+                        <div>
+                          <strong>Payment Status:</strong> {order.payment?.status || "N/A"}
+                        </div>
+                        <div>
+                          <strong>Service:</strong> {order.serviceRequest?.title || "N/A"}
+                        </div>
+                        <div>
+                          <strong>Order Date:</strong>{" "}
+                          {new Date(order.orderDate).toLocaleDateString("en-IN")}
+                        </div>
                       </li>
                     ))
                   ) : (
