@@ -160,6 +160,10 @@ const Header = () => {
     setIsProfileModalOpen(true);
   };
 
+  const handleOrderDetails=()=>{
+    router.push("/orderdetails")
+  }
+
   return (
     <>
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md">
@@ -239,6 +243,12 @@ const Header = () => {
                       onClick={handleProfileClick}
                     >
                       Profile
+                    </li>
+                    <li
+                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                      onClick={handleOrderDetails}
+                    >
+                      Order Details
                     </li>
                     <li
                       className="px-4 py-2 cursor-pointer hover:bg-gray-100"
