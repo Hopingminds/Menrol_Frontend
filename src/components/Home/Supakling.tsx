@@ -87,7 +87,7 @@ const Supakling: React.FC = () => {
                  Labor Partner!
                 </p> */}
               </div>
-              <div className="grid grid-cols-2 gap-6 mt-[4vh]">
+              <div className="grid grid-cols-2 gap-6 mt-[4vh] ">
                 <div className="flex items-center space-x-4 group relative inline-block">
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
 
@@ -160,7 +160,7 @@ const Supakling: React.FC = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex items-center justify-center h-[90%] md:h-full">
+          <div className="flex items-center justify-center h-[90%] md:h-full xsm:hidden">
             <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full  min-h-[50vh] overflow-hidden ">
               <div
                 className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
