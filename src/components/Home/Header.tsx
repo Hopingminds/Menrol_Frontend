@@ -179,7 +179,7 @@ const Header: React.FC = () => {
   return (
     <>
     <ToastContainer/>
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-[370px]">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">
           <Image

@@ -278,7 +278,7 @@ const Modal: React.FC<{
               </p>
               <div className="flex gap-4">
                 <button
-                  onClick={() => (window.location.href = "/login")}
+                  onClick={() => (window.location.href = "/")}
                   className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   Log In
@@ -488,8 +488,11 @@ const IndividualServices: React.FC = () => {
         }
 
         const data = await response.json();
-        if (data.success && data.category) {
-          setService(data.category);
+        console.log(data.success);
+        console.log(data.data.category);
+        
+        if (data.success && data.data.category) {
+          setService(data.data);
           setError(null);
         } else {
           throw new Error(data.message || "Failed to fetch service details.");
