@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoginModal from "../Home/LoginModal";
 
 interface PricingType {
   pricingtype: string;
@@ -100,6 +101,8 @@ const Modal: React.FC<{
   const [error, setError] = useState<string | null>(null);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
+  const [isLoginMode, setIsLoginMode] = useState(true);
 
   // Reset all form fields
   const resetForm = useCallback(() => {
@@ -278,7 +281,7 @@ const Modal: React.FC<{
               </p>
               <div className="flex gap-4">
                 <button
-                  onClick={() => (window.location.href = "/")}
+                  onClick={() => setIsModalOpen(true)}
                   className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
                 >
                   Log In
@@ -292,6 +295,12 @@ const Modal: React.FC<{
                 >
                   Cancel
                 </button>
+                <LoginModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        isLoginMode={isLoginMode}
+        setIsLoginMode={setIsLoginMode}
+      />
               </div>
             </div>
           ) : (
