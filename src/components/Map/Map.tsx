@@ -79,11 +79,11 @@ const Map: React.FC = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo.token}`,
+            Authorization: `Bearer ${userInfo?.token}`,
           },
           body: JSON.stringify({
-            coordinates: [selectedLocation.lat, selectedLocation.lng],
-            address: selectedLocation.address,
+            coordinates: [selectedLocation?.lat, selectedLocation?.lng],
+            address: selectedLocation?.address,
           }),
         }
       );
@@ -113,7 +113,7 @@ const Map: React.FC = () => {
     try {
       const response = await fetch("https://api.menrol.com/api/v1/getUser", {
         headers: {
-          Authorization: `Bearer ${userInfo.token}`,
+          Authorization: `Bearer ${userInfo?.token}`,
         },
       });
 
