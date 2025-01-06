@@ -529,12 +529,9 @@ const IndividualServices: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="p-6 flex items-center justify-center min-h-[50vh]">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-900 border-t-transparent"></div>
-          <p className="mt-2 text-gray-600">Loading services...</p>
-        </div>
-      </div>
+      <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
+    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+  </div>
     );
   }
 

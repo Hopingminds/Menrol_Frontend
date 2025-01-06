@@ -242,7 +242,7 @@ const Header: React.FC = () => {
         {/* Language Dropdown */}
         <div
           id="google_translate_element"
-          className="check-text p-3 rounded-xl border border-black"
+          className="check-text p-3 rounded-xl border "
         ></div>
 
         {/* Right Section: Profile & Login */}
@@ -282,10 +282,10 @@ const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              className="focus:outline-none bg-blue-500 text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-blue-600"
+              className="focus:outline-none bg-[#0054A5] text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#0054A5]"
               onClick={() => setIsModalOpen(true)}
             >
-              Login
+              Login/signup
             </button>
           )}
 
