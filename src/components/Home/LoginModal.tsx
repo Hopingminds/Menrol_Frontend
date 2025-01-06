@@ -14,8 +14,6 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({
   isModalOpen,
   setIsModalOpen,
-  isLoginMode,
-  setIsLoginMode,
 }) => {
   const [phone, setPhoneNo] = useState("");
   const [otp, setOtp] = useState("");
@@ -105,7 +103,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   Enter your phone number
                 </h2>
                 <p className="text-gray-500 mt-2">
-                  We'll send you a text with a verification code.
+                  We will send you a text with a verification code.
                 </p>
               </div>
 
@@ -155,8 +153,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
                       ? "Verifying..."
                       : "Sending..."
                     : otpSent
-                    ? "Enter verification code"
-                    : "Get verification code"}
+                      ? "Enter verification code"
+                      : "Get verification code"}
                 </button>
               </form>
 
