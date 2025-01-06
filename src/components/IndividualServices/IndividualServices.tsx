@@ -178,12 +178,6 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
-      if(startDate>endDate){
-        toast.warning('plss select dates accurately');
-
-      }
-      else{
-
       toast.success("Service request added successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -193,7 +187,6 @@ const Modal: React.FC<{
         draggable: true,
         progress: undefined,
       });
-    }
       setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
@@ -469,7 +462,7 @@ const Modal: React.FC<{
 const IndividualServices: React.FC = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("data");
-
+  const subcategoryId = searchParams.get("subcategory");
   const [service, setService] = useState<Service | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -526,6 +519,16 @@ const IndividualServices: React.FC = () => {
 
     fetchServiceDetails(id);
   }, [id]);
+
+  useEffect(() => {
+    if(subcategoryId && service){
+      const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
+      if(data){
+        setSelectedItem(data);
+        setIsModalOpen(true);
+      }
+    }
+  },[service])
 
   if (loading) {
     return (

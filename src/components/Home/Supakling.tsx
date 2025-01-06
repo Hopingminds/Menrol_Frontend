@@ -63,7 +63,11 @@ const Supakling: React.FC = () => {
   const HandleGoServices = () => {
     router.push("/ServiceDetails");
   };
-  
+  // const handleServiceDetails = (id: string) => {
+  //   setLoading(true);
+  //   router.push(`/IndividualServices?data=${id}`);
+  // };
+
 
   return (
     <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
@@ -282,7 +286,7 @@ const Supakling: React.FC = () => {
               <PiBuildingsBold className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-lg xsm:text-base font-medium">Commercial Plumbing</span>
+            <span className="text-lg xsm:text-base font-medium">Commercial Services</span>
           </button>
 
           {/* Residential Plumbing Button */}
@@ -292,7 +296,7 @@ const Supakling: React.FC = () => {
               <IoLocationOutline className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-2xl xsm:text-base font-medium">Residential Plumbing</span>
+            <span className="text-2xl xsm:text-base font-medium">Residential Services</span>
           </button>
         </div>
       </div>

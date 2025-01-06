@@ -67,7 +67,7 @@ const Ourservices: React.FC = () => {
     };
 
     fetchServices();
-  },[ ]);
+  }, []);
 
   const handleServiceDetails = (serviceId: string) => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
@@ -97,40 +97,41 @@ const Ourservices: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 pt-10">
-  {services?.map((service) => (
-    <div
-      key={service._id}
-      className="relative bg-white shadow-lg rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105"
-    >
-      {/* Image Section */}
-      <Image
-        src={service?.categoryImage}
-        alt={service?.category}
-        className="w-full h-[40vh] md:h-[45vh] lg:h-[30vh] object-cover"
-        height={400}
-        width={400}
-      />
-      {/* Content Section */}
-      <div className="p-5">
-        <h3 className="font-bold text-xl text-[#0054A5] mb-2 font-lexend tracking-wide">
-          {service?.category}
-        </h3>
-        <p className="text-gray-600 text-sm font-dm-sans tracking-wide leading-relaxed">
-          {service?.categoryDescription}
-        </p>
+        {services?.map((service) => (
+          <div
+            key={service._id}
+            className="relative bg-white shadow-lg rounded-xl overflow-hidden transform transition-transform duration-300 hover:scale-105"
+          >
+            {/* Image Section */}
+            <Image
+              src={service?.categoryImage}
+              alt={service?.category}
+              className="w-full h-[40vh] md:h-[45vh] lg:h-[30vh] object-cover"
+              height={400}
+              width={400}
+            />
+            {/* Content Section */}
+            <div className="p-5">
+              <h3 className="font-bold text-xl text-[#0054A5] mb-2 font-lexend tracking-wide cursor-pointer"
+                onClick={() => handleServiceDetails(service._id)}>
+                {service?.category}
+              </h3>
+              <p className="text-gray-600 text-sm font-dm-sans tracking-wide leading-relaxed">
+                {service?.categoryDescription}
+              </p>
+            </div>
+            {/* Button Section */}
+            <div className="absolute top-4 right-4">
+              <button
+                className="h-10 w-10 bg-[#0054A5] text-white rounded-full shadow-md flex items-center justify-center hover:bg-blue-700"
+                onClick={() => handleServiceDetails(service._id)}
+              >
+                <FaArrowRightLong className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-      {/* Button Section */}
-      <div className="absolute top-4 right-4">
-        <button
-          className="h-10 w-10 bg-[#0054A5] text-white rounded-full shadow-md flex items-center justify-center hover:bg-blue-700"
-          onClick={() => handleServiceDetails(service._id)}
-        >
-          <FaArrowRightLong className="h-5 w-5" />
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
 
     </div>
   );

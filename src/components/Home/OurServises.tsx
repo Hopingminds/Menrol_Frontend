@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 interface SubCategory {
   _id: string;
   title: string;
@@ -123,6 +124,11 @@ const OurServices = () => {
     router.push(`/IndividualServices?data=${id}`);
   };
 
+  const handleSubCategoryServiceDetails = (id: string, subId: string) => {
+    setLoading(true);
+    router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
+  };
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -204,17 +210,17 @@ const OurServices = () => {
           onClick={HandleGoServices}
           className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[160px] h-[60px]"
         >
-          <div className="absolute inset-0 bg-[#0054A5] rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient" />
+          <div className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient" />
           <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl" />
-          <div className="absolute inset-0 overflow-hidden rounded-full">
+          <div className="absolute inset-0 overflow-hidden rounded-xl">
             <div className="glitter-container">
               <div className="glitter" />
               <div className="glitter" />
               <div className="glitter" />
             </div>
           </div>
-          <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300" />
-          <div className="absolute inset-0 rounded-full overflow-hidden">
+          {/* <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300" /> */}
+          <div className="absolute inset-0 rounded-xl overflow-hidden">
             <div className="wave" />
           </div>
           <span className="relative z-10 flex items-center gap-2">
@@ -237,7 +243,7 @@ const OurServices = () => {
       </div>
 
       <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Categories</h2>
+        <h2 className="text-2xl font-bold mb-6">All Categories</h2>
         <Slider {...sliderSettings} className="pt-6">
           {services?.map((service) => (
             <div key={service._id} className="p-1">
@@ -264,7 +270,7 @@ const OurServices = () => {
 
       {services?.map((service) => (
         <div key={service._id} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">{service.category} Services</h2>
+          <h2 className="text-2xl font-bold mb-6">{service.category}</h2>
           <Slider {...sliderSettings} className="pt-6">
             {service.subcategory?.map((subCat) => (
               <div key={subCat._id} className="p-1">
@@ -276,7 +282,7 @@ const OurServices = () => {
                       className="w-full h-full object-cover rounded-lg cursor-pointer"
                       height={220}
                       width={280}
-                      onClick={() => handleServiceDetails(service._id)}
+                      onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
                     />
                   </div>
                   <h3 className="mt-3 text-center font-semibold text-[#24232A]">
