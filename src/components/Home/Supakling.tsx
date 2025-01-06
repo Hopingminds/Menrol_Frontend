@@ -63,6 +63,7 @@ const Supakling: React.FC = () => {
   const HandleGoServices = () => {
     router.push("/ServiceDetails");
   };
+  
 
   return (
     <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
@@ -87,7 +88,7 @@ const Supakling: React.FC = () => {
                  Labor Partner!
                 </p> */}
               </div>
-              <div className="grid grid-cols-2 gap-6 mt-[4vh]">
+              <div className="grid grid-cols-2 gap-6 mt-[4vh] ">
                 <div className="flex items-center space-x-4 group relative inline-block">
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
 
@@ -160,7 +161,7 @@ const Supakling: React.FC = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex items-center justify-center h-[90%] md:h-full">
+          <div className="flex items-center justify-center h-[90%] md:h-full xsm:hidden">
             <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full  min-h-[50vh] overflow-hidden ">
               <div
                 className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
@@ -257,7 +258,7 @@ const Supakling: React.FC = () => {
               </div>
 
               <div
-                className="relative bg-cover bg-center flex items-center justify-center group transition-all duration-500"
+                className="relative bg-cover bg-center flex items-center  justify-center group transition-all duration-500"
                 style={{ backgroundImage: `url('${getServiceImage(1)}')` }}
               >
                 <div className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-50"></div>
@@ -275,7 +276,7 @@ const Supakling: React.FC = () => {
         {/* Buttons Section */}
         <div className="flex xsm:flex-col xsm:space-x-0 xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
           {/* Commercial Plumbing Button */}
-          <button className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button onClick={HandleGoServices} className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8  flex items-center justify-center rounded">
               <PiBuildingsBold className="text-3xl xsm:text-base" />
@@ -285,7 +286,7 @@ const Supakling: React.FC = () => {
           </button>
 
           {/* Residential Plumbing Button */}
-          <button className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-[#0054A5] text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button onClick={HandleGoServices} className="flex items-center xsm:w-full space-x-3 xsm:px-5 px-16 py-5 bg-[#0054A5] text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
             <div className="w-8 h-8 flex items-center justify-center rounded">
               <IoLocationOutline className="text-3xl xsm:text-base" />

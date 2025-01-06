@@ -12,7 +12,7 @@ const Cart = () => {
   return (
     <div>
       <div 
-        className='bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2 flex items-center ml-2 cursor-pointer' 
+        className='bg-[#0054A5] h-[3rem] rounded-full text-white px-4 py-2 flex items-center ml-2 cursor-pointer' 
         onClick={handleCartClick} // Add onClick handler to navigate
       >
         <FaCartShopping />

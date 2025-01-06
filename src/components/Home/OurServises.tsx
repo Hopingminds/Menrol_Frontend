@@ -28,6 +28,57 @@ interface ApiResponse {
   all: Service[];
 }
 
+// Custom arrow components
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-[#0054A] rounded-full p-2 shadow-md hover:bg-gray-50 transition-all duration-200"
+      aria-label="Previous slide"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-white"
+      >
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+  );
+};
+
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-[#0054A5] rounded-full p-2 shadow-md hover:bg-gray-50 transition-all duration-200"
+      aria-label="Next slide"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-white"
+      >
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+  );
+};
+
 const OurServices = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -75,6 +126,8 @@ const OurServices = () => {
     autoplaySpeed: 3000,
     cssEase: "linear",
     pauseOnHover: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
     responsive: [
       {
         breakpoint: 3000,
@@ -140,9 +193,6 @@ const OurServices = () => {
           <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
             Make Life Simple <br /> with our  go-to Service app.
           </h1>
-          {/* <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
-            
-          </h1> */}
         </div>
 
         <button
@@ -238,3 +288,4 @@ const OurServices = () => {
 };
 
 export default OurServices;
+

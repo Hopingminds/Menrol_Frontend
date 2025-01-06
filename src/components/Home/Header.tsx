@@ -9,11 +9,13 @@ import "./Language.css";
 import Cart from "./Cart";
 import Image from "next/image";
 import Location from "./Location";
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 // Custom hook for typing effect
 const useTypingEffect = () => {
-  const [currentText, setCurrentText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentText, setCurrentText] = useState<string>("");
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const words = ["Electrician", "Painter", "Cleaning services", "Plumber"];
 
   useEffect(() => {
@@ -89,7 +91,7 @@ interface SearchResult {
   category: string;
 }
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
@@ -154,25 +156,36 @@ const Header = () => {
     localStorage.clear();
     setIsLoggedIn(false);
     setUserData(null);
+    toast.success("Logged out successfully!", {
+      position: "top-right",  // You can change the position as needed
+      autoClose: 5000,  // Duration for the toast to stay
+      hideProgressBar: false,  // Show progress bar
+      closeOnClick: true,  // Allow closing by clicking on the toast
+      pauseOnHover: true,
+      theme:"colored",  // Pause on hover
+    });
   };
+  
+
 
   const handleProfileClick = () => {
     setIsProfileModalOpen(true);
   };
 
-  const handleOrderDetails=()=>{
-    router.push("/orderdetails")
-  }
+  const handleOrderDetails = () => {
+    router.push("/orderdetails");
+  };
 
   return (
     <>
-      <header className="sticky top-0 z-50 flex  items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
+    <ToastContainer/>
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-[370px]">
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">
           <Image
             src="/menrol-logo.png"
             alt="Logo"
-            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer border border-black"
+            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
             width={200}
             height={200}
@@ -180,13 +193,13 @@ const Header = () => {
         </div>
 
         {/* Middle Section: Search & Location */}
-        <div className="flex justify-end ml-[30%]">
+        <div className="flex justify-end ml-[30%] xsm:ml-0 xsm:hidden">
           <div className="flex flex-row items-center justify-center px-2 pt-5">
             <Location />
           </div>
 
           {/* Search Bar */}
-          <div className="flex flex-1 items-center mx-6">
+          <div className="flex flex-1 items-center mx-6 ">
             <div className="relative w-full">
               <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
               <input
@@ -198,24 +211,27 @@ const Header = () => {
               />
             </div>
             {/* Search Results Dropdown */}
-            {searchResults?.length > 0 && searchQuery?.length >= 3 && (
+            {searchQuery?.length >= 3 && (
               <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1">
-                <ul>
-                  {searchResults?.map((result) => (
-                    <li key={result._id} className="border-b hover:bg-blue-100">
-                      <div
-                        className="p-4 cursor-pointer hover:text-blue-600"
-                        onClick={() => handleSearchResultClick(result?._id)}
-                      >
-                        <h4 className="font-semibold text-sm">
-                          {result?.category}
-                        </h4>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                {searchResults?.length > 0 ? (
+                  <ul>
+                    {searchResults.map((result) => (
+                      <li key={result._id} className="border-b hover:bg-blue-100">
+                        <div
+                          className="p-4 cursor-pointer hover:text-blue-600"
+                          onClick={() => handleSearchResultClick(result._id)}
+                        >
+                          <h4 className="font-semibold text-sm">{result.category}</h4>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="p-4 text-center text-gray-500">No results found</div>
+                )}
               </div>
             )}
+
           </div>
         </div>
 
@@ -225,14 +241,13 @@ const Header = () => {
           className="check-text p-3 rounded-xl border border-black"
         ></div>
 
-
         {/* Right Section: Profile & Login */}
-        <div>
+        <div >
           {isLoggedIn ? (
             <div className="relative">
               <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
-                className="bg-blue-500 h-[3rem] rounded-full text-white px-4 py-2 ml-3"
+                className="bg-[#0054A5] h-[3rem] rounded-full text-white px-4 py-2 ml-3"
               >
                 <FaUserCircle />
               </button>
@@ -285,7 +300,9 @@ const Header = () => {
             userData={userData}
           />
         </div>
-        <Cart />
+        
+        {/* Cart button visibility */}
+        {isLoggedIn && <Cart />}
       </header>
 
       {/* Google Translate Scripts */}
