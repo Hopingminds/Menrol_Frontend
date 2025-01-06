@@ -483,6 +483,8 @@ const IndividualServices: React.FC = () => {
           `https://api.menrol.com/api/v1/getCategory?categoryId=${serviceId}`
         );
 
+        console.log(response);
+
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
