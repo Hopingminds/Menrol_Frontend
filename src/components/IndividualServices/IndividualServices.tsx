@@ -178,15 +178,20 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
-      toast.success("Service request added successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (startDate > endDate) {
+        toast.warning("plss select date accurtely");
+      }
+      else {
+        toast.success("Service request added successfully!", {
+          position: "top-right",
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
       setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
@@ -200,7 +205,7 @@ const Modal: React.FC<{
         instImages: null,
         service: serviceId,
         subcategory: {
-          subcategoryId: selectedItem?._id || "",
+          subcategoryId: selectedItem?._id || " ",
           title: selectedItem?.title || "",
           requestType: pricingType,
           workersRequirment: workers,
