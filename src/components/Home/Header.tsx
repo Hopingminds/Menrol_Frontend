@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
@@ -13,69 +13,73 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 // Custom hook for typing effect
-const useTypingEffect = () => {
-  const [currentText, setCurrentText] = useState<string>("");
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const words = ["Electrician", "Painter", "Cleaning services", "Plumber"];
+export const useTypingEffect = () => {
+  const [currentText, setCurrentText] = useState<string>(""); // Current text being typed
+  const [currentIndex, setCurrentIndex] = useState<number>(0); // Current word index
+  const wordsRef = useRef(["Electrician", "Painter", "Cleaning services", "Plumber"]); // Store words in a ref
 
   useEffect(() => {
-    let mounted = true;
-    let typingTimeout: NodeJS.Timeout;
-    let pauseTimeout: NodeJS.Timeout;
-    let wordTimeout: NodeJS.Timeout;
+    let mounted = true; // Tracks if the component is mounted
+    let typingTimeout: NodeJS.Timeout; // Timeout for typing effect
+    let pauseTimeout: NodeJS.Timeout; // Timeout for pause after typing
+    let wordTimeout: NodeJS.Timeout; // Timeout before typing next word
 
+    // Function to type a word
     const typeWord = () => {
-      const currentWord = words[currentIndex];
-      let charIndex = 0;
+      const currentWord = wordsRef.current[currentIndex]; // Get the current word
+      let charIndex = 0; // Index of character being typed
 
       const type = () => {
         if (!mounted) return;
 
         if (charIndex <= currentWord.length) {
-          setCurrentText(currentWord.slice(0, charIndex));
+          setCurrentText(currentWord.slice(0, charIndex)); // Update the displayed text
           charIndex++;
-          typingTimeout = setTimeout(type, 100);
+          typingTimeout = setTimeout(type, 100); // Type the next character
         } else {
-          pauseTimeout = setTimeout(deleteWord, 2000);
+          pauseTimeout = setTimeout(deleteWord, 2000); // Pause before deleting the word
         }
       };
 
       type();
     };
 
+    // Function to delete a word
     const deleteWord = () => {
-      const currentWord = words[currentIndex];
-      let charIndex = currentWord.length;
+      const currentWord = wordsRef.current[currentIndex]; // Get the current word
+      let charIndex = currentWord.length; // Start deleting from the end of the word
 
       const erase = () => {
         if (!mounted) return;
 
         if (charIndex >= 0) {
-          setCurrentText(currentWord.slice(0, charIndex));
+          setCurrentText(currentWord.slice(0, charIndex)); // Update the displayed text
           charIndex--;
-          typingTimeout = setTimeout(erase, 50);
+          typingTimeout = setTimeout(erase, 50); // Delete the next character
         } else {
-          const nextIndex = (currentIndex + 1) % words.length;
-          setCurrentIndex(nextIndex);
-          wordTimeout = setTimeout(typeWord, 500);
+          const nextIndex = (currentIndex + 1) % wordsRef.current.length; // Move to the next word
+          setCurrentIndex(nextIndex); // Update the current word index
+          wordTimeout = setTimeout(typeWord, 500); // Start typing the next word
         }
       };
 
       erase();
     };
 
-    typeWord();
+    typeWord(); // Start the typing effect
 
+    // Cleanup function
     return () => {
-      mounted = false;
-      clearTimeout(typingTimeout);
-      clearTimeout(pauseTimeout);
-      clearTimeout(wordTimeout);
+      mounted = false; // Mark as unmounted
+      clearTimeout(typingTimeout); // Clear typing timeout
+      clearTimeout(pauseTimeout); // Clear pause timeout
+      clearTimeout(wordTimeout); // Clear word timeout
     };
-  }, [currentIndex]);
+  }, [currentIndex]); // Dependency array includes only `currentIndex`
 
-  return currentText;
+  return currentText; // Return the current text being typed
 };
+
 
 // Types
 interface UserInfo {
@@ -178,7 +182,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-[370px]">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">

@@ -93,7 +93,7 @@ const Modal: React.FC<{
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [instructions, setInstructions] = useState<string>("");
-  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  // const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [pricingType, setPricingType] = useState<string>("daily");
   const [selectedPrice, setSelectedPrice] = useState<number>(0);
   const [workers, setWorkers] = useState<number>(1);
@@ -109,7 +109,7 @@ const Modal: React.FC<{
     setStartDate("");
     setEndDate("");
     setInstructions("");
-    setUploadedImage(null);
+    // setUploadedImage(null);
     setPricingType("daily");
     setSelectedPrice(0);
     setWorkers(1);
@@ -296,11 +296,11 @@ const Modal: React.FC<{
                   Cancel
                 </button>
                 <LoginModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        isLoginMode={isLoginMode}
-        setIsLoginMode={setIsLoginMode}
-      />
+                  isModalOpen={isModalOpen}
+                  setIsModalOpen={setIsModalOpen}
+                  isLoginMode={isLoginMode}
+                  setIsLoginMode={setIsLoginMode}
+                />
               </div>
             </div>
           ) : (
@@ -501,7 +501,7 @@ const IndividualServices: React.FC = () => {
         const data = await response.json();
         console.log(data.success);
         console.log(data.data.category);
-        
+
         if (data.success && data.data.category) {
           setService(data.data);
           setError(null);

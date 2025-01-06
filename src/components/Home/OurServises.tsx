@@ -28,9 +28,15 @@ interface ApiResponse {
   all: Service[];
 }
 
+interface NextArrowProps {
+  onClick?: () => void;
+}
+interface PrevArrowProps {
+  onClick?: () => void;
+}
+
 // Custom arrow components
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
+const PrevArrow: React.FC<PrevArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -54,8 +60,7 @@ const PrevArrow = (props: any) => {
   );
 };
 
-const NextArrow = (props: any) => {
-  const { onClick } = props;
+const NextArrow: React.FC<NextArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
