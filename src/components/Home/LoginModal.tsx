@@ -65,7 +65,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       if (response.ok && data.token) {
         const userInfo = { token: data.token, phone };
         localStorage.setItem("user-info", JSON.stringify(userInfo));
-        window.dispatchEvent(new Event("storage")); // Notify state change
+        window.dispatchEvent(new Event("storage"));
         
         // Show success toast message
         toast.success("Login Successful!");
