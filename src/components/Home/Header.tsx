@@ -97,7 +97,7 @@ const Header: React.FC = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [currentLocation, setCurrentLocation] = useState<string>("");
+  // const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserInfo | null>(null);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
@@ -162,10 +162,10 @@ const Header: React.FC = () => {
       hideProgressBar: false,  // Show progress bar
       closeOnClick: true,  // Allow closing by clicking on the toast
       pauseOnHover: true,
-      theme:"colored",  // Pause on hover
+      theme: "colored",  // Pause on hover
     });
   };
-  
+
 
 
   const handleProfileClick = () => {
@@ -178,7 +178,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md border border-black xsm:w-[370px]">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">
@@ -300,7 +300,7 @@ const Header: React.FC = () => {
             userData={userData}
           />
         </div>
-        
+
         {/* Cart button visibility */}
         {isLoggedIn && <Cart />}
       </header>
