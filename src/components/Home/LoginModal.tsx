@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
-
-
-// Import styles for react-toastify
+import { toast, ToastContainer } from "react-toastify";
+import { BsTelephone } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 
 interface LoginModalProps {
@@ -67,20 +66,16 @@ const LoginModal: React.FC<LoginModalProps> = ({
         const userInfo = { token: data.token, phone };
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage"));
-        
-        // Show success toast message
         toast.success("Login Successful!");
-
         setTimeout(() => {
           setIsModalOpen(false);
-        }, 2000); // Delay to let the toast message disappear
+        }, 2000);
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");
       console.log(err);
-      
     } finally {
       setLoading(false);
     }
@@ -88,92 +83,95 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
   return (
     <>
-      {/* Toast container */}
       <ToastContainer />
-
       {isModalOpen && (
-        <div
-          onClick={() => setIsModalOpen(false)}
-          className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur-md bg-opacity-50 z-50"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white p-6 rounded-2xl shadow-lg w-1/3"
-          >
-            <h2 className="text-lg font-semibold mb-4">
-              {otpSent ? "Verify OTP" : isLoginMode ? "Login" : "Sign Up"}
-            </h2>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+          <div className="bg-white rounded-xl shadow-lg w-[480px] relative">
+            {/* Close button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+            >
+              <IoClose size={24} />
+            </button>
 
-            <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
-              {!otpSent ? (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhoneNo(e.target.value)}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                    placeholder="Enter your phone number"
-                    required
-                  />
+            <div className="p-8">
+              {/* Phone Icon and Title */}
+              <div className="flex flex-col items-center mb-6">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <BsTelephone size={32} className="font-extrabold" />
                 </div>
-              ) : (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
-                    OTP
-                  </label>
-                  <input
-                    type="text"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none"
-                    placeholder="Enter the OTP"
-                    required
-                  />
-                </div>
-              )}
+                <h2 className="text-2xl font-semibold">
+                  Enter your phone number
+                </h2>
+                <p className="text-gray-500 mt-2">
+                  We'll send you a text with a verification code.
+                </p>
+              </div>
 
-              {error && <p className="text-red-500 text-sm">{error}</p>}
+              <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
+                {!otpSent ? (
+                  <div className="mb-6">
+                    <div className="flex border rounded-lg overflow-hidden">
+                      <select className="px-3 py-3 bg-gray-50 border-r">
+                        <option>+91</option>
+                      </select>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhoneNo(e.target.value)}
+                        className="flex-1 px-4 py-3 focus:outline-none"
+                        placeholder="Enter your phone number"
+                        required
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        value={otp}
+                        onChange={(e) => setOtp(e.target.value)}
+                        className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Enter verification code"
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
 
-              <div className="flex justify-end space-x-4">
-                <button
-                  type="button"
-                  className="bg-gray-500 text-white px-4 py-2 rounded-lg"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </button>
+                {error && (
+                  <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
+                )}
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg"
+                  className="w-full bg-[#0054A5] text-white py-3 rounded-lg font-medium hover:[#0054A5] transition-colors disabled:opacity-50"
                 >
                   {loading
                     ? otpSent
                       ? "Verifying..."
-                      : "Sending OTP..."
+                      : "Sending..."
                     : otpSent
-                    ? "Verify OTP"
-                    : "Send OTP"}
+                    ? "Enter verification code"
+                    : "Get verification code"}
                 </button>
-              </div>
-            </form>
+              </form>
 
-            {!otpSent && (
-              <p className="mt-4 text-sm">
-                {isLoginMode
-                  ? "Don't have an account? "
-                  : "Already have an account? "}
-                <button
-                  className="text-blue-600 underline"
-                  onClick={() => setIsLoginMode(!isLoginMode)}
-                >
-                  {isLoginMode ? "Sign Up" : "Login"}
-                </button>
-              </p>
-            )}
+              {/* Terms and conditions */}
+              <div className="mt-6 text-center text-sm text-gray-500">
+                By continuing, you agree to our{" "}
+                <a href="#" className="text-[#0054A5] hover:underline">
+                  Terms
+                </a>{" "}
+                &{" "}
+                <a href="#" className="text-[#0054A5] hover:underline">
+                  Privacy Policy
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}

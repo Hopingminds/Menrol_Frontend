@@ -188,10 +188,10 @@ const OurServices = () => {
   return (
     <div className="gap-4 px-[7%] xsm:p-6 relative xl:mt-20">
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
-          <div className="animate-spin w-16 h-16 rounded-full" />
-        </div>
-      )}
+  <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
+    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+  </div>
+)}
 
       {error && (
         <div className="absolute inset-0 flex items-center justify-center bg-red-500 text-white z-50">

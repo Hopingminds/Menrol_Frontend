@@ -277,9 +277,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-[20rem] text-xl">
-        Loading...
-      </div>
+      <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
+    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+  </div>
     );
   }
 

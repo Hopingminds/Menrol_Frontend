@@ -29,10 +29,10 @@ const WhyChooseUs = () => {
 
             <div className="text-left 2xl:text-center sm:text-right">
               <div className="flex items-end sm:ml-6">
-                <h1 className="text-[48px] font-bold md:text-xl xsm:text-[40px]  sm:text-base">231</h1>
-                <span className="text-[40px] sm:text-xl md:text-xl">+</span>
+                {/* <h1 className="text-[48px] font-bold md:text-xl xsm:text-[40px]  sm:text-base">231</h1> */}
+                {/* <span className="text-[40px] sm:text-xl md:text-xl">+</span> */}
               </div>
-              <h1 className="text-[16px] sm:text-xs md:text-xs">Project Finished</h1>
+              <h1 className="text-[16px] sm:text-xs md:text-xs">Delivering excellence in construction and transformation projects, ensuring satisfaction every step of the way.</h1>
             </div>
           </div>
         </div>

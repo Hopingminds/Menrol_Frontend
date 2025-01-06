@@ -76,9 +76,9 @@ const Ourservices: React.FC = () => {
   return (
     <div className="gap-4 px-[10%] relative py-10  ">
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
-          <div className="animate-spin w-16 h-16 border-4 border-t-transparent rounded-full"></div>
-        </div>
+        <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
+        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+      </div>
       )}
 
       {error && (
