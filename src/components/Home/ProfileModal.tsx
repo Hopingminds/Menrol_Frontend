@@ -19,17 +19,17 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   userData, // Access userData here
 }) => {
   const [houseNumber, setHouseNumber] = useState<string>("");
-  const [sector, setSector] = useState<string>("");
-  const [city, setCity] = useState<string>("");
-  const [state, setState] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
-  const [currentLocation, setCurrentLocation] = useState<string>("");
-  const [isAddressFetched, setIsAddressFetched] = useState<boolean>(false);
-  const locations = [
-    { name: "Location 1", lat: 51.505, lng: -0.09 },
-    { name: "Location 2", lat: 51.515, lng: -0.1 },
-    { name: "Location 3", lat: 51.525, lng: -0.11 },
-  ];
+  // const [sector, setSector] = useState<string>("");
+  // const [city, setCity] = useState<string>("");
+  // const [state, setState] = useState<string>("");
+  // const [country, setCountry] = useState<string>("");
+  // const [currentLocation, setCurrentLocation] = useState<string>("");
+  // const [isAddressFetched, setIsAddressFetched] = useState<boolean>(false);
+  // const locations = [
+  //   { name: "Location 1", lat: 51.505, lng: -0.09 },
+  //   { name: "Location 2", lat: 51.515, lng: -0.1 },
+  //   { name: "Location 3", lat: 51.525, lng: -0.11 },
+  // ];
   const GOOGLE_API_KEY = "AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0";
 
   // Function to fetch latitude and longitude based on IP address
@@ -40,14 +40,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
       if (data.city && data.region) {
         const { lat, lon } = data; // Fetching the latitude and longitude
-        setCurrentLocation(`${data.city}, ${data.region}`);
+        // setCurrentLocation(`${data.city}, ${data.region}`);
         getAddressFromCoordinates(lat, lon);
       } else {
-        setCurrentLocation("Location data unavailable");
+        // setCurrentLocation("Location data unavailable");
       }
     } catch (error) {
       console.error("Error fetching location:", error);
-      setCurrentLocation("Unable to fetch location");
+      // setCurrentLocation("Unable to fetch location");
     }
   };
 
@@ -65,21 +65,21 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         const fullAddress =
           data.results[0]?.formatted_address || "Address not found";
         extractCompleteAddress(fullAddress);
-        setIsAddressFetched(true); // Mark as fetched
+        // setIsAddressFetched(true); // Mark as fetched
       } else {
         setHouseNumber("Unable to fetch address");
-        setSector("Unable to fetch address");
-        setCity("Unable to fetch address");
-        setState("Unable to fetch address");
-        setCountry("Unable to fetch address");
+        // setSector("Unable to fetch address");
+        // setCity("Unable to fetch address");
+        // setState("Unable to fetch address");
+        // setCountry("Unable to fetch address");
       }
     } catch (error) {
       console.error("Geocoding error:", error);
       setHouseNumber("Error fetching address");
-      setSector("Error fetching address");
-      setCity("Error fetching address");
-      setState("Error fetching address");
-      setCountry("Error fetching address");
+      // setSector("Error fetching address");
+      // setCity("Error fetching address");
+      // setState("Error fetching address");
+      // setCountry("Error fetching address");
     }
   };
 
@@ -89,16 +89,16 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
     // Attempting to extract house number, sector, city, and state
     setHouseNumber(addressParts[0]?.trim() || "House Number not available");
-    setSector(addressParts[1]?.trim() || "Sector not available");
-    setCity(
-      addressParts[addressParts.length - 3]?.trim() || "City not available"
-    );
-    setState(
-      addressParts[addressParts.length - 2]?.trim() || "State not available"
-    );
-    setCountry(
-      addressParts[addressParts.length - 1]?.trim() || "Country not available"
-    );
+    // setSector(addressParts[1]?.trim() || "Sector not available");
+    // setCity(
+    //   addressParts[addressParts.length - 3]?.trim() || "City not available"
+    // );
+    // setState(
+    //   addressParts[addressParts.length - 2]?.trim() || "State not available"
+    // );
+    // setCountry(
+    //   addressParts[addressParts.length - 1]?.trim() || "Country not available"
+    // );
   };
 
   useEffect(() => {
