@@ -66,7 +66,7 @@ declare global {
   }
 }
 
-const Checkout: React.FC<CheckoutProps> = () => {
+const Checkout: React.FC<CheckoutProps> = ( { address }) => {
   const router = useRouter();
   const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(
     null
