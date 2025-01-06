@@ -178,6 +178,12 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
+      if(startDate>endDate){
+        toast.warning('plss select dates accurately');
+
+      }
+      else{
+
       toast.success("Service request added successfully!", {
         position: "top-right",
         autoClose: 3000,
@@ -187,6 +193,7 @@ const Modal: React.FC<{
         draggable: true,
         progress: undefined,
       });
+    }
       setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
