@@ -72,8 +72,32 @@ type Address = {
 
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: {
+      new(options: RazorpayOptions): RazorpayInstance;
+    };
   }
+}
+
+interface RazorpayOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  image: string;
+  handler: (response: { razorpay_payment_id: string }) => void;
+  prefill: {
+    name: string;
+    email: string;
+    contact: string;
+  };
+  theme: {
+    color: string;
+  };
+}
+
+interface RazorpayInstance {
+  open(): void;
 }
 
 const Checkout: React.FC<CheckoutProps> = ({ }) => {
@@ -133,7 +157,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     const selectedAddressId = event.target.value;
     const selected = userAddresses?.find((addr) => addr._id === selectedAddressId);
     setSelectedAddress(selected || null); // Store the full address object
-  };  
+  };
 
   const fetchServiceData = async () => {
     setIsLoading(true);
@@ -209,7 +233,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     if (!selectedAddress) {
       toast.error("Please select an address before proceeding.");
       return;
-    }  
+    }
     try {
       const response = await fetch("https://api.menrol.com/api/v1/purchaseService", {
         method: "POST",
