@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 interface ScheduledTiming {
   startTime: string;
@@ -60,27 +61,29 @@ interface CheckoutProps {
   address: string | null;
 }
 
+type Address = {
+  location: {
+    type: string;
+    coordinates: [number, number];
+  };
+  address: string;
+  _id: string;
+};
+
 declare global {
   interface Window {
     Razorpay: any;
   }
 }
 
-const Checkout: React.FC<CheckoutProps> = () => {
+const Checkout: React.FC<CheckoutProps> = ({ }) => {
   const router = useRouter();
-  const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(
-    null
-  );
+  const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const [savedAddress, setSavedAddress] = useState<{ address: string | null }>({
-    address: null,
-  });
   const [isLoading, setIsLoading] = useState(false);
-  const [location, setLocation] = useState<{
-    type: string;
-    coordinates: [number, number];
-  } | null>(null);
+  const [userAddresses, setUserAddresses] = useState<Address[]>();
+  const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
@@ -91,38 +94,12 @@ const Checkout: React.FC<CheckoutProps> = () => {
 
   useEffect(() => {
     if (userInfo) {
+      fetchUserAddress();
       fetchServiceData();
-      fetchSavedAddress(); // Fetch saved address when userInfo is available
     }
   }, [userInfo]);
 
-  const fetchServiceData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/getUserServiceRequests",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${userInfo?.token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data: ApiResponse = await response.json();
-      if (data.success) {
-        setServiceRequest(data.serviceRequests);
-        setTotalAmount(data.totalAmount.totalAmount);
-      }
-    } catch (error) {
-      console.error("Error fetching service data:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Fetch saved address from the API
-  const fetchSavedAddress = async () => {
+  const fetchUserAddress = async () => {
     if (!userInfo) {
       console.error("No userInfo found");
       return;
@@ -137,14 +114,10 @@ const Checkout: React.FC<CheckoutProps> = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const savedAddress = data.user.SavedAddresses[0];
         console.log("check data comming", data);
 
-        if (savedAddress) {
-          setSavedAddress({
-            address: savedAddress.address,
-          });
-          setLocation(savedAddress.location); // Save location (if provided)
+        if (data.user.SavedAddresses.length !== 0) {
+          setUserAddresses(data.user.SavedAddresses)
         } else {
           console.error("No saved address found.");
         }
@@ -153,6 +126,34 @@ const Checkout: React.FC<CheckoutProps> = () => {
       }
     } catch (error) {
       console.error("Error fetching saved address: ", error);
+    }
+  }
+
+  const handleAddressChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedAddressId = event.target.value;
+    const selected = userAddresses?.find((addr) => addr._id === selectedAddressId);
+    setSelectedAddress(selected || null); // Store the full address object
+  };  
+
+  const fetchServiceData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("https://api.menrol.com/api/v1/getUserServiceRequests", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userInfo?.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const data: ApiResponse = await response.json();
+      if (data.success) {
+        setServiceRequest(data.serviceRequests);
+        setTotalAmount(data.totalAmount.totalAmount);
+      }
+    } catch (error) {
+      console.error("Error fetching service data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -167,10 +168,13 @@ const Checkout: React.FC<CheckoutProps> = () => {
 
   const loadRazorpay = () => {
     if (totalAmount <= 0) {
-      alert("Invalid amount, cannot proceed with the payment.");
+      toast.error("Invalid amount, cannot proceed with the payment.");
       return;
     }
-
+    if (!selectedAddress) {
+      toast.error("Please select an address before proceeding.");
+      return;
+    }
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
@@ -202,28 +206,23 @@ const Checkout: React.FC<CheckoutProps> = () => {
   };
 
   const handleContinueCheckout = async () => {
-    const finalAddress = savedAddress.address || " ";
-    const finalLocation = location || {
-      type: "Point",
-      coordinates: [-74.006, 40.7128],
-    }; // Default location if not fetched
-
+    if (!selectedAddress) {
+      toast.error("Please select an address before proceeding.");
+      return;
+    }  
     try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/purchaseService",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.token}`,
-          },
-          body: JSON.stringify({
-            totalPayedAmount: totalAmount,
-            location: finalLocation,
-            address: finalAddress,
-          }),
-        }
-      );
+      const response = await fetch("https://api.menrol.com/api/v1/purchaseService", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo?.token}`,
+        },
+        body: JSON.stringify({
+          totalPayedAmount: totalAmount,
+          location: selectedAddress.location,
+          address: selectedAddress.address,
+        }),
+      });
       const data = await response.json();
       console.log("Checkout successful:", data);
       router.push("/orderdetails");
@@ -232,22 +231,16 @@ const Checkout: React.FC<CheckoutProps> = () => {
     }
   };
 
-  const handleRemoveSubcategory = async (
-    serviceId: string,
-    subcategoryId: string
-  ) => {
+  const handleRemoveSubcategory = async (serviceId: string, subcategoryId: string) => {
     try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/removeServiceRequest",
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${userInfo?.token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ service: serviceId, subcategoryId }),
-        }
-      );
+      const response = await fetch("https://api.menrol.com/api/v1/removeServiceRequest", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${userInfo?.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ service: serviceId, subcategoryId }),
+      });
       const data = await response.json();
       if (data.success) {
         fetchServiceData();
@@ -277,14 +270,29 @@ const Checkout: React.FC<CheckoutProps> = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-7xl mx-auto px-8">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
+        <select
+          value={selectedAddress?._id || ""}
+          onChange={handleAddressChange}
+          className="w-full p-3 border rounded-lg"
+        >
+          <option value="" disabled>
+            Choose an address
+          </option>
+          {userAddresses &&
+            userAddresses.map((address) => (
+              <option key={address._id} value={address._id}>
+                {address.address}
+              </option>
+            ))}
+        </select>
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           {serviceRequest.requestedServices.map((requestedService) =>
             requestedService.subcategory.map((subcategory) => (
-              <div
-                key={subcategory._id}
-                className="bg-white rounded-xl p-6 shadow-sm mb-6"
-              >
+              <div key={subcategory._id} className="bg-white rounded-xl p-6 shadow-sm mb-6">
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-full md:w-1/3">
                     <Image
@@ -299,25 +307,17 @@ const Checkout: React.FC<CheckoutProps> = () => {
                     <h2 className="text-xl font-semibold text-gray-800">
                       {subcategory.title}
                     </h2>
-                    <p className="text-gray-600">
-                      {subcategory.subcategoryId.description}
-                    </p>
+                    <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
                     <div className="flex items-center gap-4">
                       <span className="text-gray-500">
                         {requestedService.service.category}
                       </span>
-                      <span>
-                        {formatTime(subcategory.scheduledTiming.startTime)}
-                      </span>
+                      <span>{formatTime(subcategory.scheduledTiming.startTime)}</span>
                       <span>To</span>
-                      <span>
-                        {formatTime(subcategory.scheduledTiming.endTime)}
-                      </span>
+                      <span>{formatTime(subcategory.scheduledTiming.endTime)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-4">
-                      <span className="text-2xl font-bold">
-                        ₹{subcategory.selectedAmount}
-                      </span>
+                      <span className="text-2xl font-bold">₹{subcategory.selectedAmount}</span>
                       <button
                         onClick={() =>
                           handleRemoveSubcategory(
@@ -342,16 +342,9 @@ const Checkout: React.FC<CheckoutProps> = () => {
           <div className="space-y-4">
             {serviceRequest.requestedServices.map((service) =>
               service.subcategory.map((subcategory) => (
-                <div
-                  key={subcategory._id}
-                  className="flex justify-between items-center"
-                >
-                  <span className="text-gray-600 truncate flex-1">
-                    {subcategory.title}
-                  </span>
-                  <span className="text-gray-900">
-                    ₹{subcategory.selectedAmount}
-                  </span>
+                <div key={subcategory._id} className="flex justify-between items-center">
+                  <span className="text-gray-600 truncate flex-1">{subcategory.title}</span>
+                  <span className="text-gray-900">₹{subcategory.selectedAmount}</span>
                 </div>
               ))
             )}
