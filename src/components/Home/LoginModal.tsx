@@ -44,6 +44,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");
+      console.log(err)
     } finally {
       setLoading(false);
     }
@@ -78,6 +79,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");
+      console.log(err);
+      
     } finally {
       setLoading(false);
     }
