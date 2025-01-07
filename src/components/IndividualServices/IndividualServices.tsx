@@ -178,22 +178,22 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
-      toast.success("Service request added successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
-        setError(
-          "Ensure dates are valid and the end date is after the start date."
-        );
+        toast.warning("Plss check the date and change accordingly");
         return;
+      }
+      else {
+        toast.success("Service request added successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setError(null);
       }
 
       const serviceRequest: ServiceRequest = {
@@ -521,20 +521,20 @@ const IndividualServices: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
-    if(subcategoryId && service){
+    if (subcategoryId && service) {
       const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
-      if(data){
+      if (data) {
         setSelectedItem(data);
         setIsModalOpen(true);
       }
     }
-  },[service])
+  }, [service])
 
   if (loading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
-    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-  </div>
+        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+      </div>
     );
   }
 
