@@ -97,10 +97,10 @@ const FooterPage = () => {
         <div>
           <Link href="/" passHref>
             <Image
-              src="/Images/MenrolLogo.png"
+              src="/Images/whitelogo.png"
               alt="Placeholder"
               className="w-auto h-auto rounded-lg object-cover"
-              height={200}
+              height={500}
               width={200}
             />
           </Link>
