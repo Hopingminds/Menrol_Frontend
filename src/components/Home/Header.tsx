@@ -196,9 +196,9 @@ const Header: React.FC = () => {
       <ToastContainer />
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-full">
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2   xsm:w-[10%]">
+        <div className="flex items-center space-x-2 xsm:w-[10%]">
           <Image
-            src="/Images/menrollogo.png"
+            src="/Images/MenrolLogo.png"
             alt="Logo"
             className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}

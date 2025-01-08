@@ -8,6 +8,7 @@ import "swiper/css/effect-fade";
 import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 interface SubCategory {
   _id: string;
@@ -195,7 +196,13 @@ const NewBanner = () => {
                 Book your service
               </button> */}
               <button
-  onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}
+  onClick={() => {
+    if (!selectedCategory || !selectedSubcategory) {
+      toast.warning("please select the services")
+      return;
+    }
+    handleServiceDetails2(selectedCategory, selectedSubcategory);
+  }}
   className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
 >
   <div

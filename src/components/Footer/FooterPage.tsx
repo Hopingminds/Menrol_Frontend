@@ -42,6 +42,7 @@ const FooterPage = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState<string>("");
   const router = useRouter();
   const currentYear = new Date().getFullYear();
 
@@ -73,8 +74,27 @@ const FooterPage = () => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
   };
 
+  // Email validation and subscription
   const handleSubscribe = (event: React.FormEvent) => {
     event.preventDefault();
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      toast.warning("Please enter a valid email address!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      return; // Prevent subscription if the email is invalid
+    }
+
     toast.success("Thank you for subscribing!", {
       position: "top-right",
       autoClose: 3000,
@@ -85,6 +105,14 @@ const FooterPage = () => {
       progress: undefined,
       theme: "colored",
     });
+
+    // Actual subscription logic can be placed here (e.g., API call)
+    console.log("Subscribed with email:", email);
+  };
+
+  // Email change handler
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   const isActive = (link: string) =>
@@ -183,13 +211,10 @@ const FooterPage = () => {
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
-                    className={` decoration-[#0054A5] hover:text-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${pathname ===
+                    className={`decoration-[#0054A5] hover:text-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed text-left ${pathname ===
                       `/IndividualServices?data=${encodeURIComponent(
                         service._id
-                      )}`
-                      ? "text-[#0054A5] font-bold"
-                      : "text-white"
-                      }`}
+                      )}` ? "text-[#0054A5] font-bold" : "text-white"}`}
                   >
                     {service.category}
                   </button>
@@ -207,6 +232,8 @@ const FooterPage = () => {
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={handleEmailChange}
               className="w-full pl-6 mb-4 rounded-xl p-4 bg-[#F9F9FE] text-[#121212] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button className="w-[9vw] xsm:w-full sm:w-full md:w-full rounded-xl bg-[#0054A5] p-4 hover:bg-blue-700 font-dm-sans tracking-wide leading-relaxed">
