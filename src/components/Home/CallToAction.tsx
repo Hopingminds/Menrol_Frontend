@@ -30,7 +30,7 @@ const CallToAction = () => {
   };
 
   return (
-    <div className="px-[10%] flex flex-row justify-between mt-[10vh]">
+    <div className="px-[10%] flex flex-row justify-between mt-[10vh] overflow-hidden">
       {/* Text Section */}
       <div
         className="w-[50%]"

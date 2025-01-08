@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -183,9 +184,9 @@ const Header: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-[370px]">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-full">
         {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2 xsm:border  xsm:w-[10%]">
+        <div className="flex items-center space-x-2   xsm:w-[10%]">
           <Image
             src="/menrol-logo.png"
             alt="Logo"
@@ -197,7 +198,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Middle Section: Search & Location */}
-        <div className="flex justify-end ml-[30%] xsm:ml-0 xsm:hidden">
+        <div className="flex justify-end lg:ml-[30%] md:ml-[10%] xsm:ml-0 xsm:hidden">
           <div className="flex flex-row items-center justify-center px-2 pt-5">
             <Location />
           </div>
@@ -282,7 +283,7 @@ const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              className="focus:outline-none bg-[#0054A5] text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#0054A5]"
+              className="focus:outline-none bg-[#0054A5] md:text-xs lg:text-base text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#0054A5]"
               onClick={() => setIsModalOpen(true)}
             >
               Login/signup

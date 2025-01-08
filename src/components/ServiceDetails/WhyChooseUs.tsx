@@ -22,7 +22,7 @@ const WhyChooseUs = () => {
             <Image
               src="/Images/Star_whyChoose.png"
               alt="Logo"
-              className="absolute top-2 right-5 w-auto md:w-[20px] h-auto object-cover"
+              className="absolute top-2 right-5 lg:w-auto lg:top-2 w-auto md:w-[15px] md:top-1 h-auto object-cover"
               height={100}
               width={100}
             />
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
                 {/* <h1 className="text-[48px] font-bold md:text-xl xsm:text-[40px]  sm:text-base">231</h1> */}
                 {/* <span className="text-[40px] sm:text-xl md:text-xl">+</span> */}
               </div>
-              <h1 className="text-[16px] sm:text-xs md:text-xs">Delivering excellence in construction and transformation projects, ensuring satisfaction every step of the way.</h1>
+              <h1 className="text-[16px] xsm:text-[14px] xsm:ml-5 lg:text-[12px]  xsm:w-[80%] md:text-[7px] md:text-center">Delivering excellence in construction and transformation projects, ensuring satisfaction every step of the way.</h1>
             </div>
           </div>
         </div>

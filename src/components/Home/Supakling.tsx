@@ -4,6 +4,7 @@ import { PiBuildingsBold } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
 import { FaAnglesRight, FaArrowRightLong } from "react-icons/fa6";
+import NewBanner from "../NewBanner/NewBanner";
 
 interface Service {
   id: number;
@@ -70,27 +71,29 @@ const Supakling: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
-      <div className="max-w-[95%] mx-auto">
+    <div>
+      <NewBanner/>
+      <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
+      {/* <div className="max-w-[95%] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full min-h-[70vh]">
-          {/* Left Column */}
+          
           <div className="flex flex-col justify-center items-center h-full space-y-8">
             <div className="w-full  h-[500px] flex flex-col p-4">
               <div className="font-bold text-navy-900">
                 <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend ">
                   Welcome to Menrol Hub
                   Labor Partner!
-                  {/* Your Trusted Skilled <br /> */}
+                  
 
                 </p>
 
-                {/* <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
+                <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
                   Your Trusted Skilled
-                </p> */}
+                </p>
 
-                {/* <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
+                <p className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[70%] font-lexend tracking-wide">
                  Labor Partner!
-                </p> */}
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-6 mt-[4vh] ">
                 <div className="flex items-center space-x-4 group relative inline-block">
@@ -104,7 +107,7 @@ const Supakling: React.FC = () => {
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
                   <p
                     className="text-gray-600 text-lg"
-                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
                   >
                     Skilled professionals for plumbing.
                   </p>
@@ -113,7 +116,7 @@ const Supakling: React.FC = () => {
                   <FaAnglesRight className="transition-transform transform group-hover:-translate-x-2 duration-300 cursor-pointer text-blue-600" />
                   <p
                     className="text-gray-600 text-lg"
-                  // style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
+                  style={{ wordSpacing: "8px", letterSpacing: "0.6px" }}
                   >
                     Experts for electrical work.
                   </p>
@@ -164,7 +167,7 @@ const Supakling: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column */}
+          
           <div className="flex items-center justify-center h-[90%] md:h-full xsm:hidden">
             <div className="grid grid-cols-2 grid-rows-2 bg-white rounded-3xl w-full h-full  min-h-[50vh] overflow-hidden ">
               <div
@@ -186,9 +189,9 @@ const Supakling: React.FC = () => {
                     Providing Skilled Labor Across Multiple Categories
                   </p>
 
-                  {/* Circles below the second paragraph */}
+                  
                   <div className="flex justify-center mt-4 md:mb-2  space-x-[-12px]">
-                    {/* First circle with an image */}
+                    
                     <div className="xl:w-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 xl:h-12 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/ServiceImg/Image-6.png"
@@ -197,7 +200,7 @@ const Supakling: React.FC = () => {
                         objectFit="cover"
                       />
                     </div>
-                    {/* Second circle with an image */}
+                    
                     <div className="xl:w-12 xl:h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur6.jpg"
@@ -206,7 +209,7 @@ const Supakling: React.FC = () => {
                         objectFit="cover"
                       />
                     </div>
-                    {/* Third circle with an image */}
+                    
                     <div className="xl:w-12 xl:h-12 lg:w-8 lg:h-8 xsm:w-8 xsm:h-8 rounded-full overflow-hidden relative">
                       <Image
                         src="/Images/majdur5.jpg"
@@ -215,7 +218,7 @@ const Supakling: React.FC = () => {
                         objectFit="cover"
                       />
                     </div>
-                    {/* Fourth circle with text */}
+                    
                     <div className="xl:w-12 xl:h-12 xsm:w-8 xsm:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
                       1k+
                     </div>
@@ -237,14 +240,14 @@ const Supakling: React.FC = () => {
                   </button>
                 </div>
 
-                {/* <div className="flex items-center group">
+                <div className="flex items-center group">
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     +
                   </button>
                   <button className="border border-gray-300 text-white py-3 px-6 text-lg rounded-full group-hover:bg-blue-800 group-hover:text-white">
                     Plumber
                   </button>
-                </div> */}
+                </div>
 
                 <div className="flex items-center group pt-2">
                   <button className="border border-gray-300 text-white py-3 px-6 text-sm rounded-full group-hover:bg-blue-800 group-hover:text-white">
@@ -275,7 +278,8 @@ const Supakling: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      
       <div className="flex flex-col items-center justify-center px-[10%] xsm:my-[3rem] md:my-[10vh] md:pt-5">
         {/* Buttons Section */}
         <div className="flex xsm:flex-col xsm:space-x-0 xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
@@ -296,7 +300,7 @@ const Supakling: React.FC = () => {
               <IoLocationOutline className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-2xl xsm:text-base font-medium">Residential Services</span>
+            <span className="text-lg xsm:text-base font-medium">Residential Services</span>
           </button>
         </div>
       </div>
@@ -385,6 +389,7 @@ const Supakling: React.FC = () => {
           </div>
         </div>
       </section>
+    </div>
     </div>
   );
 };

@@ -222,12 +222,12 @@ const FooterPage = () => {
       <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
         <p className="mb-10">Copyright &copy; {currentYear} Menrol</p>
         <p className="flex space-x-4 mb-10">
-          <Link href="#" className="hover:underline decoration-[#0054A5]">
+          <Link href="/terms" className="hover:underline decoration-[#0054A5]">
             Terms of Use
           </Link>
           <span>|</span>
           <Link
-            href="#"
+            href="/privacy"
             className="hover:underline decoration-[#0054A5] font-dm-sans tracking-wide leading-relaxed"
           >
             Privacy Policy

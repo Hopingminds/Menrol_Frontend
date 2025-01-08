@@ -6,10 +6,10 @@ const PhoenixSterling = () => {
     <div className="flex xsm:flex-col px-[10%] xsm:px-4 bg-[#0054A5] my-10 lg:py-[10vh] md:py-[7vh] py-[20vh] items-center justify-between xsm:items-start xsm:py-[2vh] lg:gap-20 gap-10">
       <div className="w-[60%] text-justify  xsm:w-full lg:w-full">
         <div className="flex items-center">
-          <p className="text-[56px] 2xl:text-[57px] lg:text-[48px] md:text-2xl xsm:text-3xl text-white font-dm-sans lg:leading-normal tracking-wide leading-relaxed">
+          <p className="xl:text-[38px] 2xl:text-[45px] lg:text-[30px] md:text-[24px] xsm:text-3xl text-white font-dm-sans lg:leading-normal text-start">
             Menrol Force Skilled Worker
           </p>
-          <span className="text-green-500 text-[50px] xsm:text-[20px] lg:pl-1 pl-5">✔</span>
+          <span className="text-green-500 lg:text-[50px] md:text-[35px] xsm:text-[20px] lg:pl-1 pl-5">✔</span>
         </div>
 
 
@@ -24,7 +24,7 @@ const PhoenixSterling = () => {
         </p>
       </div>
       <div
-        className="relative bg-[rgba(94,147,198,1)] text-white p-4 rounded-xl 2xl:h-[25rem] xl:h-[25rem] w-[30%] lg:h-[25rem] sm:h-[20rem] md:h-[20rem] md:w-[50%] lg:w-[75%] xsm:h-[200px] xsm:w-[200px] xsm:items-center xsm:justify-center"
+        className="relative xsm:hidden bg-[rgba(94,147,198,1)] text-white p-4 rounded-xl 2xl:h-[25rem] xl:h-[25rem] w-[30%] lg:h-[25rem] sm:h-[20rem] md:h-[20rem] md:w-[50%] lg:w-[75%] xsm:h-[200px] xsm:w-[200px] xsm:items-center xsm:justify-center"
         style={{
           backgroundImage: "url('/Images/pics2/pics2/worker12.jpg')",
           backgroundSize: "cover",
