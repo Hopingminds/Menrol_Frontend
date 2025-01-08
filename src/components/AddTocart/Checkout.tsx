@@ -174,6 +174,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
         setServiceRequest(data.serviceRequests);
         setTotalAmount(data.totalAmount.totalAmount);
       }
+      else{
+        setServiceRequest(null);
+      }
     } catch (error) {
       console.error("Error fetching service data:", error);
     } finally {

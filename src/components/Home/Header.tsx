@@ -120,6 +120,7 @@ const Header: React.FC = () => {
     };
 
     window.addEventListener("storage", syncLoginState);
+
     syncLoginState();
     return () => window.removeEventListener("storage", syncLoginState);
   }, []);
@@ -158,18 +159,27 @@ const Header: React.FC = () => {
   }, [searchQuery, fetchData]);
 
   const logout = () => {
+    // Clear all user data and reset state
     localStorage.clear();
     setIsLoggedIn(false);
     setUserData(null);
+
+    // Show a success toast notification
     toast.success("Logged out successfully!", {
-      position: "top-right",  // You can change the position as needed
-      autoClose: 5000,  // Duration for the toast to stay
-      hideProgressBar: false,  // Show progress bar
-      closeOnClick: true,  // Allow closing by clicking on the toast
-      pauseOnHover: true,
-      theme: "colored",  // Pause on hover
+      position: "top-right",  // Toast position
+      autoClose: 5000,        // Duration for the toast to stay
+      hideProgressBar: false, // Show progress bar
+      closeOnClick: true,     // Allow closing by clicking on the toast
+      pauseOnHover: true,     // Pause when hovering
+      theme: "colored",       // Colored theme
     });
+
+    // Reload the page after a short delay to show the toast
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000); // Adjust delay as needed
   };
+
 
 
 

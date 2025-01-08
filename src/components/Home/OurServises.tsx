@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import Ourservices from "../ServiceDetails/Ourservices";
 
 
 interface SubCategory {
@@ -95,6 +96,10 @@ const OurServices = () => {
     router.push("/ServiceDetails");
   };
 
+  const handleServiceDetails1 = (serviceId: string) => {
+    router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
+  };
+
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -115,6 +120,7 @@ const OurServices = () => {
         setError("Failed to load services.");
       }
     };
+    console.log(services);
 
     fetchServices();
   }, []);
@@ -188,10 +194,10 @@ const OurServices = () => {
   return (
     <div className="gap-4 px-[7%] xsm:p-6 relative xl:mt-20">
       {loading && (
-  <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
-    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-  </div>
-)}
+        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50 z-50">
+          <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+        </div>
+      )}
 
       {error && (
         <div className="absolute inset-0 flex items-center justify-center bg-red-500 text-white z-50">
@@ -268,33 +274,197 @@ const OurServices = () => {
         </Slider>
       </div>
 
-      {services?.map((service) => (
+      {services?.map((service, index) => (
         <div key={service._id} className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">{service.category}</h2>
-          <Slider {...sliderSettings} className="pt-6">
-            {service.subcategory?.map((subCat) => (
-              <div key={subCat._id} className="p-1">
-                <div className="flex flex-col items-center">
-                  <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
-                    <Image
-                      src={subCat.image}
-                      alt={subCat.title}
-                      className="w-full h-full object-cover rounded-lg cursor-pointer"
-                      height={220}
-                      width={280}
-                      onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
-                    />
+          {index === 1 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+
+          {index === 1 && (
+            <Slider {...sliderSettings} className="pt-6">
+
+              {service.subcategory?.map((subCat) => (
+
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
                   </div>
-                  <h3 className="mt-3 text-center font-semibold text-[#24232A]">
-                    {subCat.title}
-                  </h3>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          )}
+
+
+          {index === 8 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 8 && (
+            <Slider {...sliderSettings} className="pt-6">
+              {service.subcategory?.map((subCat) => (
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
+
       ))}
+
+      <div>
+        <Image src="/Images/banner5.jpg" alt="Hi this is the banner " className="w-full h-full cursor-pointer " onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} width={1000} height={100} />
+      </div>
+
+      {services?.map((service, index) => (
+        <div key={service._id} className="mb-12">
+
+          {index === 2 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+
+          {index === 2 && (
+            <Slider {...sliderSettings} className="pt-6">
+              {service.subcategory?.map((subCat) => (
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
+
+
+          {index === 3 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+
+          {index === 3 && (
+            <Slider {...sliderSettings} className="pt-6">
+              {service.subcategory?.map((subCat) => (
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+
+      ))}
+      <div>
+        <Image src="/Images/banner7.jpg" alt="Hi this is the banner " className="w-full h-[80%] cursor-pointer" width={1000} height={100} onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} />
+      </div>
+
+
+      {services?.map((service, index) => (
+        <div key={service._id} className="mb-12">
+          {index === 4 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+
+          {/* Render separate sliders for each index */}
+          {index === 4 && (
+            <Slider {...sliderSettings} className="pt-6">
+              {service.subcategory?.map((subCat) => (
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
+
+
+          {index === 0 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 0 && (
+            <Slider {...sliderSettings} className="pt-6">
+              {service.subcategory?.map((subCat) => (
+                <div key={subCat._id} className="p-1">
+                  <div className="flex flex-col items-center">
+                    <div className="relative w-[280px] h-[220px] mx-auto rounded-lg transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-110">
+                      <Image
+                        src={subCat.image}
+                        alt={subCat.title}
+                        className="w-full h-full object-cover rounded-lg cursor-pointer"
+                        height={220}
+                        width={280}
+                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                      />
+                    </div>
+                    <h3 className="mt-3 text-center font-semibold text-[#24232A]">
+                      {subCat.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          )}
+        </div>
+
+      ))}
+
+      <div>
+        <Image src="/Images/banner6.jpg" alt="Hi this is the banner " className="w-full h-[80%] cursor-pointer" width={1000} height={100} onClick={() => handleServiceDetails1("67598d3718dd6b70bf89c781")} />
+      </div>
     </div>
+
+
   );
 };
 

@@ -152,8 +152,16 @@ const Modal: React.FC<{
     }
   }, [pricingType, selectedItem]);
 
-  // Handle modal close
   const handleClose = () => {
+
+    const currentUrl = new URL(window.location.href);
+
+    if (currentUrl.searchParams.has("subcategory")) {
+
+      currentUrl.searchParams.delete("subcategory");
+
+      window.history.replaceState({}, document.title, currentUrl.toString());
+    }
     resetForm();
     onClose();
   };
@@ -418,7 +426,7 @@ const Modal: React.FC<{
                     onChange={(e) => setWorkers(parseInt(e.target.value))}
                     className="w-full h-[70%] border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                   >
-                    {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+                    {Array.from({ length: 1000 }, (_, i) => i + 1).map((num) => (
                       <option key={num} value={num}>
                         {num}
                       </option>
@@ -521,20 +529,20 @@ const IndividualServices: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
-    if(subcategoryId && service){
+    if (subcategoryId && service) {
       const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
-      if(data){
+      if (data) {
         setSelectedItem(data);
         setIsModalOpen(true);
       }
     }
-  },[service])
+  }, [service])
 
   if (loading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
-    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-  </div>
+        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+      </div>
     );
   }
 
