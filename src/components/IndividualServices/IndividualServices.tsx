@@ -185,10 +185,10 @@ const Modal: React.FC<{
     }
 
     try {
-      if(startDate>endDate){
+      if (!startDate || !endDate || startDate > endDate) {
         toast.warning("Plss select the dates accurately");
       }
-      else{
+      else {
 
         setIsSubmitting(true);
         toast.success("Service request added successfully!", {
@@ -202,7 +202,7 @@ const Modal: React.FC<{
         });
 
       }
-     
+
       setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
