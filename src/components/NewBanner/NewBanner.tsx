@@ -149,9 +149,9 @@ const NewBanner = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex xsm:flex-col backdrop-blur-sm justify-between items-center h-screen py-10 px-[7%] font-sans">
+      <div className="relative z-10 flex xsm:flex-col justify-center gap-0 bg-black bg-opacity-55 items-center h-screen py-10 px-[7%] font-sans">
         <div className="md:w-[50%] xsm:w-full">
-          <div className="md:py-10 xsm:py-5 px-7 lg:w-[80%] md:w-[90%] rounded-xl backdrop-blur-2xl border border-white">
+          <div className="md:py-10 xsm:py-5 px-7 lg:w-[90%] md:w-[90%] rounded-xl backdrop-blur-2xl border border-white">
             <div className="text-white xsm:w-full md:w-[90%]">
               <h1 className="font-thin font-sans mb-2">Get Skilled Experts Quickly</h1>
               <p className="font-sans font-semibold text-xs tracking-wide leading-relaxed">
@@ -195,27 +195,49 @@ const NewBanner = () => {
                 Book your service
               </button> */}
               <button
-          onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}
-          className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
-        >
-          <div className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient" />
-          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl" />
-          <div className="absolute inset-0 overflow-hidden rounded-xl">
-            <div className="glitter-container">
-              <div className="glitter" />
-              <div className="glitter" />
-              <div className="glitter" />
-            </div>
-          </div>
-          {/* <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300" /> */}
-          <div className="absolute inset-0 rounded-xl overflow-hidden">
-            <div className="wave" />
-          </div>
-          <span className="relative z-10 flex items-center">
-            <span className="">Book your service</span>
-            
-          </span>
-        </button>
+  onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}
+  className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
+>
+  <div
+    className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient pulse-animation"
+  />
+  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl pulse-animation" />
+  <div className="absolute inset-0 overflow-hidden rounded-xl">
+    <div className="glitter-container">
+      <div className="glitter" />
+      <div className="glitter" />
+      <div className="glitter" />
+    </div>
+  </div>
+  <div className="absolute inset-0 rounded-xl overflow-hidden">
+    <div className="wave pulse-animation" />
+  </div>
+  <span className="relative z-10 flex items-center">
+    <span className="">Book your service</span>
+  </span>
+</button>
+
+<style jsx>{`
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      
+    }
+    50% {
+      transform: scale(1.1);
+      
+    }
+    100% {
+      transform: scale(1);
+      
+    }
+  }
+
+  .pulse-animation {
+    animation: pulse 2s infinite ease-in-out;
+  }
+`}</style>
+
             </div>
           </div>
         </div>
@@ -265,9 +287,9 @@ const NewBanner = () => {
                       />
                       <div
                         onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")}
-                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-between items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]"
+                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-end items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]"
                       >
-                        <h3 className="md:text-xs xsm:text-[5px] xsm:font-thin font-semibold">
+                        <h3 className="md:text-xs xsm:text-[5px] xsm:font-thin font-semibold ">
                           {sub.title}
                         </h3>
                       </div>

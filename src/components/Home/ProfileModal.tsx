@@ -110,11 +110,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div
       onClick={() => setIsModalOpen(false)}
-      className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center  justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-8 rounded-lg shadow-lg w-[90%] md:w-[40%]"
+        className="bg-white p-8 rounded-lg shadow-lg h-[90%] w-[90%] md:w-[40%]"
       >
         <h2 className="text-2xl font-semibold mb-4 text-center text-blue-600">
           Profile Information
@@ -139,7 +139,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
               <p className="text-lg">
                 <strong className="text-blue-500">Address:</strong>
               </p>
-              <Map />
+              <div className=" h-[15rem] overflow-hidden"><Map /></div>
               <input
                 type="text"
                 value={houseNumber}
