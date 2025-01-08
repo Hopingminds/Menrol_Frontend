@@ -48,9 +48,9 @@ const LoginModal: React.FC<LoginModalProps> = ({
   };
 
   const handleVerifyOtp = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
+    e.preventDefault(); // Prevent form submission
+    setLoading(true);   // Indicate loading
+    setError(null);     // Clear previous errors
 
     try {
       const response = await fetch("https://api.menrol.com/api/v1/verifyUserOtp", {
@@ -60,24 +60,30 @@ const LoginModal: React.FC<LoginModalProps> = ({
       });
 
       const data = await response.json();
+
       if (response.ok && data.token) {
+        // Store user info in localStorage
         const userInfo = { token: data.token, phone };
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage"));
+
         toast.success("Login Successful!");
+
+        // Reload the page to reflect DOM updates
         setTimeout(() => {
-          setIsModalOpen(false);
-        }, 2000);
+          window.location.reload();
+        }, 2000); // Allow time for the toast to be visible
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");
-      console.log(err);
+      console.error(err);
     } finally {
-      setLoading(false);
+      setLoading(false); // Stop loading spinner
     }
   };
+
 
   return (
     <>

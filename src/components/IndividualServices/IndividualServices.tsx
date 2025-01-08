@@ -152,8 +152,16 @@ const Modal: React.FC<{
     }
   }, [pricingType, selectedItem]);
 
-  // Handle modal close
   const handleClose = () => {
+
+    const currentUrl = new URL(window.location.href);
+
+    if (currentUrl.searchParams.has("subcategory")) {
+
+      currentUrl.searchParams.delete("subcategory");
+
+      window.history.replaceState({}, document.title, currentUrl.toString());
+    }
     resetForm();
     onClose();
   };
@@ -178,22 +186,22 @@ const Modal: React.FC<{
 
     try {
       setIsSubmitting(true);
+      toast.success("Service request added successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setError(null);
 
       if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
-        toast.warning("Plss check the date and change accordingly");
+        setError(
+          "Ensure dates are valid and the end date is after the start date."
+        );
         return;
-      }
-      else {
-        toast.success("Service request added successfully!", {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setError(null);
       }
 
       const serviceRequest: ServiceRequest = {
@@ -418,7 +426,7 @@ const Modal: React.FC<{
                     onChange={(e) => setWorkers(parseInt(e.target.value))}
                     className="w-full h-[70%] border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
                   >
-                    {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
+                    {Array.from({ length: 1000 }, (_, i) => i + 1).map((num) => (
                       <option key={num} value={num}>
                         {num}
                       </option>
