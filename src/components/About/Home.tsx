@@ -31,7 +31,7 @@ const Home = () => {
                             <div className='text-xl font-bold text-white xl:mt-10 2xl:mt-10 md:text-base  xsm:mt-0 xsm:text-[9px] font-dm-sans  tracking-wide leading-relaxed'>Building Better Communities</div>
                             {/* <div className="text-6xl font-bold text-white mt-14 xsm:mt-3 font-dm-sans xsm:text-2xl tracking-wide leading-relaxed">99%</div> */}
                             <p className="text-black mt-2 font-sans md:text-xs font-dm-sans tracking-wide leading-relaxed xsm:text-[7px] xsm:-mb-3 xsm:w-full xsm:tracking-tight xsm:leading-tight lg:text-sm 2xl:mt-0">Projects Successfully Delivered
-                            From reliable construction to creating clean and hygienic environments, our team delivers precision and excellence every time.</p>
+                                From reliable construction to creating clean and hygienic environments, our team delivers precision and excellence every time.</p>
                             <div className="absolute top-10 xsm:top-2 lg:top-3 lg:left-3 md:top-0 md:left-1 left-10 xsm:left-2 text-3xl text-[rgba(193,244,88,1)] xsm:text-lg"> ★</div>
                             <div className="absolute  md:bottom-1 lg:bottom-5 lg:right-8 bottom-14 xsm:bottom-0 xsm:right-3 right-12 text-[rgba(36,35,42,1)] text-3xl xsm:text-lg 2xl:bottom-6 2xl:right-14 md:right-2">
                                 ★
@@ -41,7 +41,7 @@ const Home = () => {
                             {" "}
                             <Feature
                                 title="Professional Experts"
-                                description="Our professional experts offer excelllent services, transforming your space into a fresh, hygienic haven"
+                                description="Our professional experts offer excelllent services, transforming your space into a fresh, hygienic haven."
                             />
                         </div>
                     </div>
