@@ -128,7 +128,7 @@ const Header: React.FC = () => {
   // Search functionality
   const fetchData = useCallback(async () => {
     try {
-      const url = `https://api.menrol.com/api/v1/searchCategory?service=${searchQuery}`;
+      const url = `https://api.menrol.com/api/v1/searchSubCategoryInAllCategories?subcategory=${searchQuery}`;
       const response = await fetch(url);
       const data = await response.json();
 
