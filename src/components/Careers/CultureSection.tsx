@@ -30,9 +30,9 @@ const CultureSection: React.FC = () => {
                         { title: 'Collaboration', description: '"Effective collaboration promotes open communication, strengthens relationships, and ensures the successful execution of complex projects across various industries.' },
                         { title: 'Improvement', description: 'By prioritizing improvement, businesses can increase operational efficiency, reduce errors, and adapt to market demands more effectively.' },
                         { title: 'Innovation', description: 'By embracing innovation, companies unlock new possibilities, introducing disruptive technologies that redefine the future of industries and markets.' },
-                        { title: 'Accountability', description: 'In a professional setting, accountability ensures that everyone meets their obligations, leading to consistent results and mutual trust' },
-                        { title: 'Customer Focus', description: 'With customer focus, businesses ensure that customer satisfaction is at the core, driving decisions and improving service quality' },
-                        { title: 'Work-Life Balance', description: 'Achieving work-life balance helps individuals reduce burnout, boost productivity, and create fulfilling relationships outside of work commitments' },
+                        { title: 'Accountability', description: 'In a professional setting, accountability ensures that everyone meets their obligations, leading to consistent results and mutual trust.' },
+                        { title: 'Customer Focus', description: 'With customer focus, businesses ensure that customer satisfaction is at the core, driving decisions and improving service quality.' },
+                        { title: 'Work-Life Balance', description: 'Achieving work-life balance helps individuals reduce burnout, boost productivity, and create fulfilling relationships outside of work commitments.' },
                     ].map((item, index) => (
                         <div key={index}>
                             <h3 className="text-xl font-bold flex items-center mt-2">

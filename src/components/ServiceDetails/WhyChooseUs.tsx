@@ -50,7 +50,7 @@ const WhyChooseUs = () => {
                 </h1>
                 <p className="text-[14px] 2xl:text-[12px] xsm:text-[10px]  sm:text-[12px] text-[#24232A] md:text-[10px] font-dm-sans tracking-wide leading-relaxed ">
                   Trusted  experts making every space <br />
-                  Shine with care and precision
+                  Shine with care and precision.
                 </p>
               </div>
             </div>
