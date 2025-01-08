@@ -8,7 +8,6 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
 import { useRouter } from "next/navigation";
 
-
 interface SubCategory {
   _id: string;
   title: string;
@@ -20,6 +19,7 @@ interface Category {
   category: string;
   subcategory: SubCategory[];
 }
+
 interface Service {
   _id: string;
   category: string;
@@ -27,6 +27,7 @@ interface Service {
   categoryImage: string;
   subcategory: SubCategory[];
 }
+
 interface ApiResponse {
   success: boolean;
   all: Service[];
@@ -36,21 +37,20 @@ const NewBanner = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [subcategories, setSubcategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [subcategories, setSubcategories] = useState<SubCategory[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
 
   const router = useRouter();
-
 
   const handleServiceDetails1 = (serviceId: string) => {
     router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
   };
+
   const handleServiceDetails2 = (id: string, subId: string) => {
-    // setLoading(true);
     router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
   };
-
+  console.log(error);
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -60,7 +60,6 @@ const NewBanner = () => {
         const apiResponse = await response.json();
         console.log("API Response:", apiResponse);
 
-        // Adjust based on the actual API response structure
         if (apiResponse?.success && apiResponse.data?.subcategory) {
           setCategories([{ ...apiResponse.data }]);
         } else {
@@ -78,7 +77,7 @@ const NewBanner = () => {
   }, []);
 
   useEffect(() => {
-    const fetchServices1 = async () => {
+    const fetchServices = async () => {
       try {
         const response = await fetch(
           "https://api.menrol.com/api/v1/getServices"
@@ -89,7 +88,6 @@ const NewBanner = () => {
         if (data.success) {
           setServices(data.all);
         } else {
-          console.log("API returned success=false");
           setError("Failed to load services.");
         }
       } catch (error) {
@@ -97,17 +95,17 @@ const NewBanner = () => {
         setError("Failed to load services.");
       }
     };
-    console.log(services);
 
-    fetchServices1();
+    fetchServices();
   }, []);
+
   useEffect(() => {
     if (selectedCategory) {
       fetch(`https://api.menrol.com/api/v1/getCategory?categoryId=${selectedCategory}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.success && data.data?.subcategory) {
-            setSubcategories(data.data.subcategory); // Access subcategory array from the response
+            setSubcategories(data.data.subcategory);
           } else {
             console.error("Failed to fetch subcategories:", data.message || "Unknown error");
             setSubcategories([]);
@@ -122,12 +120,10 @@ const NewBanner = () => {
     }
   }, [selectedCategory]);
 
-
-
   return (
     <div>
       <div
-        className="flex xsm:flex-col justify-between items-center  py-10 px-[7%] font-sans bg-cover overflow-hidden"
+        className="flex xsm:flex-col justify-between items-center py-10 px-[7%] font-sans bg-cover overflow-hidden"
         style={{ backgroundImage: "url('/Images/banner.png')" }}
       >
         <div className="md:w-[50%] xsm:w-full">
@@ -152,13 +148,12 @@ const NewBanner = () => {
                 <option value="">Choose category</option>
                 {services.map((service) => (
                   <option key={service._id} value={service._id}>
-                    {service?.category}
+                    {service.category}
                   </option>
                 ))}
               </select>
               <select
                 className="w-full lg:h-[3.6rem] xsm:h-[3rem] md:h-[2rem] rounded-lg px-3"
-                // disabled={!subcategories.length}
                 value={selectedSubcategory}
                 onChange={(e) => setSelectedSubcategory(e.target.value)}
               >
@@ -169,36 +164,34 @@ const NewBanner = () => {
                   </option>
                 ))}
               </select>
-
               <div>
-                <button className="bg-[#0B5597] rounded-full p-3 text-sm text-white " onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}>Book your service</button>
+                <button
+                  className="bg-[#0B5597] rounded-full p-3 text-sm text-white"
+                  onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}
+                >
+                  Book your service
+                </button>
               </div>
             </div>
           </div>
         </div>
-
         <div className="md:w-[50%] py-2 xsm:w-full">
           <div className="text-white">
-            <h1 className="lg:text-4xl xl:text-5xl 2xl:text-6xl lg:tracking-widest md:text-3xl ">
-              Welcome to Menrol Hub
-              Labor Partner!
-
+            <h1 className="lg:text-4xl xl:text-5xl 2xl:text-6xl lg:tracking-widest md:text-3xl">
+              Welcome to Menrol Hub Labor Partner!
             </h1>
             <p className="leading-relaxed mt-5 xsm:text-xs">
               Your
               <Typewriter
                 words={[" Trusted Skilled Labor Partner!"]}
-                loop={0} // Infinite loop
+                loop={0}
                 cursor
-                cursorStyle=""
                 typeSpeed={100}
                 deleteSpeed={70}
                 delaySpeed={1000}
               />
             </p>
           </div>
-
-          {/* Swiper Slider to Display Subcategories */}
           <div className="xsm:mt-10 lg:mt-10 xl:mt-10 backdrop-blur-md xsm:p-2 p-4 w-screen rounded-xl border border-white">
             <Swiper
               modules={[Navigation, Autoplay]}
@@ -220,18 +213,22 @@ const NewBanner = () => {
               {categories.map((category) =>
                 category.subcategory.map((sub) => (
                   <SwiperSlide key={sub._id}>
-                    <div className="relative ">
+                    <div className="relative">
                       <img
                         src={sub.image}
                         alt={sub.title}
-                        className=" lg:w-[150px] xl:w-[170px] md:w-[170px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[150px] object-cover "
+                        className="lg:w-[150px] xl:w-[170px] md:w-[170px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[150px] object-cover"
                       />
-                      <div onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-between items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]">
+                      <div
+                        onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")}
+                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-between items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]"
+                      >
                         <div></div>
-                        <h3 className=" md:text-xs xsm:text-[5px] xsm:font-thin  font-semibold ">{sub.title}</h3>
+                        <h3 className="md:text-xs xsm:text-[5px] xsm:font-thin font-semibold">
+                          {sub.title}
+                        </h3>
                       </div>
                     </div>
-
                   </SwiperSlide>
                 ))
               )}
