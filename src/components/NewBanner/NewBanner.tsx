@@ -59,6 +59,7 @@ const NewBanner = () => {
   const handleServiceDetails2 = (id: string, subId: string) => {
     router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
   };
+  console.log(error)
 
   useEffect(() => {
     const fetchCategories = async () => {
