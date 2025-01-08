@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Autoplay } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
+import { useRouter } from "next/navigation";
 
 
 interface SubCategory {
@@ -22,6 +23,12 @@ interface Category {
 
 const NewBanner = () => {
   const [categories, setCategories] = useState<Category[]>([]);
+   const router = useRouter();
+
+  
+  const handleServiceDetails1 = (serviceId: string) => {
+    router.push(`/IndividualServices?data=${encodeURIComponent(serviceId)}`);
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -137,9 +144,9 @@ const NewBanner = () => {
                       <img
                         src={sub.image}
                         alt={sub.title}
-                        className=" lg:w-[150px] xl:w-[170px] md:w-[170px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[150px] object-cover"
+                        className=" lg:w-[150px] xl:w-[170px] md:w-[170px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[150px] object-cover " 
                       />
-                      <div className="absolute p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-between items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]">
+                      <div onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-between items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]">
                         <div></div>
                         <h3 className=" md:text-xs xsm:text-[5px] xsm:font-thin  font-semibold ">{sub.title}</h3>
                       </div>

@@ -198,11 +198,11 @@ const Header: React.FC = () => {
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2   xsm:w-[10%]">
           <Image
-            src="/menrol-logo.png"
+            src="/Images/MenrolLogo.png"
             alt="Logo"
             className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
-            width={200}
+            width={500}
             height={200}
           />
         </div>

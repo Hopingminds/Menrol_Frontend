@@ -53,7 +53,7 @@ const PrivacyPolicy: FC = () => {
             </h1>
 
             <p className="text-base xsm:text-lg text-gray-600 text-center mb-10 font-poppins">
-                At Menrol, we are committed to protecting the privacy and security of our users' personal information.
+                At Menrol, we are committed to protecting the privacy and security of our users  personal information.
                 This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data when you use our platform.
             </p>
 
@@ -95,7 +95,7 @@ const PrivacyPolicy: FC = () => {
                                 className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'children' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(childrensPrivacyRef, 'children')}
                             >
-                                Children's Privacy
+                                Childrens Privacy
                             </li>
                             <li
                                 className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'changes' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
@@ -194,7 +194,7 @@ const PrivacyPolicy: FC = () => {
 
                     {/* Section: Children's Privacy */}
                     <div className="mb-8" ref={childrensPrivacyRef}>
-                        <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Children's Privacy:</h2>
+                        <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Childrens Privacy:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             Our platform is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13 without parental consent.
                         </p>

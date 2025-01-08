@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { PiBuildingsBold } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
-import { FaAnglesRight, FaArrowRightLong } from "react-icons/fa6";
+import {FaArrowRightLong } from "react-icons/fa6";
 import NewBanner from "../NewBanner/NewBanner";
 
 interface Service {
@@ -36,6 +36,7 @@ const Supakling: React.FC = () => {
 
     fetchServices();
   }, []);
+  console.log(currentIndex);
 
   useEffect(() => {
     if (services.length > 0) {
@@ -46,17 +47,17 @@ const Supakling: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [services]);
-  const HandleGoServicesDetails = () => {
-    router.push("/ServiceDetails")
-  }
+  // const HandleGoServicesDetails = () => {
+  //   router.push("/ServiceDetails")
+  // }
 
-  const getServiceImage = (offset: number) => {
-    if (services?.length > 0) {
-      const subcategory = services[currentIndex]?.subcategory[offset];
-      return subcategory?.image || "";
-    }
-    return "";
-  };
+  // const getServiceImage = (offset: number) => {
+  //   if (services?.length > 0) {
+  //     const subcategory = services[currentIndex]?.subcategory[offset];
+  //     return subcategory?.image || "";
+  //   }
+  //   return "";
+  // };
 
   const handleService = () => {
     router.push("/ServiceDetails");

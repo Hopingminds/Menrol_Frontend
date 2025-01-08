@@ -99,7 +99,7 @@ const FooterPage = () => {
             <Image
               src="/Images/MenrolLogo.png"
               alt="Placeholder"
-              className="w-auto h-auto rounded-lg object-cover hover:scale-105"
+              className="w-auto h-auto rounded-lg object-cover"
               height={200}
               width={200}
             />

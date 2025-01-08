@@ -149,7 +149,7 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                     <div className="mb-8" ref={yourChoicesRef}>
                         <h2 className="text-2xl font-bold mb-4 font-poppins">Disclaimer of Warranties</h2>
                         <p className="text-gray-700 mb-2 font-poppins">
-                            The Platform is provided on an "as is" and "as available" basis. Menrol makes no warranties, expressed or implied, regarding the operation of the Platform or the information, content, materials, or products included on the Platform.
+                            The Platform is provided on an as is and as available basis. Menrol makes no warranties, expressed or implied, regarding the operation of the Platform or the information, content, materials, or products included on the Platform.
                         </p>
                     </div>
 
