@@ -59,7 +59,7 @@ const NewBanner = () => {
   return (
     <div>
       <div
-        className="flex xsm:flex-col justify-between items-center  py-10 px-[7%] font-sans bg-cover overflow-hidden"
+        className="flex xsm:flex-col justify-between items-center py-10 px-[7%] font-sans bg-cover overflow-hidden"
         style={{ backgroundImage: "url('/Images/banner.png')" }}
       >
         <div className="md:w-[50%] xsm:w-full">
