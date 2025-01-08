@@ -179,7 +179,7 @@ const FooterPage = () => {
             ) : error ? (
               <li>{error}</li>
             ) : (
-              services.slice(0, 4).map((service) => (
+              services.slice(0, 6).map((service) => (
                 <li key={service._id}>
                   <button
                     onClick={() => handleServiceDetails(service._id)}
