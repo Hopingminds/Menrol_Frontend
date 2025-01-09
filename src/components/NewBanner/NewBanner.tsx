@@ -42,6 +42,7 @@ const NewBanner = () => {
   const [subcategories, setSubcategories] = useState<SubCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
+  const [name,setname]=useState<string>("")
 
   const backgroundImages = [
     "/Images/banner.png",
@@ -164,6 +165,8 @@ const NewBanner = () => {
                 className="w-full lg:h-[3.6rem] xsm:h-[3rem] md:h-[2rem] rounded-lg px-3"
                 type="text"
                 placeholder="Name"
+                value={name}
+                onChange={(e) => setname(e.target.value)}
               />
               <select
                 className="w-full lg:h-[3.6rem] xsm:h-[3rem] md:h-[2rem] rounded-lg px-3"
@@ -199,6 +202,10 @@ const NewBanner = () => {
   onClick={() => {
     if (!selectedCategory || !selectedSubcategory) {
       toast.warning("please select the services")
+      return;
+    }
+    if (!name) {
+      toast.warning("Please enter your name");
       return;
     }
     handleServiceDetails2(selectedCategory, selectedSubcategory);

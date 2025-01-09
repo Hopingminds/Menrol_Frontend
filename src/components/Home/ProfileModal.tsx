@@ -135,7 +135,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
               </p>
             </div>
             {/* Address Section with separate input boxes for each field */}
-            <div className="mb-4  overflow-y-scroll h-[450px]">
+            <div className="mb-4  ">
               <p className="text-lg">
                 <strong className="text-blue-500">Address:</strong>
               </p>
