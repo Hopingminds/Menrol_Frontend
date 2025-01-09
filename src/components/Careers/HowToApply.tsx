@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 
+
 const HowToApply: React.FC = () => {
     const steps = [
         {
@@ -45,9 +46,9 @@ const HowToApply: React.FC = () => {
             <div className="bg-[rgba(36,35,42,1)] text-white p-8 text-center rounded-xl shadow-md w-[100%]  h-72   ">
                 <h3 className="text-4xl font-bold mb-4 mt-8 font-dm-sans font-lexend tracking-wide leading-relaxed xsm:text-base">Join Our  Dream Team!</h3>
                 <p className="text-lg mb-4 mt-4 font-dm-sans font-dm-sans tracking-wide leading-relaxed xsm:text-sm">Join our expert team and deliver top-notch services that transform lives.</p>
-                <button className="bg-[#0054A5] text-[rgba(255,255,255,1)] font-bold py-2 px-4 rounded-md hover:bg-gray- transition mt-4 ">
+                {/* <button className="bg-[#0054A5] text-[rgba(255,255,255,1)] font-bold py-2 px-4 rounded-md hover:bg-gray- transition mt-4 ">
                     Join Our Team
-                </button>
+                </button> */}
             </div>
         </section>
     );
