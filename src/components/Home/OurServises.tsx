@@ -42,7 +42,7 @@ const PrevArrow: React.FC<PrevArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-[#0054A5] rounded-full p-2 shadow-md hover:bg-gray-50 transition-all duration-200"
+      className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 bg-[#0054A5] rounded-full p-2 shadow-md hover:bg-bg-[#0054A5] transition-all duration-200"
       aria-label="Previous slide"
     >
       <svg
@@ -66,7 +66,7 @@ const NextArrow: React.FC<NextArrowProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-[#0054A5] rounded-full p-2 shadow-md hover:bg-gray-50 transition-all duration-200"
+      className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10 bg-[#0054A5] rounded-full p-2 shadow-md hover:bg-[#0054A5] transition-all duration-200"
       aria-label="Next slide"
     >
       <svg
