@@ -114,7 +114,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-8 rounded-lg shadow-lg h-[90%] w-[90%] md:w-[40%]"
+        className="bg-white p-8 rounded-lg shadow-lg h-auto w-[90%] md:w-[40%]"
       >
         <h2 className="text-2xl font-semibold mb-4 text-center text-blue-600">
           Profile Information
@@ -135,11 +135,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
               </p>
             </div>
             {/* Address Section with separate input boxes for each field */}
-            <div className="mb-4">
+            <div className="mb-4  overflow-y-scroll h-[450px]">
               <p className="text-lg">
                 <strong className="text-blue-500">Address:</strong>
               </p>
-              <div className=" h-[15rem] overflow-hidden"><Map /></div>
+              <div className="">
+                <Map />
+              </div>
               <input
                 type="text"
                 value={houseNumber}
