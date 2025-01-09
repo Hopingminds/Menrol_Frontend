@@ -196,11 +196,11 @@ const Header: React.FC = () => {
       <ToastContainer />
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-full">
         {/* Left Section: Logo */}
-        <div className=" xsm:w-[10%]">
+        <div className="flex items-center space-x-2 xsm:w-[10%]">
           <Image
             src="/Images/logo2.png"
             alt="Logo"
-            className="h-16 w-16 cursor-pointer"
+            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
             onClick={() => router.push("/")}
             width={500}
             height={200}
@@ -208,13 +208,13 @@ const Header: React.FC = () => {
         </div>
 
         {/* Middle Section: Search & Location */}
-        <div className="flex justify-end  xsm:ml-0 xsm:hidden">
+        <div className="flex justify-end lg:ml-[30%] md:ml-[10%] xsm:ml-0 xsm:hidden">
           <div className="flex flex-row items-center justify-center px-2 pt-5">
             <Location />
           </div>
 
           {/* Search Bar */}
-          <div className="flex flex-1 items-center mx-6 -mr-16 ">
+          <div className="flex flex-1 items-center mx-6 ">
             <div className="relative w-full">
               <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
               <input
