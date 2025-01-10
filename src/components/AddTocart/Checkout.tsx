@@ -114,6 +114,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     if (storedUser) {
       setUserInfo(JSON.parse(storedUser));
     }
+    if(!storedUser){
+      router.push("/")
+    }
   }, []);
 
   useEffect(() => {

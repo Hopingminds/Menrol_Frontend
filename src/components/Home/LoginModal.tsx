@@ -67,7 +67,14 @@ const LoginModal: React.FC<LoginModalProps> = ({
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage"));
 
-        toast.success("Login Successful!");
+       toast.success("Log in successfully", {
+             position: "top-right",  // Toast position
+             autoClose: 5000,        // Duration for the toast to stay
+             hideProgressBar: false, // Show progress bar
+             closeOnClick: true,     // Allow closing by clicking on the toast
+             pauseOnHover: true,     // Pause when hovering
+             theme: "colored",       // Colored theme
+           });
 
         // Reload the page to reflect DOM updates
         setTimeout(() => {
