@@ -16,9 +16,7 @@ const Testimonials: React.FC = () => {
             </h1>
           </div>
 
-          {/* <button className="bg-[#0054A5] my-[5vh] rounded-full h-[7vh] w-[9vw] items-center text-[#FFFFFF] font-[16px] tracking-[0.07em]">
-            View All
-          </button> */}
+     
         </div>
       </div>
 
@@ -118,7 +116,7 @@ const Testimonials: React.FC = () => {
         <div className=" flex flex-col w-[40%]  xsm:w-[70%] sm:w-[70%] 2xl:w-[33%]">
           <div className="relative bg-[#0054A5] p-8 rounded-lg shadow-md text-center itr col-span-1 mx-3 xsm:right-3 xsm:h-[12rem] h-72 w-full">
 
-            {/* <div className="text-6xl font-bold text-white mt-9 xsm:mt-0 font-dm-sans font-dm-sans tracking-wide leading-relaxed">30%</div> */}
+
             <p className="text-white mt-12 xsm:text-[12px] xsm:mt-3 md:text-lg md:mt-12 font-dm-sans font-dm-sans tracking-wide leading-relaxed">Committed to delivering exceptional results, we are working hard to ensure every client satisfaction grows with every completed project.</p>
             <div className="absolute top-4 left-4 text-lg">⭐</div>
             <div className="absolute bottom-4 right-4 text-gray-700 text-lg">★</div>

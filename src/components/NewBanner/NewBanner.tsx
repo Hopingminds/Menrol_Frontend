@@ -192,12 +192,6 @@ const NewBanner = () => {
                   </option>
                 ))}
               </select>
-              {/* <button
-                onClick={() => handleServiceDetails2(selectedCategory, selectedSubcategory)}
-                className="group relative inline-flex items-center justify-center px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:mt-3 xsm:w-[10rem] xsm:h-[40px] h-[60px]"
-              >
-                Book your service
-              </button> */}
               <button
   onClick={() => {
     if (!selectedCategory || !selectedSubcategory) {

@@ -150,7 +150,7 @@ const OrderDetails = () => {
                                 </p>
                                 </div>
                               </div>
-                              <div className="pl-10 mt-2 grid grid-cols-2 space-y-2">
+                              <div className="pl-10 mt-2 grid items-baseline grid-cols-2 space-y-2">
                               {serviceRequest.subcategory.map((subcat, subIndex) => (
                                 <div key={subIndex} className="w-full ">
                                   <p className="text-gray-800">

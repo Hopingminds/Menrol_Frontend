@@ -185,7 +185,7 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                         </p>
                     </div>
 
-                    {/* Section: Contact Us */}
+            
                     <div className="mb-8" ref={contactUsRef}>
                         <h2 className="text-2xl font-bold mb-4 font-poppins">Contact Us</h2>
                         <p className="text-gray-700 mb-2 font-poppins">
@@ -193,7 +193,7 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                         </p>
                     </div>
 
-                    {/* Additional Sections Here */}
+               
                 </section>
             </div>
         </div>

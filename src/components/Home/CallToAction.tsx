@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import { useRouter } from "next/navigation";
 
 const CallToAction = () => {
-  // const [loading, setLoading] = useState(false);
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -17,13 +17,6 @@ const CallToAction = () => {
     });
   }, []);
 
-  // const handleGoContact = () => {
-  //   setLoading(true);
-  //   router.push("/contactus");
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // };
 
   const handleGoContact = () => {
     router.push("/contactus");
@@ -57,7 +50,7 @@ const CallToAction = () => {
               <div className="glitter"></div>
             </div>
           </div>
-          {/* <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300"></div> */}
+        
           <div className="absolute inset-0 rounded-full overflow-hidden">
             <div className="wave"></div>
           </div>

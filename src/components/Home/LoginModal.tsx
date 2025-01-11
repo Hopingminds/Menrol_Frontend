@@ -171,17 +171,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 </button>
               </form>
 
-              {/* Terms and conditions */}
-              {/* <div className="mt-6 text-center text-sm text-gray-500">
-                By continuing, you agree to our{" "}
-                <a href="#" className="text-[#0054A5] hover:underline">
-                  Terms
-                </a>{" "}
-                &{" "}
-                <a href="#" className="text-[#0054A5] hover:underline">
-                  Privacy Policy
-                </a>
-              </div> */}
+     
             </div>
           </div>
         </div>

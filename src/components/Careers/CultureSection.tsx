@@ -14,12 +14,10 @@ const CultureSection: React.FC = () => {
                         backgroundRepeat: "no-repeat",
                     }}
                 >
-                    {/* Content inside the div (if any) */}
-                </div>
+                    </div>
 
                 <div className="bg-[#0054A5] p-2 rounded-lg shadow-md text-center w-full xsm:w-[20rem] xsm:h-[20rem] sm:w-[90vw] md:w-full md:h-52 lg:h-64 flex flex-col justify-center items-center">
-                    {/* <div className="text-6xl font-bold md:text-4xl ">90%</div> */}
-                    {/* <div className="text-xl mt-2 font-dm-sans tracking-wide leading-relaxed">Job Satisfaction</div> */}
+               
                     <div className="  text-white md:text-sm font-dm-sans tracking-wide leading-relaxed"> our collaborative culture empowers employees to deliver exceptional results while maintaining perfect work-life harmony. Join our award-winning team.</div>
                 </div>
             </div>

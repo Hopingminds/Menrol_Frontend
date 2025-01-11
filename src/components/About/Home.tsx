@@ -9,12 +9,11 @@ const Home = () => {
 
 
                 <div className="flex flex-col xsm:items-start md:flex-row md:gap-32 2xl:px-[7%] items-center md:items-start justify-between xsm:px-[10%] md:px-[10%] lg:px-[7%] xl:px-[7%]  px-[7%] mt-4 ">
-                    {/* Left Section: Heading */}
+                   
                     <h2 className="text-5xl xsm:text-xl md:text-2xl 2xl:text-5xl 2xl:w-[60%]  lg:text-3xl  font-bold text-gray-900 md:w-1/2 font-lexend tracking-wide leading-relaxed">
                         Excellence Delivered, Every Time
                     </h2>
 
-                    {/* Right Section: Paragraph */}
                     <div className="flex justify-end w-2/3 xsm:w-[60%] md:w-1/2 mt-6 md:mt-1">
                         <div className="flex justify-end">
                             <p className="text-gray-500 md:tracking-tight xsm:mr-4 xsm:text-xs xsm:text-start md:leading-tight 2xl:text-lg 2xl:tracking-wide 2xl:leading-relaxed md:text-sm text-lg self-end  text-justify font-dm-sans tracking-wide leading-relaxed " >
@@ -29,7 +28,6 @@ const Home = () => {
                     <div className="flex-col xsm:relative xsm:bottom-32 xsm:left-48 ">
                         <div className="relative bg-[#0054A5]  p-8 xsm:py-2 xsm:p-0  rounded-lg shadow-md text-center col-span-1 lg:h-72 w-72 2xl:w-full xsm:w-28 xsm:h-32 md:w-[90%] lg:w-full  md:h-[14rem] xl:mt-2 2xl:mt-0">
                             <div className='text-xl font-bold text-white xl:mt-10 2xl:mt-10 md:text-base  xsm:mt-0 xsm:text-[9px] font-dm-sans  tracking-wide leading-relaxed'>Building Better Communities</div>
-                            {/* <div className="text-6xl font-bold text-white mt-14 xsm:mt-3 font-dm-sans xsm:text-2xl tracking-wide leading-relaxed">99%</div> */}
                             <p className="text-black mt-2 font-sans md:text-xs font-dm-sans tracking-wide leading-relaxed xsm:text-[7px] xsm:-mb-3 xsm:w-full xsm:tracking-tight xsm:leading-tight lg:text-sm 2xl:mt-0">Projects Successfully Delivered
                                 From reliable construction to creating clean and hygienic environments, our team delivers precision and excellence every time.</p>
                             <div className="absolute top-10 xsm:top-2 lg:top-3 lg:left-3 md:top-0 md:left-1 left-10 xsm:left-2 text-3xl text-[rgba(193,244,88,1)] xsm:text-lg"> ★</div>
@@ -59,7 +57,6 @@ const Home = () => {
 
                         <div className="flex justify-between w-full  lg:-left-0 gap-20  xsm:justify-center lg:w-full md:-ml-5 lg:justify-between xsm:text-start md:gap-0 font-dm-sans tracking-wide xsm:tracking-tight leading-relaxed text-[18px] md:text-start text-justify ">
                             {" "}
-                            {/* Reduced gap and added margin top */}
                             <Feature
                                 title="Flexible Scheduling"
                                 description="We offer flexible scheduling, making it easy to book  services at your convenience."
