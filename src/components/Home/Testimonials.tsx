@@ -76,7 +76,7 @@ const Testimonials = () => {
       service: "Office Service",
       feedback: "Our office space has never looked like this. The service providers were efficient, friendly, and thorough.",
     },
-    // Add more testimonials as needed
+  
   ];
 
   return (

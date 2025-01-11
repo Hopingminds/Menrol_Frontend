@@ -1,57 +1,59 @@
 import React, { useEffect, useState } from "react";
 import Map from "../../components/Map/Map";
+import { RiCloseFill } from "react-icons/ri";
 
 interface UserInfo {
   phone: string;
   name: string;
   email: string;
+  token: string;
+}
+
+interface UserProfile {
+  _id: string;
+  phone: number;
+  createdAt: string;
+  updatedAt: string;
+  isAccountBlocked: boolean;
+  preferredLanguage: string;
+  email: string;
+  name: string;
 }
 
 interface ProfileModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  userData: UserInfo | null; // Add userData here
+  userData: UserInfo | null;
 }
 
 const ProfileModal: React.FC<ProfileModalProps> = ({
   isModalOpen,
   setIsModalOpen,
-  userData, // Access userData here
+  userData,
 }) => {
-  const [houseNumber, setHouseNumber] = useState<string>("");
-  // const [sector, setSector] = useState<string>("");
-  // const [city, setCity] = useState<string>("");
-  // const [state, setState] = useState<string>("");
-  // const [country, setCountry] = useState<string>("");
-  // const [currentLocation, setCurrentLocation] = useState<string>("");
-  // const [isAddressFetched, setIsAddressFetched] = useState<boolean>(false);
-  // const locations = [
-  //   { name: "Location 1", lat: 51.505, lng: -0.09 },
-  //   { name: "Location 2", lat: 51.515, lng: -0.1 },
-  //   { name: "Location 3", lat: 51.525, lng: -0.11 },
-  // ];
+  const [houseNumber, setHouseNumber] = useState<string>(""); // House number input
+  const [profileData, setProfileData] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
   const GOOGLE_API_KEY = "AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0";
 
-  // Function to fetch latitude and longitude based on IP address
+  // Function to fetch the user's approximate location based on IP
   const fetchLocation = async () => {
     try {
       const response = await fetch("http://ip-api.com/json");
       const data = await response.json();
 
       if (data.city && data.region) {
-        const { lat, lon } = data; // Fetching the latitude and longitude
-        // setCurrentLocation(`${data.city}, ${data.region}`);
+        const { lat, lon } = data;
         getAddressFromCoordinates(lat, lon);
-      } else {
-        // setCurrentLocation("Location data unavailable");
       }
-    } catch (error) {
-      console.error("Error fetching location:", error);
-      // setCurrentLocation("Unable to fetch location");
+    } catch (err) {
+      console.error("Error fetching location:", err);
     }
   };
 
-  // Function to fetch the address from coordinates (latitude and longitude)
+  // Function to fetch the address using Google Maps API
   const getAddressFromCoordinates = async (
     latitude: number,
     longitude: number
@@ -65,81 +67,111 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         const fullAddress =
           data.results[0]?.formatted_address || "Address not found";
         extractCompleteAddress(fullAddress);
-        // setIsAddressFetched(true); // Mark as fetched
       } else {
         setHouseNumber("Unable to fetch address");
-        // setSector("Unable to fetch address");
-        // setCity("Unable to fetch address");
-        // setState("Unable to fetch address");
-        // setCountry("Unable to fetch address");
       }
-    } catch (error) {
-      console.error("Geocoding error:", error);
+    } catch (err) {
+      console.error("Geocoding error:", err);
       setHouseNumber("Error fetching address");
-      // setSector("Error fetching address");
-      // setCity("Error fetching address");
-      // setState("Error fetching address");
-      // setCountry("Error fetching address");
     }
   };
 
-  // Function to extract the complete address and fill separate fields
+  // Function to extract address components
   const extractCompleteAddress = (fullAddress: string) => {
     const addressParts = fullAddress.split(",");
-
-    // Attempting to extract house number, sector, city, and state
     setHouseNumber(addressParts[0]?.trim() || "House Number not available");
-    // setSector(addressParts[1]?.trim() || "Sector not available");
-    // setCity(
-    //   addressParts[addressParts.length - 3]?.trim() || "City not available"
-    // );
-    // setState(
-    //   addressParts[addressParts.length - 2]?.trim() || "State not available"
-    // );
-    // setCountry(
-    //   addressParts[addressParts.length - 1]?.trim() || "Country not available"
-    // );
+  };
+
+  // Function to fetch profile data
+  const getProfileData = async () => {
+    if (!userData?.token) {
+      setError("User token is not available.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch(`https://api.menrol.com/api/v1/getUser`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${userData.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        setProfileData(data.user);
+        setError(null);
+      } else {
+        setError("Failed to fetch profile data.");
+      }
+    } catch (err) {
+      setError("An error occurred while fetching profile data.");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchLocation();
-  }, []);
+    if (isModalOpen) {
+      fetchLocation();
+      getProfileData();
+    }
+  }, [isModalOpen]);
 
   if (!isModalOpen) return null;
 
   return (
     <div
       onClick={() => setIsModalOpen(false)}
-      className="fixed inset-0 flex items-center  justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-8 rounded-lg shadow-lg h-auto w-[90%] md:w-[40%]"
+        className="bg-white p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
       >
-        <h2 className="text-2xl font-semibold mb-4 text-center text-blue-600">
+        <div className="flex justify-end items-center">
+        <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded">
+          <RiCloseFill className="text-white"/>
+        </button>
+        </div>
+        <h2 className="text-2xl font-semibold mb-2 -mt-5 text-center text-blue-600">
           Profile Information
         </h2>
-        {userData ? (
+        {loading ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
+          <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+        </div>
+        ) : error ? (
+          <p className="text-red-500 text-center">{error}</p>
+        ) : profileData ? (
           <div>
             <div className="mb-4">
               <p className="text-lg">
-                <strong className="text-blue-500">Name:</strong> {userData.name}
+                <span className="text-blue-500">Name:</span>{" "}
+                <span className="">{profileData.name}</span>
               </p>
               <p className="text-lg">
-                <strong className="text-blue-500">Email:</strong>{" "}
-                {userData.email}
+                <span className="text-blue-500">Email:</span>{" "}
+                <span>{profileData.email}</span>
               </p>
               <p className="text-lg">
-                <strong className="text-blue-500">Phone:</strong>{" "}
-                {userData.phone}
+                <span className="text-blue-500">Phone:</span>{" "}
+                <span>{profileData.phone}</span>
               </p>
             </div>
-            {/* Address Section with separate input boxes for each field */}
-            <div className="mb-4  overflow-y-scroll h-[450px]">
+
+            <div className="mb-4">
               <p className="text-lg">
-                <strong className="text-blue-500">Address:</strong>
+                <span className="text-blue-500">Address:</span>
               </p>
-              <div className="">
+              <div className="mb-2">
                 <Map />
               </div>
               <input
@@ -154,14 +186,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         ) : (
           <p className="text-red-500 text-center">No user data available.</p>
         )}
-        <div className="mt-6 flex justify-center">
-          <button
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-all ease-in-out duration-300"
-            onClick={() => setIsModalOpen(false)}
-          >
-            Close
-          </button>
-        </div>
+        
       </div>
     </div>
   );

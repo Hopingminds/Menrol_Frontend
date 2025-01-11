@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import DynamicHeader from "@/components/About/DynamicHeader";
 import Layout from "@/components/Layout";
-import HowItWorks from "@/components/Sercices/HowItWorks";
 import Ourservices from "@/components/ServiceDetails/Ourservices";
 import Testimonials from "@/components/ServiceDetails/Testimonials";
 import WhyChooseUs from "@/components/ServiceDetails/WhyChooseUs";
@@ -25,7 +24,6 @@ const ServiceDetails: React.FC = () => {
     <Layout>
       {isXsm && <DynamicHeader title="Our Services" />}
       <Ourservices />
-      <HowItWorks />
       <WhyChooseUs />
       <Testimonials />
     </Layout>

@@ -32,7 +32,7 @@ const Map: React.FC = () => {
 
   const containerStyle = {
     width: "100%",
-    height: "500px",
+    height: "300px",
   };
 
   const defaultCenter = currentLocation || { lat: 51.505, lng: -0.09 };

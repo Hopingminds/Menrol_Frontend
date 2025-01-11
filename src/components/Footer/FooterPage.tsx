@@ -78,7 +78,7 @@ const FooterPage = () => {
   const handleSubscribe = (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Email validation regex
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
@@ -92,7 +92,7 @@ const FooterPage = () => {
         progress: undefined,
         theme: "colored",
       });
-      return; // Prevent subscription if the email is invalid
+      return;
     }
 
     toast.success("Thank you for subscribing!", {
@@ -106,7 +106,7 @@ const FooterPage = () => {
       theme: "colored",
     });
 
-    // Actual subscription logic can be placed here (e.g., API call)
+    
     console.log("Subscribed with email:", email);
   };
 

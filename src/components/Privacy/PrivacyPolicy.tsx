@@ -115,7 +115,7 @@ const PrivacyPolicy: FC = () => {
                             >
                                 Contact Us
                             </li>
-                            {/* Other sections are similar */}
+                        
                         </ul>
                     </div>
                 </aside>

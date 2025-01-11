@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { useRouter } from "next/navigation";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import Ourservices from "../ServiceDetails/Ourservices";
+
 
 
 interface SubCategory {
@@ -225,7 +225,7 @@ const OurServices = () => {
               <div className="glitter" />
             </div>
           </div>
-          {/* <div className="absolute inset-0 rounded-full border-2 border-white opacity-20 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300" /> */}
+
           <div className="absolute inset-0 rounded-xl overflow-hidden">
             <div className="wave" />
           </div>

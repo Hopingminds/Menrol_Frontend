@@ -18,7 +18,7 @@ const ScanAndDownload = () => {
       {/* Image Section */}
       <div className="absolute bottom-4 w-full flex flex-col items-center">
         <div className="flex flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-10">
-          {/* Left Scanner + App Store */}
+       
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-center gap-2">
               <Image
@@ -56,7 +56,6 @@ const ScanAndDownload = () => {
             </div>
           </div>
 
-          {/* iPhone Image */}
           <div className="xsm:hidden sm:hidden lg:block">
             <Image
               src="/Images/iPhone12_Screen.png"

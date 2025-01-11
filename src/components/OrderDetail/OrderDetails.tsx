@@ -1,21 +1,53 @@
+"use client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
+
 
 interface UserInfo {
   token: string;
 }
 
+interface Subcategory {
+  scheduledTiming: {
+    startTime: string;
+    endTime: string;
+  };
+  title: string;
+  selectedAmount: number;
+  status: string;
+}
+
+interface Service {
+  _id: string;
+  category: string;
+  categoryDescription: string;
+  categoryImage: string;
+}
+
+interface ServiceRequest {
+  service: Service;
+  subcategory: Subcategory[];
+}
+
 interface Order {
   _id: string;
   location: {
-    address: string;
+    type: string;
+    coordinates: [number, number];
   };
   payment: {
-    status: string;
+    totalamount: number;
+    paidAmount: number;
+    dueAmount: number;
+    paymentDate: string;
+    paymentType: string;
+    paymentstatus: string;
+    paymentmethod: string;
   };
-  serviceRequest: {
-    title: string;
-  };
+  serviceRequest: ServiceRequest[];
+  address: string;
   orderDate: string;
+  categoriesTitles: string[];
 }
 
 interface ApiResponse {
@@ -72,56 +104,121 @@ const OrderDetails = () => {
   }, [userInfo]);
 
   return (
-    <div className="px-6 py-8 bg-gray-100 min-h-screen">
+    <div className=" py-8 bg-gray-100 min-h-screen px-[7%]">
       <div className="flex items-center justify-center mb-6">
         <h1 className="text-4xl font-bold font-lexend text-gray-800">
           Your Orders
         </h1>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
-        {orderData ? (
-          <>
-            {Object.entries(orderData).map(([status, orders]) => (
-              <div key={status} className="mb-6">
-                <h2 className="text-2xl font-semibold text-gray-700 capitalize mb-3">
-                  {status} Orders
-                </h2>
-                <ul className="list-disc list-inside space-y-2">
-                  {orders.length > 0 ? (
-                    orders.map((order, index) => (
-                      <li
-                        key={index}
-                        className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 shadow-sm hover:shadow-md"
-                      >
-                        <div>
-                          <strong>Order ID:</strong> {order._id}
-                        </div>
-                        <div>
-                          <strong>Location:</strong> {order.location?.address || "N/A"}
-                        </div>
-                        <div>
-                          <strong>Payment Status:</strong> {order.payment?.status || "N/A"}
-                        </div>
-                        <div>
-                          <strong>Service:</strong> {order.serviceRequest?.title || "N/A"}
-                        </div>
-                        <div>
-                          <strong>Order Date:</strong>{" "}
-                          {new Date(order.orderDate).toLocaleDateString("en-IN")}
-                        </div>
-                      </li>
-                    ))
-                  ) : (
-                    <p className="text-gray-500 italic">No {status} orders.</p>
-                  )}
-                </ul>
-              </div>
-            ))}
-          </>
-        ) : (
-          <p className="text-center text-gray-600">Loading orders...</p>
-        )}
-      </div>
+      <div className="bg-gray-50 min-h-screen px-8 py-12">
+  {orderData ? (
+    <>
+      {Object.entries(orderData).map(([status, orders]) => (
+        <div key={status} className="mb-12">
+          <h2 className="text-3xl font-bold text-gray-800 capitalize border-b pb-2 mb-6">
+            {status} Orders
+          </h2>
+          {orders.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xsm:grid-cols-1 gap-6">
+              {orders.map((order, orderIndex) => (
+                <div
+                  key={orderIndex}
+                  className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 space-y-4"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-700">
+                      Order #{orderIndex + 1}
+                    </h3>
+                  </div>
+                  <div>
+                    <strong className="text-gray-600">Services:</strong>
+                    {order.serviceRequest.length > 0 ? (
+                      <div className="space-y-4">
+                        {order.serviceRequest.map((serviceRequest, srIndex) => (
+                          <div key={srIndex}>
+                            <div className=" flex items-center gap-2 bg-blue-100 px-2 rounded-xl">
+                             <div> <Image
+                                src={serviceRequest.service.categoryImage}
+                                alt={serviceRequest.service.category}
+                                height={500}
+                                width={500}
+                                className="w-16 h-16 object-cover rounded-md border border-gray-300"
+                              />
+                              <div>
+                                <p className="text-gray-800 font-bold">
+                                  {serviceRequest.service.category}
+                                </p>
+                                </div>
+                              </div>
+                              <div className="pl-10 mt-2 grid items-baseline grid-cols-2 space-y-2">
+                              {serviceRequest.subcategory.map((subcat, subIndex) => (
+                                <div key={subIndex} className="w-full ">
+                                  <p className="text-gray-800">
+                                    <p className="font-bold">{subcat.title}</p>
+                                  </p>
+                                  <p className="text-gray-800">
+                                    <strong>Status:</strong> {subcat.status}
+                                  </p>
+                                  <p className="text-gray-800">
+                                    <strong>Timing:</strong>{" "}
+                                    {new Date(
+                                      subcat.scheduledTiming.startTime
+                                    ).toLocaleString()}{" "}
+                                    -{" "}
+                                    {new Date(
+                                      subcat.scheduledTiming.endTime
+                                    ).toLocaleString()}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                            </div>
+                            
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-gray-500 italic">No services available.</p>
+                    )}
+                  </div>
+                  <div>
+                    <strong className="text-gray-600">Location:</strong>{" "}
+                    <p className="text-gray-800">{order.address || "N/A"}</p>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div>
+                    <strong className="text-gray-600">Payment:</strong>
+                    <p className="text-gray-800">
+                      Total Amount: ₹{order.payment.totalamount || "N/A"}
+                    </p>
+                    <p className="text-gray-800">
+                      Paid Amount: ₹{order.payment.paidAmount || "N/A"}
+                    </p>
+                  </div>
+                 
+                  <div>
+                    <strong className="text-gray-600">Order Date:</strong>{" "}
+                    <p className="text-gray-800">
+                      {new Date(order.orderDate).toLocaleDateString("en-IN")}
+                    </p>
+                  </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 italic">No {status} orders.</p>
+          )}
+        </div>
+      ))}
+    </>
+  ) : (
+    <div className="flex justify-center items-center h-full">
+      <p className="text-xl text-gray-600">Loading orders...</p>
+    </div>
+  )}
+</div>
+
     </div>
   );
 };

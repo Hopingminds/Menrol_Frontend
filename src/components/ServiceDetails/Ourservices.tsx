@@ -43,7 +43,7 @@ const Ourservices: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  // const [expandedServices, setExpandedServices] = useState<Set<string>>(new Set());
+
 
   useEffect(() => {
     const fetchServices = async () => {

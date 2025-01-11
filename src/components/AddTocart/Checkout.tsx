@@ -114,6 +114,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     if (storedUser) {
       setUserInfo(JSON.parse(storedUser));
     }
+    if(!storedUser){
+      router.push("/")
+    }
   }, []);
 
   useEffect(() => {
@@ -185,13 +188,16 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   };
 
   const formatTime = (dateTime: string) => {
-    return new Date(dateTime).toLocaleString("en-IN", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-      timeZone: "Asia/Kolkata",
-    });
-  };
+  return new Date(dateTime).toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+  });
+};
 
   const loadRazorpay = () => {
     if (totalAmount <= 0) {
@@ -297,7 +303,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className=" mx-auto px-[3%] mb-3">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
         <select
           value={selectedAddress?._id || ""}
@@ -327,7 +333,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                       alt={subcategory.title}
                       width={400}
                       height={200}
-                      className="rounded-lg w-full h-48 object-cover"
+                      className="rounded-lg w-full h-52 object-cover"
                     />
                   </div>
                   <div className="flex-1 space-y-4">
@@ -335,16 +341,20 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                       {subcategory.title}
                     </h2>
                     <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
-                    <div className="flex items-center gap-4">
-                      <span className="text-gray-500">
+                    <span className="text-black font-semibold">
                         {requestedService.service.category}
                       </span>
-                      <span>{formatTime(subcategory.scheduledTiming.startTime)}</span>
-                      <span>To</span>
-                      <span>{formatTime(subcategory.scheduledTiming.endTime)}</span>
+                    <div className="flex items-center gap-2">
+                      
+                      <span className="text-sm">{formatTime(subcategory.scheduledTiming.startTime)}</span>
+                      <span className="text-sm">To</span>
+                      <span className="text-sm">{formatTime(subcategory.scheduledTiming.endTime)}</span>
                     </div>
-                    <div className="flex justify-between items-center pt-4">
-                      <span className="text-2xl font-bold">₹{subcategory.selectedAmount}</span>
+                    <div className="flex justify-between items-center pt-2">
+                      <div className="flex items-baseline justify-center gap-10">
+                      <span className="text-2xl font-bold">₹{subcategory.selectedAmount} <span className="text-base">/Per worker</span></span>
+                      <span className="text-gray-500"><span className="font-semibold text-black">Required Workers:</span>{subcategory.workersRequirment}</span>
+                      </div>
                       <button
                         onClick={() =>
                           handleRemoveSubcategory(
@@ -371,15 +381,20 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
               service.subcategory.map((subcategory) => (
                 <div key={subcategory._id} className="flex justify-between items-center">
                   <span className="text-gray-600 truncate flex-1">{subcategory.title}</span>
-                  <span className="text-gray-900">₹{subcategory.selectedAmount}</span>
+                  <div className="flex gap-2">
+                  <span>{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
+                  <span>=</span>
+                  <span className="text-gray-900">₹{subcategory.selectedAmount *subcategory.workersRequirment}</span>
+                  </div>
                 </div>
               ))
             )}
             <div className="border-t pt-4 mt-4">
-              <div className="flex justify-between items-center font-bold">
-                <span>Total</span>
-                <span>₹{totalAmount}</span>
-              </div>
+            <div className="flex justify-between items-center font-bold">
+              <span>Included All Texes</span>
+             <span>Total</span>
+             <span>₹{Math.floor(totalAmount)}</span>
+            </div>
             </div>
             <button
               onClick={loadRazorpay}
