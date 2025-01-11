@@ -177,6 +177,7 @@ const Modal: React.FC<{
   const totalDays = calculateTotalDays();
   const totalPrice = selectedPrice * workers * totalDays;
 
+
   const handleSubmit = async () => {
     if (!userInfo?.token) {
       setShowLoginPrompt(true);
@@ -188,6 +189,53 @@ const Modal: React.FC<{
       if (!startDate || !endDate || startDate > endDate) {
         toast.warning("Plss select the dates accurately");
       }
+
+      
+      else if (instructions) {
+
+        try {
+          const response = await fetch(
+            "https://api.menrol.com/api/v1/getUserServiceRequests",
+            {
+              headers: {
+                Authorization: `Bearer ${userInfo?.token}`,
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch service requests");
+          }
+          const data = await response.json();
+
+          if (data.success && data.serviceRequests?.requestedServices) {
+            const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
+              (service: any) => service.subcategory
+            );
+
+            const hasMatchingRequest = existingSubcategories.some(
+              (sub: any) => sub.subcategoryId._id === selectedItem?._id
+            );
+
+
+            if (hasMatchingRequest) {
+              toast.warning("You already have a pending request for this service", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+              return;
+            }
+          }
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
+
       else {
 
         setIsSubmitting(true);
@@ -200,17 +248,16 @@ const Modal: React.FC<{
           draggable: true,
           progress: undefined,
         });
-
       }
 
       setError(null);
 
-      if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
-        setError(
-          "Ensure dates are valid and the end date is after the start date."
-        );
-        return;
-      }
+      // if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
+      //   setError(
+      //     "Ensure dates are valid and the end date is after the start date."
+      //   );
+      //   return;
+      // }
 
       const serviceRequest: ServiceRequest = {
         instImages: null,
@@ -220,7 +267,7 @@ const Modal: React.FC<{
           title: selectedItem?.title || "",
           requestType: pricingType,
           workersRequirment: workers,
-          selectedAmount: selectedPrice,
+          selectedAmount: totalPrice,
           instructions,
           scheduledTiming: {
             startTime: new Date(startDate).toISOString(),
@@ -484,6 +531,8 @@ const IndividualServices: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<Subcategory | null>(null);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  // const [cartItems, setCartItem] = useState<string | null>(null);
 
   const openModal = (item: Subcategory) => {
     setSelectedItem(item);
@@ -535,7 +584,43 @@ const IndividualServices: React.FC = () => {
 
     fetchServiceDetails(id);
   }, [id]);
+  
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem("user-info");
+  //   if (storedUser) {
+  //     const parsedUser = JSON.parse(storedUser);
+  //     setUserInfo(parsedUser);
+  //   }
+  //   fetchCart();
+  // }, []);
 
+  // const fetchCart = async() => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://api.menrol.com/api/v1/getUserServiceRequests",
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${userInfo?.token}`,
+  //         },
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch service requests");
+  //     }
+  //     const data = await response.json();
+
+  //     console.log(data.serviceRequests);
+  //     if (data.success && data.serviceRequests?.requestedServices && id) {
+  //       //set each id
+        
+  //       setCartItem()
+  //     }
+  //   }
+  //   catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   useEffect(() => {
     if (subcategoryId && service) {
       const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
