@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
-
 interface ScheduledTiming {
   startTime: string;
   endTime: string;
@@ -70,35 +69,35 @@ type Address = {
   _id: string;
 };
 
-declare global {
-  interface Window {
-    Razorpay: {
-      new(options: RazorpayOptions): RazorpayInstance;
-    };
-  }
-}
+// declare global {
+//   interface Window {
+//     Razorpay: {
+//       new(options: RazorpayOptions): RazorpayInstance;
+//     };
+//   }
+// }
 
-interface RazorpayOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  image: string;
-  handler: (response: { razorpay_payment_id: string }) => void;
-  prefill: {
-    name: string;
-    email: string;
-    contact: string;
-  };
-  theme: {
-    color: string;
-  };
-}
+// interface RazorpayOptions {
+//   key: string;
+//   amount: number;
+//   currency: string;
+//   name: string;
+//   description: string;
+//   image: string;
+//   handler: (response: { razorpay_payment_id: string }) => void;
+//   prefill: {
+//     name: string;
+//     email: string;
+//     contact: string;
+//   };
+//   theme: {
+//     color: string;
+//   };
+// }
 
-interface RazorpayInstance {
-  open(): void;
-}
+// interface RazorpayInstance {
+//   open(): void;
+// }
 
 const Checkout: React.FC<CheckoutProps> = ({ }) => {
   const router = useRouter();
@@ -109,12 +108,16 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   const [userAddresses, setUserAddresses] = useState<Address[]>();
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
 
+
+
+
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
     if (storedUser) {
       setUserInfo(JSON.parse(storedUser));
     }
-    if(!storedUser){
+    if (!storedUser) {
       router.push("/")
     }
   }, []);
@@ -156,6 +159,10 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     }
   }
 
+  // const handleorder = () => {
+  //   router.push("/orderdetails");
+  // };
+
   const handleAddressChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedAddressId = event.target.value;
     const selected = userAddresses?.find((addr) => addr._id === selectedAddressId);
@@ -177,7 +184,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
         setServiceRequest(data.serviceRequests);
         setTotalAmount(data.totalAmount.totalAmount);
       }
-      else{
+      else {
         setServiceRequest(null);
       }
     } catch (error) {
@@ -188,55 +195,55 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   };
 
   const formatTime = (dateTime: string) => {
-  return new Date(dateTime).toLocaleString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Asia/Kolkata",
-  });
-};
-
-  const loadRazorpay = () => {
-    if (totalAmount <= 0) {
-      toast.error("Invalid amount, cannot proceed with the payment.");
-      return;
-    }
-    if (!selectedAddress) {
-      toast.error("Please select an address before proceeding.");
-      return;
-    }
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.async = true;
-    document.body.appendChild(script);
-    script.onload = () => {
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY || "rzp_test_jmLsdK6FoWIRSe",
-        amount: totalAmount * 100,
-        currency: "INR",
-        name: "Menrol",
-        description: "Product description",
-        image: "/menrol-logo.png",
-        handler: (response: { razorpay_payment_id: string }) => {
-          console.log("Payment successful!", response.razorpay_payment_id);
-          handleContinueCheckout();
-        },
-        prefill: {
-          name: "Customer Name",
-          email: "customer@example.com",
-          contact: "9999999999",
-        },
-        theme: {
-          color: "#0054a5",
-        },
-      };
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    };
+    return new Date(dateTime).toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
+    });
   };
+
+  // const loadRazorpay = () => {
+  //   if (totalAmount <= 0) {
+  //     toast.error("Invalid amount, cannot proceed with the payment.");
+  //     return;
+  //   }
+  //   if (!selectedAddress) {
+  //     toast.error("Please select an address before proceeding.");
+  //     return;
+  //   }
+  //   const script = document.createElement("script");
+  //   script.src = "https://checkout.razorpay.com/v1/checkout.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  //   script.onload = () => {
+  //     const options = {
+  //       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY || "rzp_test_jmLsdK6FoWIRSe",
+  //       amount: totalAmount * 100,
+  //       currency: "INR",
+  //       name: "Menrol",
+  //       description: "Product description",
+  //       image: "/menrol-logo.png",
+  //       handler: (response: { razorpay_payment_id: string }) => {
+  //         console.log("Payment successful!", response.razorpay_payment_id);
+  //         handleContinueCheckout();
+  //       },
+  //       prefill: {
+  //         name: "Customer Name",
+  //         email: "customer@example.com",
+  //         contact: "9999999999",
+  //       },
+  //       theme: {
+  //         color: "#0054a5",
+  //       },
+  //     };
+  //     const rzp = new window.Razorpay(options);
+  //     rzp.open();
+  //   };
+  // };
 
   const handleContinueCheckout = async () => {
     if (!selectedAddress) {
@@ -257,7 +264,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
         }),
       });
       const data = await response.json();
-      console.log("Checkout successful:", data);
+      // console.log(data);
       router.push("/orderdetails");
     } catch (error) {
       console.error("Error during checkout:", error);
@@ -287,8 +294,8 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   if (isLoading) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
-    <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-  </div>
+        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+      </div>
     );
   }
 
@@ -342,18 +349,18 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                     </h2>
                     <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
                     <span className="text-black font-semibold">
-                        {requestedService.service.category}
-                      </span>
+                      {requestedService.service.category}
+                    </span>
                     <div className="flex items-center gap-2">
-                      
+
                       <span className="text-sm">{formatTime(subcategory.scheduledTiming.startTime)}</span>
                       <span className="text-sm">To</span>
                       <span className="text-sm">{formatTime(subcategory.scheduledTiming.endTime)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-2">
                       <div className="flex items-baseline justify-center gap-10">
-                      <span className="text-2xl font-bold">₹{subcategory.selectedAmount} <span className="text-base">/Per worker</span></span>
-                      <span className="text-gray-500"><span className="font-semibold text-black">Required Workers:</span>{subcategory.workersRequirment}</span>
+                        <span className="text-2xl font-bold">₹{subcategory.selectedAmount} <span className="text-base">/Per worker</span></span>
+                        <span className="text-gray-500"><span className="font-semibold text-black">Required Workers:</span>{subcategory.workersRequirment}</span>
                       </div>
                       <button
                         onClick={() =>
@@ -382,22 +389,22 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                 <div key={subcategory._id} className="flex justify-between items-center">
                   <span className="text-gray-600 truncate flex-1">{subcategory.title}</span>
                   <div className="flex gap-2">
-                  <span>{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
-                  <span>=</span>
-                  <span className="text-gray-900">₹{subcategory.selectedAmount *subcategory.workersRequirment}</span>
+                    <span>{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
+                    <span>=</span>
+                    <span className="text-gray-900">₹{subcategory.selectedAmount * subcategory.workersRequirment}</span>
                   </div>
                 </div>
               ))
             )}
             <div className="border-t pt-4 mt-4">
-            <div className="flex justify-between items-center font-bold">
-              <span>Included All Texes</span>
-             <span>Total</span>
-             <span>₹{Math.floor(totalAmount)}</span>
-            </div>
+              <div className="flex justify-between items-center font-bold">
+                <span>Included All Texes</span>
+                <span>Total</span>
+                <span>₹{Math.floor(totalAmount)}</span>
+              </div>
             </div>
             <button
-              onClick={loadRazorpay}
+              onClick={handleContinueCheckout}
               className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
             >
               Checkout

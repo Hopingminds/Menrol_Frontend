@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import Image from "next/image";
@@ -190,54 +191,7 @@ const Modal: React.FC<{
         toast.warning("Plss select the dates accurately");
       }
 
-      
-      else if (instructions) {
-
-        try {
-          const response = await fetch(
-            "https://api.menrol.com/api/v1/getUserServiceRequests",
-            {
-              headers: {
-                Authorization: `Bearer ${userInfo?.token}`,
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch service requests");
-          }
-          const data = await response.json();
-
-          if (data.success && data.serviceRequests?.requestedServices) {
-            const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
-              (service: any) => service.subcategory
-            );
-
-            const hasMatchingRequest = existingSubcategories.some(
-              (sub: any) => sub.subcategoryId._id === selectedItem?._id
-            );
-
-
-            if (hasMatchingRequest) {
-              toast.warning("You already have a pending request for this service", {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-              });
-              return;
-            }
-          }
-        }
-        catch (error) {
-          console.log(error);
-        }
-      }
-
       else {
-
         setIsSubmitting(true);
         toast.success("Service request added successfully!", {
           position: "top-right",
@@ -248,16 +202,13 @@ const Modal: React.FC<{
           draggable: true,
           progress: undefined,
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       }
 
-      setError(null);
 
-      // if (!startDate || !endDate || new Date(endDate) < new Date(startDate)) {
-      //   setError(
-      //     "Ensure dates are valid and the end date is after the start date."
-      //   );
-      //   return;
-      // }
+      setError(null);
 
       const serviceRequest: ServiceRequest = {
         instImages: null,
@@ -532,7 +483,12 @@ const IndividualServices: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<Subcategory | null>(null);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  // const [cartItems, setCartItem] = useState<string | null>(null);
+  const [cartItems, setCartItems] = useState<string[]>([]);
+
+  const Router = useRouter();
+
+
+
 
   const openModal = (item: Subcategory) => {
     setSelectedItem(item);
@@ -584,43 +540,58 @@ const IndividualServices: React.FC = () => {
 
     fetchServiceDetails(id);
   }, [id]);
-  
-  // useEffect(() => {
-  //   const storedUser = localStorage.getItem("user-info");
-  //   if (storedUser) {
-  //     const parsedUser = JSON.parse(storedUser);
-  //     setUserInfo(parsedUser);
-  //   }
-  //   fetchCart();
-  // }, []);
 
-  // const fetchCart = async() => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://api.menrol.com/api/v1/getUserServiceRequests",
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${userInfo?.token}`,
-  //         },
-  //       }
-  //     );
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user-info");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserInfo(parsedUser);
+    }
+  }, []);
 
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch service requests");
-  //     }
-  //     const data = await response.json();
+  useEffect(() => {
+    if (userInfo) {
+      fetchCart();
+    }
+  }, [userInfo]);
 
-  //     console.log(data.serviceRequests);
-  //     if (data.success && data.serviceRequests?.requestedServices && id) {
-  //       //set each id
-        
-  //       setCartItem()
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
-  // }
+
+  console.log(userInfo?.token);
+
+  const fetchCart = async () => {
+    let ItemIds = [];
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/getUserServiceRequests",
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo?.token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch service requests");
+      }
+      const data = await response.json();
+
+
+      if (data.success && data.serviceRequests?.requestedServices) {
+        console.log("tati");
+
+        const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
+          (service: any) => service.subcategory
+        );
+        ItemIds = existingSubcategories.map((sub: any) =>
+          sub.subcategoryId._id);
+      }
+    } catch (err) {
+      console.error("Error fetching cart:", err);
+    } finally {
+      setCartItems(ItemIds);
+    }
+  }
+  console.log(cartItems);
   useEffect(() => {
     if (subcategoryId && service) {
       const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
@@ -710,12 +681,21 @@ const IndividualServices: React.FC = () => {
                 {item.description || "No description available"}
               </p>
 
-              <button
-                onClick={() => openModal(item)}
-                className="w-full mt-4 bg-gray-100 py-3 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
-              >
-                ADD TO CART
-              </button>
+              {cartItems.includes(item._id) ?
+                <button
+                  onClick={() => Router.push('/checkout')}
+                  className="w-full mt-4 bg-gray-100 py-3 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
+                >
+                  Go to Cart
+                </button>
+                :
+                <button
+                  onClick={() => openModal(item)}
+                  className="w-full mt-4 bg-gray-100 py-3 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
+                >
+                  {cartItems.includes(item._id) ? "Go to Cart" : "Add to Cart"}
+                </button>
+              }
             </div>
           </div>
         ))}
@@ -732,3 +712,6 @@ const IndividualServices: React.FC = () => {
 };
 
 export default IndividualServices;
+
+
+
