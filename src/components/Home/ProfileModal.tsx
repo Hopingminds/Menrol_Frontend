@@ -130,11 +130,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div
       onClick={() => setIsModalOpen(false)}
-      className="fixed inset-0 flex items-center justify-center backdrop-blur-lg bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center justify-center  w-full h-screen bg-black bg-opacity-50 z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
+        className="bg-white z-50 p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
       >
         <div className="flex justify-end items-center">
         <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded">

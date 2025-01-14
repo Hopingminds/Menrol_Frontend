@@ -125,7 +125,7 @@ const NewBanner = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen -top-20 overflow-hidden">
       {/* Background Swiper */}
       <div className="absolute inset-0 w-full h-full">
         <Swiper
@@ -151,7 +151,7 @@ const NewBanner = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex xsm:flex-col justify-center gap-0 bg-black bg-opacity-55 items-center h-screen py-10 px-[7%] font-sans">
+      <div className="relative z-10 flex xsm:flex-col justify-center gap-0 bg-black bg-opacity-55 items-center h-screen  px-[7%] font-sans">
         <div className="md:w-[50%] xsm:w-full">
           <div className="md:py-10 xsm:py-5 px-7 lg:w-[90%] md:w-[90%] rounded-xl backdrop-blur-2xl border border-white">
             <div className="text-white xsm:w-full md:w-[90%]">

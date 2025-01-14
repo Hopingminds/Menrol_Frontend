@@ -59,7 +59,7 @@ const Supakling: React.FC = () => {
   return (
     <div>
       <NewBanner/>
-      <div className="min-h-screen pt-8 bg-gray-50 px-[4%]">
+      <div className="min-h-screen pt-10 bg-gray-50 px-[4%]">
       
       <div className="flex flex-col items-center justify-center px-[10%] xsm:my-[3rem] md:my-[10vh] md:pt-5">
         {/* Buttons Section */}

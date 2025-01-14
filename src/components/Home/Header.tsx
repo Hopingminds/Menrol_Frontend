@@ -194,7 +194,7 @@ const Header: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-white shadow-md  xsm:w-full">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] backdrop-blur-md shadow-md  xsm:w-full">
         {/* Left Section: Logo */}
         <div className="flex items-center space-x-2 xsm:w-[10%]">
           <Image
@@ -253,13 +253,13 @@ const Header: React.FC = () => {
         {/* Language Dropdown */}
         <div
           id="google_translate_element"
-          className="check-text p-3 rounded-xl border "
+          className="check-text p-3 rounded-xl border bg-white "
         ></div>
 
         {/* Right Section: Profile & Login */}
         <div >
           {isLoggedIn ? (
-            <div className="relative">
+            <div  className="relative">
               <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
                 className="bg-[#0054A5] h-[3rem] rounded-full text-white px-4 py-2 ml-3"
@@ -267,10 +267,10 @@ const Header: React.FC = () => {
                 <FaUserCircle />
               </button>
               {isMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg ">
                   <ul>
                     <li
-                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                      className="px-4 py-2 cursor-pointer rounded-t-lg hover:bg-gray-100"
                       onClick={handleProfileClick}
                     >
                       Profile
@@ -282,7 +282,7 @@ const Header: React.FC = () => {
                       Order Details
                     </li>
                     <li
-                      className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                      className="px-4 py-2 cursor-pointer rounded-b-lg hover:bg-gray-100"
                       onClick={logout}
                     >
                       Logout
