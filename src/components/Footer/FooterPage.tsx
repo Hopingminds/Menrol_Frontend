@@ -46,6 +46,7 @@ const FooterPage = () => {
   const router = useRouter();
   const currentYear = new Date().getFullYear();
 
+  let temp = true;
   useEffect(() => {
     const fetchServices = async () => {
       try {
@@ -67,7 +68,10 @@ const FooterPage = () => {
       }
     };
 
-    fetchServices();
+    if(temp){
+      fetchServices();
+      temp=false;
+    }
   }, []);
 
   const handleServiceDetails = (serviceId: string) => {
