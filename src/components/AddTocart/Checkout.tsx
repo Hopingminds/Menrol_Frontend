@@ -268,7 +268,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
       });
       const data = await response.json();
       // console.log(data);
-      router.push("/orderdetails");
+      router.push("/AloatedLabour");
     } catch (error) {
       console.error("Error during checkout:", error);
     }
