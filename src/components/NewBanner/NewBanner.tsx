@@ -129,7 +129,7 @@ const NewBanner = () => {
   }, [selectedCategory]);
 
   return (
-    <div className="relative h-screen -top-20 overflow-hidden">
+    <div className="relative h-screen overflow-hidden">
       {/* Background Swiper */}
       <div className="absolute inset-0 w-full h-full">
         <Swiper

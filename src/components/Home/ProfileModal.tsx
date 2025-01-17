@@ -172,7 +172,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <span className="text-blue-500">Address:</span>
               </p>
               <div className="mb-2">
-                <Map />
+                {/* <Map /> */}
               </div>
               <input
                 type="text"

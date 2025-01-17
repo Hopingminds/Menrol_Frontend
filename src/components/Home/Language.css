@@ -29,9 +29,9 @@
 /* Style the dropdown arrow */
 .goog-te-gadget-simple .goog-te-menu-value span:nth-child(3) {
   display: inline-block !important; /* Show only the arrow */
-  margin-left: 5px; /* Optional: Adjust spacing */
+ /* Optional: Adjust spacing */
   color: white !important; /* Ensure the arrow matches the design */
-  font-size: 16px; /* Adjust arrow size if needed */
+  font-size: 10px; /* Adjust arrow size if needed */
 }
 
 

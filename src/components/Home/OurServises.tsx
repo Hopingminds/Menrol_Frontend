@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -211,7 +213,7 @@ const OurServices = () => {
       )}
 
       <div className="flex flex-row justify-between w-full items-center">
-        <div className="font-lexend">
+        <div className="font-lexend xsm:w-[50%]">
           <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
             Make Life Simple <br /> with our  go-to Service app.
           </h1>
@@ -219,7 +221,7 @@ const OurServices = () => {
 
         <button
           onClick={HandleGoServices}
-          className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[160px] h-[60px]"
+          className="group relative inline-flex items-center justify-center px-4 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:w-[100px] xsm:h-[40px] w-[160px] h-[60px]"
         >
           <div className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient" />
           <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl" />
@@ -234,7 +236,7 @@ const OurServices = () => {
           <div className="absolute inset-0 rounded-xl overflow-hidden">
             <div className="wave" />
           </div>
-          <span className="relative z-10 flex items-center gap-2">
+          <span className="relative z-10 flex items-center gap-2 xsm:gap-0 xsm:text-[10px]">
             <span className="tracking-wider">View All</span>
             <svg
               viewBox="0 0 24 24"

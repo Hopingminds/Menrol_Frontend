@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -12,75 +12,74 @@ import Image from "next/image";
 import Location from "./Location";
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+import { MdLocationPin } from "react-icons/md";
+import { MdLanguage } from "react-icons/md";
+
 
 // Custom hook for typing effect
 export const useTypingEffect = () => {
-  const [currentText, setCurrentText] = useState<string>(""); // Current text being typed
-  const [currentIndex, setCurrentIndex] = useState<number>(0); // Current word index
-  const wordsRef = useRef(["Electrician", "Painter", "Cleaning services", "Plumber"]); // Store words in a ref
+  const [currentText, setCurrentText] = useState<string>("");
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const wordsRef = useRef(["Electrician", "Painter", "Cleaning ", "Plumber"]);
 
   useEffect(() => {
-    let mounted = true; // Tracks if the component is mounted
-    let typingTimeout: NodeJS.Timeout; // Timeout for typing effect
-    let pauseTimeout: NodeJS.Timeout; // Timeout for pause after typing
-    let wordTimeout: NodeJS.Timeout; // Timeout before typing next word
+    let mounted = true;
+    let typingTimeout: NodeJS.Timeout;
+    let pauseTimeout: NodeJS.Timeout;
+    let wordTimeout: NodeJS.Timeout;
 
-    // Function to type a word
     const typeWord = () => {
-      const currentWord = wordsRef.current[currentIndex]; // Get the current word
-      let charIndex = 0; // Index of character being typed
+      const currentWord = wordsRef.current[currentIndex];
+      let charIndex = 0;
 
       const type = () => {
         if (!mounted) return;
 
         if (charIndex <= currentWord.length) {
-          setCurrentText(currentWord.slice(0, charIndex)); // Update the displayed text
+          setCurrentText(currentWord.slice(0, charIndex));
           charIndex++;
-          typingTimeout = setTimeout(type, 100); // Type the next character
+          typingTimeout = setTimeout(type, 100);
         } else {
-          pauseTimeout = setTimeout(deleteWord, 2000); // Pause before deleting the word
+          pauseTimeout = setTimeout(deleteWord, 2000);
         }
       };
 
       type();
     };
 
-    // Function to delete a word
     const deleteWord = () => {
-      const currentWord = wordsRef.current[currentIndex]; // Get the current word
-      let charIndex = currentWord.length; // Start deleting from the end of the word
+      const currentWord = wordsRef.current[currentIndex];
+      let charIndex = currentWord.length;
 
       const erase = () => {
         if (!mounted) return;
 
         if (charIndex >= 0) {
-          setCurrentText(currentWord.slice(0, charIndex)); // Update the displayed text
+          setCurrentText(currentWord.slice(0, charIndex));
           charIndex--;
-          typingTimeout = setTimeout(erase, 50); // Delete the next character
+          typingTimeout = setTimeout(erase, 50);
         } else {
-          const nextIndex = (currentIndex + 1) % wordsRef.current.length; // Move to the next word
-          setCurrentIndex(nextIndex); // Update the current word index
-          wordTimeout = setTimeout(typeWord, 500); // Start typing the next word
+          const nextIndex = (currentIndex + 1) % wordsRef.current.length;
+          setCurrentIndex(nextIndex);
+          wordTimeout = setTimeout(typeWord, 500);
         }
       };
 
       erase();
     };
 
-    typeWord(); // Start the typing effect
+    typeWord();
 
-    // Cleanup function
     return () => {
-      mounted = false; // Mark as unmounted
-      clearTimeout(typingTimeout); // Clear typing timeout
-      clearTimeout(pauseTimeout); // Clear pause timeout
-      clearTimeout(wordTimeout); // Clear word timeout
+      mounted = false;
+      clearTimeout(typingTimeout);
+      clearTimeout(pauseTimeout);
+      clearTimeout(wordTimeout);
     };
-  }, [currentIndex]); // Dependency array includes only `currentIndex`
+  }, [currentIndex]);
 
-  return currentText; // Return the current text being typed
+  return currentText;
 };
-
 
 // Types
 interface UserInfo {
@@ -102,16 +101,15 @@ const Header: React.FC = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  // const [currentLocation, setCurrentLocation] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserInfo | null>(null);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const router = useRouter();
   const typedText = useTypingEffect();
   const dynamicPlaceholder = `Search for a ${typedText}`;
 
-  // Update login state and user data on storage change
   useEffect(() => {
     const syncLoginState = () => {
       const storedUser = localStorage.getItem("user-info");
@@ -125,7 +123,6 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("storage", syncLoginState);
   }, []);
 
-  // Search functionality
   const fetchData = useCallback(async () => {
     try {
       const url = `https://api.menrol.com/api/v1/searchSubCategoryInAllCategories?subcategory=${searchQuery}`;
@@ -159,29 +156,23 @@ const Header: React.FC = () => {
   }, [searchQuery, fetchData]);
 
   const logout = () => {
-    // Clear all user data and reset state
     localStorage.clear();
     setIsLoggedIn(false);
     setUserData(null);
 
-    // Show a success toast notification
     toast.success("Logged out successfully!", {
-      position: "top-right",  // Toast position
-      autoClose: 5000,        // Duration for the toast to stay
-      hideProgressBar: false, // Show progress bar
-      closeOnClick: true,     // Allow closing by clicking on the toast
-      pauseOnHover: true,     // Pause when hovering
-      theme: "colored",       // Colored theme
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      theme: "colored",
     });
 
-    // Reload the page after a short delay to show the toast
     setTimeout(() => {
       window.location.reload();
-    }, 2000); // Adjust delay as needed
+    }, 2000);
   };
-
-
-
 
   const handleProfileClick = () => {
     setIsProfileModalOpen(true);
@@ -194,40 +185,44 @@ const Header: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] backdrop-blur-md shadow-md  xsm:w-full">
-        {/* Left Section: Logo */}
-        <div className="flex items-center space-x-2 xsm:w-[10%]">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-[#FFFFFF] shadow-md   xsm:w-full">
+        <div className=""> 
           <Image
             src="/Images/logo2.png"
             alt="Logo"
-            className="h-16 w-auto  md:h-20 md:w-auto cursor-pointer"
+            className="lg:h-16 lg:w-16 md:w-14 md:h-14 xsm:w-12 xsm:h-12 w-16  cursor-pointer md:mr-2"
             onClick={() => router.push("/")}
             width={500}
             height={200}
           />
         </div>
 
-        {/* Middle Section: Search & Location */}
-        <div className="flex justify-end lg:ml-[30%] md:ml-[10%] xsm:ml-0 xsm:hidden">
-          <div className="flex flex-row items-center justify-center px-2 pt-5">
-            <Location />
+        <div
+          className={` flex  justify-between items-center rounded-lg bg-[#FFFFFF] shadow-md border h-[3rem] xsm:h-[2rem]  xsm:w-[50%] xsm:rounded-md  `}
+        >
+          <div className="flex flex-row items-center justify-center px-2 pt-5 xsm:hidden ">
+            <div className="flex items-center justify-center w-full ">
+              <MdLocationPin className="text-[#FF7E8B] lg:text-xl md:text-sm  ml-2 mb-4" />
+              <Location />
+            </div>
           </div>
+          <span className="text-[#DADADA] md:text-xl lg:text-2xl font-light xsm:hidden">|</span>
 
-          {/* Search Bar */}
-          <div className="flex flex-1 items-center mx-6 ">
-            <div className="relative w-full">
-              <IoSearchOutline className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg" />
+          <div className="flex flex-1 items-center md:mx-2 lg:mx-6">
+            <div className="relative w-[13vw] xsm:w-full xsm:h-[2rem]">
+              <IoSearchOutline className="absolute xsm:text-[13px] xsm:hidden top-1/2 transform -translate-y-1/2 text-gray-500 text-lg md:hidden lg:block" />
               <input
                 type="text"
                 placeholder={dynamicPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none"
+                className="w-full pl-10  xsm:px-4  md:px-0 lg:px-6 xsm:py-0 py-2 xsm:pt-2 text-sm rounded-lg focus:outline-none"
               />
             </div>
-            {/* Search Results Dropdown */}
+            <span className="text-[#DADADA] text-2xl font-light xsm:hidden">|</span>
+
             {searchQuery?.length >= 3 && (
-              <div className="absolute top-[60px] w-[12vw] bg-white shadow-lg z-50 max-h-60 overflow-y-auto border rounded-md mt-1">
+              <div className="absolute top-[60px]  w-full bg-white shadow-lg z-50 max-h-60 overflow-y-auto rounded-md mt-1">
                 {searchResults?.length > 0 ? (
                   <ul>
                     {searchResults.map((result) => (
@@ -236,7 +231,7 @@ const Header: React.FC = () => {
                           className="p-4 cursor-pointer hover:text-blue-600"
                           onClick={() => handleSearchResultClick(result._id)}
                         >
-                          <h4 className="font-semibold text-sm">{result.category}</h4>
+                          <h4 className="font-semibold text-xs">{result.category}</h4>
                         </div>
                       </li>
                     ))}
@@ -246,28 +241,28 @@ const Header: React.FC = () => {
                 )}
               </div>
             )}
-
+          </div>
+          <div className="xsm:hidden flex items-center justify-center">
+          <MdLanguage className="lg:text-xl font-extralight md:text-sm" />
+          <div
+            id="google_translate_element"
+            className="check-text p-3 rounded-xl bg-white"
+          ></div>
           </div>
         </div>
-
-        {/* Language Dropdown */}
         <div
-          id="google_translate_element"
-          className="check-text p-3 rounded-xl border bg-white "
-        ></div>
-
-        {/* Right Section: Profile & Login */}
-        <div >
+          className={`flex justify-center lg:gap-2`}
+        >
           {isLoggedIn ? (
-            <div  className="relative">
+            <div className="relative">
               <button
                 onClick={() => setIsMenuOpen((prev) => !prev)}
-                className="bg-[#0054A5] h-[3rem] rounded-full text-white px-4 py-2 ml-3"
+                className="bg-[#0054A5] lg:h-[3rem] lg:w-[3rem] md:w-[2rem] md:h-[2rem] w-[3rem] xsm:h-[2rem] xsm:w-[2rem] xsm:px-2 rounded-full text-white md:px-2 lg:px-4 py-2 ml-3"
               >
                 <FaUserCircle />
               </button>
               {isMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg ">
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <ul>
                     <li
                       className="px-4 py-2 cursor-pointer rounded-t-lg hover:bg-gray-100"
@@ -293,14 +288,15 @@ const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              className="focus:outline-none bg-[#0054A5] md:text-xs lg:text-base text-white px-4 ml-3 py-2 rounded-lg transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-[#0054A5]"
+              className="focus:outline-none md:text-xs lg:text-base text-black  "
               onClick={() => setIsModalOpen(true)}
             >
-              Login/signup
+              <span className="flex justify-center items-center gap-4 xsm:gap-1 xsm:text-[12px]">
+                <span className="hover:text-blue-500 transition-all duration-500">Login</span> <span>|</span> <span className="hover:text-blue-500 transition-all duration-500">signup</span>
+              </span>
             </button>
           )}
 
-          {/* Login Modal */}
           <LoginModal
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
@@ -308,19 +304,15 @@ const Header: React.FC = () => {
             setIsLoginMode={setIsLoginMode}
           />
 
-          {/* Profile Modal */}
           <ProfileModal
             isModalOpen={isProfileModalOpen}
             setIsModalOpen={setIsProfileModalOpen}
             userData={userData}
           />
+          {isLoggedIn && <Cart />}
         </div>
-
-        {/* Cart button visibility */}
-        {isLoggedIn && <Cart />}
       </header>
 
-      {/* Google Translate Scripts */}
       <Script
         id="google-translate"
         strategy="lazyOnload"

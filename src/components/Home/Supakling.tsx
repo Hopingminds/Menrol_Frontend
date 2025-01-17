@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PiBuildingsBold } from "react-icons/pi";
@@ -118,7 +119,7 @@ const Supakling: React.FC = () => {
         </div>
 
         {/* Right Section - Content */}
-        <div className="w-full lg:w-1/2 mt-12 lg:mt-0 text-center lg:text-left">
+        <div className="w-full md:flex md:flex-col md:items-center lg:items-start lg:w-1/2 mt-12 lg:mt-0 text-center lg:text-left">
           <p className="text-sm text-gray-500 flex items-center justify-center lg:justify-start">
             We are{" "}
             <span className="bg-pink-100 text-pink-600 font-medium px-2 py-1 ml-2 rounded-full">
@@ -139,9 +140,9 @@ const Supakling: React.FC = () => {
           </ul>
           <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
             {/* Get Started Button */}
-            <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mt-6">
+            <div className="">
               <button
-                className="bg-[#0054A5] h-12 text-white px-6 py-3 rounded-xl w-[12rem] shadow-lg hover:bg-blue-800 transition duration-300  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
+                className="bg-[#0054A5] h-12 text-white px-6 py-3 rounded-xl w-[12rem] shadow-lg  hover:shadow-xl transform active:scale-95 relative overflow-hidden"
                 onClick={handleService}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
