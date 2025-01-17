@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import SubCategories from "../Home/SubCatogeries";
 
 
 interface UserInfo {
@@ -15,7 +16,21 @@ interface Subcategory {
   title: string;
   selectedAmount: number;
   status: string;
+  requestOperation:{
+    endOtp:number;
+    startOtp:number; 
+  };
+serviceProviders:serviceProviders[];
+
 }
+interface serviceProviders{
+  serviceProviderId:{
+    name:String;
+    profileImage:string;
+  }
+
+}
+
 
 interface Service {
   _id: string;
@@ -102,6 +117,7 @@ const OrderDetails = () => {
 
     fetchOrderData();
   }, [userInfo]);
+  
 
   return (
     <div className=" py-8 bg-gray-100 min-h-screen px-[7%]">
@@ -131,30 +147,26 @@ const OrderDetails = () => {
                     </h3>
                   </div>
                   <div>
-                    <strong className="text-gray-600">Services:</strong>
+                   
                     {order.serviceRequest.length > 0 ? (
                       <div className="space-y-4">
                         {order.serviceRequest.map((serviceRequest, srIndex) => (
                           <div key={srIndex}>
-                            <div className=" flex items-center gap-2 bg-blue-100 px-2 rounded-xl">
-                             <div> <Image
-                                src={serviceRequest.service.categoryImage}
-                                alt={serviceRequest.service.category}
-                                height={500}
-                                width={500}
-                                className="w-16 h-16 object-cover rounded-md border border-gray-300"
-                              />
-                              <div>
-                                <p className="text-gray-800 font-bold">
-                                  {serviceRequest.service.category}
-                                </p>
-                                </div>
-                              </div>
-                              <div className="pl-10 mt-2 grid items-baseline grid-cols-2 space-y-2">
+                            {/* <Image
+                            src={serviceRequest.service.categoryImage}
+                            alt="service Image"
+                            width={500} 
+                            height={500}
+                            className="w-16 h-16 rounded-xl"
+                            /> */}
+                             <strong className="text-gray-600">{serviceRequest.service.category}</strong>
+                            <div className="  items-center gap-2  px-2 ">
+                              <div className=" mt-2 items-baseline   space-y-2">
                               {serviceRequest.subcategory.map((subcat, subIndex) => (
-                                <div key={subIndex} className="w-full ">
+                                <div key={subIndex} className="w-full bg-blue-100 p-3 rounded-xl">
                                   <p className="text-gray-800">
                                     <p className="font-bold">{subcat.title}</p>
+                                    <p></p>
                                   </p>
                                   <p className="text-gray-800">
                                     <strong>Status:</strong> {subcat.status}
@@ -169,6 +181,32 @@ const OrderDetails = () => {
                                       subcat.scheduledTiming.endTime
                                     ).toLocaleString()}
                                   </p>
+                                  <p className="flex justify-between">
+                                    <span>
+                                      <span className="font-bold">Start OTP:</span>
+                                        <span>{subcat.requestOperation.startOtp}</span>
+                                        </span>
+                                    <span>
+                                      <span className="font-bold">End OTP:</span>
+                                      <span>{subcat.requestOperation.endOtp}</span>
+                                      </span>
+                                  </p>
+                                  {subcat.serviceProviders.map((provider,providerindex)=>(
+                                    <div key={providerindex}>
+                                      <span>Aloated Labour:</span>
+                                      <div className="flex items-center gap-5">
+                                      <Image
+                                      src={provider.serviceProviderId.profileImage}
+                                      alt=""
+                                      width={50}
+                                      height={50}
+                                      className=" w-8 h-8 rounded-full"
+                                      />
+                                      <p>{provider.serviceProviderId.name}</p>
+                                      </div>
+
+                                    </div>
+                                  ))}
                                 </div>
                               ))}
                             </div>

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import {
   GoogleMap,
@@ -186,13 +187,14 @@ const Map: React.FC = () => {
               top: "10px",
               left: "50%",
               transform: "translateX(-50%)",
-              zIndex: 1000,
+              zIndex: 10,
               width: "300px",
               padding: "10px",
               fontSize: "16px",
               border: "1px solid #ccc",
               borderRadius: "4px",
             }}
+            
           />
         </Autocomplete>
 

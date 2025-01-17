@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { MdLocationPin } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
+
 interface ScheduledTiming {
   startTime: string;
   endTime: string;
@@ -309,13 +312,14 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className=" mx-auto px-[3%] mb-3">
+    <div className="min-h-screen bg-gray-50 p-8 px-[7%]">
+      <div className=" mx-auto mb-3">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
+        <MdLocationPin className=" border-r absolute mt-3 ml-2"/>
         <select
           value={selectedAddress?._id || ""}
           onChange={handleAddressChange}
-          className="w-full p-3 border rounded-lg"
+          className="w-full py-3 px-7 rounded-lg bg-[#0054A524] "
         >
           <option value="" disabled>
             Choose an address
@@ -327,12 +331,13 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
               </option>
             ))}
         </select>
+       
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           {serviceRequest.requestedServices.map((requestedService) =>
             requestedService.subcategory.map((subcategory) => (
-              <div key={subcategory._id} className="bg-white rounded-xl p-6 shadow-sm mb-6">
+              <div key={subcategory._id} className="bg-white rounded-xl p-6 shadow-sm mb-6 hover:shadow-blue-200 transition-all duration-500 hover:shadow-xl">
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-full md:w-1/3">
                     <Image
@@ -344,23 +349,23 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                     />
                   </div>
                   <div className="flex-1 space-y-4">
-                    <h2 className="text-xl font-semibold text-gray-800">
-                      {subcategory.title}
+                    <h2 className="text-xl xsm:text-base font-semibold text-gray-800">
+                      {subcategory.title.toUpperCase()}
                     </h2>
-                    <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
-                    <span className="text-black font-semibold">
+                    <span className="text-black xsm:text-xs font-semibold">
                       {requestedService.service.category}
                     </span>
-                    <div className="flex items-center gap-2">
+                    <p className="text-gray-500 xsm:text-xs">{subcategory.subcategoryId.description}</p>   
+                    <div className="flex items-center gap-2 ">
 
-                      <span className="text-sm">{formatTime(subcategory.scheduledTiming.startTime)}</span>
-                      <span className="text-sm">To</span>
-                      <span className="text-sm">{formatTime(subcategory.scheduledTiming.endTime)}</span>
+                      <span className="text-sm text-gray-500 xsm:text-[10px]">{formatTime(subcategory.scheduledTiming.startTime)}</span>
+                      <span className="text-sm text-gray-500 xsm:text-[10px]">To</span>
+                      <span className="text-sm text-gray-500 xsm:text-[10px]">{formatTime(subcategory.scheduledTiming.endTime)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-2">
-                      <div className="flex items-baseline justify-center gap-10">
-                        <span className="text-2xl font-bold">₹{subcategory.selectedAmount} <span className="text-base">/Per worker</span></span>
-                        <span className="text-gray-500"><span className="font-semibold text-black">Required Workers:</span>{subcategory.workersRequirment}</span>
+                      <div className="flex items-baseline xsm:gap-4 justify-center gap-10">
+                        <span className="text-2xl xsm:text-base font-bold">₹{subcategory.selectedAmount} <span className="text-base xsm:text-[10px]">/Per worker</span></span>
+                        <span className="text-gray-500 xsm:text-[10px]"><span className="font-semibold text-black xsm:text-[10px] xsm:leading-tight">Required Workers:</span>{subcategory.workersRequirment}</span>
                       </div>
                       <button
                         onClick={() =>
@@ -369,9 +374,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                             subcategory.subcategoryId._id
                           )
                         }
-                        className="text-red-500 hover:text-red-700 font-medium"
+                        className=" text-gray-400 transition-all duration-500 hover:scale-110 hover:text-red-500 text-xl font-medium"
                       >
-                        Remove
+                        <MdDelete/>
                       </button>
                     </div>
                   </div>
@@ -381,23 +386,23 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
           )}
         </div>
 
-        <div className="lg:col-span-1 bg-white rounded-xl p-6 shadow-sm sticky top-6">
-          <h2 className="text-2xl font-bold mb-6">Summary</h2>
-          <div className="space-y-4">
+        <div className=" bg-white rounded-xl h-full p-6 shadow-sm sticky top-6">
+          <h2 className="text-2xl font-bold mb-6 xsm:text-base">Summary</h2>
+          <div className="space-y-6">
             {serviceRequest.requestedServices.map((service) =>
               service.subcategory.map((subcategory) => (
                 <div key={subcategory._id} className="flex justify-between items-center">
-                  <span className="text-gray-600 truncate flex-1">{subcategory.title}</span>
-                  <div className="flex gap-2">
-                    <span>{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
-                    <span>=</span>
-                    <span className="text-gray-900">₹{subcategory.selectedAmount * subcategory.workersRequirment}</span>
+                  <span className="text-gray-600 truncate flex-1 xsm:text-[10px]">{subcategory.title}</span>
+                  <div className="flex gap-2 xsm:text-[10px]">
+                    <span className="xsm:text-[10px]">{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
+                    <span className=" xsm:text-[10px]">=</span>
+                    <span className="text-gray-900 xsm:text-[10px]">₹{subcategory.selectedAmount * subcategory.workersRequirment}</span>
                   </div>
                 </div>
               ))
             )}
-            <div className="border-t pt-4 mt-4">
-              <div className="flex justify-between items-center font-bold">
+            <div className="border-t pt-4">
+              <div className="flex justify-between items-center font-bold xsm:text-[10px]">
                 <span>Included All Texes</span>
                 <span>Total</span>
                 <span>₹{Math.floor(totalAmount)}</span>
@@ -405,7 +410,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
             </div>
             <button
               onClick={handleContinueCheckout}
-              className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
+              className="w-full xsm:py-2 bg-[#0054A5] text-white py-3 rounded-lg"
             >
               Checkout
             </button>

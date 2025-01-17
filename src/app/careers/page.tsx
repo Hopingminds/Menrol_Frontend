@@ -6,7 +6,7 @@ import HowToApply from "../../components/Careers/HowToApply";
 import DynamicHeader from "@/components/About/DynamicHeader";
 import Content from "@/components/About/Content";
 import JoinOurTeam from "@/components/Careers/JoinOurTeam";
-import OpenPositions from "@/components/Careers/OpenPositions";
+
 import PhoenixSterling from "@/components/Careers/PhoenixSterling";
 import Layout from "@/components/Layout";
 
@@ -72,7 +72,7 @@ const Careers: React.FC = () => {
         <Ourmission missions={missionData} />
         <CultureSection />
         <PhoenixSterling />
-        <OpenPositions />
+       
         <HowToApply />
       </section>
     </Layout>

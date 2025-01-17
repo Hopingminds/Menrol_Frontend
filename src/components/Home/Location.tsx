@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect, useCallback } from "react";
 
 const Location = () => {
@@ -52,12 +53,12 @@ const Location = () => {
         <select
           name="location"
           id="location"
-          className="w-[15vw] h-10 px-2 py-2 text-sm border border-gray-300 rounded-lg focus:ring focus:ring-blue-200 focus:outline-none bg-white"
+          className="w-[15vw] h-10 px-2 py-2 text-sm  rounded-lg  focus:outline-none bg-white"
           value={address || currentLocation}
           onChange={(e) => setCurrentLocation(e.target.value)}
         >
           <option value="" disabled>
-            Choose location
+            Location
           </option>
           {address && (
             <option value={address} disabled>
