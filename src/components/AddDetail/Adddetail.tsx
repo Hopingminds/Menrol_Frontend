@@ -169,7 +169,9 @@ const Adddetail = () => {
 
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
+        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+      </div>;
     }
 
     if (error) {
@@ -325,7 +327,7 @@ const Adddetail = () => {
                             alt={'efegefv'}
                             height={500}
                             width={500}
-                            className=' w-full'
+                            className=' w-full h-[400px] object-cover rounded-xl'
                         />
                         <div className=' flex flex-col gap-4 mt-4'><h1 className='text-3xl font-bold font-lexend' >
                             {title}
@@ -335,7 +337,7 @@ const Adddetail = () => {
                             </p></div>
                         <div className='mt-7'>
                             <ul className='flex flex-col gap-2'>
-                                <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
+                                <li>Trusted home services at your fingertips.</li>
                                 <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
                                 <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
                                 <li>Tellus aliquam faucibus imperdiet eget interdum.</li>

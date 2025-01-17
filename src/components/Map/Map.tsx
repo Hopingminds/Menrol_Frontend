@@ -61,7 +61,7 @@ const Map: React.FC = () => {
           address: results?.[0]?.formatted_address || "Address not found",
         });
       } catch (error) {
-        console.error("Geocoding error: ", error);
+        // console.error("Geocoding error: ", error);
       }
     }
   };

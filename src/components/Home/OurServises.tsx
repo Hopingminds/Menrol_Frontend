@@ -138,6 +138,7 @@ const OurServices = () => {
   // };
 
   const handleSubCategoryServiceDetails = (id: string, subId: string) => {
+    setLoading(true);
     const query = `subcategory=${id}&service=${subId}`;
     router.push(`/AddDetail?${query}`);
   };

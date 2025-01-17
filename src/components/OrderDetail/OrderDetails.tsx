@@ -1,7 +1,10 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import SubCategories from "../Home/SubCatogeries";
+import { FaCalendar } from "react-icons/fa";
+import { IoLocationSharp } from "react-icons/io5";
+
+
 
 
 interface UserInfo {
@@ -143,7 +146,7 @@ const OrderDetails = () => {
                 >
                   <div>
                     <h3 className="text-lg font-semibold text-gray-700">
-                      Order #{orderIndex + 1}
+                      Order {orderIndex + 1}
                     </h3>
                   </div>
                   <div>
@@ -159,20 +162,47 @@ const OrderDetails = () => {
                             height={500}
                             className="w-16 h-16 rounded-xl"
                             /> */}
-                             <strong className="text-gray-600">{serviceRequest.service.category}</strong>
+                             <div className="flex items-center justify-between">
+                             <div><strong className="text-gray-600">{serviceRequest.service.category}</strong></div>
+                             <div className="flex items-center gap-2">
+                    <strong className="text-[#0054A5]"><FaCalendar/></strong>{" "}
+                    <p className="text-gray-800">
+                      {new Date(order.orderDate).toLocaleDateString("en-IN")}
+                    </p>
+                  </div>
+                             </div>
                             <div className="  items-center gap-2  px-2 ">
                               <div className=" mt-2 items-baseline   space-y-2">
                               {serviceRequest.subcategory.map((subcat, subIndex) => (
-                                <div key={subIndex} className="w-full bg-blue-100 p-3 rounded-xl">
-                                  <p className="text-gray-800">
-                                    <p className="font-bold">{subcat.title}</p>
-                                    <p></p>
+                                <div key={subIndex} className="w-full border p-3 rounded-xl">
+                                  <p className="text-gray-800 flex items-center justify-between">
+                                    <p className="font-bold">{subcat.title.toUpperCase()}</p>
+                                    <p className={`px-4 py-2 border rounded-lg ${subcat.status === 'pending' ? 'border-red-500 text-red-400' : 'border-green-500 text-green-400'}`}>
+                                      {subcat.status}
+                                      </p>
                                   </p>
-                                  <p className="text-gray-800">
-                                    <strong>Status:</strong> {subcat.status}
-                                  </p>
-                                  <p className="text-gray-800">
-                                    <strong>Timing:</strong>{" "}
+                                  {subcat.serviceProviders.map((provider,providerindex)=>(
+                                    <div key={providerindex}>
+                                      
+                                      <div className="flex items-center gap-3">
+                                      <Image
+                                      src={provider.serviceProviderId.profileImage}
+                                      alt=""
+                                      width={50}
+                                      height={50}
+                                      className=" w-12 h-12 rounded-full"
+                                      />
+                                     <span>
+                                     <p>{provider.serviceProviderId.name}</p>
+                                     <span className="text-gray-400 text-sm">Allocated Labor</span>
+                                     </span>
+                                      </div>
+
+                                    </div>
+                                  ))}
+                                 
+                                  <p className="text-gray-500 text-sm mt-2">
+                                    <span>Timing:</span>{" "}
                                     {new Date(
                                       subcat.scheduledTiming.startTime
                                     ).toLocaleString()}{" "}
@@ -181,32 +211,22 @@ const OrderDetails = () => {
                                       subcat.scheduledTiming.endTime
                                     ).toLocaleString()}
                                   </p>
-                                  <p className="flex justify-between">
+                                  <p className="flex justify-between mt-2">
                                     <span>
-                                      <span className="font-bold">Start OTP:</span>
+                                      <span className=" text-gray-400">Start OTP:</span>
                                         <span>{subcat.requestOperation.startOtp}</span>
                                         </span>
                                     <span>
-                                      <span className="font-bold">End OTP:</span>
+                                      <span className="text-gray-400">End OTP:</span>
                                       <span>{subcat.requestOperation.endOtp}</span>
                                       </span>
                                   </p>
-                                  {subcat.serviceProviders.map((provider,providerindex)=>(
-                                    <div key={providerindex}>
-                                      <span>Aloated Labour:</span>
-                                      <div className="flex items-center gap-5">
-                                      <Image
-                                      src={provider.serviceProviderId.profileImage}
-                                      alt=""
-                                      width={50}
-                                      height={50}
-                                      className=" w-8 h-8 rounded-full"
-                                      />
-                                      <p>{provider.serviceProviderId.name}</p>
-                                      </div>
 
-                                    </div>
-                                  ))}
+                                  <div className="flex justify-between items-center">
+                                    <button></button>
+                                  <button className="bg-[#0054A5] text-sm text-white px-3 py-1 rounded-lg">+ Add Extra Work</button>
+                                  </div>
+                                 
                                 </div>
                               ))}
                             </div>
@@ -219,27 +239,22 @@ const OrderDetails = () => {
                       <p className="text-gray-500 italic">No services available.</p>
                     )}
                   </div>
-                  <div>
-                    <strong className="text-gray-600">Location:</strong>{" "}
-                    <p className="text-gray-800">{order.address || "N/A"}</p>
+                  <div className="flex gap-2">
+                    <strong className="text-gray-600 "><IoLocationSharp className="text-[#F56132]"/></strong>{" "}
+                    <p className="text-[#0054A5] text-xs">{order.address || "N/A"}</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <div>
-                    <strong className="text-gray-600">Payment:</strong>
-                    <p className="text-gray-800">
-                      Total Amount: ₹{order.payment.totalamount || "N/A"}
+                  <div className=" ">
+                  <strong className="text-gray-400">Payment:</strong>
+                    <div className="flex justify-between items-center">
+                    <p className="text-gray-400">
+                      Total Amount: <span className="text-black">₹{order.payment.totalamount || "N/A"}</span>
                     </p>
-                    <p className="text-gray-800">
-                      Paid Amount: ₹{order.payment.paidAmount || "N/A"}
+                    <p className="text-gray-400">
+                      Paid Amount: <span className="text-black">₹{order.payment.paidAmount || "N/A"}</span>
                     </p>
                   </div>
                  
-                  <div>
-                    <strong className="text-gray-600">Order Date:</strong>{" "}
-                    <p className="text-gray-800">
-                      {new Date(order.orderDate).toLocaleDateString("en-IN")}
-                    </p>
-                  </div>
+                  
                   </div>
                 </div>
               ))}
