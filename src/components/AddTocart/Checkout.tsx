@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { MdDelete } from "react-icons/md";
 interface ScheduledTiming {
   startTime: string;
   endTime: string;
@@ -309,8 +310,8 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className=" mx-auto px-[3%] mb-3">
+    <div className="min-h-screen bg-gray-50 p-8 px-[7%]">
+      <div className=" mx-auto  mb-3">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
         <select
           value={selectedAddress?._id || ""}
@@ -328,7 +329,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
             ))}
         </select>
       </div>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           {serviceRequest.requestedServices.map((requestedService) =>
             requestedService.subcategory.map((subcategory) => (
@@ -347,10 +348,11 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                     <h2 className="text-xl font-semibold text-gray-800">
                       {subcategory.title}
                     </h2>
-                    <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
                     <span className="text-black font-semibold">
                       {requestedService.service.category}
                     </span>
+                    <p className="text-gray-600">{subcategory.subcategoryId.description}</p>
+                    
                     <div className="flex items-center gap-2">
 
                       <span className="text-sm">{formatTime(subcategory.scheduledTiming.startTime)}</span>
@@ -369,9 +371,9 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                             subcategory.subcategoryId._id
                           )
                         }
-                        className="text-red-500 hover:text-red-700 font-medium"
+                        className=" text-2xl text-gray-400 hover:text-red-500"
                       >
-                        Remove
+                        <MdDelete />
                       </button>
                     </div>
                   </div>

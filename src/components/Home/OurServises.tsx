@@ -130,9 +130,14 @@ const OurServices = () => {
     router.push(`/IndividualServices?data=${id}`);
   };
 
+  // const handleSubCategoryServiceDetails = (id: string, subId: string) => {
+  //   setLoading(true);
+  //   router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
+  // };
+
   const handleSubCategoryServiceDetails = (id: string, subId: string) => {
-    setLoading(true);
-    router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
+    const query = `subcategory=${id}&service=${subId}`;
+    router.push(`/AddDetail?${query}`);
   };
 
   const sliderSettings = {
@@ -293,7 +298,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">
@@ -319,7 +324,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">
@@ -355,7 +360,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">
@@ -382,7 +387,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">
@@ -418,7 +423,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">
@@ -444,7 +449,7 @@ const OurServices = () => {
                         className="w-full h-full object-cover rounded-lg cursor-pointer"
                         height={220}
                         width={280}
-                        onClick={() => handleSubCategoryServiceDetails(service._id, subCat._id)}
+                        onClick={() => handleSubCategoryServiceDetails(subCat._id, service._id)}
                       />
                     </div>
                     <h3 className="mt-3 text-center font-semibold text-[#24232A]">

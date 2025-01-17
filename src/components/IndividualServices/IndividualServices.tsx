@@ -1,13 +1,14 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import Image from "next/image";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginModal from "../Home/LoginModal";
+
 
 interface PricingType {
   pricingtype: string;
@@ -267,7 +268,7 @@ const Modal: React.FC<{
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }; 
 
   if (!isOpen || !selectedItem) return null;
 
@@ -633,10 +634,15 @@ const IndividualServices: React.FC = () => {
       </div>
     );
   }
-
+  const handleAddDetail = (subcategoryId: any, item: any) => {
+    const query = `subcategory=${subcategoryId}&service=${id}`;
+    Router.push(`/AddDetail?${query}`);
+  };
   return (
+
     <div className="px-[10%] py-8">
       {/* Category Header */}
+
       <div className="mb-12 text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
           {service.category}
@@ -690,10 +696,10 @@ const IndividualServices: React.FC = () => {
                 </button>
                 :
                 <button
-                  onClick={() => openModal(item)}
+                  onClick={() => handleAddDetail(item._id, item)}
                   className="w-full mt-4 bg-gray-100 py-3 rounded-lg text-gray-900 font-medium hover:bg-gray-200 transition-colors"
                 >
-                  {cartItems.includes(item._id) ? "Go to Cart" : "Add to Cart"}
+                  Add to Cart
                 </button>
               }
             </div>

@@ -57,9 +57,9 @@ const SubCategories = () => {
     fetchCategories();
   }, []);
 
-  const handleGoServices = () => {
-    router.push("/ServiceDetails");
-  };
+    const handleGoServices = () => {
+      router.push("/ServiceDetails");
+    };
 
   const allSubcategories = categories.flatMap((cat) => cat.subcategory);
 

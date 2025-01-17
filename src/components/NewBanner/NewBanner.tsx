@@ -42,7 +42,7 @@ const NewBanner = () => {
   const [subcategories, setSubcategories] = useState<SubCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
-  const [name,setname]=useState<string>("")
+  const [name, setname] = useState<string>("")
 
   const backgroundImages = [
     "/Images/banner.png",
@@ -59,8 +59,12 @@ const NewBanner = () => {
   };
 
   const handleServiceDetails2 = (id: string, subId: string) => {
-    router.push(`/IndividualServices?data=${id}&subcategory=${subId}`);
+    const query = `subcategory=${id}&service=${subId}`;
+    router.push(`/AddDetail?${query}`);
   };
+
+
+
   console.log(error)
 
   useEffect(() => {
@@ -193,39 +197,39 @@ const NewBanner = () => {
                 ))}
               </select>
               <button
-  onClick={() => {
-    if (!selectedCategory || !selectedSubcategory) {
-      toast.warning("please select the services")
-      return;
-    }
-    if (!name) {
-      toast.warning("Please enter your name");
-      return;
-    }
-    handleServiceDetails2(selectedCategory, selectedSubcategory);
-  }}
-  className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
->
-  <div
-    className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient pulse-animation"
-  />
-  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl pulse-animation" />
-  <div className="absolute inset-0 overflow-hidden rounded-xl">
-    <div className="glitter-container">
-      <div className="glitter" />
-      <div className="glitter" />
-      <div className="glitter" />
-    </div>
-  </div>
-  <div className="absolute inset-0 rounded-xl overflow-hidden">
-    <div className="wave pulse-animation" />
-  </div>
-  <span className="relative z-10 flex items-center">
-    <span className="">Book your service</span>
-  </span>
-</button>
+                onClick={() => {
+                  if (!selectedCategory || !selectedSubcategory) {
+                    toast.warning("please select the services")
+                    return;
+                  }
+                  if (!name) {
+                    toast.warning("Please enter your name");
+                    return;
+                  }
+                  handleServiceDetails2(selectedSubcategory, selectedCategory);
+                }}
+                className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
+              >
+                <div
+                  className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient pulse-animation"
+                />
+                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl pulse-animation" />
+                <div className="absolute inset-0 overflow-hidden rounded-xl">
+                  <div className="glitter-container">
+                    <div className="glitter" />
+                    <div className="glitter" />
+                    <div className="glitter" />
+                  </div>
+                </div>
+                <div className="absolute inset-0 rounded-xl overflow-hidden">
+                  <div className="wave pulse-animation" />
+                </div>
+                <span className="relative z-10 flex items-center">
+                  <span className="">Book your service</span>
+                </span>
+              </button>
 
-<style jsx>{`
+              <style jsx>{`
   @keyframes pulse {
     0% {
       transform: scale(1);

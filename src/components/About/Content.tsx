@@ -1,5 +1,6 @@
 "use client";
 import React from 'react'
+import { IoMicOutline } from "react-icons/io5";
 
 const Content = () => {
     return (
@@ -21,7 +22,7 @@ const Content = () => {
                         Quality service, spotless results:
                     </h1>
                     <div className="bg-[rgba(193,244,88,1)] text-white w-max 2xl:h-14 xsm:w-[130px] md:w-[190px] lg:w-[190px] xl:w-[260px] 2xl:w-[300px] sm:w-[96%] xsm:h-[30px] h-15 xsm:px-2 px-4 py-2 mb-4 xsm:mb-0 flex items-center gap-2 rounded-md">
-                        <span className="text-md 2xl:text-xl flex justify-start items-center xsm:text-[10px] md:text-[10px]">🎤</span>
+                        <span className="text-md 2xl:text-xl flex justify-start items-center xsm:text-[10px] md:text-[10px]"><IoMicOutline  className='text-black font-bold'/></span>
                         <span className="text-md 2xl:text-base xl:text-[16px] md:text-[5px] xsm:text-[10px] xsm:flex font-lexend xsm:font-normal font-bold text-[rgba(36,35,42,1)] flex ">
                             A message from us
                         </span>
