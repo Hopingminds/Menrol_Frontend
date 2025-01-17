@@ -200,7 +200,7 @@ const Map: React.FC = () => {
 
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={defaultCenter}
+          center={defaultCenter}  
           zoom={13}
           onClick={handleMapClick}
           onLoad={(map) => {
