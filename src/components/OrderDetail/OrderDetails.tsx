@@ -307,22 +307,15 @@ const OrderDetails = () => {
                 className="block w-full mt-1 p-2 border rounded"
               />
             </label>
-            <label className="block mb-2">
-              Total Amount:
-              <input
-                type="number"
-                name="totalAmount"
-                value={modalContent.totalAmount}
-                onChange={handleInputChange}
-                className="block w-full mt-1 p-2 border rounded"
-              />
-            </label>
+            <div className="flex justify-between items-center "> 
+            <button className="text-white bg-[#0054A5] px-3 py-2 rounded-lg">update</button>
             <button
               className="bg-red-500 text-white px-3 py-2 rounded-lg mt-4"
               onClick={handleModalClose}
             >
               Close
             </button>
+            </div>
           </div>
         </div>
       )}
