@@ -113,6 +113,10 @@ const Labour = () => {
 
 
   useEffect(() => {
+    if (!userInfo || !userInfo.token) {
+      console.warn('User info or token is missing, skipping fetch.');
+      return;
+    }
     const fetchData = async () => {
       try {
         const response = await fetch('https://api.menrol.com/api/v1/getUserRasiedOrders', {
@@ -124,6 +128,8 @@ const Labour = () => {
         console.log(data);
         if (data.success) {
           setOrderData(data.order);
+        } else {
+          router.push('/orderdetails');
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -133,17 +139,7 @@ const Labour = () => {
     fetchData();
   }, [userInfo]);
 
-  useEffect(() => {
-    if (mounted && orderData) {
-      orderData.serviceRequest?.forEach(request => {
-        request.subcategory.forEach(sub => {
-          if (sub.serviceProviders.length === sub.workersRequirment) {
-            router.push('/orderdetails');
-          }
-        });
-      });
-    }
-  }, [orderData, router, mounted]);
+
 
   if (!mounted) return null;
 
@@ -152,7 +148,7 @@ const Labour = () => {
       <div className="w-full">
         <div className="rounded-xl border p-6 w-full">
           <div className="">
-            <Map />
+            {/* <Map /> */}
           </div>
         </div>
         <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
