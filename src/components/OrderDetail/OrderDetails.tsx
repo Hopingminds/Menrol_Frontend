@@ -20,6 +20,7 @@ interface Subcategory {
     endOtp: number;
     startOtp: number;
   };
+  subcategoryId: string;
   serviceProviders: serviceProviders[];
 }
 
@@ -77,6 +78,10 @@ interface ModalContent {
   startTime: string;
   endTime: string;
   totalAmount: number;
+  orderId: string;
+  serviceId: string;
+  subcategoryId: string;
+
 }
 
 const OrderDetails = () => {
@@ -87,8 +92,10 @@ const OrderDetails = () => {
     startTime: '',
     endTime: '',
     totalAmount: 0,
+    orderId: '',
+    serviceId: '',
+    subcategoryId: ''
   });
-
   useEffect(() => {
     // Retrieve user information from localStorage
     const storedUser = localStorage.getItem("user-info");
@@ -132,8 +139,22 @@ const OrderDetails = () => {
     setIsModalOpen(false);
   };
 
-  const handleModalOpen = (startTime: string, endTime: string, totalAmount: number) => {
-    setModalContent({ startTime, endTime, totalAmount });
+  const handleModalOpen = (
+    startTime: string,
+    endTime: string,
+    totalAmount: number,
+    orderId: string,
+    serviceId: string,
+    subcategoryId: string
+  ) => {
+    setModalContent({
+      startTime,
+      endTime,
+      totalAmount,
+      orderId,
+      serviceId,
+      subcategoryId,
+    });
     setIsModalOpen(true);
   };
 
@@ -141,8 +162,47 @@ const OrderDetails = () => {
     const { name, value } = e.target;
     setModalContent((prevContent) => ({
       ...prevContent,
-      [name]: name === 'totalAmount' ? parseFloat(value) : value,
+      [name]: value,
     }));
+  };
+
+  const handleUpdate = async () => {
+    if (!userInfo?.token) return;
+
+    const payload = {
+      orderId: modalContent.orderId,
+      serviceId: modalContent.serviceId,
+      subcategoryId: modalContent.subcategoryId,
+      scheduledTiming: {
+        startTime: modalContent.startTime,
+        endTime: modalContent.endTime
+      }
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/updateOrderTiming",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (response.ok) {
+        // Close modal and optionally refresh the orders
+        setIsModalOpen(false);
+        // Refresh orders if needed
+        // fetchOrderData();
+      } else {
+        console.error("Failed to update extra work");
+      }
+    } catch (error) {
+      console.error("Error updating extra work:", error);
+    }
   };
 
   return (
@@ -235,7 +295,10 @@ const OrderDetails = () => {
                                               onClick={() => handleModalOpen(
                                                 subcat.scheduledTiming.startTime,
                                                 subcat.scheduledTiming.endTime,
-                                                order.payment.totalamount
+                                                order.payment.totalamount,
+                                                order._id,
+                                                serviceRequest.service._id,
+                                                subcat.subcategoryId
                                               )}
                                               className="bg-[#0054A5] text-sm text-white px-3 py-2 rounded-lg"
                                             >
@@ -283,6 +346,7 @@ const OrderDetails = () => {
           </div>
         )}
       </div>
+
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -307,14 +371,19 @@ const OrderDetails = () => {
                 className="block w-full mt-1 p-2 border rounded"
               />
             </label>
-            <div className="flex justify-between items-center "> 
-            <button className="text-white bg-[#0054A5] px-3 py-2 rounded-lg">update</button>
-            <button
-              className="bg-red-500 text-white px-3 py-2 rounded-lg mt-4"
-              onClick={handleModalClose}
-            >
-              Close
-            </button>
+            <div className="flex justify-between items-center">
+              <button
+                className="text-white bg-[#0054A5] px-3 py-2 rounded-lg"
+                onClick={handleUpdate}
+              >
+                Update
+              </button>
+              <button
+                className="bg-red-500 text-white px-3 py-2 rounded-lg mt-4"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
