@@ -8,15 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 import { HiMiniCheck } from "react-icons/hi2";
 
-// interface Item {
-//     title: string;
-//     description: string;
-//     // Add other properties here based on the structure of your data
-//     image: string;
-//     dailyWageWorker: number;
-//     hourlyWorker: number;
-//     contractWorker: number;
-// }
+
 interface UserInfo {
     id: string;
     name: string;
@@ -45,6 +37,25 @@ interface SubcategoryData {
         pricing: PricingData[];
     }
 }
+
+interface Subcategory {
+    scheduledTiming: {
+        startTime: string;
+        endTime: string;
+    };
+    subcategoryId: {
+        _id: string;  // This is the ID you're trying to extract
+    };
+    title: string;
+    requestType: string;
+    selectedAmount: number;
+    workersRequirment: number;
+    status: string;
+    instructions: string | null;
+    instructionsImages: string[];
+    _id: string;
+}
+
 
 interface ServiceRequest {
     instImages: File | null;
@@ -76,7 +87,7 @@ const Adddetail = () => {
     const searchParams = useSearchParams();
     const serviceId = searchParams.get("service");
     const subcategoryId = searchParams.get("subcategory");
-    // const [parsedItem, setParsedItem] = useState<Item | null>(null);
+
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const [instructions, setInstructions] = useState<string>("");
@@ -141,7 +152,6 @@ const Adddetail = () => {
     }, [userInfo]);
 
     const fetchCart = async () => {
-        let ItemIds = [];
         try {
             const response = await fetch(
                 "https://api.menrol.com/api/v1/getUserServiceRequests",
@@ -159,18 +169,25 @@ const Adddetail = () => {
 
 
             if (data.success && data.serviceRequests?.requestedServices) {
-                console.log("tati");
+                console.log(data.serviceRequests?.requestedServices[0].service);
 
-                const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
-                    (service: any) => service.subcategory
+                const subcategoryIds: string[] = data.serviceRequests.requestedServices.flatMap((serviceRequest: ServiceRequest) => 
+                    // Explicitly ensure subcategory is an array
+                    Array.isArray(serviceRequest.subcategory)
+                        ? serviceRequest.subcategory.map((subcategory: Subcategory) => subcategory.subcategoryId._id)
+                        : []
                 );
-                ItemIds = existingSubcategories.map((sub: any) =>
-                    sub.subcategoryId._id);
+            
+            
+            
+                console.log(subcategoryIds);
+                
+                // Store the extracted IDs in setCartItems
+                setCartItems(subcategoryIds);
+            
             }
         } catch (err) {
             console.error("Error fetching cart:", err);
-        } finally {
-            setCartItems(ItemIds);
         }
     }
 
@@ -195,13 +212,7 @@ const Adddetail = () => {
     const priceRange =
         selectedItem?.pricing.find((p) => p.pricingtype === pricingType) || null;
 
-    // useEffect(() => {
-    //     if (priceRange) {
-    //         setSelectedPrice(priceRange.from);
-    //     }
-    // }, [pricingType, selectedItem]);
 
-    // const totalPrice = calculateTotalDays();
 
 
     const validateHourlyBooking = (start: string, end: string): boolean => {
@@ -274,7 +285,7 @@ const Adddetail = () => {
 
     const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newPricingType = e.target.value;
-        
+
         setPricingType(newPricingType);
 
         if (newPricingType === "hourly" && startDate) {
@@ -450,20 +461,20 @@ const Adddetail = () => {
                                 className=' w-full lg:h-[400px] md:h-[200px] object-cover rounded-xl'
                             />
                             <div className=' flex flex-col gap-4 mt-4'>
-                            <h1 className='text-3xl font-bold font-lexend' >
-                                {title}
-                            </h1>
+                                <h1 className='text-3xl font-bold font-lexend' >
+                                    {title}
+                                </h1>
                                 <p className=' text-base '>
                                     {description}
                                 </p>
-                                </div>
-                                <div className='mt-7'>
-                                  <ul className='flex flex-col gap-2'>
-                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Trusted home services at your fingertips.</li>
-                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Book reliable professionals in just a few clicks.</li>
-                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Seamless solutions for your household needs.</li>
-                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Experience stress-free home maintenance services.</li>
-                                    </ul>
+                            </div>
+                            <div className='mt-7'>
+                                <ul className='flex flex-col gap-2'>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]' />Trusted home services at your fingertips.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]' />Book reliable professionals in just a few clicks.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]' />Seamless solutions for your household needs.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]' />Experience stress-free home maintenance services.</li>
+                                </ul>
                             </div>
 
                         </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
     GoogleMap,
     LoadScript,
@@ -45,7 +45,7 @@ const AllotedLabourMap: React.FC<MapProps> = ({
         title: string;
         index: number;
         onClick: () => void;
-    }> = ({ position, title, index, onClick }) => {
+    }> = ({ position, title, onClick }) => {
         return (
             <Marker
                 position={position}

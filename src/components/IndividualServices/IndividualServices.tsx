@@ -148,7 +148,7 @@ const IndividualServices: React.FC = () => {
   console.log(userInfo?.token);
 
   const fetchCart = async () => {
-    let ItemIds = [];
+    let ItemIds: string[] = []; // Explicitly define as a string array
     try {
       const response = await fetch(
         "https://api.menrol.com/api/v1/getUserServiceRequests",
@@ -162,28 +162,31 @@ const IndividualServices: React.FC = () => {
       if (!response.ok) {
         throw new Error("Failed to fetch service requests");
       }
+
       const data = await response.json();
 
-
       if (data.success && data.serviceRequests?.requestedServices) {
-        console.log("tati");
-
         const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
-          (service: any) => service.subcategory
+          (service: { subcategory: { subcategoryId: Subcategory }[] }) =>
+            service.subcategory
         );
-        ItemIds = existingSubcategories.map((sub: any) =>
-          sub.subcategoryId._id);
+
+        ItemIds = existingSubcategories.map((sub: { subcategoryId: Subcategory }) =>
+          sub.subcategoryId._id
+        );
       }
     } catch (err) {
       console.error("Error fetching cart:", err);
     } finally {
       setCartItems(ItemIds);
     }
-  }
+  };
+
   console.log(cartItems);
   useEffect(() => {
     if (subcategoryId && service) {
       const data = service.subcategory.find((sub) => sub._id.toString() === subcategoryId.toString());
+      console.log(data);
       // if (data) {
       //   setSelectedItem(data);
       //   setIsModalOpen(true);
@@ -222,10 +225,12 @@ const IndividualServices: React.FC = () => {
       </div>
     );
   }
-  const handleAddDetail = (subcategoryId: any, item: any) => {
+  const handleAddDetail = (subcategoryId: string, item: Subcategory) => {
+    console.log(item);
     const query = `subcategory=${subcategoryId}&service=${id}`;
     Router.push(`/AddDetail?${query}`);
   };
+
   return (
 
     <div className="px-[10%] py-8">
