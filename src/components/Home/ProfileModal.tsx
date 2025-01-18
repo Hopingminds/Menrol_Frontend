@@ -38,6 +38,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   const GOOGLE_API_KEY = "AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0";
 
+
   // Function to fetch the user's approximate location based on IP
   const fetchLocation = async () => {
     try {
