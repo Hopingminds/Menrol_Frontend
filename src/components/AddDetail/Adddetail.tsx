@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from "react-toastify";
+import LoginModal from '../Home/LoginModal';
 
 interface Item {
     title: string;
@@ -85,9 +86,10 @@ const Adddetail = () => {
     const [error, setError] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const [showLoginPrompt, setShowLoginPrompt] = useState<boolean>(false);
-    const [isLoginMode, setIsLoginMode] = useState(true);
+    const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
     const [subcategoryData, setSubcategoryData] = useState<SubcategoryData | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [cartItems, setCartItems] = useState<string[]>([]);
 
     const router = useRouter();
@@ -224,7 +226,7 @@ const Adddetail = () => {
     const handleSubmit = async () => {
         if (!userInfo?.token) {
             setShowLoginPrompt(true);
-            setError("Please log in to continue.");
+            
             return;
         }
 
@@ -320,7 +322,36 @@ const Adddetail = () => {
 
             <div className='px-[7%] py-[4%]'>
 
-                <div className=' flex justify-center gap-7 xsm:flex-col   '>
+                {showLoginPrompt ?(<div className="flex flex-col items-center justify-center p-8">
+              <div className="text-xl font-semibold mb-4">Please Log In</div>
+              <p className="text-gray-600 mb-6 text-center">
+                You need to be logged in to add items to your cart.
+              </p>
+              <div className="flex gap-4">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => {
+                    setShowLoginPrompt(false);
+                    setError(null);
+                  }}
+                  className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                  Cancel
+                </button>
+                <LoginModal
+                  isModalOpen={isModalOpen}
+                  setIsModalOpen={setIsModalOpen}
+                  isLoginMode={isLoginMode}
+                  setIsLoginMode={setIsLoginMode}
+                />
+              </div>
+            </div>):(
+                    <div className=' flex justify-center gap-7 xsm:flex-col   '>
                     <div className=' border  rounded-xl px-6 py-4 ' >
                         <Image
                             src={image}
@@ -446,7 +477,7 @@ const Adddetail = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         </>
     )
