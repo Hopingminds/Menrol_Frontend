@@ -139,6 +139,28 @@ const Labour = () => {
     fetchData();
   }, [userInfo]);
 
+  useEffect(() => {
+    if (!userInfo || !userInfo.token) {
+      console.warn('User info or token is missing, skipping fetch.');
+      return;
+    }
+    const fetchserviceproviders = async () => {
+      try {
+        const response = await fetch('https://api.menrol.com/api/v1/fetchEligibleServiceProviders', {
+          headers: {
+            Authorization: `Bearer ${userInfo?.token}`,
+          },
+        });
+        const data: ApiResponse = await response.json();
+        console.log(data);
+
+        // const subcategories=data.data.results
+      }
+  }
+
+    fetchserviceproviders();
+  }, [userInfo]);
+
 
 
   if (!mounted) return null;
