@@ -61,7 +61,7 @@ const Map: React.FC = () => {
           address: results?.[0]?.formatted_address || "Address not found",
         });
       } catch (error) {
-        // console.error("Geocoding error: ", error);
+        console.error("Geocoding error: ", error);
       }
     }
   };
@@ -194,13 +194,13 @@ const Map: React.FC = () => {
               border: "1px solid #ccc",
               borderRadius: "4px",
             }}
-            
+
           />
         </Autocomplete>
 
         <GoogleMap
           mapContainerStyle={containerStyle}
-          center={defaultCenter}  
+          center={defaultCenter}
           zoom={13}
           onClick={handleMapClick}
           onLoad={(map) => {

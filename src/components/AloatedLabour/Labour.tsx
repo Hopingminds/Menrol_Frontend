@@ -156,13 +156,17 @@ const Labour = () => {
           </div>
         </div>
         <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
-          {orderData?.serviceRequest?.map((request, index) => (
-            request.subcategory.map((sub, subIndex) => (
+          {orderData?.serviceRequest?.map((request) => (
+            request.subcategory.map((sub) => (
+
+
+
               <div
                 key={sub._id}
                 className="border rounded-lg shadow-lg p-3 xsm:flex-col flex xsm:gap-5 gap-10 items-center mb-4"
               >
                 <div>
+
                   <Image
                     src={request.service.categoryImage || '/Images/banner.png'}
                     alt={request.service.category}

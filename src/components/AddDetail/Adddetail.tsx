@@ -7,15 +7,15 @@ import { useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 
-interface Item {
-    title: string;
-    description: string;
-    // Add other properties here based on the structure of your data
-    image: string;
-    dailyWageWorker: number;
-    hourlyWorker: number;
-    contractWorker: number;
-}
+// interface Item {
+//     title: string;
+//     description: string;
+//     // Add other properties here based on the structure of your data
+//     image: string;
+//     dailyWageWorker: number;
+//     hourlyWorker: number;
+//     contractWorker: number;
+// }
 interface UserInfo {
     id: string;
     name: string;
@@ -75,7 +75,7 @@ const Adddetail = () => {
     const searchParams = useSearchParams();
     const serviceId = searchParams.get("service");
     const subcategoryId = searchParams.get("subcategory");
-    const [parsedItem, setParsedItem] = useState<Item | null>(null);
+    // const [parsedItem, setParsedItem] = useState<Item | null>(null);
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const [instructions, setInstructions] = useState<string>("");
@@ -93,6 +93,9 @@ const Adddetail = () => {
     const [cartItems, setCartItems] = useState<string[]>([]);
 
     const router = useRouter();
+    console.log(isSubmitting);
+
+
     useEffect(() => {
         const storedUser = localStorage.getItem("user-info");
         if (storedUser) {
@@ -106,6 +109,7 @@ const Adddetail = () => {
             try {
 
                 const itemParam = searchParams.get('service');
+                console.log(itemParam);
                 const response = await fetch(
                     `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${subcategoryId}`
                 );
@@ -172,8 +176,8 @@ const Adddetail = () => {
 
     if (loading) {
         return <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
-        <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-      </div>;
+            <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+        </div>;
     }
 
     if (error) {
@@ -192,11 +196,94 @@ const Adddetail = () => {
 
     // useEffect(() => {
     //     if (priceRange) {
-    //         setSelectedPrice(priceRange.from); // Default to minimum price
+    //         setSelectedPrice(priceRange.from);
     //     }
     // }, [pricingType, selectedItem]);
 
     // const totalPrice = calculateTotalDays();
+
+
+    const validateHourlyBooking = (start: string, end: string): boolean => {
+        if (!start || !end) return false;
+
+        const startTime = new Date(start);
+        const endTime = new Date(end);
+
+        // Check if dates are the same
+        if (startTime.toDateString() !== endTime.toDateString()) {
+            toast.warning("For hourly booking, start and end time must be on the same day");
+            return false;
+        }
+
+        // Calculate time difference in hours
+        const diffInHours = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
+
+        if (diffInHours > 8) {
+            toast.warning("Hourly booking cannot exceed 8 hours");
+            return false;
+        }
+
+        if (diffInHours <= 0) {
+            toast.warning("End time must be after start time");
+            return false;
+        }
+
+        return true;
+    };
+
+    // Update start date handler
+    const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newStartDate = e.target.value;
+        setStartDate(newStartDate);
+
+        if (pricingType === "hourly") {
+
+            const startDateTime = new Date(newStartDate);
+            const endDateTime = new Date(startDateTime);
+            endDateTime.setHours(startDateTime.getHours() + 1);
+            setEndDate(endDateTime.toISOString().slice(0, 16));
+        }
+    };
+
+
+    const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newEndDate = e.target.value;
+
+        if (pricingType === "hourly") {
+            const startDateTime = new Date(startDate);
+            const endDateTime = new Date(newEndDate);
+
+
+            if (startDateTime.toDateString() !== endDateTime.toDateString()) {
+                toast.warning("For hourly booking, end time must be on the same day");
+                return;
+            }
+
+
+            const diffInHours = (endDateTime.getTime() - startDateTime.getTime()) / (1000 * 60 * 60);
+            if (diffInHours > 8) {
+                toast.warning("Hourly booking cannot exceed 8 hours");
+                return;
+            }
+        }
+
+        setEndDate(newEndDate);
+    };
+
+
+    const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newPricingType = e.target.value;
+        console.log(handlePricingTypeChange);
+        setPricingType(newPricingType);
+
+        if (newPricingType === "hourly" && startDate) {
+            // Reset end date to start date + 1 hour when switching to hourly
+            const startDateTime = new Date(startDate);
+            const endDateTime = new Date(startDateTime);
+            endDateTime.setHours(startDateTime.getHours() + 1);
+            setEndDate(endDateTime.toISOString().slice(0, 16));
+        }
+    };
 
 
     const calculateTotalDays = () => {
@@ -205,18 +292,15 @@ const Adddetail = () => {
         const end = new Date(endDate);
 
         let totalTime = 0;
-        if (pricingType == "daily") {
-
+        if (pricingType === "hourly") {
             const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1); // At least 1 day
-
-        } else if (pricingType == "hourly") {
+            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60)), 1); // Hours
+        } else if (pricingType === "daily" || pricingType === "contract") {
             const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60)), 1); // At least 1 hour
+            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1); // Days
         }
 
         return selectedPrice * workers * totalTime;
-
     };
 
     const totalPrice = calculateTotalDays();
@@ -226,13 +310,17 @@ const Adddetail = () => {
     const handleSubmit = async () => {
         if (!userInfo?.token) {
             setShowLoginPrompt(true);
-            
+
             return;
         }
 
         try {
             if (!startDate || !endDate || startDate > endDate) {
-                toast.warning("Plss select the dates accurately");
+                toast.warning("Please select the dates accurately");
+                return;
+            }
+
+            if (pricingType === "hourly" && !validateHourlyBooking(startDate, endDate)) {
                 return;
             }
 
@@ -260,7 +348,7 @@ const Adddetail = () => {
                     title: selectedItem?.title || "",
                     requestType: pricingType,
                     workersRequirment: workers,
-                    selectedAmount: totalPrice,
+                    selectedAmount: selectedPrice,
                     instructions,
                     scheduledTiming: {
                         startTime: new Date(startDate).toISOString(),
@@ -322,162 +410,167 @@ const Adddetail = () => {
 
             <div className='px-[7%] py-[4%]'>
 
-                {showLoginPrompt ?(<div className="flex flex-col items-center justify-center p-8">
-              <div className="text-xl font-semibold mb-4">Please Log In</div>
-              <p className="text-gray-600 mb-6 text-center">
-                You need to be logged in to add items to your cart.
-              </p>
-              <div className="flex gap-4">
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  Log In
-                </button>
-                <button
-                  onClick={() => {
-                    setShowLoginPrompt(false);
-                    setError(null);
-                  }}
-                  className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-                >
-                  Cancel
-                </button>
-                <LoginModal
-                  isModalOpen={isModalOpen}
-                  setIsModalOpen={setIsModalOpen}
-                  isLoginMode={isLoginMode}
-                  setIsLoginMode={setIsLoginMode}
-                />
-              </div>
-            </div>):(
-                    <div className=' flex justify-center gap-7 xsm:flex-col   '>
-                    <div className=' border  rounded-xl px-6 py-4 ' >
-                        <Image
-                            src={image}
-                            alt={'efegefv'}
-                            height={500}
-                            width={500}
-                            className=' w-full h-[400px] object-cover rounded-xl'
+                {showLoginPrompt ? (<div className="flex flex-col items-center justify-center p-8">
+                    <div className="text-xl font-semibold mb-4">Please Log In</div>
+                    <p className="text-gray-600 mb-6 text-center">
+                        You need to be logged in to add items to your cart.
+                    </p>
+                    <div className="flex gap-4">
+                        <button
+                            onClick={() => setIsModalOpen(true)}
+                            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                        >
+                            Log In
+                        </button>
+                        <button
+                            onClick={() => {
+                                setShowLoginPrompt(false);
+                                setError(null);
+                            }}
+                            className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+                        >
+                            Cancel
+                        </button>
+                        <LoginModal
+                            isModalOpen={isModalOpen}
+                            setIsModalOpen={setIsModalOpen}
+                            isLoginMode={isLoginMode}
+                            setIsLoginMode={setIsLoginMode}
                         />
-                        <div className=' flex flex-col gap-4 mt-4'><h1 className='text-3xl font-bold font-lexend' >
-                            {title}
-                        </h1>
-                            <p className=' text-base '>
-                                {description}
-                            </p></div>
-                        <div className='mt-7'>
-                            <ul className='flex flex-col gap-2'>
-                                <li>Trusted home services at your fingertips.</li>
-                                <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                                <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                                <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                            </ul>
+                    </div>
+                </div>) : (
+                    <div className=' flex justify-center gap-7 xsm:flex-col   '>
+                        <div className=' border  rounded-xl px-6 py-4 ' >
+                            <Image
+                                src={image}
+                                alt={'efegefv'}
+                                height={500}
+                                width={500}
+                                className=' w-full h-[400px] object-cover rounded-xl'
+                            />
+                            <div className=' flex flex-col gap-4 mt-4'><h1 className='text-3xl font-bold font-lexend' >
+                                {title}
+                            </h1>
+                                <p className=' text-base '>
+                                    {description}
+                                </p></div>
+                            <div className='mt-7'>
+                                <ul className='flex flex-col gap-2'>
+                                    <li>Trusted home services at your fingertips.</li>
+                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
+                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
+                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
+                                </ul>
+                            </div>
+
                         </div>
 
-                    </div>
+                        <div className='border  justify-between rounded-xl w-full  p-5'>
+                            <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
+                            <div className='flex flex-col  items-center justify-between gap-10 p-4 w-full'>
 
-                    <div className='border  justify-between rounded-xl w-full  p-5'>
-                        <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
-                        <div className='flex flex-col  items-center justify-between gap-10 p-4 w-full'>
-
-                            <div className='flex xsm:flex-col gap-16 w-full'>
-                                <div className='w-full'>
-                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
-                                    <input type="datetime-local"
-                                        value={startDate}
-                                        onChange={(e) => setStartDate(e.target.value)} placeholder='Start date'
-                                        className=' border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full' />
+                                <div className='flex xsm:flex-col gap-16 w-full'>
+                                    <div className='w-full'>
+                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
+                                        <input
+                                            type="datetime-local"
+                                            value={startDate}
+                                            onChange={handleStartDateChange}
+                                            className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
+                                        />
+                                    </div>
+                                    <div className='w-full'>
+                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>End Date:</label>
+                                        <input
+                                            type="datetime-local"
+                                            value={endDate}
+                                            onChange={handleEndDateChange}
+                                            min={startDate}
+                                            className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
+                                        />
+                                    </div>
                                 </div>
-                                <div className='w-full'>
-                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>End Date:</label>
-                                    <input type="datetime-local" name="last date" id=""
-                                        value={endDate}
-                                        onChange={(e) => setEndDate(e.target.value)}
-                                        className=' border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full' />
-                                </div>
-                            </div>
-                            <div className='flex flex-col w-full'>
-                                <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Instructions:</label>
-                                <textarea
-                                    placeholder="Add any specific instructions..."
-                                    value={instructions}
-                                    onChange={(e) => setInstructions(e.target.value)}
-                                    className='w-full border border-gray-400 rounded-2xl p-3 '
-                                />
-                            </div>
-                            <div className='w-full'>
-                                <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
-                                <select
-                                    value={pricingType}
-                                    onChange={(e) => setPricingType(e.target.value)}
-                                    className="w-full border border-gray-400 rounded-2xl p-4"
-                                >
-                                    {selectedItem.pricing.map((price) => (
-                                        <option key={price._id} value={price.pricingtype}>
-                                            {price.pricingtype.charAt(0).toUpperCase() +
-                                                price.pricingtype.slice(1)}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            {priceRange && (
-                                <div className='w-full'>
-                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'> Select Price ({formatPrice(priceRange.from)} -{" "}
-                                        {formatPrice(priceRange.to)})</label>
-                                    <input type="range"
-                                        min={priceRange.from}
-                                        max={priceRange.to}
-                                        value={selectedPrice}
-                                        onChange={(e) =>
-                                            setSelectedPrice(parseInt(e.target.value))
-                                        }
-                                        className='w-full'
-                                        step={(priceRange.to - priceRange.from) / 100}
+                                <div className='flex flex-col w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Instructions:</label>
+                                    <textarea
+                                        placeholder="Add any specific instructions..."
+                                        value={instructions}
+                                        onChange={(e) => setInstructions(e.target.value)}
+                                        className='w-full border border-gray-400 rounded-2xl p-3 '
                                     />
-                                    <p className="text-sm text-gray-500 mt-1">
-                                        Selected Price: {formatPrice(selectedPrice)}
-                                    </p>
                                 </div>
-
-                            )}
-
-
-                            <div className='w-full'>
-                                <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Workers Required:</label>
-                                <input type="number"
-                                    value={workers}
-                                    onChange={(e) => setWorkers(parseInt(e.target.value))}
-                                    className='w-full border border-gray-400 rounded-2xl p-4' />
-
-                            </div>
-                            <div className='flex justify-start w-full'>
-                                <h1 className='text-2xl font-lexend font-bold '>Total Price: </h1>
-                                <span className='text-2xl font-bold font-lexend'>{formatPrice(totalPrice)}</span>
-                                <span></span>
-                            </div>
-                            <div className='flex w-full gap-5'>
-                                <button className='w-full p-4 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
-                                {/* <button className='w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold' onClick={handleSubmit}>Add to Cart</button> */}
-                                {cartItems.includes(selectedItem?._id) ?
-                                    <button
-                                        onClick={() => router.push('/checkout')}
-                                        className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                <div className='w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
+                                    <select
+                                        value={pricingType}
+                                        onChange={(e) => setPricingType(e.target.value)}
+                                        className="w-full border border-gray-400 rounded-2xl p-4"
                                     >
-                                        Go to Cart
-                                    </button>
-                                    :
-                                    <button
-                                        onClick={handleSubmit}
-                                        className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
-                                    >
-                                        Add to Cart
-                                    </button>
-                                }
+                                        {selectedItem.pricing.map((price) => (
+                                            <option key={price._id} value={price.pricingtype}>
+                                                {price.pricingtype.charAt(0).toUpperCase() +
+                                                    price.pricingtype.slice(1)}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                {priceRange && (
+                                    <div className='w-full'>
+                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'> Select Price ({formatPrice(priceRange.from)} -{" "}
+                                            {formatPrice(priceRange.to)})</label>
+                                        <input type="range"
+                                            min={priceRange.from}
+                                            max={priceRange.to}
+                                            value={selectedPrice}
+                                            onChange={(e) =>
+                                                setSelectedPrice(parseInt(e.target.value))
+                                            }
+                                            className='w-full'
+                                            step={(priceRange.to - priceRange.from) / 100}
+                                        />
+                                        <p className="text-sm text-gray-500 mt-1">
+                                            Selected Price: {formatPrice(selectedPrice)}
+                                        </p>
+                                    </div>
+
+                                )}
+
+
+                                <div className='w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Workers Required:</label>
+                                    <input type="number"
+                                        value={workers}
+                                        onChange={(e) => setWorkers(parseInt(e.target.value))}
+                                        className='w-full border border-gray-400 rounded-2xl p-4' />
+
+                                </div>
+                                <div className='flex justify-start w-full'>
+                                    <h1 className='text-2xl font-lexend font-bold '>Total Price: </h1>
+                                    <span className='text-2xl font-bold font-lexend'>{formatPrice(totalPrice)}</span>
+                                    <span></span>
+                                </div>
+                                <div className='flex w-full gap-5'>
+                                    <button className='w-full p-4 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
+                                    {/* <button className='w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold' onClick={handleSubmit}>Add to Cart</button> */}
+                                    {cartItems.includes(selectedItem?._id) ?
+                                        <button
+                                            onClick={() => router.push('/checkout')}
+                                            className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                        >
+                                            Go to Cart
+                                        </button>
+                                        :
+                                        <button
+                                            onClick={handleSubmit}
+                                            className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>)}
+                    </div>)}
             </div>
         </>
     )

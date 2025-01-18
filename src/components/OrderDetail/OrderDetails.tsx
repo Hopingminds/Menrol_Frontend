@@ -135,9 +135,7 @@ const OrderDetails = () => {
     fetchOrderData();
   }, [userInfo]);
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
+
 
   const handleModalOpen = (
     startTime: string,

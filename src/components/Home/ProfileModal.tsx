@@ -137,17 +137,17 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         className="bg-white z-50 p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
       >
         <div className="flex justify-end items-center">
-        <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded">
-          <RiCloseFill className="text-white"/>
-        </button>
+          <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded">
+            <RiCloseFill className="text-white" />
+          </button>
         </div>
         <h2 className="text-2xl font-semibold mb-2 -mt-5 text-center text-blue-600">
           Profile Information
         </h2>
         {loading ? (
           <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
-          <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-        </div>
+            <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+          </div>
         ) : error ? (
           <p className="text-red-500 text-center">{error}</p>
         ) : profileData ? (
@@ -186,7 +186,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         ) : (
           <p className="text-red-500 text-center">No user data available.</p>
         )}
-        
+
       </div>
     </div>
   );
