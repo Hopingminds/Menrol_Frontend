@@ -268,7 +268,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
       });
       const data = await response.json();
       // console.log(data);
-      router.push("/orderdetails");
+      router.push("/AloatedLabour");
     } catch (error) {
       console.error("Error during checkout:", error);
     }
@@ -315,7 +315,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     <div className="min-h-screen bg-gray-50 p-8 px-[7%]">
       <div className=" mx-auto mb-3">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
-        <MdLocationPin className=" border-r absolute mt-3 ml-2"/>
+        <MdLocationPin className=" border-r absolute mt-3 ml-2" />
         <select
           value={selectedAddress?._id || ""}
           onChange={handleAddressChange}
@@ -331,7 +331,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
               </option>
             ))}
         </select>
-       
+
       </div>
       <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
@@ -355,7 +355,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                     <span className="text-black xsm:text-xs font-semibold">
                       {requestedService.service.category}
                     </span>
-                    <p className="text-gray-500 xsm:text-xs">{subcategory.subcategoryId.description}</p>   
+                    <p className="text-gray-500 xsm:text-xs">{subcategory.subcategoryId.description}</p>
                     <div className="flex items-center gap-2 ">
 
                       <span className="text-sm text-gray-500 xsm:text-[10px]">{formatTime(subcategory.scheduledTiming.startTime)}</span>
@@ -376,7 +376,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
                         }
                         className=" text-gray-400 transition-all duration-500 hover:scale-110 hover:text-red-500 text-xl font-medium"
                       >
-                        <MdDelete/>
+                        <MdDelete />
                       </button>
                     </div>
                   </div>
