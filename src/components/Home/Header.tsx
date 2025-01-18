@@ -10,11 +10,10 @@ import "./Language.css";
 import Cart from "./Cart";
 import Image from "next/image";
 import Location from "./Location";
-import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { MdLocationPin } from "react-icons/md";
 import { MdLanguage } from "react-icons/md";
-
 
 // Custom hook for typing effect
 export const useTypingEffect = () => {
@@ -104,7 +103,6 @@ const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserInfo | null>(null);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
- 
 
   const router = useRouter();
   const typedText = useTypingEffect();
@@ -182,11 +180,15 @@ const Header: React.FC = () => {
     router.push("/orderdetails");
   };
 
+  function handleCloseModal() {
+    setIsProfileModalOpen(false);
+  }
+
   return (
     <>
       <ToastContainer />
       <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-[#FFFFFF] shadow-md   xsm:w-full">
-        <div className=""> 
+        <div className="">
           <Image
             src="/Images/logo2.png"
             alt="Logo"
@@ -206,7 +208,9 @@ const Header: React.FC = () => {
               <Location />
             </div>
           </div>
-          <span className="text-[#DADADA] md:text-xl lg:text-2xl font-light xsm:hidden">|</span>
+          <span className="text-[#DADADA] md:text-xl lg:text-2xl font-light xsm:hidden">
+            |
+          </span>
 
           <div className="flex flex-1 items-center md:mx-2 lg:mx-6">
             <div className="relative w-[13vw] xsm:w-full xsm:h-[2rem]">
@@ -219,40 +223,47 @@ const Header: React.FC = () => {
                 className="w-full pl-10  xsm:px-4  md:px-0 lg:px-6 xsm:py-0 py-2 xsm:pt-2 text-sm rounded-lg focus:outline-none"
               />
             </div>
-            <span className="text-[#DADADA] text-2xl font-light xsm:hidden">|</span>
+            <span className="text-[#DADADA] text-2xl font-light xsm:hidden">
+              |
+            </span>
 
             {searchQuery?.length >= 3 && (
               <div className="absolute top-[60px]  w-full bg-white shadow-lg z-50 max-h-60 overflow-y-auto rounded-md mt-1">
                 {searchResults?.length > 0 ? (
                   <ul>
                     {searchResults.map((result) => (
-                      <li key={result._id} className="border-b hover:bg-blue-100">
+                      <li
+                        key={result._id}
+                        className="border-b hover:bg-blue-100"
+                      >
                         <div
                           className="p-4 cursor-pointer hover:text-blue-600"
                           onClick={() => handleSearchResultClick(result._id)}
                         >
-                          <h4 className="font-semibold text-xs">{result.category}</h4>
+                          <h4 className="font-semibold text-xs">
+                            {result.category}
+                          </h4>
                         </div>
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <div className="p-4 text-center text-gray-500">No results found</div>
+                  <div className="p-4 text-center text-gray-500">
+                    No results found
+                  </div>
                 )}
               </div>
             )}
           </div>
           <div className="xsm:hidden flex items-center justify-center">
-          <MdLanguage className="lg:text-xl font-extralight md:text-sm" />
-          <div
-            id="google_translate_element"
-            className="check-text p-3 rounded-xl bg-white"
-          ></div>
+            <MdLanguage className="lg:text-xl font-extralight md:text-sm" />
+            <div
+              id="google_translate_element"
+              className="check-text p-3 rounded-xl bg-white"
+            ></div>
           </div>
         </div>
-        <div
-          className={`flex justify-center lg:gap-2`}
-        >
+        <div className={`flex justify-center lg:gap-2`}>
           {isLoggedIn ? (
             <div className="relative">
               <button
@@ -292,7 +303,13 @@ const Header: React.FC = () => {
               onClick={() => setIsModalOpen(true)}
             >
               <span className="flex justify-center items-center gap-4 xsm:gap-1 xsm:text-[12px]">
-                <span className="hover:text-blue-500 transition-all duration-500">Login</span> <span>|</span> <span className="hover:text-blue-500 transition-all duration-500">signup</span>
+                <span className="hover:text-blue-500 transition-all duration-500">
+                  Login
+                </span>{" "}
+                <span>|</span>{" "}
+                <span className="hover:text-blue-500 transition-all duration-500">
+                  signup
+                </span>
               </span>
             </button>
           )}
@@ -304,11 +321,13 @@ const Header: React.FC = () => {
             setIsLoginMode={setIsLoginMode}
           />
 
-          <ProfileModal
-            isModalOpen={isProfileModalOpen}
-            setIsModalOpen={setIsProfileModalOpen}
-            userData={userData}
-          />
+          {isProfileModalOpen && (
+            <ProfileModal
+              isModalOpen={isProfileModalOpen}
+              onClose={handleCloseModal}
+              userData={userData}
+            />
+          )}
           {isLoggedIn && <Cart />}
         </div>
       </header>

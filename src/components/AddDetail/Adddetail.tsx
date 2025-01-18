@@ -274,7 +274,7 @@ const Adddetail = () => {
 
     const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newPricingType = e.target.value;
-        console.log(handlePricingTypeChange);
+        
         setPricingType(newPricingType);
 
         if (newPricingType === "hourly" && startDate) {
@@ -286,7 +286,7 @@ const Adddetail = () => {
         }
     };
 
-
+    console.log(handlePricingTypeChange);
     const calculateTotalDays = () => {
         if (!startDate || !endDate) return 0;
         const start = new Date(startDate);

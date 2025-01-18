@@ -52,8 +52,8 @@ interface Subcategory {
   status: string;
   instructions: string;
   instructionsImages: string[];
-  viewers: any[];
-  serviceProviders: any[];
+  viewers: [];
+  serviceProviders:[];
 }
 
 interface ServiceRequest {
