@@ -7,15 +7,15 @@ import { useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 
-interface Item {
-    title: string;
-    description: string;
-    // Add other properties here based on the structure of your data
-    image: string;
-    dailyWageWorker: number;
-    hourlyWorker: number;
-    contractWorker: number;
-}
+// interface Item {
+//     title: string;
+//     description: string;
+//     // Add other properties here based on the structure of your data
+//     image: string;
+//     dailyWageWorker: number;
+//     hourlyWorker: number;
+//     contractWorker: number;
+// }
 interface UserInfo {
     id: string;
     name: string;
@@ -75,7 +75,7 @@ const Adddetail = () => {
     const searchParams = useSearchParams();
     const serviceId = searchParams.get("service");
     const subcategoryId = searchParams.get("subcategory");
-    const [parsedItem, setParsedItem] = useState<Item | null>(null);
+    // const [parsedItem, setParsedItem] = useState<Item | null>(null);
     const [startDate, setStartDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
     const [instructions, setInstructions] = useState<string>("");
@@ -93,6 +93,9 @@ const Adddetail = () => {
     const [cartItems, setCartItems] = useState<string[]>([]);
 
     const router = useRouter();
+    console.log(isSubmitting);
+
+
     useEffect(() => {
         const storedUser = localStorage.getItem("user-info");
         if (storedUser) {
@@ -106,6 +109,7 @@ const Adddetail = () => {
             try {
 
                 const itemParam = searchParams.get('service');
+                console.log(itemParam);
                 const response = await fetch(
                     `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${subcategoryId}`
                 );
@@ -269,6 +273,7 @@ const Adddetail = () => {
 
     const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newPricingType = e.target.value;
+        console.log(handlePricingTypeChange);
         setPricingType(newPricingType);
 
         if (newPricingType === "hourly" && startDate) {

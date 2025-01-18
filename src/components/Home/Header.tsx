@@ -104,7 +104,7 @@ const Header: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserInfo | null>(null);
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+ 
 
   const router = useRouter();
   const typedText = useTypingEffect();
