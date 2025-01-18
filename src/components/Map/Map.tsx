@@ -5,15 +5,31 @@ import {
   LoadScript,
   InfoWindow,
   Autocomplete,
+  Marker,
 } from "@react-google-maps/api";
 import { toast } from "react-toastify";
 
-// Defining a UserInfo interface for type safety
 interface UserInfo {
   token: string;
 }
 
-const Map: React.FC = () => {
+interface MapProps {
+  customLocations?: Array<{
+    lat: number;
+    lng: number;
+    title?: string;
+  }>;
+  showSearchBox?: boolean;
+  enableAddressSelection?: boolean;
+  onLocationSelect?: (location: { lat: number; lng: number; address: string }) => void;
+}
+
+const Map: React.FC<MapProps> = ({
+  customLocations = [],
+  showSearchBox = true,
+  enableAddressSelection = true,
+  onLocationSelect,
+}) => {
   const [selectedLocation, setSelectedLocation] = useState<{
     lat: number;
     lng: number;
@@ -25,7 +41,7 @@ const Map: React.FC = () => {
     lng: number;
   } | null>(null);
 
-  const [searchBox, setSearchBox] =
+  const [searchBox, setSearchBox] = 
     useState<google.maps.places.Autocomplete | null>(null);
 
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -38,14 +54,14 @@ const Map: React.FC = () => {
 
   const defaultCenter = currentLocation || { lat: 51.505, lng: -0.09 };
 
-  // Retrieve userInfo from localStorage
   const storedUserInfo = localStorage.getItem("user-info");
   const userInfo: UserInfo | null = storedUserInfo
     ? JSON.parse(storedUserInfo)
     : null;
 
-  // Handle map click and select location
   const handleMapClick = async (e: google.maps.MapMouseEvent) => {
+    if (!enableAddressSelection) return;
+    
     if (e.latLng) {
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
@@ -54,19 +70,20 @@ const Map: React.FC = () => {
 
       try {
         const { results } = await geocoder.geocode({ location: { lat, lng } });
-
-        setSelectedLocation({
+        const newLocation = {
           lat,
           lng,
           address: results?.[0]?.formatted_address || "Address not found",
-        });
+        };
+        
+        setSelectedLocation(newLocation);
+        onLocationSelect?.(newLocation);
       } catch (error) {
         console.error("Geocoding error: ", error);
       }
     }
   };
 
-  // Save the selected address to the server
   const handleSaveAddress = async () => {
     if (!selectedLocation || !userInfo) {
       toast.error("User information or location is missing!");
@@ -97,14 +114,13 @@ const Map: React.FC = () => {
       }
 
       toast.success("Successfully added your address!");
-      fetchSavedAddress(); // Call the fetch function after saving
+      fetchSavedAddress();
     } catch (error) {
       console.error("Error saving address: ", error);
       toast.error("An error occurred while saving the address.");
     }
   };
 
-  // Fetch saved address and display it
   const fetchSavedAddress = useCallback(async () => {
     if (!userInfo) {
       console.error("No userInfo found");
@@ -127,9 +143,8 @@ const Map: React.FC = () => {
     } catch (error) {
       console.error("Error fetching saved address: ", error);
     }
-  }, [userInfo]); // Add userInfo as a dependency
+  }, []);
 
-  // Get user's current location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -145,7 +160,7 @@ const Map: React.FC = () => {
     }
 
     fetchSavedAddress();
-  }, [fetchSavedAddress]); // Add fetchSavedAddress as a dependency
+  }, [fetchSavedAddress]);
 
   const handlePlaceSelect = () => {
     if (searchBox) {
@@ -154,12 +169,14 @@ const Map: React.FC = () => {
       if (place?.geometry?.location) {
         const lat = place.geometry.location.lat();
         const lng = place.geometry.location.lng();
-
-        setSelectedLocation({
+        const newLocation = {
           lat,
           lng,
           address: place.formatted_address || "Address not found",
-        });
+        };
+
+        setSelectedLocation(newLocation);
+        onLocationSelect?.(newLocation);
 
         mapRef.current?.panTo({ lat, lng });
         mapRef.current?.setZoom(14);
@@ -171,32 +188,22 @@ const Map: React.FC = () => {
     <LoadScript
       googleMapsApiKey="AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0"
       libraries={["places"]}
-      id="google-map-load-script" // Add the 'id' prop here
+      id="google-map-load-script"
     >
       <div style={{ position: "relative", height: "100%" }}>
-        <Autocomplete
-          onLoad={(autocomplete) => setSearchBox(autocomplete)}
-          onPlaceChanged={handlePlaceSelect}
-        >
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search for a location"
-            style={{
-              position: "absolute",
-              top: "10px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              zIndex: 10,
-              width: "300px",
-              padding: "10px",
-              fontSize: "16px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-            }}
-
-          />
-        </Autocomplete>
+        {showSearchBox && (
+          <Autocomplete
+            onLoad={(autocomplete) => setSearchBox(autocomplete)}
+            onPlaceChanged={handlePlaceSelect}
+          >
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="Search for a location"
+              className="absolute top-2 left-1/2 -translate-x-1/2 z-10 w-72 p-2 text-base border border-gray-300 rounded"
+            />
+          </Autocomplete>
+        )}
 
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -207,53 +214,55 @@ const Map: React.FC = () => {
             mapRef.current = map;
           }}
         >
+          {customLocations.map((location, index) => (
+            <Marker
+              key={`custom-${index}`}
+              position={{ lat: location.lat, lng: location.lng }}
+              title={location.title}
+            />
+          ))}
+
           {selectedLocation && (
-            <InfoWindow
-              position={{
-                lat: selectedLocation.lat,
-                lng: selectedLocation.lng,
-              }}
-            >
-              <div>
-                Latitude: {selectedLocation.lat}, Longitude:{" "}
-                {selectedLocation.lng}
-                <br />
-                Address: {selectedLocation.address}
-              </div>
-            </InfoWindow>
+            <>
+              <Marker
+                position={{
+                  lat: selectedLocation.lat,
+                  lng: selectedLocation.lng,
+                }}
+              />
+              <InfoWindow
+                position={{
+                  lat: selectedLocation.lat,
+                  lng: selectedLocation.lng,
+                }}
+              >
+                <div>
+                  <p>Latitude: {selectedLocation.lat}</p>
+                  <p>Longitude: {selectedLocation.lng}</p>
+                  <p>Address: {selectedLocation.address}</p>
+                </div>
+              </InfoWindow>
+            </>
           )}
         </GoogleMap>
 
-        <div style={{ marginTop: "20px", padding: "10px" }}>
-          <button
-            onClick={handleSaveAddress}
-            style={{
-              marginRight: "10px",
-              padding: "10px",
-              fontSize: "16px",
-              backgroundColor: "blue",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
-            Save Address
-          </button>
+        {enableAddressSelection && (
+          <div className="mt-5 p-2">
+            <button
+              onClick={handleSaveAddress}
+              className="mr-2 p-2 text-base bg-blue-600 text-white border-none rounded cursor-pointer"
+            >
+              Save Address
+            </button>
 
-          <input
-            type="text"
-            value={selectedLocation?.address || ""}
-            readOnly
-            style={{
-              padding: "10px",
-              fontSize: "16px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              width: "300px",
-            }}
-          />
-        </div>
+            <input
+              type="text"
+              value={selectedLocation?.address || ""}
+              readOnly
+              className="p-2 text-base border border-gray-300 rounded w-72"
+            />
+          </div>
+        )}
       </div>
     </LoadScript>
   );

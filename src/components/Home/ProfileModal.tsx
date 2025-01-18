@@ -22,13 +22,13 @@ interface UserProfile {
 
 interface ProfileModalProps {
   isModalOpen: boolean;
-  setIsModalOpen: (value: boolean) => void;
+  onClose: () => void;
   userData: UserInfo | null;
 }
 
 const ProfileModal: React.FC<ProfileModalProps> = ({
   isModalOpen,
-  setIsModalOpen,
+  onClose,
   userData,
 }) => {
   const [houseNumber, setHouseNumber] = useState<string>(""); // House number input
@@ -98,11 +98,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           "Content-Type": "application/json",
         },
       });
-
+    
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
+    
       const data = await response.json();
       if (data.success) {
         setProfileData(data.user);
@@ -118,18 +118,23 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     }
   };
 
+
+let temp = true;
   useEffect(() => {
-    if (isModalOpen) {
+    if (temp && isModalOpen) {
       fetchLocation();
       getProfileData();
+      temp = false;
     }
-  }, [isModalOpen]);
+    // fetchLocation();
+    // getProfileData();
+  }, []);
 
   if (!isModalOpen) return null;
 
   return (
     <div
-      onClick={() => setIsModalOpen(false)}
+      onClick={onClose}
       className="fixed inset-0 flex items-center justify-center  w-full h-screen backdrop-blur-md bg-black bg-opacity-50 z-50"
     >
       <div
@@ -137,20 +142,24 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         className="bg-white z-50 p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
       >
         <div className="flex justify-end items-center">
-          <button onClick={() => setIsModalOpen(false)} className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded">
+          <button
+            onClick={onClose}
+            className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded"
+          >
             <RiCloseFill className="text-white" />
           </button>
         </div>
         <h2 className="text-2xl font-semibold mb-2 -mt-5 text-center text-blue-600">
           Profile Information
         </h2>
-        {loading ? (
+        {/* {loading ? (
           <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
             <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
           </div>
         ) : error ? (
           <p className="text-red-500 text-center">{error}</p>
-        ) : profileData ? (
+        ) :  */}
+     {  profileData ? (
           <div>
             <div className="mb-4">
               <p className="text-lg">
@@ -172,7 +181,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <span className="text-blue-500">Address:</span>
               </p>
               <div className="mb-2">
-                <Map /> 
+                <Map />
               </div>
               <input
                 type="text"
@@ -186,7 +195,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         ) : (
           <p className="text-red-500 text-center">No user data available.</p>
         )}
-
       </div>
     </div>
   );
