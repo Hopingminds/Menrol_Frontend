@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
+import { HiMiniCheck } from "react-icons/hi2";
 
 // interface Item {
 //     title: string;
@@ -440,27 +441,29 @@ const Adddetail = () => {
                     </div>
                 </div>) : (
                     <div className=' flex justify-center gap-7 xsm:flex-col   '>
-                        <div className=' border  rounded-xl px-6 py-4 ' >
+                        <div className=' border w-full  rounded-xl px-6 py-4 ' >
                             <Image
                                 src={image}
                                 alt={'efegefv'}
                                 height={500}
                                 width={500}
-                                className=' w-full h-[400px] object-cover rounded-xl'
+                                className=' w-full lg:h-[400px] md:h-[200px] object-cover rounded-xl'
                             />
-                            <div className=' flex flex-col gap-4 mt-4'><h1 className='text-3xl font-bold font-lexend' >
+                            <div className=' flex flex-col gap-4 mt-4'>
+                            <h1 className='text-3xl font-bold font-lexend' >
                                 {title}
                             </h1>
                                 <p className=' text-base '>
                                     {description}
-                                </p></div>
-                            <div className='mt-7'>
-                                <ul className='flex flex-col gap-2'>
-                                    <li>Trusted home services at your fingertips.</li>
-                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                                    <li>Tellus aliquam faucibus imperdiet eget interdum.</li>
-                                </ul>
+                                </p>
+                                </div>
+                                <div className='mt-7'>
+                                  <ul className='flex flex-col gap-2'>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Trusted home services at your fingertips.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Book reliable professionals in just a few clicks.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Seamless solutions for your household needs.</li>
+                                    <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]'/>Experience stress-free home maintenance services.</li>
+                                    </ul>
                             </div>
 
                         </div>
@@ -469,7 +472,7 @@ const Adddetail = () => {
                             <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
                             <div className='flex flex-col  items-center justify-between gap-10 p-4 w-full'>
 
-                                <div className='flex xsm:flex-col gap-16 w-full'>
+                                <div className='flex lg:flex-row xsm:flex-col md:flex-col gap-16 w-full'>
                                     <div className='w-full'>
                                         <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
                                         <input
@@ -550,19 +553,19 @@ const Adddetail = () => {
                                     <span></span>
                                 </div>
                                 <div className='flex w-full gap-5'>
-                                    <button className='w-full p-4 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
+                                    <button className='w-full p-4 md:p-2 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
                                     {/* <button className='w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold' onClick={handleSubmit}>Add to Cart</button> */}
                                     {cartItems.includes(selectedItem?._id) ?
                                         <button
                                             onClick={() => router.push('/checkout')}
-                                            className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                            className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
                                         >
                                             Go to Cart
                                         </button>
                                         :
                                         <button
                                             onClick={handleSubmit}
-                                            className="w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                            className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
                                         >
                                             Add to Cart
                                         </button>

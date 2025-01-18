@@ -491,6 +491,10 @@ const IndividualServices: React.FC = () => {
 
 
 
+  const openModal = (item: Subcategory) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
