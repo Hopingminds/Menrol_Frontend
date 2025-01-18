@@ -1,12 +1,8 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import Map from '../Map/Map';
+import AllotedLabourMap from '../AlloatedLabourMap/AlloatedLabourMap';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
-
-
-
 
 
 interface Location {
@@ -53,7 +49,7 @@ interface Subcategory {
   instructions: string;
   instructionsImages: string[];
   viewers: [];
-  serviceProviders:[];
+  serviceProviders: [];
 }
 
 interface ServiceRequest {
@@ -155,8 +151,10 @@ const Labour = () => {
         console.log(data);
 
         // const subcategories=data.data.results
+      } catch (error) {
+        console.log(error);
       }
-  }
+    }
 
     fetchserviceproviders();
   }, [userInfo]);
@@ -170,15 +168,12 @@ const Labour = () => {
       <div className="w-full">
         <div className="rounded-xl border p-6 w-full">
           <div className="">
-            {/* <Map /> */}
+            <AllotedLabourMap/>
           </div>
         </div>
         <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
           {orderData?.serviceRequest?.map((request) => (
             request.subcategory.map((sub) => (
-
-
-
               <div
                 key={sub._id}
                 className="border rounded-lg shadow-lg p-3 xsm:flex-col flex xsm:gap-5 gap-10 items-center mb-4"
