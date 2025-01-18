@@ -130,7 +130,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div
       onClick={() => setIsModalOpen(false)}
-      className="fixed inset-0 flex items-center justify-center  w-full h-screen bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center justify-center  w-full h-screen backdrop-blur-md bg-black bg-opacity-50 z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -172,7 +172,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <span className="text-blue-500">Address:</span>
               </p>
               <div className="mb-2">
-                {/* <Map /> */}
+                <Map /> 
               </div>
               <input
                 type="text"

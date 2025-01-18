@@ -154,7 +154,7 @@ const Adddetail = () => {
 
 
             if (data.success && data.serviceRequests?.requestedServices) {
-                console.log("tati");
+               
 
                 const existingSubcategories = data.serviceRequests.requestedServices.flatMap(
                     (service: any) => service.subcategory
