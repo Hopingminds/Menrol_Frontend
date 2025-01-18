@@ -152,15 +152,16 @@ let temp = true;
         <h2 className="text-2xl font-semibold mb-2 -mt-5 text-center text-blue-600">
           Profile Information
         </h2>
-        {/* {loading ? (
+        {loading ? (
           <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
             <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
           </div>
-        ) : error ? (
+        ) : (
           <p className="text-red-500 text-center">{error}</p>
-        ) :  */}
+        )}
      {  profileData ? (
           <div>
+            
             <div className="mb-4">
               <p className="text-lg">
                 <span className="text-blue-500">Name:</span>{" "}
