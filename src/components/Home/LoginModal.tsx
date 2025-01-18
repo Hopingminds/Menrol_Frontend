@@ -108,7 +108,12 @@ const LoginModal: React.FC<LoginModalProps> = ({
 
             <div className="p-8">
               {/* Phone Icon and Title */}
-              <div className="flex flex-col items-center mb-6">
+             
+
+              <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
+                {!otpSent ? (
+                  <div className="mb-6">
+                     <div className="flex flex-col items-center mb-6">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                   <BsTelephone size={32} className="font-extrabold" />
                 </div>
@@ -119,10 +124,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   We will send you a text with a verification code.
                 </p>
               </div>
-
-              <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
-                {!otpSent ? (
-                  <div className="mb-6">
                     <div className="flex border rounded-lg overflow-hidden">
                       <select className="px-3 py-3 bg-gray-50 border-r">
                         <option>+91</option>
@@ -139,6 +140,17 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   </div>
                 ) : (
                   <div className="mb-6">
+                     <div className="flex flex-col items-center mb-6">
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                  <BsTelephone size={32} className="font-extrabold" />
+                </div>
+                <h2 className="text-2xl font-semibold">
+                  Enter your OTP
+                </h2>
+                <p className="text-gray-500 mt-2">
+                  Enter the OTP sent to your phone number.
+                </p>
+              </div>
                     <div className="relative">
                       <input
                         type="text"

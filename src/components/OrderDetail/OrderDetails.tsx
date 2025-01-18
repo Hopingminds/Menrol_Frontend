@@ -310,7 +310,7 @@ const OrderDetails = () => {
             <div className="flex justify-between items-center "> 
             <button className="text-white bg-[#0054A5] px-3 py-2 rounded-lg">update</button>
             <button
-              className="bg-red-500 text-white px-3 py-2 rounded-lg mt-4"
+              className="bg-red-500 text-white px-3 py-2 rounded-lg "
               onClick={handleModalClose}
             >
               Close
