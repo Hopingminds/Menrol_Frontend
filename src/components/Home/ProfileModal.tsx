@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Map from "../../components/Map/Map";
+
 import { RiCloseFill } from "react-icons/ri";
 
 interface UserInfo {
@@ -99,11 +99,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           "Content-Type": "application/json",
         },
       });
-    
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    
+
       const data = await response.json();
       if (data.success) {
         setProfileData(data.user);
@@ -120,7 +120,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   };
 
 
-let temp = true;
+  let temp = true;
   useEffect(() => {
     if (temp && isModalOpen) {
       fetchLocation();
@@ -160,9 +160,9 @@ let temp = true;
         ) : (
           <p className="text-red-500 text-center">{error}</p>
         )}
-     {  profileData ? (
+        {profileData ? (
           <div>
-            
+
             <div className="mb-4">
               <p className="text-lg">
                 <span className="text-blue-500">Name:</span>{" "}
@@ -183,7 +183,7 @@ let temp = true;
                 <span className="text-blue-500">Address:</span>
               </p>
               <div className="mb-2">
-                <Map />
+                {/* <Map /> */}
               </div>
               <input
                 type="text"

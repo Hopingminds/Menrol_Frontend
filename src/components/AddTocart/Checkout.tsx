@@ -6,6 +6,7 @@ import Image from "next/image";
 import { toast } from "react-toastify";
 import { MdLocationPin } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import Map from "../Map/Map";
 
 interface ScheduledTiming {
   startTime: string;
@@ -209,44 +210,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
     });
   };
 
-  // const loadRazorpay = () => {
-  //   if (totalAmount <= 0) {
-  //     toast.error("Invalid amount, cannot proceed with the payment.");
-  //     return;
-  //   }
-  //   if (!selectedAddress) {
-  //     toast.error("Please select an address before proceeding.");
-  //     return;
-  //   }
-  //   const script = document.createElement("script");
-  //   script.src = "https://checkout.razorpay.com/v1/checkout.js";
-  //   script.async = true;
-  //   document.body.appendChild(script);
-  //   script.onload = () => {
-  //     const options = {
-  //       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY || "rzp_test_jmLsdK6FoWIRSe",
-  //       amount: totalAmount * 100,
-  //       currency: "INR",
-  //       name: "Menrol",
-  //       description: "Product description",
-  //       image: "/menrol-logo.png",
-  //       handler: (response: { razorpay_payment_id: string }) => {
-  //         console.log("Payment successful!", response.razorpay_payment_id);
-  //         handleContinueCheckout();
-  //       },
-  //       prefill: {
-  //         name: "Customer Name",
-  //         email: "customer@example.com",
-  //         contact: "9999999999",
-  //       },
-  //       theme: {
-  //         color: "#0054a5",
-  //       },
-  //     };
-  //     const rzp = new window.Razorpay(options);
-  //     rzp.open();
-  //   };
-  // };
+
 
   const handleContinueCheckout = async () => {
     if (!selectedAddress) {
@@ -313,6 +277,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8 px-[7%]">
+      <Map />
       <div className=" mx-auto mb-3">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
         <MdLocationPin className=" border-r absolute mt-3 ml-2" />

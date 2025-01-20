@@ -171,20 +171,17 @@ const Adddetail = () => {
             if (data.success && data.serviceRequests?.requestedServices) {
                 console.log(data.serviceRequests?.requestedServices[0].service);
 
-                const subcategoryIds: string[] = data.serviceRequests.requestedServices.flatMap((serviceRequest: ServiceRequest) => 
+                const subcategoryIds: string[] = data.serviceRequests.requestedServices.flatMap((serviceRequest: ServiceRequest) =>
                     // Explicitly ensure subcategory is an array
                     Array.isArray(serviceRequest.subcategory)
                         ? serviceRequest.subcategory.map((subcategory: Subcategory) => subcategory.subcategoryId._id)
                         : []
                 );
-            
-            
-            
                 console.log(subcategoryIds);
-                
+
                 // Store the extracted IDs in setCartItems
                 setCartItems(subcategoryIds);
-            
+
             }
         } catch (err) {
             console.error("Error fetching cart:", err);

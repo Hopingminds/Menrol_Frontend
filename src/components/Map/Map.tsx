@@ -41,7 +41,7 @@ const Map: React.FC<MapProps> = ({
     lng: number;
   } | null>(null);
 
-  const [searchBox, setSearchBox] = 
+  const [searchBox, setSearchBox] =
     useState<google.maps.places.Autocomplete | null>(null);
 
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -61,7 +61,7 @@ const Map: React.FC<MapProps> = ({
 
   const handleMapClick = async (e: google.maps.MapMouseEvent) => {
     if (!enableAddressSelection) return;
-    
+
     if (e.latLng) {
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
@@ -75,7 +75,7 @@ const Map: React.FC<MapProps> = ({
           lng,
           address: results?.[0]?.formatted_address || "Address not found",
         };
-        
+
         setSelectedLocation(newLocation);
         onLocationSelect?.(newLocation);
       } catch (error) {
@@ -114,13 +114,14 @@ const Map: React.FC<MapProps> = ({
       }
 
       toast.success("Successfully added your address!");
-      fetchSavedAddress();
+      await fetchSavedAddress();
+      // Add window reload after successful response
+      window.location.reload();
     } catch (error) {
       console.error("Error saving address: ", error);
       toast.error("An error occurred while saving the address.");
     }
   };
-
   const fetchSavedAddress = useCallback(async () => {
     if (!userInfo) {
       console.error("No userInfo found");
