@@ -18,14 +18,14 @@ const CHANDIGARH_CENTER = { lat: 30.7333, lng: 76.7794 };
 const CHANDIGARH_LOCATIONS = [
     { name: "Sector 17", lat: 30.7352, lng: 76.7867 },
     { name: "IT Park", lat: 30.7283, lng: 76.8461 },
-    { name: "Sukhna Lake", lat: 30.7421, lng: 76.8181 },
-    { name: "Rock Garden", lat: 30.7418, lng: 76.8083 },
+    // { name: "Sukhna Lake", lat: 30.7421, lng: 76.8181 },
+    // { name: "Rock Garden", lat: 30.7418, lng: 76.8083 },
     { name: "Panchkula", lat: 30.6942, lng: 76.8606 },
-    // { name: "Mohali", lat: 30.7046, lng: 76.7179 },
+    { name: "Mohali", lat: 30.7046, lng: 76.7179 },
     // { name: "Elante Mall", lat: 30.7051, lng: 76.8014 },
     // { name: "PGI", lat: 30.7650, lng: 76.7751 },
-    // { name: "Railway Station", lat: 30.7211, lng: 76.8432 },
-    // { name: "Capitol Complex", lat: 30.7605, lng: 76.8057 }
+    { name: "Railway Station", lat: 30.7211, lng: 76.8432 },
+    // { name: "Capitol Complex", lat: 30.7605, lng: 76.8057 }66
 ];
 
 const AllotedLabourMap: React.FC<MapProps> = ({

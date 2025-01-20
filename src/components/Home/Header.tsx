@@ -228,7 +228,7 @@ const Header: React.FC = () => {
             </span>
 
             {searchQuery?.length >= 3 && (
-              <div className="absolute top-[60px]  w-full bg-white shadow-lg z-50 max-h-60 overflow-y-auto rounded-md mt-1">
+              <div className="absolute top-[60px] bg-white shadow-lg z-50 max-h-60 overflow-y-auto rounded-md mt-1">
                 {searchResults?.length > 0 ? (
                   <ul>
                     {searchResults.map((result) => (
