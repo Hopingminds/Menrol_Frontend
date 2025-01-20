@@ -8,7 +8,6 @@ import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 import { HiMiniCheck } from "react-icons/hi2";
 
-
 interface UserInfo {
     id: string;
     name: string;
@@ -44,7 +43,7 @@ interface Subcategory {
         endTime: string;
     };
     subcategoryId: {
-        _id: string;  // This is the ID you're trying to extract
+        _id: string;
     };
     title: string;
     requestType: string;
@@ -55,7 +54,6 @@ interface Subcategory {
     instructionsImages: string[];
     _id: string;
 }
-
 
 interface ServiceRequest {
     instImages: File | null;
@@ -83,7 +81,6 @@ const formatPrice = (price: number) => {
 };
 
 const Adddetail = () => {
-
     const searchParams = useSearchParams();
     const serviceId = searchParams.get("service");
     const subcategoryId = searchParams.get("subcategory");
@@ -105,8 +102,6 @@ const Adddetail = () => {
     const [cartItems, setCartItems] = useState<string[]>([]);
 
     const router = useRouter();
-    console.log(isSubmitting);
-
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user-info");
@@ -119,9 +114,7 @@ const Adddetail = () => {
     useEffect(() => {
         const fetchSubcategoryData = async () => {
             try {
-
                 const itemParam = searchParams.get('service');
-                console.log(itemParam);
                 const response = await fetch(
                     `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${subcategoryId}`
                 );
@@ -129,7 +122,6 @@ const Adddetail = () => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch subcategory data');
                 }
-
 
                 const data = await response.json();
                 setSubcategoryData(data);
@@ -144,12 +136,23 @@ const Adddetail = () => {
         fetchSubcategoryData();
     }, [serviceId, subcategoryId]);
 
-
     useEffect(() => {
         if (userInfo) {
             fetchCart();
         }
     }, [userInfo]);
+
+    // New useEffect to handle initial price setting
+    useEffect(() => {
+        if (subcategoryData?.data) {
+            const currentPriceRange = subcategoryData.data.pricing.find(
+                (p) => p.pricingtype === pricingType
+            );
+            if (currentPriceRange && selectedPrice === 0) {
+                setSelectedPrice(currentPriceRange.from);
+            }
+        }
+    }, [subcategoryData, pricingType, selectedPrice]);
 
     const fetchCart = async () => {
         try {
@@ -167,27 +170,18 @@ const Adddetail = () => {
             }
             const data = await response.json();
 
-
             if (data.success && data.serviceRequests?.requestedServices) {
-                console.log(data.serviceRequests?.requestedServices[0].service);
-
                 const subcategoryIds: string[] = data.serviceRequests.requestedServices.flatMap((serviceRequest: ServiceRequest) =>
-                    // Explicitly ensure subcategory is an array
                     Array.isArray(serviceRequest.subcategory)
                         ? serviceRequest.subcategory.map((subcategory: Subcategory) => subcategory.subcategoryId._id)
                         : []
                 );
-                console.log(subcategoryIds);
-
-                // Store the extracted IDs in setCartItems
                 setCartItems(subcategoryIds);
-
             }
         } catch (err) {
             console.error("Error fetching cart:", err);
         }
     }
-
 
     if (loading) {
         return <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
@@ -206,11 +200,7 @@ const Adddetail = () => {
     const { title, description, image } = subcategoryData.data;
     const selectedItem = subcategoryData.data;
 
-    const priceRange =
-        selectedItem?.pricing.find((p) => p.pricingtype === pricingType) || null;
-
-
-
+    const priceRange = selectedItem?.pricing.find((p) => p.pricingtype === pricingType) || null;
 
     const validateHourlyBooking = (start: string, end: string): boolean => {
         if (!start || !end) return false;
@@ -218,13 +208,11 @@ const Adddetail = () => {
         const startTime = new Date(start);
         const endTime = new Date(end);
 
-        // Check if dates are the same
         if (startTime.toDateString() !== endTime.toDateString()) {
             toast.warning("For hourly booking, start and end time must be on the same day");
             return false;
         }
 
-        // Calculate time difference in hours
         const diffInHours = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
 
         if (diffInHours > 8) {
@@ -240,20 +228,17 @@ const Adddetail = () => {
         return true;
     };
 
-    // Update start date handler
     const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newStartDate = e.target.value;
         setStartDate(newStartDate);
 
         if (pricingType === "hourly") {
-
             const startDateTime = new Date(newStartDate);
             const endDateTime = new Date(startDateTime);
             endDateTime.setHours(startDateTime.getHours() + 1);
             setEndDate(endDateTime.toISOString().slice(0, 16));
         }
     };
-
 
     const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newEndDate = e.target.value;
@@ -262,12 +247,10 @@ const Adddetail = () => {
             const startDateTime = new Date(startDate);
             const endDateTime = new Date(newEndDate);
 
-
             if (startDateTime.toDateString() !== endDateTime.toDateString()) {
                 toast.warning("For hourly booking, end time must be on the same day");
                 return;
             }
-
 
             const diffInHours = (endDateTime.getTime() - startDateTime.getTime()) / (1000 * 60 * 60);
             if (diffInHours > 8) {
@@ -279,14 +262,17 @@ const Adddetail = () => {
         setEndDate(newEndDate);
     };
 
-
     const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const newPricingType = e.target.value;
-
         setPricingType(newPricingType);
 
+        // Update price range when pricing type changes
+        const newPriceRange = selectedItem?.pricing.find(p => p.pricingtype === newPricingType);
+        if (newPriceRange) {
+            setSelectedPrice(newPriceRange.from);
+        }
+
         if (newPricingType === "hourly" && startDate) {
-            // Reset end date to start date + 1 hour when switching to hourly
             const startDateTime = new Date(startDate);
             const endDateTime = new Date(startDateTime);
             endDateTime.setHours(startDateTime.getHours() + 1);
@@ -294,7 +280,6 @@ const Adddetail = () => {
         }
     };
 
-    console.log(handlePricingTypeChange);
     const calculateTotalDays = () => {
         if (!startDate || !endDate) return 0;
         const start = new Date(startDate);
@@ -303,10 +288,10 @@ const Adddetail = () => {
         let totalTime = 0;
         if (pricingType === "hourly") {
             const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60)), 1); // Hours
+            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60)), 1);
         } else if (pricingType === "daily" || pricingType === "contract") {
             const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1); // Days
+            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1);
         }
 
         return selectedPrice * workers * totalTime;
@@ -314,12 +299,9 @@ const Adddetail = () => {
 
     const totalPrice = calculateTotalDays();
 
-    console.log(serviceId);
-
     const handleSubmit = async () => {
         if (!userInfo?.token) {
             setShowLoginPrompt(true);
-
             return;
         }
 
@@ -347,7 +329,6 @@ const Adddetail = () => {
             }
 
             setError(null);
-            console.log(serviceId);
 
             const serviceRequest: ServiceRequest = {
                 instImages: null,
@@ -394,15 +375,12 @@ const Adddetail = () => {
 
             const data = await response.json();
             if (data.success) {
-
                 router.push("/checkout");
-
             } else {
                 throw new Error(data.message || "Failed to add service request");
             }
         } catch (err) {
             console.error("Error submitting service request:", err);
-            console.log("tatti");
             setError(
                 err instanceof Error ? err.message : "Failed to submit service request"
             );
@@ -411,57 +389,55 @@ const Adddetail = () => {
         }
     };
 
-
     return (
         <>
-
             <ToastContainer />
-
             <div className='px-[7%] py-[4%]'>
-
-                {showLoginPrompt ? (<div className="flex flex-col items-center justify-center p-8">
-                    <div className="text-xl font-semibold mb-4">Please Log In</div>
-                    <p className="text-gray-600 mb-6 text-center">
-                        You need to be logged in to add items to your cart.
-                    </p>
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-                        >
-                            Log In
-                        </button>
-                        <button
-                            onClick={() => {
-                                setShowLoginPrompt(false);
-                                setError(null);
-                            }}
-                            className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-                        >
-                            Cancel
-                        </button>
-                        <LoginModal
-                            isModalOpen={isModalOpen}
-                            setIsModalOpen={setIsModalOpen}
-                            isLoginMode={isLoginMode}
-                            setIsLoginMode={setIsLoginMode}
-                        />
+                {showLoginPrompt ? (
+                    <div className="flex flex-col items-center justify-center p-8">
+                        <div className="text-xl font-semibold mb-4">Please Log In</div>
+                        <p className="text-gray-600 mb-6 text-center">
+                            You need to be logged in to add items to your cart.
+                        </p>
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() => setIsModalOpen(true)}
+                                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+                            >
+                                Log In
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setShowLoginPrompt(false);
+                                    setError(null);
+                                }}
+                                className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+                            >
+                                Cancel
+                            </button>
+                            <LoginModal
+                                isModalOpen={isModalOpen}
+                                setIsModalOpen={setIsModalOpen}
+                                isLoginMode={isLoginMode}
+                                setIsLoginMode={setIsLoginMode}
+                            />
+                        </div>
                     </div>
-                </div>) : (
-                    <div className=' flex justify-center gap-7 xsm:flex-col   '>
-                        <div className=' border w-full  rounded-xl px-6 py-4 ' >
+                ) : (
+                    <div className='flex justify-center gap-7 xsm:flex-col'>
+                        <div className='border w-full rounded-xl px-6 py-4'>
                             <Image
                                 src={image}
                                 alt={'efegefv'}
                                 height={500}
                                 width={500}
-                                className=' w-full lg:h-[400px] md:h-[200px] object-cover rounded-xl'
+                                className='w-full lg:h-[400px] md:h-[200px] object-cover rounded-xl'
                             />
-                            <div className=' flex flex-col gap-4 mt-4'>
-                                <h1 className='text-3xl font-bold font-lexend' >
+                            <div className='flex flex-col gap-4 mt-4'>
+                                <h1 className='text-3xl font-bold font-lexend'>
                                     {title}
                                 </h1>
-                                <p className=' text-base '>
+                                <p className='text-base'>
                                     {description}
                                 </p>
                             </div>
@@ -473,13 +449,11 @@ const Adddetail = () => {
                                     <li className='flex items-center gap-2 text-xl font-lexend font-semibold'><HiMiniCheck className='text-2xl text-[#0054A5]' />Experience stress-free home maintenance services.</li>
                                 </ul>
                             </div>
-
                         </div>
 
-                        <div className='border  justify-between rounded-xl w-full  p-5'>
+                        <div className='border justify-between rounded-xl w-full p-5'>
                             <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
-                            <div className='flex flex-col  items-center justify-between gap-10 p-4 w-full'>
-
+                            <div className='flex flex-col items-center justify-between gap-10 p-4 w-full'>
                                 <div className='flex lg:flex-row xsm:flex-col md:flex-col gap-16 w-full'>
                                     <div className='w-full'>
                                         <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
@@ -507,14 +481,14 @@ const Adddetail = () => {
                                         placeholder="Add any specific instructions..."
                                         value={instructions}
                                         onChange={(e) => setInstructions(e.target.value)}
-                                        className='w-full border border-gray-400 rounded-2xl p-3 '
+                                        className='w-full border border-gray-400 rounded-2xl p-3'
                                     />
                                 </div>
                                 <div className='w-full'>
                                     <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
                                     <select
                                         value={pricingType}
-                                        onChange={(e) => setPricingType(e.target.value)}
+                                        onChange={handlePricingTypeChange}
                                         className="w-full border border-gray-400 rounded-2xl p-4"
                                     >
                                         {selectedItem.pricing.map((price) => (
@@ -527,15 +501,13 @@ const Adddetail = () => {
                                 </div>
                                 {priceRange && (
                                     <div className='w-full'>
-                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'> Select Price ({formatPrice(priceRange.from)} -{" "}
-                                            {formatPrice(priceRange.to)})</label>
-                                        <input type="range"
+                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Select Price ({formatPrice(priceRange.from)} - {formatPrice(priceRange.to)})</label>
+                                        <input
+                                            type="range"
                                             min={priceRange.from}
                                             max={priceRange.to}
                                             value={selectedPrice}
-                                            onChange={(e) =>
-                                                setSelectedPrice(parseInt(e.target.value))
-                                            }
+                                            onChange={(e) => setSelectedPrice(parseInt(e.target.value))}
                                             className='w-full'
                                             step={(priceRange.to - priceRange.from) / 100}
                                         />
@@ -543,45 +515,43 @@ const Adddetail = () => {
                                             Selected Price: {formatPrice(selectedPrice)}
                                         </p>
                                     </div>
-
                                 )}
-
 
                                 <div className='w-full'>
                                     <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Workers Required:</label>
-                                    <input type="number"
+                                    <input
+                                        type="number"
                                         value={workers}
                                         onChange={(e) => setWorkers(parseInt(e.target.value))}
-                                        className='w-full border border-gray-400 rounded-2xl p-4' />
-
+                                        className='w-full border border-gray-400 rounded-2xl p-4'
+                                    />
                                 </div>
                                 <div className='flex justify-start w-full'>
-                                    <h1 className='text-2xl font-lexend font-bold '>Total Price: </h1>
+                                    <h1 className='text-2xl font-lexend font-bold'>Total Price: </h1>
                                     <span className='text-2xl font-bold font-lexend'>{formatPrice(totalPrice)}</span>
-                                    <span></span>
                                 </div>
                                 <div className='flex w-full gap-5'>
                                     <button className='w-full p-4 md:p-2 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
-                                    {/* <button className='w-full p-4 rounded-xl bg-[#0054A5] text-white font-lexend font-bold' onClick={handleSubmit}>Add to Cart</button> */}
-                                    {cartItems.includes(selectedItem?._id) ?
+                                    {cartItems.includes(selectedItem?._id) ? (
                                         <button
                                             onClick={() => router.push('/checkout')}
                                             className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
                                         >
                                             Go to Cart
                                         </button>
-                                        :
+                                    ) : (
                                         <button
                                             onClick={handleSubmit}
                                             className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
                                         >
                                             Add to Cart
                                         </button>
-                                    }
+                                    )}
                                 </div>
                             </div>
                         </div>
-                    </div>)}
+                    </div>
+                )}
             </div>
         </>
     )
