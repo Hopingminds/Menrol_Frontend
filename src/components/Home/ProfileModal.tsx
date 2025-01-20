@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 import { RiCloseFill } from "react-icons/ri";
@@ -136,11 +137,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 flex items-center justify-center  w-full h-screen backdrop-blur-md bg-black bg-opacity-50 z-50"
+      className="fixed inset-0 flex items-center justify-center  w-full h-full backdrop-blur-md bg-black bg-opacity-50 z-50"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white z-50 p-6 rounded-lg shadow-lg h-full w-[90%] md:w-[40%]"
+        className="bg-white z-50 p-6 rounded-lg shadow-lg h-1/2 w-[90%] md:w-[40%]"
       >
         <div className="flex justify-end items-center">
           <button
@@ -150,7 +151,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             <RiCloseFill className="text-white" />
           </button>
         </div>
-        <h2 className="text-2xl font-semibold mb-2 -mt-5 text-center text-blue-600">
+        <h2 className="text-2xl xsm:text-base font-semibold mb-2 -mt-5 text-center text-blue-600">
           Profile Information
         </h2>
         {loading ? (
@@ -163,35 +164,27 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         {profileData ? (
           <div>
 
-            <div className="mb-4">
-              <p className="text-lg">
+            <div className="mb-4 ">
+              <div>
+                <Image
+                src=""
+                alt="profile"
+                height={100}
+                width={100}
+                />
+              </div>
+              <p className="text-lg xsm:text-sm">
                 <span className="text-blue-500">Name:</span>{" "}
                 <span className="">{profileData.name}</span>
               </p>
-              <p className="text-lg">
+              <p className="text-lg xsm:text-sm">
                 <span className="text-blue-500">Email:</span>{" "}
                 <span>{profileData.email}</span>
               </p>
-              <p className="text-lg">
+              <p className="text-lg xsm:text-sm ">
                 <span className="text-blue-500">Phone:</span>{" "}
                 <span>{profileData.phone}</span>
               </p>
-            </div>
-
-            <div className="mb-4">
-              <p className="text-lg">
-                <span className="text-blue-500">Address:</span>
-              </p>
-              <div className="mb-2">
-                {/* <Map /> */}
-              </div>
-              <input
-                type="text"
-                value={houseNumber}
-                onChange={(e) => setHouseNumber(e.target.value)}
-                className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
-                placeholder="Enter house number"
-              />
             </div>
           </div>
         ) : (
