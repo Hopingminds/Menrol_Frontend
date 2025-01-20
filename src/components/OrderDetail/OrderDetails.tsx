@@ -288,7 +288,7 @@ const OrderDetails = () => {
                                             </span>
                                           </p>
                                           <div className="flex justify-between items-center">
-                                            <button></button>
+                                            <button className="bg-red-400 hover:bg-red-500 text-sm text-white px-3 py-2 rounded-lg"> cancel</button>
                                             <button
                                               onClick={() => handleModalOpen(
                                                 subcat.scheduledTiming.startTime,
@@ -298,7 +298,7 @@ const OrderDetails = () => {
                                                 serviceRequest.service._id,
                                                 subcat.subcategoryId
                                               )}
-                                              className="bg-[#0054A5] text-sm text-white px-3 py-2 rounded-lg"
+                                              className="bg-[#0054A5] hover text-sm text-white px-3 py-2 rounded-lg"
                                             >
                                               + Add Extra Work
                                             </button>
