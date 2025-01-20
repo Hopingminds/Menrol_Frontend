@@ -377,7 +377,7 @@ const OrderDetails = () => {
                 Update
               </button>
               <button
-                className="bg-red-500 text-white px-3 py-2 rounded-lg mt-4"
+                className="bg-red-500 text-white px-3 py-2 rounded-lg"
                 onClick={() => setIsModalOpen(false)}
               >
                 Close
