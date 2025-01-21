@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import AllotedLabourMap from '../AlloatedLabourMap/AlloatedLabourMap';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode';
 
 
 interface Location {
@@ -78,6 +79,14 @@ interface UserInfo {
   email: string;
   role: string;
   token: string;
+}
+
+interface UserToken {
+  exp: number,
+  iat: number,
+  phone: number,
+  role: string,
+  userID: string,
 }
 
 interface ApiResponse {
@@ -159,6 +168,42 @@ const Labour = () => {
     fetchserviceproviders();
   }, [userInfo]);
 
+  useEffect(() => {
+    if (!userInfo || !userInfo.token) {
+      console.warn('User info or token is missing, skipping fetch.');
+      return;
+    }
+
+    const user: UserToken = jwtDecode(userInfo.token);
+
+    if (!user || !user.userID) {
+      console.warn('User info or token is missing, skipping fetch.');
+      return;
+    }
+
+    // Establish SSE connection
+    const eventSource = new EventSource(`https://api.menrol.com/api/v1/getUpdatesforUserRasiedOrder?userID=${user.userID}`);
+
+    // Listen for updates
+    eventSource.onmessage = (event) => {
+      const updatedOrder: ApiResponse = JSON.parse(event.data);
+
+      if (updatedOrder.success && updatedOrder.order) {
+        setOrderData(updatedOrder.order);
+      } else {
+        router.push('/orderdetails');
+      }
+    };
+
+    // Handle errors
+    eventSource.onerror = (error) => {
+      console.error('SSE connection error:', error);
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, [userInfo]);
 
 
   if (!mounted) return null;
