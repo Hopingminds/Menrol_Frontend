@@ -202,7 +202,7 @@ const Header: React.FC = () => {
         <div
           className={` flex  justify-between items-center rounded-lg bg-[#FFFFFF] shadow-md border h-[3rem] xsm:h-[2rem]  xsm:w-[50%] xsm:rounded-md  `}
         >
-          <div className="flex flex-row items-center justify-center px-2 pt-5 xsm:hidden ">
+          <div className="flex flex-row items-center justify-center  pt-5 xsm:hidden ">
             <div className="flex items-center justify-center w-full ">
               <MdLocationPin className="text-[#FF7E8B] lg:text-xl md:text-sm  ml-2 mb-4" />
               <Location />
@@ -223,7 +223,7 @@ const Header: React.FC = () => {
                 className="w-full pl-10  xsm:px-4  md:px-0 lg:px-6 xsm:py-0 py-2 xsm:pt-2 text-sm rounded-lg focus:outline-none"
               />
             </div>
-            <span className="text-[#DADADA] text-2xl font-light xsm:hidden">
+            <span className="text-[#DADADA] md:text-xl text-2xl font-light xsm:hidden">
               |
             </span>
 
@@ -259,7 +259,7 @@ const Header: React.FC = () => {
             <MdLanguage className="lg:text-xl font-extralight md:text-sm" />
             <div
               id="google_translate_element"
-              className="check-text p-3 rounded-xl bg-white"
+              className="check-text  rounded-xl bg-white"
             ></div>
           </div>
         </div>

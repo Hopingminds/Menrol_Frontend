@@ -59,7 +59,7 @@ const PricingDisplay: React.FC<{ pricing: PricingType[] }> = ({ pricing }) => {
           price.pricingtype === "daily" && (
             <div
               key={price._id}
-              className="text-2xl font-semibold text-gray-900"
+              className="text-base font-semibold text-gray-900"
             >
               {formatPrice(price.from)} - {formatPrice(price.to)}
             </div>

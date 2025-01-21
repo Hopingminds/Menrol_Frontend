@@ -193,7 +193,6 @@ const OrderDetails = () => {
       if (response.ok) {
         setIsModalOpen(false);
         window.location.reload();
-
       } else {
         console.error("Failed to update extra work");
       }
@@ -241,9 +240,9 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="py-8 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+    <div className="py-8 px-[7%] bg-gray-50 min-h-screen">
+      <div className=" mx-auto">
+        <h1 className="text-4xl xsm:text-xl font-bold text-center text-gray-800 mb-8">
           Your Orders
         </h1>
 
@@ -254,10 +253,11 @@ const OrderDetails = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === tab
-                  ? "bg-blue-500 text-white shadow-md"
-                  : "text-gray-600 hover:bg-gray-100"
-                  }`}
+                className={`px-6 xsm:text-xs xsm:px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
@@ -277,12 +277,12 @@ const OrderDetails = () => {
                       className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-6 space-y-4"
                     >
                       <div className="flex justify-between items-center border-b pb-4">
-                        <h3 className="text-lg font-semibold text-gray-800">
+                        <h3 className="text-lg xsm:text-sm font-semibold text-gray-800">
                           Order {orderIndex + 1}
                         </h3>
                         <div className="flex items-center gap-2 text-gray-600">
-                          <FaCalendar className="text-blue-500" />
-                          <span>
+                          <FaCalendar className="text-[#0054A5] xsm:text-xs" />
+                          <span className="xsm:text-xs">
                             {new Date(order.orderDate).toLocaleDateString(
                               "en-IN"
                             )}
@@ -293,7 +293,7 @@ const OrderDetails = () => {
                       {order.serviceRequest.map((serviceRequest, srIndex) => (
                         <div key={srIndex} className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <h4 className="text-lg font-medium text-blue-600">
+                            <h4 className="text-lg xsm:text-sm font-medium text-[#0054A5]">
                               {serviceRequest.service.category}
                             </h4>
                           </div>
@@ -306,13 +306,14 @@ const OrderDetails = () => {
                                   className="bg-gray-50 rounded-xl p-4 space-y-3"
                                 >
                                   <div className="flex justify-between items-center">
-                                    <span className="font-semibold text-gray-800">
+                                    <span className="font-semibold xsm:text-sm text-gray-800">
                                       {subcat.title.toUpperCase()}
                                     </span>
                                     <span
-                                      className={`px-3 py-1 rounded-full text-sm ${subcat.status === "pending"
-                                        ? "bg-red-100 text-red-600"
-                                        : subcat.status === "cancelled"
+                                      className={`px-3 xsm:px-2 xsm:text-xs py-1 rounded-full text-sm ${
+                                        subcat.status === "pending"
+                                          ? "bg-red-100 text-red-600"
+                                          : subcat.status === "cancelled"
                                           ? "bg-red-200 text-red-600"
                                           : "bg-green-100 text-green-600"
                                         }`}
@@ -325,7 +326,7 @@ const OrderDetails = () => {
                                     (provider, providerIndex) => (
                                       <div
                                         key={providerIndex}
-                                        className="flex items-center gap-3 bg-white p-3 rounded-lg"
+                                        className="flex xsm:flex-col xsm:text-center items-center gap-3 bg-white p-3 rounded-lg"
                                       >
                                         <Image
                                           src={
@@ -338,10 +339,10 @@ const OrderDetails = () => {
                                           className="w-12 h-12 rounded-full border-2 border-gray-200"
                                         />
                                         <div>
-                                          <p className="font-medium text-gray-800">
+                                          <p className="font-medium xsm:text-xs text-gray-800">
                                             {provider.serviceProviderId.name}
                                           </p>
-                                          <p className="text-sm text-gray-500">
+                                          <p className="text-sm xsm:text-xs text-gray-500">
                                             Allocated Labor
                                           </p>
                                         </div>
@@ -351,8 +352,8 @@ const OrderDetails = () => {
 
                                   <div className="text-sm text-gray-600">
                                     <div className="flex items-center gap-2 mb-2">
-                                      <FaCalendar className="text-blue-500" />
-                                      <span>
+                                      <FaCalendar className="text-[#0054A5]" />
+                                      <span className="xsm:text-xs">
                                         {new Date(
                                           subcat.scheduledTiming.startTime
                                         ).toLocaleString()}{" "}
@@ -365,25 +366,25 @@ const OrderDetails = () => {
 
                                     <div className="flex justify-between text-sm bg-gray-100 p-3 rounded-lg">
                                       <span>
-                                        <span className="text-gray-500">
+                                        <span className="text-gray-500 xsm:text-xs">
                                           Start OTP:{" "}
                                         </span>
-                                        <span className="font-medium">
+                                        <span className="font-medium xsm:text-xs">
                                           {subcat.requestOperation.startOtp}
                                         </span>
                                       </span>
                                       <span>
-                                        <span className="text-gray-500">
+                                        <span className="text-gray-500 xsm:text-xs">
                                           End OTP:{" "}
                                         </span>
-                                        <span className="font-medium">
+                                        <span className="font-medium xsm:text-xs">
                                           {subcat.requestOperation.endOtp}
                                         </span>
                                       </span>
                                     </div>
                                     {subcat.status !== "cancelled" &&
                                       subcat.status !== "completed" && (
-                                        <div className="flex justify-between mt-4 gap-3">
+                                        <div className="flex justify-between mt-4 gap-3 xsm:flex-col">
                                           <button
                                             onClick={() =>
                                               handleCancel(
@@ -392,7 +393,7 @@ const OrderDetails = () => {
                                                 subcat.subcategoryId
                                               )
                                             }
-                                            className="flex-1 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                            className="flex-1 xsm:text-xs bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
                                           >
                                             Cancel
                                           </button>
@@ -409,7 +410,7 @@ const OrderDetails = () => {
                                                 subcat.subcategoryId
                                               )
                                             }
-                                            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                            className="flex-1 xsm:text-xs bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                                           >
                                             Add Extra Work
                                           </button>

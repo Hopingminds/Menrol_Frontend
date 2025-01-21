@@ -10,8 +10,7 @@
   display: flex !important; /* Keep child elements in one row */
   align-items: center; /* Vertically align elements */
   border: 1px solid white !important; /* Optional: Add a white border */
-  padding: 5px 10px;
-  border-radius: 5px;
+  
   background: transparent; /* Optional: Transparent background */
   cursor: pointer; /* Add a pointer cursor for better UX */
 }
