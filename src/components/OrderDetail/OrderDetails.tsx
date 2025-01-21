@@ -5,7 +5,6 @@ import { FaCalendar } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
-
 interface UserInfo {
   token: string;
 }
@@ -83,20 +82,21 @@ interface ModalContent {
   orderId: string;
   serviceId: string;
   subcategoryId: string;
-
 }
 
 const OrderDetails = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [orderData, setOrderData] = useState<ApiResponse["data"] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const tabOptions = ["pending", "confirmed", "completed", "cancelled"];
+  const [activeTab, setActiveTab] = useState<string>("pending");
   const [modalContent, setModalContent] = useState<ModalContent>({
-    startTime: '',
-    endTime: '',
+    startTime: "",
+    endTime: "",
     totalAmount: 0,
-    orderId: '',
-    serviceId: '',
-    subcategoryId: ''
+    orderId: "",
+    serviceId: "",
+    subcategoryId: "",
   });
   useEffect(() => {
     // Retrieve user information from localStorage
@@ -137,8 +137,6 @@ const OrderDetails = () => {
     fetchOrderData();
   }, [userInfo]);
 
-
-
   const handleModalOpen = (
     startTime: string,
     endTime: string,
@@ -175,8 +173,8 @@ const OrderDetails = () => {
       subcategoryId: modalContent.subcategoryId,
       scheduledTiming: {
         startTime: modalContent.startTime,
-        endTime: modalContent.endTime
-      }
+        endTime: modalContent.endTime,
+      },
     };
 
     try {
@@ -188,7 +186,7 @@ const OrderDetails = () => {
             Authorization: `Bearer ${userInfo.token}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(payload),
         }
       );
 
@@ -202,9 +200,12 @@ const OrderDetails = () => {
     }
   };
 
-  const handleCancel = async (orderId: string, serviceId: string, subcategoryId: string) => {
-    if (!userInfo?.token)
-      return;
+  const handleCancel = async (
+    orderId: string,
+    serviceId: string,
+    subcategoryId: string
+  ) => {
+    if (!userInfo?.token) return;
 
     const payload = {
       orderId: orderId,
@@ -213,14 +214,17 @@ const OrderDetails = () => {
     };
 
     try {
-      const response = await fetch("https://api.menrol.com/api/v1/cancelOrderRequest", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/cancelOrderRequest",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (response.ok) {
         // Reload the window if the response is successful
@@ -229,196 +233,292 @@ const OrderDetails = () => {
       } else {
         toast.warning("Failed to cancel the order");
       }
-
     } catch (error) {
       toast.warning("Failed to cancel the order");
     }
   };
 
-
   return (
-    <div className="py-8 bg-gray-100 min-h-screen px-[7%]">
-      <div className="flex items-center justify-center mb-6">
-        <h1 className="text-4xl font-bold font-lexend text-gray-800">
+    <div className="py-8 bg-gray-50 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
           Your Orders
         </h1>
-      </div>
-      <div className="bg-gray-50 min-h-screen px-8 py-12">
-        {orderData ? (
-          <>
-            {Object.entries(orderData).map(([status, orders]) => (
-              <div key={status} className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-800 capitalize border-b pb-2 mb-6">
-                  {status} Orders
-                </h2>
-                {orders.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 xsm:grid-cols-1 gap-6">
-                    {orders.map((order, orderIndex) => (
-                      <div
-                        key={orderIndex}
-                        className="bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 space-y-4 h-full"
-                      >
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-700">
-                            Order {orderIndex + 1}
-                          </h3>
+
+        {/* Tab Navigation */}
+        <div className="flex justify-center mb-8">
+          <div className="flex space-x-1 bg-white p-1 rounded-xl shadow-md">
+            {tabOptions.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-blue-500 text-white shadow-md"
+                    : "text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Orders Content */}
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          {orderData ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {orderData[activeTab as keyof typeof orderData].length > 0 ? (
+                orderData[activeTab as keyof typeof orderData].map(
+                  (order, orderIndex) => (
+                    <div
+                      key={orderIndex}
+                      className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 p-6 space-y-4"
+                    >
+                      <div className="flex justify-between items-center border-b pb-4">
+                        <h3 className="text-lg font-semibold text-gray-800">
+                          Order {orderIndex + 1}
+                        </h3>
+                        <div className="flex items-center gap-2 text-gray-600">
+                          <FaCalendar className="text-blue-500" />
+                          <span>
+                            {new Date(order.orderDate).toLocaleDateString(
+                              "en-IN"
+                            )}
+                          </span>
                         </div>
-                        <div>
-                          {order.serviceRequest.length > 0 ? (
-                            <div className="space-y-4">
-                              {order.serviceRequest.map((serviceRequest, srIndex) => (
-                                <div key={srIndex}>
-                                  <div className="flex items-center justify-between">
-                                    <div><strong className="text-gray-600">{serviceRequest.service.category}</strong></div>
-                                    <div className="flex items-center gap-2">
-                                      <strong className="text-[#0054A5]"><FaCalendar /></strong>{" "}
-                                      <p className="text-gray-800">
-                                        {new Date(order.orderDate).toLocaleDateString("en-IN")}
-                                      </p>
-                                    </div>
+                      </div>
+
+                      {order.serviceRequest.map((serviceRequest, srIndex) => (
+                        <div key={srIndex} className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <h4 className="text-lg font-medium text-blue-600">
+                              {serviceRequest.service.category}
+                            </h4>
+                          </div>
+
+                          <div className="space-y-3">
+                            {serviceRequest.subcategory.map(
+                              (subcat, subIndex) => (
+                                <div
+                                  key={subIndex}
+                                  className="bg-gray-50 rounded-xl p-4 space-y-3"
+                                >
+                                  <div className="flex justify-between items-center">
+                                    <span className="font-semibold text-gray-800">
+                                      {subcat.title.toUpperCase()}
+                                    </span>
+                                    <span
+                                      className={`px-3 py-1 rounded-full text-sm ${
+                                        subcat.status === "pending"
+                                          ? "bg-red-100 text-red-600"
+                                          : subcat.status === "cancelled"
+                                          ? "bg-red-200 text-red-600"
+                                          : "bg-green-100 text-green-600"
+                                      }`}
+                                    >
+                                      {subcat.status}
+                                    </span>
                                   </div>
-                                  <div className="items-center gap-2 px-2">
-                                    <div className="mt-2 items-baseline space-y-2">
-                                      {serviceRequest.subcategory.map((subcat, subIndex) => (
-                                        <div key={subIndex} className="w-full border p-3 rounded-xl">
-                                          <p className="text-gray-800 flex items-center justify-between">
-                                            <p className="font-bold">{subcat.title.toUpperCase()}</p>
-                                            <p className={`px-4 py-2 border rounded-lg ${subcat.status === 'pending' ? 'border-red-500 text-red-400' : 'border-green-500 text-green-400'}`}>
-                                              {subcat.status}
-                                            </p>
+
+                                  {subcat.serviceProviders.map(
+                                    (provider, providerIndex) => (
+                                      <div
+                                        key={providerIndex}
+                                        className="flex items-center gap-3 bg-white p-3 rounded-lg"
+                                      >
+                                        <Image
+                                          src={
+                                            provider.serviceProviderId
+                                              .profileImage
+                                          }
+                                          alt=""
+                                          width={50}
+                                          height={50}
+                                          className="w-12 h-12 rounded-full border-2 border-gray-200"
+                                        />
+                                        <div>
+                                          <p className="font-medium text-gray-800">
+                                            {provider.serviceProviderId.name}
                                           </p>
-                                          {subcat.serviceProviders.map((provider, providerindex) => (
-                                            <div key={providerindex}>
-                                              <div className="flex items-center gap-3">
-                                                <Image
-                                                  src={provider.serviceProviderId.profileImage}
-                                                  alt=""
-                                                  width={50}
-                                                  height={50}
-                                                  className="w-12 h-12 rounded-full"
-                                                />
-                                                <span>
-                                                  <p>{provider.serviceProviderId.name}</p>
-                                                  <span className="text-gray-400 text-sm">Allocated Labor</span>
-                                                </span>
-                                              </div>
-                                            </div>
-                                          ))}
-                                          <p className="text-gray-500 text-sm mt-2">
-                                            <span>Timing:</span>{" "}
-                                            {new Date(subcat.scheduledTiming.startTime).toLocaleString()}{" "}
-                                            -{" "}
-                                            {new Date(subcat.scheduledTiming.endTime).toLocaleString()}
+                                          <p className="text-sm text-gray-500">
+                                            Allocated Labor
                                           </p>
-                                          <p className="flex justify-between mt-2">
-                                            <span>
-                                              <span className="text-gray-400">Start OTP:</span>
-                                              <span>{subcat.requestOperation.startOtp}</span>
-                                            </span>
-                                            <span>
-                                              <span className="text-gray-400">End OTP:</span>
-                                              <span>{subcat.requestOperation.endOtp}</span>
-                                            </span>
-                                          </p>
-                                          <div className="flex justify-between items-center">
-                                            <button className="bg-red-400 hover:bg-red-500 text-sm text-white px-3 py-2 rounded-lg" onClick={() => handleCancel(
-                                              order._id,
-                                              serviceRequest.service._id,
-                                              subcat.subcategoryId
-                                            )}> cancel</button>
-                                            <button
-                                              onClick={() => handleModalOpen(
-                                                subcat.scheduledTiming.startTime,
+                                        </div>
+                                      </div>
+                                    )
+                                  )}
+
+                                  <div className="text-sm text-gray-600">
+                                    <div className="flex items-center gap-2 mb-2">
+                                      <FaCalendar className="text-blue-500" />
+                                      <span>
+                                        {new Date(
+                                          subcat.scheduledTiming.startTime
+                                        ).toLocaleString()}{" "}
+                                        -
+                                        {new Date(
+                                          subcat.scheduledTiming.endTime
+                                        ).toLocaleString()}
+                                      </span>
+                                    </div>
+
+                                    <div className="flex justify-between text-sm bg-gray-100 p-3 rounded-lg">
+                                      <span>
+                                        <span className="text-gray-500">
+                                          Start OTP:{" "}
+                                        </span>
+                                        <span className="font-medium">
+                                          {subcat.requestOperation.startOtp}
+                                        </span>
+                                      </span>
+                                      <span>
+                                        <span className="text-gray-500">
+                                          End OTP:{" "}
+                                        </span>
+                                        <span className="font-medium">
+                                          {subcat.requestOperation.endOtp}
+                                        </span>
+                                      </span>
+                                    </div>
+                                    {subcat.status !== "cancelled" &&
+                                      subcat.status !== "completed" && (
+                                        <div className="flex justify-between mt-4 gap-3">
+                                          <button
+                                            onClick={() =>
+                                              handleCancel(
+                                                order._id,
+                                                serviceRequest.service._id,
+                                                subcat.subcategoryId
+                                              )
+                                            }
+                                            className="flex-1 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                          >
+                                            Cancel
+                                          </button>
+
+                                          <button
+                                            onClick={() =>
+                                              handleModalOpen(
+                                                subcat.scheduledTiming
+                                                  .startTime,
                                                 subcat.scheduledTiming.endTime,
                                                 order.payment.totalamount,
                                                 order._id,
                                                 serviceRequest.service._id,
                                                 subcat.subcategoryId
-                                              )}
-                                              className="bg-[#0054A5] hover text-sm text-white px-3 py-2 rounded-lg"
-                                            >
-                                              + Add Extra Work
-                                            </button>
-                                          </div>
+                                              )
+                                            }
+                                            className="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                          >
+                                            Add Extra Work
+                                          </button>
                                         </div>
-                                      ))}
-                                    </div>
+                                      )}
                                   </div>
                                 </div>
-                              ))}
+                              )
+                            )}
+                          </div>
+                        </div>
+                      ))}
+
+                      <div className="border-t pt-4 space-y-3">
+                        <div className="flex items-start gap-2">
+                          <IoLocationSharp className="text-orange-500 text-lg flex-shrink-0 mt-1" />
+                          <p className="text-gray-600 text-sm">
+                            {order.address || "N/A"}
+                          </p>
+                        </div>
+
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <p className="text-gray-600 font-medium mb-2">
+                            Payment Details
+                          </p>
+                          <div className="flex justify-between text-sm">
+                            <div>
+                              <p className="text-gray-500">Total Amount</p>
+                              <p className="font-medium">
+                                ₹{Math.round(order.payment.totalamount)}
+                              </p>
                             </div>
-                          ) : (
-                            <p className="text-gray-500 italic">No services available.</p>
-                          )}
-                        </div>
-                        <div className="flex gap-2">
-                          <strong className="text-gray-600 "><IoLocationSharp className="text-[#F56132]" /></strong>{" "}
-                          <p className="text-[#0054A5] text-xs">{order.address || "N/A"}</p>
-                        </div>
-                        <div className=" ">
-                          <strong className="text-gray-400">Payment:</strong>
-                          <div className="flex justify-between items-center">
-                            <p className="text-gray-400">
-                              Total Amount: <span className="text-black">₹{Math.round(order.payment.totalamount) || "N/A"}</span>
-                            </p>
-                            <p className="text-gray-400">
-                              Paid Amount: <span className="text-black">₹{Math.round(order.payment.paidAmount) || "N/A"}</span>
-                            </p>
+                            <div>
+                              <p className="text-gray-500">Paid Amount</p>
+                              <p className="font-medium">
+                                ₹{Math.round(order.payment.paidAmount)}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-gray-500 italic">No {status} orders.</p>
-                )}
-              </div>
-            ))}
-          </>
-        ) : (
-          <div className="flex justify-center items-center h-full">
-            <p className="text-xl text-gray-600">Loading orders...</p>
-          </div>
-        )}
+                    </div>
+                  )
+                )
+              ) : (
+                <div className="col-span-2 text-center py-10">
+                  <p className="text-gray-500 text-lg">
+                    No {activeTab} orders found.
+                  </p>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+            </div>
+          )}
+        </div>
       </div>
 
+      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-xl font-semibold mb-4">Add Extra Work</h2>
-            <label className="block mb-2">
-              Start Time:
-              <input
-                type="datetime-local"
-                name="startTime"
-                value={modalContent.startTime}
-                onChange={handleInputChange}
-                className="block w-full mt-1 p-2 border rounded"
-              />
-            </label>
-            <label className="block mb-2">
-              End Time:
-              <input
-                type="datetime-local"
-                name="endTime"
-                value={modalContent.endTime}
-                onChange={handleInputChange}
-                className="block w-full mt-1 p-2 border rounded"
-              />
-            </label>
-            <div className="flex justify-between items-center">
-              <button
-                className="text-white bg-[#0054A5] px-3 py-2 rounded-lg"
-                onClick={handleUpdate}
-              >
-                Update
-              </button>
-              <button
-                className="bg-red-500 text-white px-3 py-2 rounded-lg"
-                onClick={() => setIsModalOpen(false)}
-              >
-                Close
-              </button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-xl shadow-xl p-6 w-96 max-w-[90%]">
+            <h2 className="text-xl font-semibold text-gray-800 mb-6">
+              Add Extra Work
+            </h2>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Start Time
+                </label>
+                <input
+                  type="datetime-local"
+                  name="startTime"
+                  value={modalContent.startTime}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  End Time
+                </label>
+                <input
+                  type="datetime-local"
+                  name="endTime"
+                  value={modalContent.endTime}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 mt-6">
+                <button
+                  className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  onClick={handleUpdate}
+                >
+                  Update
+                </button>
+              </div>
             </div>
           </div>
         </div>
