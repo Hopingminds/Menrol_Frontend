@@ -525,6 +525,7 @@ const Adddetail = () => {
                                         type="number"
                                         value={workers}
                                         onChange={(e) => setWorkers(parseInt(e.target.value))}
+                                        min={1}
                                         className='w-full border border-gray-400 rounded-2xl p-4'
                                     />
                                 </div>

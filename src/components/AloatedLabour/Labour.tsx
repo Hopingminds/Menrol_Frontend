@@ -213,7 +213,7 @@ const Labour = () => {
       <div className="w-full">
         <div className="rounded-xl border p-6 w-full">
           <div className="">
-            <AllotedLabourMap/>
+            <AllotedLabourMap />
           </div>
         </div>
         <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
