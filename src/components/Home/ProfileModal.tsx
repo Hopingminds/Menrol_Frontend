@@ -1,7 +1,7 @@
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { FaUserCircle } from "react-icons/fa";
-import { RiCloseFill } from "react-icons/ri";
+import Image from "next/image";
+import { FaUserCircle, FaCamera, FaEnvelope, FaPhone, FaCalendar, FaPen } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 interface UserInfo {
@@ -20,6 +20,7 @@ interface UserProfile {
   preferredLanguage: string;
   email: string;
   name: string;
+  dob: string;
   profileImage: string;
 }
 
@@ -34,17 +35,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   onClose,
   userData,
 }) => {
-
   const [profileData, setProfileData] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [dob, setDob] = useState<string>("");
-
-
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const getProfileData = async () => {
     if (!userData?.token) {
@@ -72,8 +70,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         setError(null);
         setName(data.user.name);
         setEmail(data.user.email);
-        // Set dob to a default date if available
-        setDob(data.user.dob || "");
+        setDob(data.user.dob);
       } else {
         setError("Failed to fetch profile data.");
       }
@@ -89,44 +86,83 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     setIsEditing(!isEditing);
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const updatedProfile = {
-      name,
-      email,
-      dob,
-    };
+    if (!userData?.token) return;
 
     try {
-      const response = await fetch("https://api.menrol.com/api/v1/editUserProfile", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${userData?.token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedProfile),
-      });
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("profile", selectedFile);
+
+        const uploadResponse = await fetch(
+          "https://api.menrol.com/api/v1/uploadUserProfile",
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${userData.token}`,
+            },
+            body: formData,
+          }
+        );
+
+        if (!uploadResponse.ok) {
+          throw new Error("Failed to upload profile image.");
+        }
+
+        const uploadData = await uploadResponse.json();
+        if (uploadData.success) {
+          toast.success("Profile image updated successfully.");
+          setProfileData((prev) =>
+            prev ? { ...prev, profileImage: uploadData.profileImage } : null
+          );
+        } else {
+          toast.error("Failed to update profile image.");
+        }
+      }
+
+      const updatedProfile = {
+        name,
+        email,
+        dob,
+      };
+
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/editUserProfile",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${userData.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedProfile),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        throw new Error("Failed to update profile details.");
       }
 
       const data = await response.json();
       if (data.success) {
         setProfileData(data.user);
-        setError(null);
         setIsEditing(false);
-        toast.success(`Profile updated successfully.`);
+        toast.success("Profile updated successfully.");
         onClose();
       } else {
-        setError("Failed to update profile.");
+        toast.error("Failed to update profile.");
       }
     } catch (err) {
-      setError("An error occurred while updating profile.");
       console.error(err);
+      toast.error("An error occurred while updating profile.");
     }
-
   };
 
   useEffect(() => {
@@ -138,111 +174,151 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   if (!isModalOpen) return null;
 
   return (
-    <div
-      onClick={onClose}
-      className="fixed inset-0 flex items-center justify-center  w-full h-full backdrop-blur-md bg-black bg-opacity-50 z-50"
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white z-50 p-6 rounded-lg shadow-lg  w-[90%] md:w-[40%]"
-      >
-        <div className="flex justify-end items-center">
-          <button
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
+      <div className="w-[90%]  max-w-2xl bg-white rounded-2xl shadow-2xl">
+        <div className="relative p-6 border-b border-gray-200">
+          <button 
+            className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
             onClick={onClose}
-            className="bg-blue-500 p-2 hover:bg-red-500 transition-all duration-300 rounded"
           >
-            <RiCloseFill className="text-white" />
+            <IoClose className="h-5 w-5 text-gray-500" />
           </button>
+          <h2 className="text-2xl font-bold text-center text-gray-800">Profile Information</h2>
         </div>
-        <h2 className="text-2xl xsm:text-base font-semibold mb-2 -mt-5 text-center text-blue-600">
-          Profile Information
-        </h2>
-        {loading ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
-            <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
-          </div>
-        ) : (
-          <p className="text-red-500 text-center">{error}</p>
-        )}
-        {profileData ? (
-          <div>
-            <div className=" flex flex-col items-center justify-center">
-              <div>
-                {profileData.profileImage ? (
-                  <Image
-                    src={profileData.profileImage}
-                    alt="profile"
-                    height={100}
-                    width={100}
-                  />
-                ) : (
-                  <FaUserCircle className="text-6xl text-[#0054A5]" />
+
+        <div className="p-6">
+          {loading ? (
+            <div className="flex items-center justify-center p-8">
+              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : error ? (
+            <div className="text-red-500 text-center p-4">{error}</div>
+          ) : profileData && (
+            <div className="space-y-6">
+              <div className="relative mx-auto w-32 h-32 group">
+                <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  {profileData.profileImage ? (
+                    <Image
+                      src={profileData.profileImage}
+                      alt="Profile"
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-full"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-full h-full text-gray-400" />
+                  )}
+                </div>
+                {isEditing && (
+                  <label className="absolute bottom-0 right-0 p-2 bg-[#0054A5] rounded-full cursor-pointer shadow-lg hover:bg-blue-600 transition-colors">
+                    <FaCamera className="h-5 w-5 text-white" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                  </label>
                 )}
               </div>
-              {isEditing ? (
-                <form onSubmit={handleSubmit} className="flex flex-col w-full">
-                  <label htmlFor="">Name;</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="border p-2 mb-2 w-full"
-                    placeholder="Name"
-                  />
-                  <label htmlFor="">Email:</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="border p-2 mb-2 w-full"
-                    placeholder="Email"
-                  />
-                  <label htmlFor="">Enter DOB:</label>
-                  <input
-                    type="date"
-                    value={dob}
-                    onChange={(e) => setDob(e.target.value)}
-                    className="border p-2 mb-2 w-full"
-                  />
-                  <div className="flex justify-between items-center">
-                    <button
 
+              {isEditing ? (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">Date of Birth</label>
+                    <input
+                      type="date"
+                      value={dob}
+                      onChange={(e) => setDob(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div className="flex gap-4 pt-4">
+                    <button
                       type="submit"
-                      className="bg-blue-500 p-2 text-white rounded"
+                      className="flex-1 px-4 py-2 bg-[#0054A5] text-white rounded-lg hover:bg-blue-600 transition-colors"
                     >
                       Save Changes
                     </button>
-                    <button className="bg-gray-500 text-white p-2 rounded hover:bg-red-500 transition-all duration-300">Go Back</button>
+                    <button
+                      type="button"
+                      onClick={handleEditToggle}
+                      className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </form>
               ) : (
-                <>
-                  <p className="text-lg xsm:text-sm">
-                    <span className="text-blue-500">Name:</span>{" "}
-                    <span>{profileData.name}</span>
-                  </p>
-                  <p className="text-lg xsm:text-sm">
-                    <span className="text-blue-500">Email:</span>{" "}
-                    <span>{profileData.email}</span>
-                  </p>
-                  <p className="text-lg xsm:text-sm ">
-                    <span className="text-blue-500">Phone:</span>{" "}
-                    <span>{profileData.phone}</span>
-                  </p>
+                <div className="space-y-4">
+                  <div className="grid gap-4">
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <FaUserCircle className="h-5 w-5 text-gray-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Full Name</p>
+                        <p className="font-medium">{profileData.name}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <FaEnvelope className="h-5 w-5 text-gray-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Email</p>
+                        <p className="font-medium">{profileData.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <FaPhone className="h-5 w-5 text-gray-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Phone</p>
+                        <p className="font-medium">{profileData.phone}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <FaCalendar className="h-5 w-5 text-gray-500"/>
+                      <div>
+                        <p className="text-sm text-gray-500">Date Of Birth</p>
+                        <p className="font-medium">{new Date (profileData.dob).toLocaleString()}</p>
+                      </div>
+
+                    </div>
+                  </div>
+
                   <button
                     onClick={handleEditToggle}
-                    className=" bg-blue-500 text-white p-2 rounded"
+                    className="w-full mt-6 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
                   >
+                    <FaPen className="h-4 w-4" />
                     Edit Profile
                   </button>
-
-                </>
+                </div>
               )}
             </div>
-          </div>
-        ) : (
-          <p className="text-red-500 text-center">No user data available.</p>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

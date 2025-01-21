@@ -17,7 +17,7 @@ const Gallery = () => {
                 {images?.map((image, index) => (
                     <div
                         key={index}
-                        className="bg-[rgba(94,147,198,1)] rounded-md shadow-md h-48 flex items-center justify-center hover:scale-105 cursor-pointer"
+                        className="bg-[rgba(94,147,198,1)] rounded-md shadow-md h-48 flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer"
                     >
                         <Image
                             src={image}

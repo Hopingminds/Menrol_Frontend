@@ -41,7 +41,7 @@ const CallToAction = () => {
           className="group relative inline-flex items-center justify-center px-4  text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:mt-3 lg:mt-20 xsm:w-[10rem] xsm:h-[40px] w-[20rem] h-[60px] 2xl:mt-28
           mb-[5vh]"
         >
-          <div className="absolute inset-0 bg-[#0054A5] rounded-xl xsm:w-[130px] xsm:h-[40px] transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
+          <div className="absolute inset-0 bg-[#0054A5] rounded-xl xsm:h-[40px] transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
           <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl"></div>
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div className="glitter-container">

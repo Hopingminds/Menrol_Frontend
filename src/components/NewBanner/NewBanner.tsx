@@ -208,7 +208,7 @@ const NewBanner = () => {
                   }
                   handleServiceDetails2(selectedSubcategory, selectedCategory);
                 }}
-                className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 w-[40%] h-[60px]"
+                className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 md:w-[60%] lg:w-[40%] xsm:h-full md:h-[40px] lg:h-[60px]"
               >
                 <div
                   className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient pulse-animation"
@@ -225,7 +225,7 @@ const NewBanner = () => {
                   <div className="wave pulse-animation" />
                 </div>
                 <span className="relative z-10 flex items-center">
-                  <span className="">Book your service</span>
+                  <span className=" xsm:text-[10px] lg:text-sm md:text-xs">Book your service</span>
                 </span>
               </button>
 
