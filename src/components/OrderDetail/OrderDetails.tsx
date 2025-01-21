@@ -192,6 +192,8 @@ const OrderDetails = () => {
 
       if (response.ok) {
         setIsModalOpen(false);
+        window.location.reload();
+
       } else {
         console.error("Failed to update extra work");
       }
@@ -252,11 +254,10 @@ const OrderDetails = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
-                  activeTab === tab
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
+                className={`px-6 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === tab
+                  ? "bg-blue-500 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100"
+                  }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
@@ -309,13 +310,12 @@ const OrderDetails = () => {
                                       {subcat.title.toUpperCase()}
                                     </span>
                                     <span
-                                      className={`px-3 py-1 rounded-full text-sm ${
-                                        subcat.status === "pending"
-                                          ? "bg-red-100 text-red-600"
-                                          : subcat.status === "cancelled"
+                                      className={`px-3 py-1 rounded-full text-sm ${subcat.status === "pending"
+                                        ? "bg-red-100 text-red-600"
+                                        : subcat.status === "cancelled"
                                           ? "bg-red-200 text-red-600"
                                           : "bg-green-100 text-green-600"
-                                      }`}
+                                        }`}
                                     >
                                       {subcat.status}
                                     </span>
@@ -431,6 +431,7 @@ const OrderDetails = () => {
                           </p>
                         </div>
 
+                        
                         <div className="bg-gray-50 p-4 rounded-lg">
                           <p className="text-gray-600 font-medium mb-2">
                             Payment Details
