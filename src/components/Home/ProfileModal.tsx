@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { FaUserCircle, FaCamera, FaEnvelope, FaPhone, FaPen } from "react-icons/fa";
+import { FaUserCircle, FaCamera, FaEnvelope, FaPhone, FaCalendar, FaPen } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 
@@ -20,6 +20,7 @@ interface UserProfile {
   preferredLanguage: string;
   email: string;
   name: string;
+  dob: string;
   profileImage: string;
 }
 
@@ -69,7 +70,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         setError(null);
         setName(data.user.name);
         setEmail(data.user.email);
-        setDob(data.user.dob || "");
+        setDob(data.user.dob);
       } else {
         setError("Failed to fetch profile data.");
       }
@@ -209,7 +210,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                   )}
                 </div>
                 {isEditing && (
-                  <label className="absolute bottom-0 right-0 p-2 bg-blue-500 rounded-full cursor-pointer shadow-lg hover:bg-blue-600 transition-colors">
+                  <label className="absolute bottom-0 right-0 p-2 bg-[#0054A5] rounded-full cursor-pointer shadow-lg hover:bg-blue-600 transition-colors">
                     <FaCamera className="h-5 w-5 text-white" />
                     <input
                       type="file"
@@ -257,7 +258,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                   <div className="flex gap-4 pt-4">
                     <button
                       type="submit"
-                      className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                      className="flex-1 px-4 py-2 bg-[#0054A5] text-white rounded-lg hover:bg-blue-600 transition-colors"
                     >
                       Save Changes
                     </button>
@@ -295,6 +296,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                         <p className="text-sm text-gray-500">Phone</p>
                         <p className="font-medium">{profileData.phone}</p>
                       </div>
+                    </div>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-50">
+                      <FaCalendar className="h-5 w-5 text-gray-500"/>
+                      <div>
+                        <p className="text-sm text-gray-500">Date Of Birth</p>
+                        <p className="font-medium">{new Date (profileData.dob).toLocaleString()}</p>
+                      </div>
+
                     </div>
                   </div>
 
