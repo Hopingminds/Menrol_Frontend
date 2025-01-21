@@ -456,6 +456,21 @@ const Adddetail = () => {
                         <div className='border justify-between rounded-xl w-full p-5'>
                             <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
                             <div className='flex flex-col items-center justify-between gap-10 p-4 w-full'>
+                                <div className='w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
+                                    <select
+                                        value={pricingType}
+                                        onChange={handlePricingTypeChange}
+                                        className="w-full border border-gray-400 rounded-2xl p-4"
+                                    >
+                                        {selectedItem.pricing.map((price) => (
+                                            <option key={price._id} value={price.pricingtype}>
+                                                {price.pricingtype.charAt(0).toUpperCase() +
+                                                    price.pricingtype.slice(1)}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                                 <div className='flex lg:flex-row xsm:flex-col md:flex-col gap-16 w-full'>
                                     <div className='w-full'>
                                         <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
@@ -486,21 +501,7 @@ const Adddetail = () => {
                                         className='w-full border border-gray-400 rounded-2xl p-3'
                                     />
                                 </div>
-                                <div className='w-full'>
-                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
-                                    <select
-                                        value={pricingType}
-                                        onChange={handlePricingTypeChange}
-                                        className="w-full border border-gray-400 rounded-2xl p-4"
-                                    >
-                                        {selectedItem.pricing.map((price) => (
-                                            <option key={price._id} value={price.pricingtype}>
-                                                {price.pricingtype.charAt(0).toUpperCase() +
-                                                    price.pricingtype.slice(1)}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+
                                 {priceRange && (
                                     <div className='w-full'>
                                         <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Select Price ({formatPrice(priceRange.from)} - {formatPrice(priceRange.to)})</label>
