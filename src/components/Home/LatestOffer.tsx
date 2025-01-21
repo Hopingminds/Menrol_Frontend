@@ -68,7 +68,7 @@ const LatestOffer = () => {
           {/* Contact Us Button */}
           <button
             onClick={handleGoContact} // Add the onClick handler
-            className="group relative inline-flex items-center justify-center  p-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:w-[130px] xsm:h-[40px] w-[160px] h-[60px] "
+            className="group relative inline-flex items-center justify-center  p-2 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 xsm:w-[140px] xsm:h-[40px] w-[160px] h-[60px] "
           >
             {/* Gradient background (blue tones) */}
             <div className="absolute inset-0 bg-[#0054A5] rounded-full transition-all duration-300 group-hover:scale-110 animate-gradient"></div>
@@ -94,7 +94,7 @@ const LatestOffer = () => {
             </div>
 
             {/* Button Text with arrow */}
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex xsm:text-xs items-center gap-2">
               <span className="tracking-wider">Contact us</span>
               <svg
                 viewBox="0 0 24 24"
