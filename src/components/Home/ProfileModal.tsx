@@ -175,7 +175,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
-      <div className="w-[90%] max-w-2xl bg-white rounded-2xl shadow-2xl">
+      <div className="w-[90%]  max-w-2xl bg-white rounded-2xl shadow-2xl">
         <div className="relative p-6 border-b border-gray-200">
           <button 
             className="absolute right-4 top-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
