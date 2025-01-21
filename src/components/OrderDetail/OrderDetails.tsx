@@ -3,6 +3,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { FaCalendar } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
+
 
 interface UserInfo {
   token: string;
@@ -191,10 +193,7 @@ const OrderDetails = () => {
       );
 
       if (response.ok) {
-        // Close modal and optionally refresh the orders
         setIsModalOpen(false);
-        // Refresh orders if needed
-        // fetchOrderData();
       } else {
         console.error("Failed to update extra work");
       }
@@ -202,6 +201,40 @@ const OrderDetails = () => {
       console.error("Error updating extra work:", error);
     }
   };
+
+  const handleCancel = async (orderId: string, serviceId: string, subcategoryId: string) => {
+    if (!userInfo?.token)
+      return;
+
+    const payload = {
+      orderId: orderId,
+      serviceId: serviceId,
+      subcategoryId: subcategoryId,
+    };
+
+    try {
+      const response = await fetch("https://api.menrol.com/api/v1/cancelOrderRequest", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        // Reload the window if the response is successful
+        toast.success("Order cancelled successfully");
+        window.location.reload();
+      } else {
+        toast.warning("Failed to cancel the order");
+      }
+
+    } catch (error) {
+      toast.warning("Failed to cancel the order");
+    }
+  };
+
 
   return (
     <div className="py-8 bg-gray-100 min-h-screen px-[7%]">
@@ -288,7 +321,11 @@ const OrderDetails = () => {
                                             </span>
                                           </p>
                                           <div className="flex justify-between items-center">
-                                            <button className="bg-red-400 hover:bg-red-500 text-sm text-white px-3 py-2 rounded-lg"> cancel</button>
+                                            <button className="bg-red-400 hover:bg-red-500 text-sm text-white px-3 py-2 rounded-lg" onClick={() => handleCancel(
+                                              order._id,
+                                              serviceRequest.service._id,
+                                              subcat.subcategoryId
+                                            )}> cancel</button>
                                             <button
                                               onClick={() => handleModalOpen(
                                                 subcat.scheduledTiming.startTime,
