@@ -112,9 +112,11 @@ const Adddetail = () => {
     }, []);
 
     useEffect(() => {
+        console.log(isSubmitting);
         const fetchSubcategoryData = async () => {
             try {
                 const itemParam = searchParams.get('service');
+                console.log(itemParam);
                 const response = await fetch(
                     `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${subcategoryId}`
                 );

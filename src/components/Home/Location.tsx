@@ -182,9 +182,7 @@ const Location = () => {
     fetchLocation();
   }, [fetchLocation]);
 
-  const handleRetry = () => {
-    fetchLocation();
-  };
+
 
   return (
     <div className="flex flex-col items-center justify-center">

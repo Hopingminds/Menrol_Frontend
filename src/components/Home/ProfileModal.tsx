@@ -34,11 +34,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   onClose,
   userData,
 }) => {
-  
+
   const [profileData, setProfileData] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -117,7 +117,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         setProfileData(data.user);
         setError(null);
         setIsEditing(false);
-        toast.success`Profile updated successfully.`;
+        toast.success(`Profile updated successfully.`);
         onClose();
       } else {
         setError("Failed to update profile.");
@@ -204,16 +204,16 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                     onChange={(e) => setDob(e.target.value)}
                     className="border p-2 mb-2 w-full"
                   />
-                <div className="flex justify-between items-center">
-                <button
-              
-                    type="submit"
-                    className="bg-blue-500 p-2 text-white rounded"
-                  >
-                    Save Changes
-                  </button>
-                  <button className="bg-gray-500 text-white p-2 rounded hover:bg-red-500 transition-all duration-300">Go Back</button>
-                </div>
+                  <div className="flex justify-between items-center">
+                    <button
+
+                      type="submit"
+                      className="bg-blue-500 p-2 text-white rounded"
+                    >
+                      Save Changes
+                    </button>
+                    <button className="bg-gray-500 text-white p-2 rounded hover:bg-red-500 transition-all duration-300">Go Back</button>
+                  </div>
                 </form>
               ) : (
                 <>
@@ -235,7 +235,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                   >
                     Edit Profile
                   </button>
-                  
+
                 </>
               )}
             </div>
