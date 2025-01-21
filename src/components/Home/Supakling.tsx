@@ -66,13 +66,13 @@ const Supakling: React.FC = () => {
         {/* Buttons Section */}
         <div className="flex xsm:flex-col xsm:space-x-0 xsm:gap-4 xsm:items-center xsm:justify-center space-x-8">
           {/* Commercial Plumbing Button */}
-          <button onClick={HandleGoServices} className="flex items-center space-x-3 px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+          <button onClick={HandleGoServices} className="flex items-center space-x-3 md: px-16 xsm:px-5 py-5 bg-black text-white rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
             {/* Icon */}
-            <div className="w-8 h-8  flex items-center justify-center rounded">
+            <div className="w-8 h-8">
               <PiBuildingsBold className="text-3xl xsm:text-base" />
             </div>
             {/* Text */}
-            <span className="text-lg xsm:text-base font-medium">Commercial Services</span>
+            <span className="lg:text-lg  xsm:text-base font-medium">Commercial Services</span>
           </button>
 
           {/* Residential Plumbing Button */}
