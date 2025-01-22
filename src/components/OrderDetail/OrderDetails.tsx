@@ -255,7 +255,7 @@ const OrderDetails = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 xsm:text-xs xsm:px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === tab
-                  ? "bg-blue-500 text-white shadow-md"
+                  ? "bg-[#0054A5] text-white shadow-md"
                   : "text-gray-600 hover:bg-gray-100"
                   }`}
               >
@@ -409,7 +409,7 @@ const OrderDetails = () => {
                                                 subcat.subcategoryId
                                               )
                                             }
-                                            className="flex-1 xsm:text-xs bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                            className="flex-1 xsm:text-xs bg-[#0054A5] hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                                           >
                                             Add Extra Work
                                           </button>
