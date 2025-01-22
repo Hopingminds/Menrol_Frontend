@@ -48,19 +48,16 @@ const AllotedLabourMap: React.FC<MapProps> = ({
     }> = ({ position, title, onClick }) => {
         return (
             <Marker
-                position={position}
-                title={title}
-                onClick={onClick}
-                icon={{
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10,
-                    fillColor: '#8B0000',
-                    fillOpacity: 1,
-                    strokeWeight: 2,
-                    strokeColor: '#8B0000',
-                    // animation: google.maps.Animation.BOUNCE,
-                }}
-            />
+            position={position}
+            title={title}
+            onClick={onClick}
+            icon={{
+                url: 'Images/labour.png', // Replace with the actual URL of the icon
+                scaledSize: new google.maps.Size(32, 32), // Adjust size (width, height in pixels)
+            }}
+            // animation={google.maps.Animation.BOUNCE}
+        />
+        
         );
     };
 

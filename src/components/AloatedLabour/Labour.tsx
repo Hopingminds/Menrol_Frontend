@@ -212,11 +212,11 @@ const Labour = () => {
     <div className="px-[7%] py-6 font-sans">
       <div className="w-full">
         <div className="rounded-xl border p-6 w-full">
-          <div className="">
+          <div className=" rounded-xl">
             <AllotedLabourMap />
           </div>
         </div>
-        <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
+        <div className="px-6 xsm:w-full xl:w-[60%] md:w-full mt-4">
           {orderData?.serviceRequest?.map((request) => (
             request.subcategory.map((sub) => (
               <div
@@ -230,7 +230,7 @@ const Labour = () => {
                     alt={request.service.category}
                     width={500}
                     height={500}
-                    className="rounded-lg"
+                    className="rounded-lg h-[15rem] w-[50rem]"
                   />
                 </div>
                 <div className="">
@@ -241,22 +241,23 @@ const Labour = () => {
                   <p className="text-gray-400 text-base xsm:text-xs xsm:w-full w-[80%]">
                     {request.service.categoryDescription}
                   </p>
-                  <div className="mt-4">
-                    <p className="text-sm">
+                  <div className="mt-4 flex justify-between w-full">
+                    <div className='text-gray-400'>
+                      <p className="text-sm">
                       Workers Required: {sub.workersRequirment}
                     </p>
                     <p className="text-sm">
                       Current Providers: {sub.serviceProviders.length}
                     </p>
+                    </div>
+                    <div className='text-gray-400'>
                     <p className="text-sm">
                       Viewers: {sub.viewers.length}
                     </p>
                     <p className="text-sm">
-                      Status: {sub.status}
-                    </p>
-                    <p className="text-sm">
                       Amount: ₹{sub.selectedAmount}
                     </p>
+                    </div>
                   </div>
                 </div>
               </div>
