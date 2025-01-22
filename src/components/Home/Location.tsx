@@ -17,6 +17,48 @@ interface GeolocationPosition {
   };
 }
 
+// Separate interfaces for each API response
+interface IPDataResponse {
+  city: string;
+  region: string;
+  country_name: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface IPAPIResponse {
+  city: string;
+  region_name: string;
+  country_name: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface IPAPICoResponse {
+  city: string;
+  region: string;
+  country_name: string;
+  latitude: number;
+  longitude: number;
+}
+
+type APIConfigItem = {
+  url: string;
+} & (
+    | {
+      type: "ipdata";
+      transform: (data: IPDataResponse) => LocationData;
+    }
+    | {
+      type: "ipapi";
+      transform: (data: IPAPIResponse) => LocationData;
+    }
+    | {
+      type: "ipapico";
+      transform: (data: IPAPICoResponse) => LocationData;
+    }
+  );
+
 const Location = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +66,6 @@ const Location = () => {
   const [address, setAddress] = useState<string | null>(null);
 
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  // Fallback APIs - use your preferred service API keys
   const IPDATA_API_KEY = process.env.NEXT_PUBLIC_IPDATA_API_KEY;
   const IPAPI_KEY = process.env.NEXT_PUBLIC_IPAPI_KEY;
 
@@ -33,7 +74,6 @@ const Location = () => {
     longitude: number
   ): Promise<string | null> => {
     try {
-      // First try Google Maps Geocoding API
       const googleResponse = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${GOOGLE_API_KEY}`
       );
@@ -45,7 +85,6 @@ const Location = () => {
         }
       }
 
-      // Fallback to OpenStreetMap Nominatim if Google fails
       const nominatimResponse = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
       );
@@ -78,11 +117,11 @@ const Location = () => {
   };
 
   const getIPBasedLocation = async (): Promise<LocationData | null> => {
-    const APIs = [
-      // Array of API endpoints to try in order
+    const APIs: APIConfigItem[] = [
       {
+        type: "ipdata",
         url: `https://api.ipdata.co?api-key=${IPDATA_API_KEY}`,
-        transform: (data: any) => ({
+        transform: (data: IPDataResponse) => ({
           city: data.city,
           region: data.region,
           country: data.country_name,
@@ -91,8 +130,9 @@ const Location = () => {
         }),
       },
       {
+        type: "ipapi",
         url: `https://api.ipapi.com/api/check?access_key=${IPAPI_KEY}`,
-        transform: (data: any) => ({
+        transform: (data: IPAPIResponse) => ({
           city: data.city,
           region: data.region_name,
           country: data.country_name,
@@ -101,8 +141,9 @@ const Location = () => {
         }),
       },
       {
+        type: "ipapico",
         url: "https://ipapi.co/json/",
-        transform: (data: any) => ({
+        transform: (data: IPAPICoResponse) => ({
           city: data.city,
           region: data.region,
           country: data.country_name,
@@ -116,8 +157,15 @@ const Location = () => {
       try {
         const response = await fetch(api.url);
         if (response.ok) {
-          const data = await response.json();
-          return api.transform(data);
+          const rawData = await response.json();
+          switch (api.type) {
+            case "ipdata":
+              return api.transform(rawData as IPDataResponse);
+            case "ipapi":
+              return api.transform(rawData as IPAPIResponse);
+            case "ipapico":
+              return api.transform(rawData as IPAPICoResponse);
+          }
         }
       } catch (error) {
         console.error(`Error with ${api.url}:`, error);
@@ -133,7 +181,6 @@ const Location = () => {
     setError(null);
 
     try {
-      // Try browser geolocation first
       let latitude: number | undefined;
       let longitude: number | undefined;
       let locationString: string | null = null;
@@ -144,9 +191,9 @@ const Location = () => {
         longitude = position.coords.longitude;
       } catch (error) {
         console.log("Browser geolocation failed, falling back to IP-based location");
+        console.log(error);
       }
 
-      // If browser geolocation failed, try IP-based location
       if (!latitude || !longitude) {
         const ipLocation = await getIPBasedLocation();
         if (ipLocation) {
@@ -156,7 +203,6 @@ const Location = () => {
         }
       }
 
-      // If we have coordinates, try to get a detailed address
       if (latitude && longitude) {
         const addressResult = await getAddressFromCoordinates(latitude, longitude);
         if (addressResult) {
@@ -176,13 +222,11 @@ const Location = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [getAddressFromCoordinates]);
+  }, [getAddressFromCoordinates, address]);
 
   useEffect(() => {
     fetchLocation();
   }, [fetchLocation]);
-
-
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -218,20 +262,8 @@ const Location = () => {
           </div>
         )}
       </div>
-      {/* {error && (
-        <div className="flex flex-col items-center">
-          <p className="text-red-500 text-sm mt-1">{error}</p>
-          <button
-            onClick={handleRetry}
-            className="mt-2 text-sm text-blue-500 hover:text-blue-700"
-          >
-            Retry
-          </button>
-        </div>
-      )} */}
     </div>
   );
 };
 
 export default Location;
-

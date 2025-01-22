@@ -97,7 +97,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
       <ToastContainer />
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
-          <div className="bg-white rounded-xl shadow-lg w-[480px] relative">
+          <div className="bg-white rounded-xl shadow-lg w-[480px] xsm:w-[300px] relative">
             {/* Close button */}
             <button
               onClick={() => setIsModalOpen(false)}
@@ -114,18 +114,18 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 {!otpSent ? (
                   <div className="mb-6">
                      <div className="flex flex-col items-center mb-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <BsTelephone size={32} className="font-extrabold" />
+                <div className="w-16 h-16 bg-gray-100 rounded-full  flex items-center justify-center mb-4">
+                  <BsTelephone size={32} className="font-extrabold xsm:text-xs" />
                 </div>
-                <h2 className="text-2xl font-semibold">
+                <h2 className="text-2xl font-semibold xsm:text-sm">
                   Enter your phone number
                 </h2>
-                <p className="text-gray-500 mt-2">
+                <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
                   We will send you a text with a verification code.
                 </p>
               </div>
                     <div className="flex border rounded-lg overflow-hidden">
-                      <select className="px-3 py-3 bg-gray-50 border-r">
+                      <select className="px-3 py-3  bg-gray-50 border-r">
                         <option>+91</option>
                       </select>
                       <input
@@ -144,10 +144,10 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                   <BsTelephone size={32} className="font-extrabold" />
                 </div>
-                <h2 className="text-2xl font-semibold">
+                <h2 className="text-2xl font-semibold xsm:text-sm">
                   Enter your OTP
                 </h2>
-                <p className="text-gray-500 mt-2">
+                <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
                   Enter the OTP sent to your phone number.
                 </p>
               </div>
@@ -171,7 +171,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#0054A5] text-white py-3 rounded-lg font-medium hover:[#0054A5] transition-colors disabled:opacity-50"
+                  className="w-full bg-[#0054A5] text-white xsm:py-2 py-3 rounded-lg font-medium hover:[#0054A5] transition-colors disabled:opacity-50"
                 >
                   {loading
                     ? otpSent

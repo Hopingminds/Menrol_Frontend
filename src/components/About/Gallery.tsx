@@ -27,7 +27,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                         <Image
                             src={image}
                             alt={`Gallery item ${index + 1}`}
-                            className="w-full h-full object-cover rounded-md hover:scale-105 cursor-pointer"
+                            className="w-full h-full object-cover rounded-md transition-all duration-300 hover:scale-105 cursor-pointer"
                             height={200}
                             width={200}
                         />
