@@ -89,7 +89,7 @@ const OrderDetails = () => {
   const [orderData, setOrderData] = useState<ApiResponse["data"] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const tabOptions = ["pending", "confirmed", "completed", "cancelled"];
-  const [activeTab, setActiveTab] = useState<string>("pending");
+  const [activeTab, setActiveTab] = useState<string>("confirmed");
   const [modalContent, setModalContent] = useState<ModalContent>({
     startTime: "",
     endTime: "",
