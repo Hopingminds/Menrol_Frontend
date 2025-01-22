@@ -255,8 +255,8 @@ const OrderDetails = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 xsm:text-xs xsm:px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === tab
-                    ? "bg-blue-500 text-white shadow-md"
-                    : "text-gray-600 hover:bg-gray-100"
+                  ? "bg-blue-500 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100"
                   }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -311,10 +311,10 @@ const OrderDetails = () => {
                                     </span>
                                     <span
                                       className={`px-3 xsm:px-2 xsm:text-xs py-1 rounded-full text-sm ${subcat.status === "pending"
-                                          ? "bg-red-100 text-red-600"
-                                          : subcat.status === "cancelled"
-                                            ? "bg-red-200 text-red-600"
-                                            : "bg-green-100 text-green-600"
+                                        ? "bg-red-100 text-red-600"
+                                        : subcat.status === "cancelled"
+                                          ? "bg-red-200 text-red-600"
+                                          : "bg-green-100 text-green-600"
                                         }`}
                                     >
                                       {subcat.status}
