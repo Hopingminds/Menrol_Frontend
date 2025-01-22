@@ -144,7 +144,7 @@ const Adddetail = () => {
         }
     }, [userInfo]);
 
-    // New useEffect to handle initial price setting
+   
     useEffect(() => {
         if (subcategoryData?.data) {
             const currentPriceRange = subcategoryData.data.pricing.find(
@@ -230,14 +230,27 @@ const Adddetail = () => {
         return true;
     };
 
+    const getCurrentDateTime = () => {
+        const now = new Date();
+        return now.toISOString().slice(0, 16);
+    };
+
+
     const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newStartDate = e.target.value;
+        const currentDateTime = new Date();
+        const selectedDateTime = new Date(newStartDate);
+
+        if (selectedDateTime < currentDateTime) {
+            toast.error("Start time cannot be before current time");
+            return;
+        }
+
         setStartDate(newStartDate);
 
         if (pricingType === "hourly") {
-            const startDateTime = new Date(newStartDate);
-            const endDateTime = new Date(startDateTime);
-            endDateTime.setHours(startDateTime.getHours() + 1);
+            const endDateTime = new Date(selectedDateTime);
+            endDateTime.setHours(selectedDateTime.getHours() + 1);
             setEndDate(endDateTime.toISOString().slice(0, 16));
         }
     };
@@ -268,7 +281,7 @@ const Adddetail = () => {
         const newPricingType = e.target.value;
         setPricingType(newPricingType);
 
-        // Update price range when pricing type changes
+
         const newPriceRange = selectedItem?.pricing.find(p => p.pricingtype === newPricingType);
         if (newPriceRange) {
             setSelectedPrice(newPriceRange.from);
@@ -308,16 +321,29 @@ const Adddetail = () => {
         }
 
         try {
-            if (!startDate || !endDate || startDate > endDate) {
-                toast.warning("Please select the dates accurately");
+            const currentDateTime = new Date();
+            const startDateTime = new Date(startDate);
+            const endDateTime = new Date(endDate);
+
+    
+            if (startDateTime < currentDateTime) {
+                toast.error("Start time cannot be before current time");
+                return;
+            }
+
+            if (!startDate || !endDate) {
+                toast.warning("Please select both start and end dates");
+                return;
+            }
+
+            if (startDateTime >= endDateTime) {
+                toast.warning("End time must be after start time");
                 return;
             }
 
             if (pricingType === "hourly" && !validateHourlyBooking(startDate, endDate)) {
                 return;
-            }
-
-            else {
+            } else {
                 setIsSubmitting(true);
                 toast.success("Service request added successfully!", {
                     position: "top-right",
@@ -343,8 +369,8 @@ const Adddetail = () => {
                     selectedAmount: selectedPrice,
                     instructions,
                     scheduledTiming: {
-                        startTime: new Date(startDate).toISOString(),
-                        endTime: new Date(endDate).toISOString(),
+                        startTime: startDateTime.toISOString(),
+                        endTime: endDateTime.toISOString(),
                     },
                 },
             };
@@ -383,6 +409,7 @@ const Adddetail = () => {
             }
         } catch (err) {
             console.error("Error submitting service request:", err);
+            toast.error(err instanceof Error ? err.message : "Failed to submit service request");
             setError(
                 err instanceof Error ? err.message : "Failed to submit service request"
             );
@@ -390,7 +417,6 @@ const Adddetail = () => {
             setIsSubmitting(false);
         }
     };
-
     return (
         <>
             <ToastContainer />
@@ -477,6 +503,7 @@ const Adddetail = () => {
                                         <input
                                             type="datetime-local"
                                             value={startDate}
+                                            min={getCurrentDateTime()}
                                             onChange={handleStartDateChange}
                                             className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
                                         />
