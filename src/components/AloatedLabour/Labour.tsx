@@ -4,6 +4,7 @@ import AllotedLabourMap from '../AlloatedLabourMap/AlloatedLabourMap';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
+import { io } from 'socket.io-client';
 
 
 interface Location {
@@ -98,6 +99,7 @@ const Labour = () => {
   const [orderData, setOrderData] = useState<Order | null>(null);
   const [mounted, setMounted] = useState(false);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
@@ -134,6 +136,7 @@ const Labour = () => {
         if (data.success) {
           setOrderData(data.order);
         } else {
+          setIsLoading(true);
           router.push('/orderdetails');
         }
       } catch (error) {
@@ -181,27 +184,42 @@ const Labour = () => {
       return;
     }
 
-    // Establish SSE connection
-    const eventSource = new EventSource(`https://api.menrol.com/api/v1/getUpdatesforUserRasiedOrder?userID=${user.userID}`);
+    // Establish WebSocket connection
+    const socket = io('https://api.menrol.com', {
+      secure: true,
+      reconnection: true, // Enable automatic reconnections
+      reconnectionAttempts: 5, // Retry 5 times before giving up
+      reconnectionDelay: 2000, // Delay between attempts (2 seconds)
+      timeout: 5000, // Timeout before assuming connection failure
+    });
+
+    // Subscribe to user-specific updates
+    socket.emit('subscribeToUserUpdates', user.userID);
 
     // Listen for updates
-    eventSource.onmessage = (event) => {
-      const updatedOrder: ApiResponse = JSON.parse(event.data);
-
+    socket.on('userRaisedOrderUpdate', (updatedOrder) => {
       if (updatedOrder.success && updatedOrder.order) {
         setOrderData(updatedOrder.order);
       } else {
+        setIsLoading(true);
         router.push('/orderdetails');
       }
-    };
+    });
 
-    // Handle errors
-    eventSource.onerror = (error) => {
-      console.error('SSE connection error:', error);
-    };
+    socket.on('connect_error', (error) => {
+      console.error('WebSocket connection error:', error);
+    });
+
+    socket.on('reconnect_attempt', (attempt) => {
+      console.log(`Reconnection attempt #${attempt}...`);
+    });
+
+    socket.on('reconnect_failed', () => {
+      console.error('WebSocket reconnection failed. Please check the server.');
+    });
 
     return () => {
-      eventSource.close();
+      socket.disconnect();
     };
   }, [userInfo]);
 
@@ -211,58 +229,66 @@ const Labour = () => {
   return (
     <div className="px-[7%] py-6 font-sans">
       <div className="w-full">
-        <div className="rounded-xl border p-6 w-full">
-          <div className="">
-            <AllotedLabourMap/>
+        {isLoading ?
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
           </div>
-        </div>
-        <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
-          {orderData?.serviceRequest?.map((request) => (
-            request.subcategory.map((sub) => (
-              <div
-                key={sub._id}
-                className="border rounded-lg shadow-lg p-3 xsm:flex-col flex xsm:gap-5 gap-10 items-center mb-4"
-              >
-                <div>
-
-                  <Image
-                    src={request.service.categoryImage || '/Images/banner.png'}
-                    alt={request.service.category}
-                    width={500}
-                    height={500}
-                    className="rounded-lg"
-                  />
-                </div>
-                <div className="">
-                  <p className="font-bold text-2xl xsm:text-base">
-                    {request.service.category}
-                  </p>
-                  <p className="text-lg xsm:text-sm">{sub.title}</p>
-                  <p className="text-gray-400 text-base xsm:text-xs xsm:w-full w-[80%]">
-                    {request.service.categoryDescription}
-                  </p>
-                  <div className="mt-4">
-                    <p className="text-sm">
-                      Workers Required: {sub.workersRequirment}
-                    </p>
-                    <p className="text-sm">
-                      Current Providers: {sub.serviceProviders.length}
-                    </p>
-                    <p className="text-sm">
-                      Viewers: {sub.viewers.length}
-                    </p>
-                    <p className="text-sm">
-                      Status: {sub.status}
-                    </p>
-                    <p className="text-sm">
-                      Amount: ₹{sub.selectedAmount}
-                    </p>
-                  </div>
-                </div>
+        :
+          <>
+            <div className="rounded-xl border p-6 w-full">
+              <div className="">
+                <AllotedLabourMap />
               </div>
-            ))
-          ))}
-        </div>
+            </div>
+            <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
+              {orderData?.serviceRequest?.map((request) => (
+                request.subcategory.map((sub) => (
+                  <div
+                    key={sub._id}
+                    className="border rounded-lg shadow-lg p-3 xsm:flex-col flex xsm:gap-5 gap-10 items-center mb-4"
+                  >
+                    <div>
+
+                      <Image
+                        src={request.service.categoryImage || '/Images/banner.png'}
+                        alt={request.service.category}
+                        width={500}
+                        height={500}
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div className="">
+                      <p className="font-bold text-2xl xsm:text-base">
+                        {request.service.category}
+                      </p>
+                      <p className="text-lg xsm:text-sm">{sub.title}</p>
+                      <p className="text-gray-400 text-base xsm:text-xs xsm:w-full w-[80%]">
+                        {request.service.categoryDescription}
+                      </p>
+                      <div className="mt-4">
+                        <p className="text-sm">
+                          Workers Required: {sub.workersRequirment}
+                        </p>
+                        <p className="text-sm">
+                          Current Providers: {sub.serviceProviders.length}
+                        </p>
+                        <p className="text-sm">
+                          Viewers: {sub.viewers.length}
+                        </p>
+                        <p className="text-sm">
+                          Status: {sub.status}
+                        </p>
+                        <p className="text-sm">
+                          Amount: ₹{sub.selectedAmount}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ))}
+            </div>
+          </>
+        }
       </div>
     </div>
   );
