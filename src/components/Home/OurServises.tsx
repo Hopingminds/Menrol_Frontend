@@ -214,8 +214,8 @@ const OurServices = () => {
       )}
 
       <div className="flex flex-row justify-between w-full items-center">
-        <div className="font-lexend xsm:w-[50%]">
-          <h1 className="text-[#24232A] text-[56px] mb-10 xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
+        <div className="font-lexend xsm:w-[70%]">
+          <h1 className="text-[#24232A] text-[56px] xl:text-5xl xl:mt-5 2xl:text-6xl sm:text-4xl xsm:text-[15px] md:text-[30px] font-bold xsm:w-full w-[100%] font-lexend">
             Make Life Simple <br /> with our  go-to Service app.
           </h1>
         </div>
@@ -257,7 +257,7 @@ const OurServices = () => {
       </div>
 
       <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">All Categories</h2>
+        <h2 className="text-2xl font-bold mt-4 xsm:text-base mb-6">All Categories</h2>
         <Slider {...sliderSettings} className="pt-6">
           {services?.map((service) => (
             <div key={service._id} className="p-1">
@@ -284,7 +284,7 @@ const OurServices = () => {
 
       {services?.map((service, index) => (
         <div key={service._id} className="mb-12">
-          {index === 1 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 1 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
 
           {index === 1 && (
             <Slider {...sliderSettings} className="pt-6">
@@ -314,7 +314,7 @@ const OurServices = () => {
           )}
 
 
-          {index === 8 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 8 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
           {index === 8 && (
             <Slider {...sliderSettings} className="pt-6">
               {service.subcategory?.map((subCat) => (
@@ -349,7 +349,7 @@ const OurServices = () => {
       {services?.map((service, index) => (
         <div key={service._id} className="mb-12">
 
-          {index === 2 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 2 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
 
           {index === 2 && (
             <Slider {...sliderSettings} className="pt-6">
@@ -376,7 +376,7 @@ const OurServices = () => {
           )}
 
 
-          {index === 3 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 3 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
 
           {index === 3 && (
             <Slider {...sliderSettings} className="pt-6">
@@ -411,7 +411,7 @@ const OurServices = () => {
 
       {services?.map((service, index) => (
         <div key={service._id} className="mb-12">
-          {index === 4 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 4 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
 
           {/* Render separate sliders for each index */}
           {index === 4 && (
@@ -439,7 +439,7 @@ const OurServices = () => {
           )}
 
 
-          {index === 0 && <h2 className="text-2xl font-bold mb-6">{service.category}</h2>}
+          {index === 0 && <h2 className="text-2xl font-bold mb-6 xsm:text-base">{service.category}</h2>}
           {index === 0 && (
             <Slider {...sliderSettings} className="pt-6">
               {service.subcategory?.map((subCat) => (

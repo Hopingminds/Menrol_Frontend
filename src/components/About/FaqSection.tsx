@@ -46,7 +46,7 @@ const FAQSection: FC = () => {
                 <h1 className="text-7xl xsm:text-2xl  font-bold mt-6 text-[rgba(36,35,42,1)] md:text-3xl  font-lexend font-dm-sans tracking-wide leading-relaxed">
                     Frequently Asked Questions
                 </h1>
-                <div className="mt-8 2xl:space-y-8 xl:space-y-7 xsm:space-y-2 transition-all duration-300">
+                <div className="mt-8 2xl:space-y-8 xl:space-y-7 xsm:space-y-2">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button
@@ -54,13 +54,19 @@ const FAQSection: FC = () => {
                                 className="flex justify-between items-center w-full text-left text-[rgba(36,35,42,1)]"
                             >
                                 <h2 className="text-3xl xsm:text-sm xsm:font-normal md:text-lg font-bold font-lexend font-dm-sans tracking-wide leading-relaxed">{faq.question}</h2>
-                                <span className="text-xl font-bold xsm:text-xs  items-center p-2">
+                                <span className="text-xl font-bold xsm:text-xs  items-center p-2 ">
                                     {openQuestionIndex === index ? <FaWindowMinimize /> : <FaPlusCircle />}
                                 </span>
                             </button>
-                            {openQuestionIndex === index && (
-                                <p className="mt-2 text-lg xsm:text-xs text-[rgba(107,106,126,1)] font-sans font-dm-sans tracking-wide leading-relaxed">{faq.answer}</p>
-                            )}
+                            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                openQuestionIndex === index ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <p className="mt-2 text-lg xsm:text-xs text-[rgba(107,106,126,1)] font-sans font-dm-sans tracking-wide leading-relaxed">
+                {faq.answer}
+              </p>
+            </div>
                         </div>
                     ))}
                 </div>
