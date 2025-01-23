@@ -212,9 +212,9 @@ const Location = () => {
         }
       }
 
-      if (!address && !locationString) {
-        throw new Error("Unable to determine location");
-      }
+      // if (!address && !locationString) {
+      //   throw new Error("Unable to determine location");
+      // }
 
     } catch (error) {
       console.error("Location fetch error:", error);
