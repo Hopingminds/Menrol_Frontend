@@ -144,7 +144,7 @@ const Adddetail = () => {
         }
     }, [userInfo]);
 
-   
+    // New useEffect to handle initial price setting
     useEffect(() => {
         if (subcategoryData?.data) {
             const currentPriceRange = subcategoryData.data.pricing.find(
@@ -250,9 +250,10 @@ const Adddetail = () => {
 
         if (pricingType === "hourly") {
             const endDateTime = new Date(selectedDateTime);
-            endDateTime.setHours(selectedDateTime.getHours() + 1);
-            setEndDate(endDateTime.toISOString().slice(0, 16));
+            // endDateTime.setHours(endDateTime.getHours() + 1);
+            // setEndDate(endDateTime.toISOString().slice(0, 16));
         }
+
     };
 
     const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -325,7 +326,7 @@ const Adddetail = () => {
             const startDateTime = new Date(startDate);
             const endDateTime = new Date(endDate);
 
-    
+
             if (startDateTime < currentDateTime) {
                 toast.error("Start time cannot be before current time");
                 return;

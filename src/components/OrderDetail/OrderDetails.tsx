@@ -89,7 +89,7 @@ const OrderDetails = () => {
   const [orderData, setOrderData] = useState<ApiResponse["data"] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const tabOptions = ["pending", "confirmed", "completed", "cancelled"];
-  const [activeTab, setActiveTab] = useState<string>("pending");
+  const [activeTab, setActiveTab] = useState<string>("confirmed");
   const [modalContent, setModalContent] = useState<ModalContent>({
     startTime: "",
     endTime: "",
@@ -255,7 +255,7 @@ const OrderDetails = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 xsm:text-xs xsm:px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === tab
-                  ? "bg-blue-500 text-white shadow-md"
+                  ? "bg-[#0054A5] text-white shadow-md"
                   : "text-gray-600 hover:bg-gray-100"
                   }`}
               >
@@ -330,16 +330,16 @@ const OrderDetails = () => {
                                         <Image
                                           src={
                                             provider.serviceProviderId
-                                              .profileImage
+                                              ?.profileImage || "/Images/AllImages/person7.jpg"
                                           }
-                                          alt=""
+                                          alt={provider.serviceProviderId?.name || "Service Provider"}
                                           width={50}
                                           height={50}
                                           className="w-12 h-12 rounded-full border-2 border-gray-200"
                                         />
                                         <div>
                                           <p className="font-medium xsm:text-xs text-gray-800">
-                                            {provider.serviceProviderId.name}
+                                            {provider.serviceProviderId?.name}
                                           </p>
                                           <p className="text-sm xsm:text-xs text-gray-500">
                                             Allocated Labor
@@ -409,7 +409,7 @@ const OrderDetails = () => {
                                                 subcat.subcategoryId
                                               )
                                             }
-                                            className="flex-1 xsm:text-xs bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
+                                            className="flex-1 xsm:text-xs bg-[#0054A5] hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                                           >
                                             Add Extra Work
                                           </button>

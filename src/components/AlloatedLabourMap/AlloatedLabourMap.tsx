@@ -1,37 +1,42 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     GoogleMap,
     LoadScript,
     InfoWindow,
     Marker,
 } from "@react-google-maps/api";
+import axios from "axios";
 
-interface MapProps {
-    numberOfLocations?: number;
+interface ServiceProvider {
+    _id: string;
+    name: string;
+    location: {
+        type: string;
+        coordinates: [number, number];
+    };
+    rating: number;
+    phone: number;
+    profileImage?: string;
 }
 
-// Chandigarh coordinates
-const CHANDIGARH_CENTER = { lat: 30.7333, lng: 76.7794 };
+interface UserInfo {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    token: string;
+}
 
-// Define locations around Chandigarh
-const CHANDIGARH_LOCATIONS = [
-    { name: "Sector 17", lat: 30.7352, lng: 76.7867 },
-    { name: "IT Park", lat: 30.7283, lng: 76.8461 },
-    // { name: "Sukhna Lake", lat: 30.7421, lng: 76.8181 },
-    // { name: "Rock Garden", lat: 30.7418, lng: 76.8083 },
-    { name: "Panchkula", lat: 30.6942, lng: 76.8606 },
-    { name: "Mohali", lat: 30.7046, lng: 76.7179 },
-    // { name: "Elante Mall", lat: 30.7051, lng: 76.8014 },
-    // { name: "PGI", lat: 30.7650, lng: 76.7751 },
-    { name: "Railway Station", lat: 30.7211, lng: 76.8432 },
-    // { name: "Capitol Complex", lat: 30.7605, lng: 76.8057 }66
-];
+const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
 
-const AllotedLabourMap: React.FC<MapProps> = ({
-    numberOfLocations = 10
-}) => {
-    const [activeInfoWindow, setActiveInfoWindow] = useState<number | null>(null);
+const AllotedServiceProviderMap: React.FC = () => {
+    const [serviceProviders, setServiceProviders] = useState<ServiceProvider[]>([]);
+    const [activeInfoWindow, setActiveInfoWindow] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const [mapCenter, setMapCenter] = useState({ lat: 30.7333, lng: 76.7794 });
+    const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
 
     const containerStyle = {
@@ -39,75 +44,134 @@ const AllotedLabourMap: React.FC<MapProps> = ({
         height: "500px",
     };
 
-    // Custom marker with glitter effect
-    const CustomMarker: React.FC<{
-        position: google.maps.LatLngLiteral;
-        title: string;
-        index: number;
-        onClick: () => void;
-    }> = ({ position, title, onClick }) => {
-        return (
-            <Marker
-            position={position}
-            title={title}
-            onClick={onClick}
-            icon={{
-                url: 'Images/labour.png', // Replace with the actual URL of the icon
-                scaledSize: new google.maps.Size(32, 32), // Adjust size (width, height in pixels)
-            }}
-            // animation={google.maps.Animation.BOUNCE}
-        />
-        
-        );
+    const calculateMapCenter = (providers: ServiceProvider[]) => {
+        if (providers.length === 0) return { lat: 30.7333, lng: 76.7794 };
+
+        const lats = providers.map(p => p.location.coordinates[0]);
+        const lngs = providers.map(p => p.location.coordinates[1]);
+
+        return {
+            lat: (Math.min(...lats) + Math.max(...lats)) / 2,
+            lng: (Math.min(...lngs) + Math.max(...lngs)) / 2
+        };
     };
 
-    const handleMarkerClick = (index: number) => {
-        setActiveInfoWindow(activeInfoWindow === index ? null : index);
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user-info");
+        if (storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setUserInfo(parsedUser);
+            } catch (err) {
+                console.error('Failed to parse user info');
+            }
+        }
+    }, []);
+
+    const fetchServiceProviders = async () => {
+        if (!userInfo) return;
+
+        try {
+            const response = await axios.get('https://api.menrol.com/api/v1/fetchEligibleServiceProviders', {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            });
+
+            const providers = response.data.results.flatMap(
+                (result: any) =>
+                    result.subcategories.flatMap(
+                        (subcategory: any) =>
+                            subcategory.eligibleProviders
+                    )
+            );
+
+            const validProviders = providers.filter(
+                (provider: any) =>
+                    provider.location &&
+                    provider.location.coordinates &&
+                    provider.location.coordinates.length === 2 &&
+                    !isNaN(provider.location.coordinates[0]) &&
+                    !isNaN(provider.location.coordinates[1])
+            ).map((provider: any) => ({
+                _id: provider._id,
+                name: provider.name,
+                location: provider.location,
+                rating: provider.rating,
+                phone: provider.phone,
+                profileImage: provider.profileImage
+            }));
+
+            if (validProviders.length > 0) {
+                setServiceProviders(validProviders);
+                setMapCenter(calculateMapCenter(validProviders));
+            } else {
+                setError('No valid service provider locations found');
+            }
+            setLoading(false);
+        } catch (err) {
+            console.error('Fetch error:', err);
+            setError('Failed to fetch service providers');
+            setLoading(false);
+        }
     };
+
+    useEffect(() => {
+        if (userInfo) {
+            fetchServiceProviders();
+        }
+    }, [userInfo]);
+
+    const handleMarkerClick = (providerId: string) => {
+        setActiveInfoWindow(activeInfoWindow === providerId ? null : providerId);
+    };
+
+    if (loading) return <div>Loading service providers...</div>;
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <LoadScript
-            googleMapsApiKey="AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0"
+            googleMapsApiKey={GOOGLE_MAPS_API_KEY}
             libraries={["places"]}
         >
             <div style={{ position: "relative", height: "100%" }}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={CHANDIGARH_CENTER}
-                    zoom={12}
+                    center={mapCenter}
+                    zoom={10}
                     onLoad={(map) => {
                         mapRef.current = map;
                     }}
-                    options={{
-                        styles: [
-                            {
-                                featureType: "all",
-                                elementType: "all",
-                                stylers: [
-                                    { saturation: 30 },
-                                    { lightness: 10 }
-                                ]
-                            }
-                        ]
-                    }}
                 >
-                    {CHANDIGARH_LOCATIONS.slice(0, numberOfLocations).map((location, index) => (
-                        <React.Fragment key={`location-${index}`}>
-                            <CustomMarker
-                                position={{ lat: location.lat, lng: location.lng }}
-                                title={location.name}
-                                index={index}
-                                onClick={() => handleMarkerClick(index)}
+                    {serviceProviders.map((provider) => (
+                        <React.Fragment key={provider._id}>
+                            <Marker
+                                position={{
+                                    lat: provider.location.coordinates[0],
+                                    lng: provider.location.coordinates[1]
+                                }}
+                                title={provider.name}
+                                onClick={() => handleMarkerClick(provider._id)}
                             />
-                            {activeInfoWindow === index && (
+                            {activeInfoWindow === provider._id && (
                                 <InfoWindow
-                                    position={{ lat: location.lat, lng: location.lng }}
+                                    position={{
+                                        lat: provider.location.coordinates[0],
+                                        lng: provider.location.coordinates[1]
+                                    }}
                                     onCloseClick={() => setActiveInfoWindow(null)}
                                 >
                                     <div className="p-2">
-                                        <h3 className="font-bold text-lg mb-2">{location.name}</h3>
-                                        <p className="text-sm">Latitude: {location.lat.toFixed(4)}</p>
-                                        <p className="text-sm">Longitude: {location.lng.toFixed(4)}</p>
+                                        {provider.profileImage && (
+                                            <img
+                                                src={provider.profileImage}
+                                                alt={provider.name}
+                                                className="w-16 h-16 rounded-full mx-auto mb-2"
+                                            />
+                                        )}
+                                        <h3 className="font-bold text-lg mb-2">{provider.name}</h3>
+                                        <p className="text-sm">Rating: {provider.rating}/5</p>
+                                        <p className="text-sm">Phone: {provider.phone}</p>
                                     </div>
                                 </InfoWindow>
                             )}
@@ -119,4 +183,4 @@ const AllotedLabourMap: React.FC<MapProps> = ({
     );
 };
 
-export default AllotedLabourMap;
+export default AllotedServiceProviderMap;
