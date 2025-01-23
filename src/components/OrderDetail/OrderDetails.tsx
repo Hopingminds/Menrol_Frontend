@@ -330,16 +330,16 @@ const OrderDetails = () => {
                                         <Image
                                           src={
                                             provider.serviceProviderId
-                                              .profileImage
+                                              ?.profileImage || "/Images/person7.jpg"
                                           }
-                                          alt=""
+                                          alt={provider.serviceProviderId?.name || "Service Provider"}
                                           width={50}
                                           height={50}
                                           className="w-12 h-12 rounded-full border-2 border-gray-200"
                                         />
                                         <div>
                                           <p className="font-medium xsm:text-xs text-gray-800">
-                                            {provider.serviceProviderId.name}
+                                            {provider.serviceProviderId?.name}
                                           </p>
                                           <p className="text-sm xsm:text-xs text-gray-500">
                                             Allocated Labor
