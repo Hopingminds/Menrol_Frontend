@@ -16,7 +16,7 @@ interface ServiceProvider {
         coordinates: [number, number];
     };
     rating: number;
-    phone: number;
+    phone: string;
     profileImage?: string;
 }
 
@@ -26,6 +26,31 @@ interface UserInfo {
     email: string;
     role: string;
     token: string;
+}
+
+interface Provider {
+    _id: string;
+    name: string;
+    location: {
+        coordinates: [number, number];
+    };
+    rating: number;
+    phone: string;
+    profileImage: string;
+}
+
+interface Subcategory {
+    eligibleProviders: Provider[];
+}
+
+interface Result {
+    subcategories: Subcategory[];
+}
+
+interface ApiResponse {
+    data: {
+        results: Result[];
+    };
 }
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
@@ -64,6 +89,7 @@ const AllotedServiceProviderMap: React.FC = () => {
                 setUserInfo(parsedUser);
             } catch (err) {
                 console.error('Failed to parse user info');
+                console.log(err);
             }
         }
     }, []);
@@ -78,29 +104,32 @@ const AllotedServiceProviderMap: React.FC = () => {
                 },
             });
 
-            const providers = response.data.results.flatMap(
-                (result: any) =>
+            const providers = (response as ApiResponse).data.results.flatMap(
+                (result: Result) =>
                     result.subcategories.flatMap(
-                        (subcategory: any) =>
-                            subcategory.eligibleProviders
+                        (subcategory: Subcategory) => subcategory.eligibleProviders
                     )
             );
 
-            const validProviders = providers.filter(
-                (provider: any) =>
+            const validProviders: ServiceProvider[] = providers
+                .filter((provider: Provider) =>
                     provider.location &&
                     provider.location.coordinates &&
                     provider.location.coordinates.length === 2 &&
                     !isNaN(provider.location.coordinates[0]) &&
                     !isNaN(provider.location.coordinates[1])
-            ).map((provider: any) => ({
-                _id: provider._id,
-                name: provider.name,
-                location: provider.location,
-                rating: provider.rating,
-                phone: provider.phone,
-                profileImage: provider.profileImage
-            }));
+                )
+                .map((provider: Provider) => ({
+                    _id: provider._id,
+                    name: provider.name,
+                    location: {
+                        type: 'Point', // Add the missing 'type' property
+                        coordinates: provider.location.coordinates
+                    },
+                    rating: provider.rating,
+                    phone: provider.phone,
+                    profileImage: provider.profileImage,
+                }));
 
             if (validProviders.length > 0) {
                 setServiceProviders(validProviders);

@@ -250,6 +250,7 @@ const Adddetail = () => {
 
         if (pricingType === "hourly") {
             const endDateTime = new Date(selectedDateTime);
+            console.log(endDateTime);
             // endDateTime.setHours(endDateTime.getHours() + 1);
             // setEndDate(endDateTime.toISOString().slice(0, 16));
         }
