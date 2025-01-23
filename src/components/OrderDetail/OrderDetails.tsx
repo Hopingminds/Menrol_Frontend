@@ -330,7 +330,7 @@ const OrderDetails = () => {
                                         <Image
                                           src={
                                             provider.serviceProviderId
-                                              ?.profileImage || "/Images/person7.jpg"
+                                              ?.profileImage || "/Images/AllImages/person7.jpg"
                                           }
                                           alt={provider.serviceProviderId?.name || "Service Provider"}
                                           width={50}

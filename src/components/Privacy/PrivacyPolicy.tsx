@@ -212,10 +212,10 @@ const PrivacyPolicy: FC = () => {
                     <div className="mb-8" ref={refundCancellationRef}>
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Refund & Cancellation Policy:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
-                            a. Refunds: Refunds for courses purchased through our platform are available within 30 days of purchase, provided that the course has not been accessed.
+                            a. Refunds: If a service provider purchases a subscription on our platform and the payment is stuck during the subscription process, the money will be refunded within 7 business days.
                         </p>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
-                            b. Cancellations: You may cancel your subscription at any time through your account settings. Cancellations will take effect at the end of the current billing cycle.
+                            b. Cancellations: If a service provider purchases a subscription and later decides to cancel, unfortunately, we are unable to offer refunds under any circumstances.
                         </p>
                     </div>
 
@@ -223,7 +223,7 @@ const PrivacyPolicy: FC = () => {
                     <div className="mb-8" ref={contactUsRef}>
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Contact Us:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
-                        If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030</a>
+                        If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030.</a>
                         </p>
                     </div>
                 </section>
