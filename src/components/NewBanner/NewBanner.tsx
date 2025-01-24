@@ -296,7 +296,7 @@ const NewBanner = () => {
             <Slider {...categorySettings}>
               {categories.map((category) =>
                 category.subcategory.map((sub) => (
-                  <div key={sub._id} className="">
+                  <div key={sub._id} className="-mb-1">
                     <div className="relative">
                       <img
                         src={sub.image}
