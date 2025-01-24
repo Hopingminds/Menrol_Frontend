@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
 import { io } from 'socket.io-client';
+import { toast } from "react-toastify";
 
 
 interface Location {
@@ -226,6 +227,45 @@ const Labour = () => {
 
   if (!mounted) return null;
 
+
+  const handleCancel = async (
+    orderId: string,
+    serviceId: string,
+    subcategoryId: string
+  ) => {
+    if (!userInfo?.token) return;
+
+    const payload = {
+      orderId: orderId,
+      serviceId: serviceId,
+      subcategoryId: subcategoryId,
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.menrol.com/api/v1/cancelOrderRequest",
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        toast.success("Order cancelled successfully");
+        window.location.reload();
+      } else {
+        toast.warning("Failed to cancel the order");
+      }
+    } catch (error) {
+      toast.warning("Failed to cancel the order");
+      console.log(error);
+    }
+  };
+
   return (
     <div className="px-[7%] py-6 font-sans">
       <div className="w-full">
@@ -233,7 +273,7 @@ const Labour = () => {
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
           </div>
-        :
+          :
           <>
             <div className="rounded-xl border p-6 w-full">
               <div className="">
@@ -241,12 +281,16 @@ const Labour = () => {
               </div>
             </div>
             <div className="p-6 xsm:w-full xl:w-[60%] md:w-full">
+
               {orderData?.serviceRequest?.map((request) => (
                 request.subcategory.map((sub) => (
                   <div
                     key={sub._id}
+
+
                     className="border rounded-lg shadow-lg p-3 xsm:flex-col flex xsm:gap-5 gap-10 items-center mb-4"
                   >
+
                     <div>
 
                       <Image
@@ -267,23 +311,40 @@ const Labour = () => {
                       </p>
                       <div className="mt-4 flex items-center justify-between text-gray-400">
                         <div>
-                        <p className="text-sm">
-                          Workers Required: {sub.workersRequirment}
-                        </p>
-                        <p className="text-sm">
-                          Current Providers: {sub.serviceProviders.length}
-                        </p>
+                          <p className="text-sm">
+                            Workers Required: {sub.workersRequirment}
+                          </p>
+                          <p className="text-sm">
+                            Current Providers: {sub.serviceProviders.length}
+                          </p>
                         </div>
                         <div>
-                        <p className="text-sm">
-                          Viewers: {sub.viewers.length}
-                        </p>
-                        <p className="text-sm">
-                          Amount: ₹{sub.selectedAmount}
-                        </p>
+                          <p className="text-sm">
+                            Viewers: {sub.viewers.length}
+                          </p>
+                          <p className="text-sm">
+                            Amount: ₹{sub.selectedAmount}
+                          </p>
                         </div>
                       </div>
-                      <button className='bg-red-50 border border-red-500 p-3 rounded-lg w-full mt-2 text-red-500'>cancel</button>
+                      <button
+                        onClick={() => {
+                          if (sub.status === "cancelled") {
+                            toast.info("This order is already cancelled", {
+                              position: "top-right", // Adjust position as needed
+                              autoClose: 3000, // Toast auto-close time
+                            });
+                          } else {
+                            handleCancel(orderData?._id, request.service._id, sub.subcategoryId);
+                          }
+                        }}
+                        className={`p-3 rounded-lg w-full mt-2 
+    ${sub.status === "cancelled"
+                            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                            : "bg-red-50 border border-red-500 text-red-500"
+                          }`}>
+                        {sub.status === "cancelled" ? "Cancelled" : "Cancel"}
+                      </button>
                     </div>
                   </div>
                 ))

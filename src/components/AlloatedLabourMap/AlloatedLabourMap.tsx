@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 import {
     GoogleMap,
     LoadScript,
@@ -64,6 +65,7 @@ const AllotedServiceProviderMap: React.FC = () => {
     const [mapCenter, setMapCenter] = useState({ lat: 30.7333, lng: 76.7794 });
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
+
 
     const containerStyle = {
         width: "100%",
@@ -145,6 +147,7 @@ const AllotedServiceProviderMap: React.FC = () => {
             setLoading(false);
         }
     };
+
 
     useEffect(() => {
         if (userInfo) {
