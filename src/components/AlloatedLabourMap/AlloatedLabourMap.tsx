@@ -54,6 +54,7 @@ interface ApiResponse {
 }
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+console.log(GOOGLE_MAPS_API_KEY);
 
 const AllotedServiceProviderMap: React.FC = () => {
     const [serviceProviders, setServiceProviders] = useState<ServiceProvider[]>([]);
@@ -160,7 +161,7 @@ const AllotedServiceProviderMap: React.FC = () => {
 
     return (
         <LoadScript
-            googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+            googleMapsApiKey={"AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0"}
             libraries={["places"]}
         >
             <div style={{ position: "relative", height: "100%" }}>
