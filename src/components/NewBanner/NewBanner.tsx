@@ -9,6 +9,9 @@ import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 interface SubCategory {
   _id: string;
@@ -51,6 +54,24 @@ const NewBanner = () => {
     "/Images/indian.jpg",
     "/Images/reclaimed.jpg",
   ];
+
+  const categorySettings = {
+    dots: false,
+    arrows: false, // Hides side navigation buttons
+    navigator: false,
+    infinite: true,
+    slidesToShow: 8,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    pauseOnHover: true,
+    responsive: [
+      { breakpoint: 640, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 1024, settings: { slidesToShow: 6 } },
+      { breakpoint: 1280, settings: { slidesToShow: 8 } },
+    ],
+  };
 
   const router = useRouter();
 
@@ -161,7 +182,7 @@ const NewBanner = () => {
         <div className="md:w-[50%] xsm:w-full">
           <div className="md:py-10 xsm:py-5 px-7 lg:w-[90%] md:w-[90%] rounded-xl backdrop-blur-2xl border border-white">
             <div className="text-white xsm:w-full md:w-[90%]">
-              <h1 className="font-thin font-sans mb-2">
+              <h1 className="font-thin font-sans mb-2 2xl:font-bold">
                 Get Skilled Experts Quickly
               </h1>
               <p className="font-sans font-semibold text-xs tracking-wide leading-relaxed">
@@ -213,7 +234,7 @@ const NewBanner = () => {
                   }
                   handleServiceDetails2(selectedSubcategory, selectedCategory);
                 }}
-                className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 md:w-[60%] lg:w-[40%] xsm:h-full md:h-[40px] lg:h-[60px]"
+                className="group relative inline-flex items-center justify-center px-2 py-1 text-base font-semibold text-white transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 md:w-[60%] lg:w-[50%] xsm:h-full md:h-[40px] lg:h-[60px]"
               >
                 <div className="absolute inset-0 bg-[#0054A5] rounded-xl transition-all duration-300 group-hover:scale-110 animate-gradient pulse-animation" />
                 <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-white blur-xl pulse-animation" />
@@ -271,48 +292,32 @@ const NewBanner = () => {
               />
             </p>
           </div>
-          <div className="xsm:mt-10 lg:mt-10 xl:mt-10 backdrop-blur-md xsm:p-2 p-4 w-screen rounded-xl border border-white">
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              slidesPerView={5}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              spaceBetween={10}
-              breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 4 },
-                1024: { slidesPerView: 5 },
-                1280: { slidesPerView: 6 },
-                1536: { slidesPerView: 8 },
-              }}
-            >
+          <div className="xsm:mt-10 lg:mt-10 md:mt-10 xl:mt-10 backdrop-blur-md xsm:p-2 p-4 w-screen rounded-xl border border-white">
+            <Slider {...categorySettings}>
               {categories.map((category) =>
                 category.subcategory.map((sub) => (
-                  <SwiperSlide key={sub._id}>
+                  <div key={sub._id} className="">
                     <div className="relative">
                       <img
                         src={sub.image}
                         alt={sub.title}
-                        className="lg:w-[150px] xl:w-[170px] md:w-[170px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[150px] object-cover"
+                        className="lg:w-[120px] xl:w-[140px] 2xl:w-[170px] md:w-[110px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[120px] object-cover"
                       />
                       <div
                         onClick={() =>
                           handleServiceDetails1("677cfaf7607e149e63802e11")
                         }
-                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-end items-center rounded-xl text-white xsm:h-[80px] xsm:w-full md:w-[170px] lg:w-[150px] xl:w-[170px]"
+                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-end items-center rounded-xl text-white xsm:h-[80px] xsm:w-[90px] 2xl:w-[170px] md:w-[110px] lg:w-[120px] xl:w-[140px]"
                       >
-                        <h3 className="md:text-xs xsm:text-[5px] xsm:font-thin font-semibold ">
+                        <h3 className="md:text-[7px] 2xl:text-xs lg:text-[5px] xl:text-[8px] xsm:text-[5px] xsm:font-thin font-semibold">
                           {sub.title}
                         </h3>
                       </div>
                     </div>
-                  </SwiperSlide>
+                  </div>
                 ))
               )}
-            </Swiper>
+            </Slider>
           </div>
         </div>
       </div>

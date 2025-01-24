@@ -340,7 +340,7 @@ const Checkout: React.FC<CheckoutProps> = ({ }) => {
             )}
             <div className="border-t pt-4">
               <div className="flex justify-between items-center font-bold xsm:text-[10px]">
-                <span>Included All Texes</span>
+                <span>Included All Taxes</span>
                 <span>Total</span>
                 <span>₹{Math.floor(totalAmount)}</span>
               </div>
