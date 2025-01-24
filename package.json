@@ -28,7 +28,7 @@
     "react-toastify": "^11.0.3",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.8.1",
-    "swiper": "^11.2.0"
+    "swiper": "^11.2.1"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
@@ -36,6 +36,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-slick": "^0.23.13",
+    "@types/swiper": "^5.4.3",
     "eslint": "^8",
     "eslint-config-next": "15.0.4",
     "postcss": "^8",

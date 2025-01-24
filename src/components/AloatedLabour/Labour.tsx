@@ -254,7 +254,7 @@ const Labour = () => {
                         alt={request.service.category}
                         width={500}
                         height={500}
-                        className="rounded-lg"
+                        className="rounded-lg h-[15rem] w-[25rem] object-cover"
                       />
                     </div>
                     <div className="">
@@ -265,23 +265,25 @@ const Labour = () => {
                       <p className="text-gray-400 text-base xsm:text-xs xsm:w-full w-[80%]">
                         {request.service.categoryDescription}
                       </p>
-                      <div className="mt-4">
+                      <div className="mt-4 flex items-center justify-between text-gray-400">
+                        <div>
                         <p className="text-sm">
                           Workers Required: {sub.workersRequirment}
                         </p>
                         <p className="text-sm">
                           Current Providers: {sub.serviceProviders.length}
                         </p>
+                        </div>
+                        <div>
                         <p className="text-sm">
                           Viewers: {sub.viewers.length}
                         </p>
                         <p className="text-sm">
-                          Status: {sub.status}
-                        </p>
-                        <p className="text-sm">
                           Amount: ₹{sub.selectedAmount}
                         </p>
+                        </div>
                       </div>
+                      <button className='bg-red-50 border border-red-500 p-3 rounded-lg w-full mt-2 text-red-500'>cancel</button>
                     </div>
                   </div>
                 ))
