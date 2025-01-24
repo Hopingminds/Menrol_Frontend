@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { toast } from "react-toastify";
 import {
     GoogleMap,
     LoadScript,
@@ -54,6 +55,7 @@ interface ApiResponse {
 }
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+console.log(GOOGLE_MAPS_API_KEY);
 
 const AllotedServiceProviderMap: React.FC = () => {
     const [serviceProviders, setServiceProviders] = useState<ServiceProvider[]>([]);
@@ -63,6 +65,7 @@ const AllotedServiceProviderMap: React.FC = () => {
     const [mapCenter, setMapCenter] = useState({ lat: 30.7333, lng: 76.7794 });
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
+
 
     const containerStyle = {
         width: "100%",
@@ -145,6 +148,7 @@ const AllotedServiceProviderMap: React.FC = () => {
         }
     };
 
+
     useEffect(() => {
         if (userInfo) {
             fetchServiceProviders();
@@ -160,7 +164,7 @@ const AllotedServiceProviderMap: React.FC = () => {
 
     return (
         <LoadScript
-            googleMapsApiKey={GOOGLE_MAPS_API_KEY}
+            googleMapsApiKey={"AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0"}
             libraries={["places"]}
         >
             <div style={{ position: "relative", height: "100%" }}>
