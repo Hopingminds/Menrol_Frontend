@@ -341,7 +341,7 @@ const Labour = () => {
                         className={`p-3 rounded-lg w-full mt-2 
     ${sub.status === "cancelled"
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                            : "bg-red-50 border border-red-500 text-red-500"
+                            : "bg-red-50 border hover:bg-red-500 hover:text-white transition-all duration-300 border-red-500 text-red-500"
                           }`}>
                         {sub.status === "cancelled" ? "Cancelled" : "Cancel"}
                       </button>
