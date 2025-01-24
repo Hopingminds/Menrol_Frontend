@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-import { Navigation, Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
