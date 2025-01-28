@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { BsTelephone } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
@@ -20,6 +20,35 @@ const LoginModal: React.FC<LoginModalProps> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [otpSent, setOtpSent] = useState(false);
+  const [resendDisabled, setResendDisabled] = useState(false);
+  const [countdown, setCountdown] = useState(30);
+
+  // Reset state when modal is closed
+  useEffect(() => {
+    if (!isModalOpen) {
+      setPhoneNo("");
+      setOtp("");
+      setError(null);
+      setOtpSent(false);
+      setResendDisabled(false);
+      setCountdown(30);
+    }
+  }, [isModalOpen]);
+
+  // Countdown timer for resend button
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (resendDisabled && countdown > 0) {
+      timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    }
+    if (countdown === 0) {
+      setResendDisabled(false);
+      setCountdown(30);
+    }
+    return () => clearInterval(timer);
+  }, [resendDisabled, countdown]);
 
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,21 +65,22 @@ const LoginModal: React.FC<LoginModalProps> = ({
       const data = await response.json();
       if (response.ok) {
         setOtpSent(true);
+        setResendDisabled(true);
       } else {
         setError(data.message || "Failed to send OTP. Please try again.");
       }
     } catch (err) {
       setError("An error occurred. Please try again later.");
-      console.log(err)
+      console.log(err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleVerifyOtp = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form submission
-    setLoading(true);   // Indicate loading
-    setError(null);     // Clear previous errors
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
       const response = await fetch("https://api.menrol.com/api/v1/verifyUserOtp", {
@@ -62,24 +92,22 @@ const LoginModal: React.FC<LoginModalProps> = ({
       const data = await response.json();
 
       if (response.ok && data.token) {
-        // Store user info in localStorage
         const userInfo = { token: data.token, phone };
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage"));
 
-       toast.success("Log in successfully", {
-             position: "top-right",  // Toast position
-             autoClose: 5000,        // Duration for the toast to stay
-             hideProgressBar: false, // Show progress bar
-             closeOnClick: true,     // Allow closing by clicking on the toast
-             pauseOnHover: true,     // Pause when hovering
-             theme: "colored",       // Colored theme
-           });
+        toast.success("Log in successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          theme: "colored",
+        });
 
-        // Reload the page to reflect DOM updates
         setTimeout(() => {
           window.location.reload();
-        }, 2000); // Allow time for the toast to be visible
+        }, 2000);
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
       }
@@ -87,10 +115,13 @@ const LoginModal: React.FC<LoginModalProps> = ({
       setError("An error occurred. Please try again later.");
       console.error(err);
     } finally {
-      setLoading(false); // Stop loading spinner
+      setLoading(false);
     }
   };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -98,34 +129,30 @@ const LoginModal: React.FC<LoginModalProps> = ({
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
           <div className="bg-white rounded-xl shadow-lg w-[480px] xsm:w-[300px] relative">
-            {/* Close button */}
             <button
-              onClick={() => setIsModalOpen(false)}
+              onClick={handleCloseModal}
               className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
             >
               <IoClose size={24} />
             </button>
 
             <div className="p-8">
-              {/* Phone Icon and Title */}
-             
-
               <form onSubmit={otpSent ? handleVerifyOtp : handleSendOtp}>
                 {!otpSent ? (
                   <div className="mb-6">
-                     <div className="flex flex-col items-center mb-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full  flex items-center justify-center mb-4">
-                  <BsTelephone size={32} className="font-extrabold xsm:text-xs" />
-                </div>
-                <h2 className="text-2xl font-semibold xsm:text-sm">
-                  Enter your phone number
-                </h2>
-                <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
-                  We will send you a text with a verification code.
-                </p>
-              </div>
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                        <BsTelephone size={32} className="font-extrabold xsm:text-xs" />
+                      </div>
+                      <h2 className="text-2xl font-semibold xsm:text-sm">
+                        Enter your phone number
+                      </h2>
+                      <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
+                        We will send you a text with a verification code.
+                      </p>
+                    </div>
                     <div className="flex border rounded-lg overflow-hidden">
-                      <select className="px-3 py-3  bg-gray-50 border-r">
+                      <select className="px-3 py-3 bg-gray-50 border-r">
                         <option>+91</option>
                       </select>
                       <input
@@ -140,17 +167,17 @@ const LoginModal: React.FC<LoginModalProps> = ({
                   </div>
                 ) : (
                   <div className="mb-6">
-                     <div className="flex flex-col items-center mb-6">
-                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                  <BsTelephone size={32} className="font-extrabold" />
-                </div>
-                <h2 className="text-2xl font-semibold xsm:text-sm">
-                  Enter your OTP
-                </h2>
-                <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
-                  Enter the OTP sent to your phone number.
-                </p>
-              </div>
+                    <div className="flex flex-col items-center mb-6">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                        <BsTelephone size={32} className="font-extrabold" />
+                      </div>
+                      <h2 className="text-2xl font-semibold xsm:text-sm">
+                        Enter your OTP
+                      </h2>
+                      <p className="text-gray-500 mt-2 xsm:text-xs xsm:w-[70%] xsm:text-center">
+                        Enter the OTP sent to your phone number.
+                      </p>
+                    </div>
                     <div className="relative">
                       <input
                         type="text"
@@ -161,6 +188,14 @@ const LoginModal: React.FC<LoginModalProps> = ({
                         required
                       />
                     </div>
+                    <button
+                      type="button"
+                      onClick={handleSendOtp}
+                      disabled={resendDisabled}
+                      className="mt-4 text-[#0054A5] text-sm hover:underline disabled:text-gray-400"
+                    >
+                      {resendDisabled ? `Resend OTP in ${countdown}s` : "Resend OTP"}
+                    </button>
                   </div>
                 )}
 
@@ -182,8 +217,6 @@ const LoginModal: React.FC<LoginModalProps> = ({
                       : "Get verification code"}
                 </button>
               </form>
-
-     
             </div>
           </div>
         </div>
