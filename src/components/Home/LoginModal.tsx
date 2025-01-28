@@ -213,8 +213,8 @@ const LoginModal: React.FC<LoginModalProps> = ({
                       ? "Verifying..."
                       : "Sending..."
                     : otpSent
-                      ? "Enter verification code"
-                      : "Get verification code"}
+                      ? "Enter otp"
+                      : "Request otp"}
                 </button>
               </form>
             </div>
