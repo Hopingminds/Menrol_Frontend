@@ -294,14 +294,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                     <div className="flex gap-4 pt-4">
                       <button
                         type="submit"
-                        className="flex-1 px-4 py-2 bg-[#0054A5] text-white rounded-lg hover:bg-blue-600 transition-colors"
+                        className="flex-1 px-4 py-2 xsm:text-[8px] bg-[#0054A5] text-white rounded-lg hover:bg-blue-600 transition-colors"
                       >
                         Save Changes
                       </button>
                       <button
                         type="button"
                         onClick={handleEditToggle}
-                        className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                        className="flex-1 px-4 py-2 xsm:text-[8px] border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                       >
                         Cancel
                       </button>

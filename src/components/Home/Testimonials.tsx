@@ -39,7 +39,7 @@ const Testimonials = () => {
       image: "/Images/testimonials/pics/person.jpg",
       rating: "⭐⭐⭐⭐",
       service: "Home Service",
-      feedback: "Such a great experience! The experts were punctual and did a detailed job throughout my home.",
+      feedback: "Such a great experience! The experts were punctual and polite did a detailed job throughout my home.",
     },
     {
       name: "Jaspal singh",
@@ -53,7 +53,7 @@ const Testimonials = () => {
       image: "/Images/testimonials/pics/person2.jpg",
       rating: "⭐⭐⭐⭐⭐",
       service: "Kitchen Service",
-      feedback: "Highly recommend these kitchen services! They left the kitchen spotless and completely odor-free,friendly,and good.",
+      feedback: "Highly recommend these kitchen services! They left the kitchen spotless and completely odor-free, good.",
     },
     {
       name: "Akhil",
@@ -84,7 +84,7 @@ const Testimonials = () => {
       <Slider {...settings} className="gap-8">
         {testimonialsData.map((testimonial, index) => (
           <div key={index} className="px-4 xsm:px-0">
-            <div className="card bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full py-10">
+            <div className=" bg-[#F9F9FE] shadow-md rounded-lg p-6 w-full  py-10">
               <div className="flex items-start space-x-4">
                 <Image
                   src={testimonial.image}
