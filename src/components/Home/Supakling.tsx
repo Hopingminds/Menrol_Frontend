@@ -1,53 +1,40 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PiBuildingsBold } from "react-icons/pi";
 import { IoLocationOutline } from "react-icons/io5";
 import Image from "next/image";
 import {FaArrowRightLong } from "react-icons/fa6";
-import NewBanner from "../NewBanner/NewBanner";
 
-interface Service {
-  id: number;
-  category: string;
-  subcategory: Array<{
-    title: string;
-    image: string;
-  }>;
-}
+// interface Service {
+//   id: number;
+//   category: string;
+//   subcategory: Array<{
+//     title: string;
+//     image: string;
+//   }>;
+// }
 
 const Supakling: React.FC = () => {
-  const [services, setServices] = useState<Service[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const [services, setServices] = useState<Service[]>([]);
   const router = useRouter();
   const [hover, setHover] = useState(false);
 
-  useEffect(() => {
-    const fetchServices = async () => {
-      try {
-        const response = await fetch(
-          "https://api.menrol.com/api/v1/getServices"
-        );
-        const data = await response.json();
-        setServices(data.all || []);
-      } catch (error) {
-        console.error("Error fetching services:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchServices = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://api.menrol.com/api/v1/getServices"
+  //       );
+  //       const data = await response.json();
+  //       // setServices(data.all || []);
+  //     } catch (error) {
+  //       console.error("Error fetching services:", error);
+  //     }
+  //   };
 
-    fetchServices();
-  }, []);
-  console.log(currentIndex);
-
-  useEffect(() => {
-    if (services.length > 0) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
-      }, 3000);
-
-      return () => clearInterval(interval);
-    }
-  }, [services]);
+  //   fetchServices();
+  // }, []);
 
   const handleService = () => {
     router.push("/ServiceDetails");
@@ -59,7 +46,6 @@ const Supakling: React.FC = () => {
 
   return (
     <div>
-      <NewBanner/>
       <div className="min-h-screen pt-10 bg-gray-50 px-[4%]">
       
       <div className="flex flex-col items-center justify-center px-[10%] xsm:my-[3rem] md:my-[10vh] md:pt-5">

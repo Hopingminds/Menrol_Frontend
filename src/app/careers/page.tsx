@@ -1,9 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CultureSection from "../../components/Careers/CultureSection";
 import HowToApply from "../../components/Careers/HowToApply";
-import DynamicHeader from "@/components/About/DynamicHeader";
 import Content from "@/components/About/Content";
 import JoinOurTeam from "@/components/Careers/JoinOurTeam";
 
@@ -11,18 +10,7 @@ import PhoenixSterling from "@/components/Careers/PhoenixSterling";
 import Layout from "@/components/Layout";
 
 const Careers: React.FC = () => {
-  const [isXsm, setIsXsm] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsXsm(window.innerWidth <= 480); // Adjust according to xsm breakpoint (320px - 480px)
-    };
-    handleResize(); // Set initial state
-    window.addEventListener("resize", handleResize); // Listen for window resize
-    return () => {
-      window.removeEventListener("resize", handleResize); // Clean up
-    };
-  }, []);
 
   const missionData = [
     {
@@ -66,7 +54,6 @@ const Careers: React.FC = () => {
   return (
     <Layout>
       <section className="bg-white">
-        {isXsm && <DynamicHeader title="careers" />}
         <JoinOurTeam />
         <Content />
         <Ourmission missions={missionData} />

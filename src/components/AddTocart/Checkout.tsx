@@ -60,9 +60,9 @@ interface UserInfo {
   token: string;
 }
 
-interface CheckoutProps {
-  address: string | null;
-}
+// interface CheckoutProps {
+//   address: string | null;
+// }
 
 type Address = {
   location: {
@@ -75,7 +75,7 @@ type Address = {
 
 
 
-const Checkout: React.FC<CheckoutProps> = ({ }) => {
+const Checkout: React.FC = () => {
   const router = useRouter();
   const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);

@@ -22,7 +22,7 @@ const ScanAndDownload = () => {
           <div className="flex items-center justify-between">
             <div className="flex flex-col items-center gap-2">
               <Image
-                src="/Images/Scanner.png"
+                src="/Images/playstoreqr.png"
                 alt="Scanner"
                 className="w-[100px] xsm:w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[160px] 2xl:w-[180px]"
                 height={100}
@@ -40,7 +40,7 @@ const ScanAndDownload = () => {
             {/* Right Scanner + Play Store */}
             <div className="flex flex-col items-center gap-2 ml-4">
               <Image
-                src="/Images/Scanner.png"
+                src="/Images/playstoreqr.png"
                 alt="Scanner"
                 className="w-[100px] xsm:w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[160px] 2xl:w-[180px]"
                 height={100}

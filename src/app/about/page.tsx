@@ -1,28 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Ourmission from "../../components/About/Ourmission";
 import CoreValues from "../../components/About/CoreValues";
 import FAQSection from "../../components/About/FaqSection";
 import Gallery from "../../components/About/Gallery";
-import DynamicHeader from "../../components/About/DynamicHeader";
 import Home from "../../components/About/Home";
 import Content from "../../components/About/Content";
 import Discount from "@/components/About/Discount";
 import Layout from "@/components/Layout";
 
 const AboutUs: React.FC = () => {
-  const [isXsm, setIsXsm] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsXsm(window.innerWidth <= 480); // Adjust according to xsm breakpoint (320px - 480px)
-    };
-    handleResize(); // Set initial state
-    window.addEventListener("resize", handleResize); // Listen for window resize
-    return () => {
-      window.removeEventListener("resize", handleResize); // Clean up
-    };
-  }, []);
 
   const missionData = [
     {
@@ -105,7 +92,6 @@ const AboutUs: React.FC = () => {
   return (
     <Layout>
       <div className="md:overflow-hidden xsm:overflow-hidden ">
-        {isXsm && <DynamicHeader title="About Us" />}
         <Home />
         <Content />
         <Ourmission missions={missionData} />

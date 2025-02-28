@@ -109,7 +109,7 @@ const OurServices = () => {
           "https://api.menrol.com/api/v1/getServices"
         );
         const data: ApiResponse = await response.json();
-        console.log("API Response:", data);
+        // console.log("API Response:", data);
 
         if (data.success) {
           setServices(data.all);
@@ -122,7 +122,7 @@ const OurServices = () => {
         setError("Failed to load services.");
       }
     };
-    console.log(services);
+    // console.log(services);
 
     fetchServices();
   }, []);

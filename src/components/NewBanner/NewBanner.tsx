@@ -41,11 +41,12 @@ interface ApiResponse {
 const NewBanner = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [services, setServices] = useState<Service[]>([]);
-  const [error, setError] = useState<string | null>(null);
   const [subcategories, setSubcategories] = useState<SubCategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>("");
   const [name, setname] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [skeletonCount, setSkeletonCount] = useState<number>(4);
 
   const backgroundImages = [
     "/Images/banner.png",
@@ -84,11 +85,11 @@ const NewBanner = () => {
     router.push(`/AddDetail?${query}`);
   };
 
-  console.log(error);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        setLoading(true);
         const response = await fetch(
           `https://api.menrol.com/api/v1/getCategory?categoryId=677cfaf7607e149e63802e11`
         );
@@ -96,11 +97,9 @@ const NewBanner = () => {
 
         if (apiResponse?.success && apiResponse.data?.subcategory) {
           setCategories([{ ...apiResponse.data }]);
+          setLoading(false);
         } else {
-          console.error(
-            "Invalid API response: Expected 'data.subcategory' to be an array",
-            apiResponse
-          );
+          setLoading(true);
         }
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -116,17 +115,26 @@ const NewBanner = () => {
 
         if (data.success) {
           setServices(data.all);
-        } else {
-          setError("Failed to load services.");
+        }
+        else {
+          console.error("Invalid API response Here set loader");
         }
       } catch (error) {
         console.error("Error fetching services:", error);
-        setError("Failed to load services.");
       }
     };
 
+    const updateSkeletonCount = () => {
+      setSkeletonCount(window.innerWidth < 1024 ? 3 : 4);
+    };
+
+    updateSkeletonCount(); // Set initial count
+    window.addEventListener("resize", updateSkeletonCount);
+
     fetchServices1();
     fetchCategories();
+
+    return () => window.removeEventListener("resize", updateSkeletonCount);
   }, []);
 
   useEffect(() => {
@@ -256,7 +264,7 @@ const NewBanner = () => {
               </button>
 
               <style jsx>{`
-                @keyframes pulse {
+                @keyframes pulsing {
                   0% {
                     transform: scale(1);
                   }
@@ -269,7 +277,7 @@ const NewBanner = () => {
                 }
 
                 .pulse-animation {
-                  animation: pulse 2s infinite ease-in-out;
+                  animation: pulsing 2s infinite ease-in-out;
                 }
               `}</style>
             </div>
@@ -293,31 +301,39 @@ const NewBanner = () => {
             </p>
           </div>
           <div className="xsm:mt-10 lg:mt-10 md:mt-10 xl:mt-10 backdrop-blur-md xsm:p-2 p-4 w-screen rounded-xl border border-white">
-            <Slider {...categorySettings}>
-              {categories.map((category) =>
-                category.subcategory.map((sub) => (
-                  <div key={sub._id} className="-mb-1">
-                    <div className="relative">
-                      <img
-                        src={sub.image}
-                        alt={sub.title}
-                        className="lg:w-[120px] xl:w-[140px] 2xl:w-[170px] md:w-[110px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[120px] object-cover"
-                      />
-                      <div
-                        onClick={() =>
-                          handleServiceDetails1("677cfaf7607e149e63802e11")
-                        }
-                        className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-end items-center rounded-xl text-white xsm:h-[80px] xsm:w-[90px] 2xl:w-[170px] md:w-[110px] lg:w-[120px] xl:w-[140px]"
-                      >
-                        <h3 className="md:text-[7px] 2xl:text-xs lg:text-[5px] xl:text-[8px] xsm:text-[5px] xsm:font-thin font-semibold">
-                          {sub.title}
-                        </h3>
+            {loading ? (
+              <div className="flex gap-4 xsm:gap-12 md:gap-10 lg:gap-6">
+                {[...Array(skeletonCount)].map((_, index) => (
+                  <div key={index} className="animate-pulse">
+                    <div className="relative bg-gray-300 rounded-xl lg:w-[120px] xl:w-[140px] 2xl:w-[170px] md:w-[110px] xsm:w-[90px] lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[120px]" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <Slider {...categorySettings}>
+                {categories.map((category) =>
+                  category.subcategory.map((sub) => (
+                    <div key={sub._id} className="-mb-1">
+                      <div className="relative">
+                        <img
+                          src={sub.image}
+                          alt={sub.title}
+                          className="lg:w-[120px] xl:w-[140px] 2xl:w-[170px] md:w-[110px] xsm:w-[90px] rounded-xl lg:h-[130px] xl:h-[150px] xsm:h-[80px] md:h-[120px] object-cover"
+                        />
+                        <div
+                          onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")}
+                          className="absolute cursor-pointer p-4 bottom-0 left-0 bg-black bg-opacity-50 h-full flex flex-col justify-end items-center rounded-xl text-white xsm:h-[80px] xsm:w-[90px] 2xl:w-[170px] md:w-[110px] lg:w-[120px] xl:w-[140px]"
+                        >
+                          <h3 className="md:text-[7px] 2xl:text-xs lg:text-[5px] xl:text-[8px] xsm:text-[5px] xsm:font-thin font-semibold">
+                            {sub.title}
+                          </h3>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              )}
-            </Slider>
+                  ))
+                )}
+              </Slider>
+            )}
           </div>
         </div>
       </div>
