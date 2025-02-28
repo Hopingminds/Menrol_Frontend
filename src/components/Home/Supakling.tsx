@@ -109,7 +109,7 @@ const Supakling: React.FC = () => {
           <p className="text-sm text-gray-500 flex items-center justify-center lg:justify-start">
             We are{" "}
             <span className="bg-pink-100 text-pink-600 font-medium px-2 py-1 ml-2 rounded-full">
-              Menrol Force
+              Menrol Hub
             </span>
           </p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mt-4">
