@@ -60,10 +60,6 @@ interface UserInfo {
   token: string;
 }
 
-// interface CheckoutProps {
-//   address: string | null;
-// }
-
 type Address = {
   location: {
     type: string;
@@ -73,20 +69,16 @@ type Address = {
   _id: string;
 };
 
-
-
 const Checkout: React.FC = () => {
   const router = useRouter();
   const [serviceRequest, setServiceRequest] = useState<ServiceRequest | null>(null);
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [userAddresses, setUserAddresses] = useState<Address[]>();
+  const [userAddresses, setUserAddresses] = useState<Address[]>([]);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(null);
-
-
-
-
+  const [addressRefresh, setAddressRefresh] = useState<number>(0);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user-info");
@@ -100,10 +92,11 @@ const Checkout: React.FC = () => {
 
   useEffect(() => {
     if (userInfo) {
+      console.log("Fetching user address with token:", userInfo.token);
       fetchUserAddress();
       fetchServiceData();
     }
-  }, [userInfo]);
+  }, [userInfo, addressRefresh]);
 
   const fetchUserAddress = async () => {
     if (!userInfo) {
@@ -118,31 +111,70 @@ const Checkout: React.FC = () => {
         },
       });
 
+      const responseClone = response.clone();
+      console.log("Response status:", response.status);
+
       if (response.ok) {
         const data = await response.json();
-        console.log("check data comming", data);
+        console.log("User data structure:", Object.keys(data));
+        console.log("User data structure:", Object.keys(data.user || {}));
 
-        if (data.user.SavedAddresses.length !== 0) {
-          setUserAddresses(data.user.SavedAddresses)
+        if (data.user && data.user.SavedAddresses) {
+          console.log("SavedAddresses count:", data.user.SavedAddresses.length);
+          setUserAddresses(data.user.SavedAddresses);
         } else {
-          console.error("No saved address found.");
+          console.warn("No SavedAddresses found in user data", data);
+          setUserAddresses([]);
         }
       } else {
-        console.error("Error fetching saved address: ", response.statusText);
+        const errorText = await responseClone.text();
+        console.error("Error fetching saved address. Status:", response.status, "Text:", errorText);
       }
     } catch (error) {
-      console.error("Error fetching saved address: ", error);
+      console.error("Exception fetching saved address:", error);
     }
   }
-
-  // const handleorder = () => {
-  //   router.push("/orderdetails");
-  // };
 
   const handleAddressChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedAddressId = event.target.value;
     const selected = userAddresses?.find((addr) => addr._id === selectedAddressId);
-    setSelectedAddress(selected || null); // Store the full address object
+    setSelectedAddress(selected || null);
+  };
+
+  console.log(handleAddressChange);
+
+  // Handler for when an address is saved from the map
+  const handleAddressSave = async (address: string, location: Address['location']) => {
+    if (!userInfo?.token) {
+      console.error("No user token found");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.menrol.com/api/v1/addUserAddress", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+        body: JSON.stringify({
+          coordinates: location.coordinates,
+          address: address
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        toast.success("Address saved successfully!");
+        // Trigger a refresh of the addresses
+        setAddressRefresh(prev => prev + 1);
+      } else {
+        toast.error(data.message || "Failed to save address");
+      }
+    } catch (error) {
+      console.error("Error saving address:", error);
+      toast.error("An error occurred while saving address");
+    }
   };
 
   const fetchServiceData = async () => {
@@ -182,13 +214,12 @@ const Checkout: React.FC = () => {
     });
   };
 
-
-
   const handleContinueCheckout = async () => {
     if (!selectedAddress) {
-      toast.error("Please select an address before proceeding.");
+      toast.error("Please select a saved address before proceeding.");
       return;
     }
+
     try {
       const response = await fetch("https://api.menrol.com/api/v1/purchaseService", {
         method: "POST",
@@ -202,11 +233,18 @@ const Checkout: React.FC = () => {
           address: selectedAddress.address,
         }),
       });
+
       const data = await response.json();
-      console.log(data);
-      router.push("/AloatedLabour");
+
+      if (data.success) {
+        toast.success("Order placed successfully!");
+        router.push("/AloatedLabour");
+      } else {
+        toast.error(data.message || "Failed to place order");
+      }
     } catch (error) {
       console.error("Error during checkout:", error);
+      toast.error("An error occurred during checkout");
     }
   };
 
@@ -232,7 +270,7 @@ const Checkout: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center bg-white  z-50">
+      <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
         <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
       </div>
     );
@@ -249,28 +287,62 @@ const Checkout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-8 px-[7%]">
-      <Map />
-      <div className=" mx-auto mb-3">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Address</h1>
-        <MdLocationPin className=" border-r absolute mt-3 ml-2" />
-        <select
-          value={selectedAddress?._id || ""}
-          onChange={handleAddressChange}
-          className="w-full py-3 px-7 rounded-lg bg-[#0054A524] "
-        >
-          <option value="" disabled>
-            Choose an address
-          </option>
-          {userAddresses &&
-            userAddresses.map((address) => (
-              <option key={address._id} value={address._id}>
-                {address.address}
-              </option>
-            ))}
-        </select>
-
+      {/* Map for Address Selection */}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">Search & Save Address</h1>
+        <Map
+          onAddressSave={handleAddressSave}
+          userToken={userInfo?.token}
+        />
       </div>
-      <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      {/* Select Saved Address */}
+      <div className="mx-auto mb-5">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">Select Saved Address</h1>
+        <div className="relative">
+          <MdLocationPin className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
+          <input
+            type="text"
+            placeholder="Select a saved address"
+            value={selectedAddress?.address || ""}
+            readOnly
+            className="w-full py-3 pl-7 pr-3 rounded-lg bg-[#0054A524] cursor-pointer"
+            onClick={() => setShowDropdown((prev) => !prev)}
+          />
+
+          {showDropdown && (
+            <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+              <p className="p-2 text-sm font-medium text-gray-700 bg-gray-100">Saved Addresses</p>
+              {userAddresses && userAddresses.length > 0 ? (
+                userAddresses.map((saved, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setSelectedAddress(saved);
+                      setShowDropdown(false);
+                    }}
+                    className="p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0"
+                  >
+                    {saved.address}
+                  </div>
+                ))
+              ) : (
+                <div className="p-3 text-gray-500">No saved addresses found</div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {selectedAddress && (
+          <div className="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="font-medium text-blue-800">Selected saved address:</p>
+            <p className="text-gray-700">{selectedAddress.address}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Cart Items and Checkout */}
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
           {serviceRequest.requestedServices.map((requestedService) =>
             requestedService.subcategory.map((subcategory) => (
@@ -294,16 +366,9 @@ const Checkout: React.FC = () => {
                     </span>
                     <p className="text-gray-500 xsm:text-xs">{subcategory.subcategoryId.description}</p>
                     <div className="flex items-center gap-2 ">
-
                       <span className="text-sm text-gray-500 xsm:text-[10px]">{formatTime(subcategory.scheduledTiming.startTime)}</span>
-                      <span className="text-sm text-gray-500 xsm:text-[10px]">To</span>
-                      <span className="text-sm text-gray-500 xsm:text-[10px]">{formatTime(subcategory.scheduledTiming.endTime)}</span>
                     </div>
                     <div className="flex justify-between items-center pt-2">
-                      <div className="flex items-baseline xsm:gap-4 justify-center gap-10">
-                        <span className="text-2xl xsm:text-base font-bold">₹{subcategory.selectedAmount} <span className="text-base xsm:text-[10px]">/Per worker</span></span>
-                        <span className="text-gray-500 xsm:text-[10px]"><span className="font-semibold text-black xsm:text-[10px] xsm:leading-tight">Required Workers:</span>{subcategory.workersRequirment}</span>
-                      </div>
                       <button
                         onClick={() =>
                           handleRemoveSubcategory(
@@ -311,7 +376,7 @@ const Checkout: React.FC = () => {
                             subcategory.subcategoryId._id
                           )
                         }
-                        className=" text-gray-400 transition-all duration-500 hover:scale-110 hover:text-red-500 text-xl font-medium"
+                        className="text-gray-400 transition-all duration-500 hover:scale-110 hover:text-red-500 text-xl font-medium"
                       >
                         <MdDelete />
                       </button>
@@ -323,35 +388,21 @@ const Checkout: React.FC = () => {
           )}
         </div>
 
-        <div className=" bg-white rounded-xl h-full p-6 shadow-sm sticky top-6">
-          <h2 className="text-2xl font-bold mb-6 xsm:text-base">Summary</h2>
-          <div className="space-y-6">
-            {serviceRequest.requestedServices.map((service) =>
-              service.subcategory.map((subcategory) => (
-                <div key={subcategory._id} className="flex justify-between items-center">
-                  <span className="text-gray-600 truncate flex-1 xsm:text-[10px]">{subcategory.title}</span>
-                  <div className="flex gap-2 xsm:text-[10px]">
-                    <span className="xsm:text-[10px]">{subcategory.selectedAmount} x {subcategory.workersRequirment}</span>
-                    <span className=" xsm:text-[10px]">=</span>
-                    <span className="text-gray-900 xsm:text-[10px]">₹{subcategory.selectedAmount * subcategory.workersRequirment}</span>
-                  </div>
-                </div>
-              ))
-            )}
-            <div className="border-t pt-4">
-              <div className="flex justify-between items-center font-bold xsm:text-[10px]">
-                <span>Included All Taxes</span>
-                <span>Total</span>
-                <span>₹{Math.floor(totalAmount)}</span>
-              </div>
-            </div>
-            <button
-              onClick={handleContinueCheckout}
-              className="w-full xsm:py-2 bg-[#0054A5] text-white py-3 rounded-lg"
-            >
-              Checkout
-            </button>
+        <div className="bg-white rounded-xl h-full p-6 shadow-sm sticky top-6">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
           </div>
+
+          <button
+            onClick={handleContinueCheckout}
+            disabled={!selectedAddress}
+            className={`w-full xsm:py-2 text-white py-3 rounded-lg transition-all ${selectedAddress
+              ? "bg-[#0054A5] hover:bg-[#004080]"
+              : "bg-gray-400 cursor-not-allowed"
+              }`}
+          >
+            {selectedAddress ? "Checkout" : "Select an Address First"}
+          </button>
         </div>
       </div>
     </div>

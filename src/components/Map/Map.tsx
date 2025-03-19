@@ -1,271 +1,379 @@
-"use client";
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  InfoWindow,
-  Autocomplete,
-  Marker,
-} from "@react-google-maps/api";
+import React, { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
+// Remove the unused import
+// import { OlaMaps } from 'olamaps-web-sdk';
 
-interface UserInfo {
-  token: string;
+interface Location {
+  type: string;
+  coordinates: [number, number];
+}
+
+interface PlaceResult {
+  place_id: string;
+  description: string;
+  structured_formatting?: {
+    main_text: string;
+    secondary_text: string;
+  };
+}
+
+// Define proper types for map and marker refs
+interface OlaMapInstance {
+  setCenter: (coords: [number, number]) => void;
+  setZoom: (level: number) => void;
+  addMarker: (options: { lngLat: [number, number], color: string } | [number, number]) => OlaMarker;
+  removeMarker: (marker: OlaMarker) => void;
+}
+
+interface OlaMarker {
+  // Add any marker properties you need to access
+  id?: string;
 }
 
 interface MapProps {
-  customLocations?: Array<{
-    lat: number;
-    lng: number;
-    title?: string;
-  }>;
-  showSearchBox?: boolean;
-  enableAddressSelection?: boolean;
-  onLocationSelect?: (location: { lat: number; lng: number; address: string }) => void;
+  onAddressSave?: (address: string, location: Location) => void;
+  userToken?: string;
+  baseUrl?: string;
+  subcategoryId?: string; // Add missing dependency
 }
 
 const Map: React.FC<MapProps> = ({
-  customLocations = [],
-  showSearchBox = true,
-  enableAddressSelection = true,
-  onLocationSelect,
+  onAddressSave,
+  userToken,
+  baseUrl = "https://api.menrol.com/api/v1/",
+  subcategoryId // Add missing dependency 
 }) => {
-  const [selectedLocation, setSelectedLocation] = useState<{
-    lat: number;
-    lng: number;
-    address: string | null;
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<PlaceResult[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedPlace, setSelectedPlace] = useState<{
+    address: string;
+    location: Location;
   } | null>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
+  // Fix any types
+  const mapRef = useRef<OlaMapInstance | null>(null);
+  const markerRef = useRef<OlaMarker | null>(null);
 
-  const [currentLocation, setCurrentLocation] = useState<{
-    lat: number;
-    lng: number;
-  } | null>(null);
+  const API_KEY = "rxMokzPXrhVgC0u414Bdl2JN1By2MIjLpoqsytwU";
 
-  const [searchBox, setSearchBox] =
-    useState<google.maps.places.Autocomplete | null>(null);
+  useEffect(() => {
+    const loadMap = async () => {
+      try {
+        const { OlaMaps } = await import('olamaps-web-sdk');
+        const olaMaps = new OlaMaps({ apiKey: API_KEY });
+        const map = olaMaps.init({
+          style: "https://api.olamaps.io/tiles/vector/v1/styles/default-light-standard/style.json",
+          container: 'map',
+          center: [77.61648476788898, 12.931423492103944],
+          zoom: 15,
+        });
+        mapRef.current = map as OlaMapInstance;  // Cast to our interface
+      } catch (error) {
+        console.error("Error loading map:", error);
+        toast.error("Failed to load map");
+      }
+    };
 
-  const mapRef = useRef<google.maps.Map | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
+    loadMap();
+  }, []); // No dependencies needed here
 
-  const containerStyle = {
-    width: "100%",
-    height: "300px",
+  useEffect(() => {
+    // Add click outside listener to close suggestions dropdown
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (searchTerm.length < 2) {
+        setSuggestions([]);
+        return;
+      }
+
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `https://api.olamaps.io/places/v1/autocomplete?input=${encodeURIComponent(
+            searchTerm
+          )}&api_key=${API_KEY}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch suggestions: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.predictions && Array.isArray(data.predictions)) {
+          setSuggestions(data.predictions);
+          setShowSuggestions(true);
+        } else {
+          console.warn("Unexpected API response format:", data);
+          setSuggestions([]);
+        }
+      } catch (error) {
+        console.error("Error fetching place suggestions:", error);
+        setSuggestions([]);
+        toast.error("Failed to load address suggestions");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if (searchTerm) {
+        fetchSuggestions();
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, subcategoryId]); // Include the missing dependency
+
+  const getPlaceDetails = async (placeId: string): Promise<{ address: string; location: { lat: number; lng: number } }> => {
+    try {
+      const response = await fetch(
+        `https://api.olamaps.io/places/v1/details?place_id=${placeId}&api_key=${API_KEY}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch place details: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      let location = null;
+      let address = "";
+
+      if (data.result) {
+        address = data.result.formatted_address || data.result.description || "";
+
+        if (data.result.geometry?.location) {
+          location = data.result.geometry.location;
+        }
+      }
+
+      if (!location) {
+        const geocodeResponse = await fetch(
+          `https://api.olamaps.io/maps/v1/geocode?address=${encodeURIComponent(address)}&api_key=${API_KEY}`
+        );
+
+        if (!geocodeResponse.ok) {
+          throw new Error(`Failed to geocode address: ${geocodeResponse.status}`);
+        }
+
+        const geocodeData = await geocodeResponse.json();
+
+        if (geocodeData.results && geocodeData.results[0]?.geometry?.location) {
+          location = geocodeData.results[0].geometry.location;
+        } else {
+          throw new Error("Could not find location coordinates");
+        }
+      }
+
+      return { address, location };
+    } catch (error) {
+      console.error("Error getting place details:", error);
+      throw error;
+    }
   };
 
-  const defaultCenter = currentLocation || { lat: 51.505, lng: -0.09 };
+  const handlePlaceSelect = async (place: PlaceResult) => {
+    setSearchTerm(place.description);
+    setShowSuggestions(false);
+    setIsLoading(true);
 
-  const storedUserInfo = localStorage.getItem("user-info");
-  const userInfo: UserInfo | null = storedUserInfo
-    ? JSON.parse(storedUserInfo)
-    : null;
+    try {
+      const placeDetails = await getPlaceDetails(place.place_id);
 
-  const handleMapClick = async (e: google.maps.MapMouseEvent) => {
-    if (!enableAddressSelection) return;
+      const coordinates: Location = {
+        type: "Point",
+        coordinates: [placeDetails.location.lng, placeDetails.location.lat],
+      };
 
-    if (e.latLng) {
-      const lat = e.latLng.lat();
-      const lng = e.latLng.lng();
+      // Center the map at the selected location
+      if (mapRef.current) {
+        mapRef.current.setCenter([placeDetails.location.lng, placeDetails.location.lat]);
+        mapRef.current.setZoom(16); // Zoom in a bit more for better visibility
 
-      const geocoder = new google.maps.Geocoder();
+        // Remove any existing marker
+        if (markerRef.current) {
+          mapRef.current.removeMarker(markerRef.current);
+        }
 
-      try {
-        const { results } = await geocoder.geocode({ location: { lat, lng } });
-        const newLocation = {
-          lat,
-          lng,
-          address: results?.[0]?.formatted_address || "Address not found",
-        };
-
-        setSelectedLocation(newLocation);
-        onLocationSelect?.(newLocation);
-      } catch (error) {
-        console.error("Geocoding error: ", error);
+        // Add a new marker
+        try {
+          // Using the correct method to add a marker based on OlaMaps SDK
+          // Note: The actual method may vary depending on the specific SDK version
+          const marker = mapRef.current.addMarker({
+            lngLat: [placeDetails.location.lng, placeDetails.location.lat],
+            color: "#FF0000", // Red color for better visibility
+          });
+          markerRef.current = marker;
+        } catch (markerError) {
+          console.error("Error adding marker:", markerError);
+          // Try alternative marker method if the first one fails
+          try {
+            const marker = mapRef.current.addMarker([placeDetails.location.lng, placeDetails.location.lat]);
+            markerRef.current = marker;
+          } catch (fallbackError) {
+            console.error("Fallback marker also failed:", fallbackError);
+          }
+        }
       }
+
+      // Set the selected place AFTER map/marker operations
+      setSelectedPlace({
+        address: placeDetails.address || place.description,
+        location: coordinates
+      });
+
+      // Show success toast AFTER setting the selected place
+      toast.success("Address selected successfully");
+    } catch (error) {
+      console.error("Error selecting place:", error);
+      toast.error("Failed to select address");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSaveAddress = async () => {
-    if (!selectedLocation || !userInfo) {
-      toast.error("User information or location is missing!");
+    if (!selectedPlace) {
+      toast.error("Please select an address first");
       return;
     }
 
-    try {
-      const response = await fetch(
-        "https://api.menrol.com/api/v1/addUserAddress",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userInfo?.token}`,
-          },
-          body: JSON.stringify({
-            coordinates: [selectedLocation?.lat, selectedLocation?.lng],
-            address: selectedLocation?.address,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error response: ", errorData);
-        toast.error(`Failed to save address: ${response.statusText}`);
-        return;
-      }
-
-      toast.success("Successfully added your address!");
-      await fetchSavedAddress();
-      // Add window reload after successful response
-      window.location.reload();
-    } catch (error) {
-      console.error("Error saving address: ", error);
-      toast.error("An error occurred while saving the address.");
-    }
-  };
-  const fetchSavedAddress = useCallback(async () => {
-    if (!userInfo) {
-      console.error("No userInfo found");
+    if (!userToken) {
+      toast.error("You must be logged in to save addresses");
       return;
     }
 
+    setIsLoading(true);
     try {
-      const response = await fetch("https://api.menrol.com/api/v1/getUser", {
+      const response = await fetch(`${baseUrl}addUserAddress`, {
+        method: "POST",
         headers: {
-          Authorization: `Bearer ${userInfo?.token}`,
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
         },
+        body: JSON.stringify({
+          coordinates: selectedPlace.location.coordinates,
+          address: selectedPlace.address,
+        }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data.user.SavedAddresses);
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast.success("Address saved successfully!");
+        if (onAddressSave) {
+          onAddressSave(selectedPlace.address, selectedPlace.location);
+        }
+        setSelectedPlace(null);
+        setSearchTerm("");
+
+        // Remove marker when address is saved
+        if (mapRef.current && markerRef.current) {
+          mapRef.current.removeMarker(markerRef.current);
+          markerRef.current = null;
+        }
       } else {
-        console.error("Error fetching saved address: ", response.statusText);
+        toast.error(data.message || "Failed to save address");
       }
     } catch (error) {
-      console.error("Error fetching saved address: ", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setCurrentLocation({ lat: latitude, lng: longitude });
-        },
-        (error) => {
-          console.error("Error fetching geolocation: ", error);
-          setCurrentLocation({ lat: 51.505, lng: -0.09 });
-        }
-      );
-    }
-
-    fetchSavedAddress();
-  }, [fetchSavedAddress]);
-
-  const handlePlaceSelect = () => {
-    if (searchBox) {
-      const place = searchBox.getPlace();
-
-      if (place?.geometry?.location) {
-        const lat = place.geometry.location.lat();
-        const lng = place.geometry.location.lng();
-        const newLocation = {
-          lat,
-          lng,
-          address: place.formatted_address || "Address not found",
-        };
-
-        setSelectedLocation(newLocation);
-        onLocationSelect?.(newLocation);
-
-        mapRef.current?.panTo({ lat, lng });
-        mapRef.current?.setZoom(14);
-      }
+      console.error("Error saving address:", error);
+      toast.error("An error occurred while saving the address");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <LoadScript
-      googleMapsApiKey="AIzaSyAmB63Ixx1tDyUyEvQ4KE1ymOM2YANXPn0"
-      libraries={["places"]}
-      id="google-map-load-script"
-    >
-      <div style={{ position: "relative", height: "100%" }}>
-        {showSearchBox && (
-          <Autocomplete
-            onLoad={(autocomplete) => setSearchBox(autocomplete)}
-            onPlaceChanged={handlePlaceSelect}
+    <div className="mb-6" ref={searchRef}>
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Search for an address..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onClick={() => {
+            if (suggestions.length > 0) {
+              setShowSuggestions(true);
+            }
+          }}
+          className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+        />
+        {searchTerm && (
+          <button
+            onClick={() => {
+              setSearchTerm("");
+              setSuggestions([]);
+              setSelectedPlace(null);
+              // Remove marker when clearing the search
+              if (mapRef.current && markerRef.current) {
+                mapRef.current.removeMarker(markerRef.current);
+                markerRef.current = null;
+              }
+            }}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
           >
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Search for a location"
-              className="absolute top-2 left-1/2 -translate-x-1/2 z-10 w-72 p-2 text-base border border-gray-300 rounded"
-            />
-          </Autocomplete>
+            ×
+          </button>
         )}
 
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={defaultCenter}
-          zoom={13}
-          onClick={handleMapClick}
-          onLoad={(map) => {
-            mapRef.current = map;
-          }}
-        >
-          {customLocations.map((location, index) => (
-            <Marker
-              key={`custom-${index}`}
-              position={{ lat: location.lat, lng: location.lng }}
-              title={location.title}
-            />
-          ))}
-
-          {selectedLocation && (
-            <>
-              <Marker
-                position={{
-                  lat: selectedLocation.lat,
-                  lng: selectedLocation.lng,
-                }}
-              />
-              <InfoWindow
-                position={{
-                  lat: selectedLocation.lat,
-                  lng: selectedLocation.lng,
-                }}
-              >
-                <div>
-                  <p>Latitude: {selectedLocation.lat}</p>
-                  <p>Longitude: {selectedLocation.lng}</p>
-                  <p>Address: {selectedLocation.address}</p>
-                </div>
-              </InfoWindow>
-            </>
-          )}
-        </GoogleMap>
-
-        {enableAddressSelection && (
-          <div className="mt-5 p-2">
-            <button
-              onClick={handleSaveAddress}
-              className="mr-2 p-2 text-base bg-blue-600 text-white border-none rounded cursor-pointer"
-            >
-              Save Address
-            </button>
-
-            <input
-              type="text"
-              value={selectedLocation?.address || ""}
-              readOnly
-              className="p-2 text-base border border-gray-300 rounded w-72"
-            />
+        {isLoading && (
+          <div className="absolute right-10 top-1/2 transform -translate-y-1/2">
+            <div className="animate-spin h-5 w-5 border-2 border-blue-500 border-t-transparent rounded-full"></div>
           </div>
         )}
       </div>
-    </LoadScript>
+
+      {showSuggestions && suggestions.length > 0 && (
+        <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              onClick={() => handlePlaceSelect(suggestion)}
+              className="p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-200 last:border-b-0"
+            >
+              <div className="font-medium">
+                {suggestion.structured_formatting?.main_text || suggestion.description.split(',')[0]}
+              </div>
+              {suggestion.structured_formatting?.secondary_text ? (
+                <div className="text-sm text-gray-500">
+                  {suggestion.structured_formatting.secondary_text}
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {selectedPlace && (
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="font-medium">Selected Address: {selectedPlace.address}</p>
+          <button
+            onClick={handleSaveAddress}
+            disabled={isLoading}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg mt-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
+          >
+            {isLoading ? "Saving..." : "Save Address"}
+          </button>
+        </div>
+      )}
+
+      <div id="map" className="h-96 mt-4 rounded-lg shadow-md"></div>
+    </div>
   );
 };
 

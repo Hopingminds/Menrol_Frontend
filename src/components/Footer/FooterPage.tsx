@@ -197,6 +197,26 @@ const FooterPage = () => {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link
+                href="/terms"
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/contactus"
+                )}`}
+              >
+                Terms of Use
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/privacy"
+                className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
+                  "/contactus"
+                )}`}
+              >
+                Privacy Policy
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -250,9 +270,9 @@ const FooterPage = () => {
       {/* Footer Bottom Section */}
       <hr className="my-8 border-gray-700" />
 
-      <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
-        <p className="mb-10">Copyright &copy; {currentYear} Menrol</p>
-        <p className="flex space-x-4 mb-10">
+      <div className="flex flex-col md:flex-row justify-center items-center text-sm text-gray-400 font-dm-sans tracking-wide leading-relaxed">
+        <p className="mb-10">Copyright &copy; {currentYear} Menrol Skills Private Limited</p>
+        {/* <p className="flex space-x-4 mb-10">
           <Link href="/terms" className="hover:underline decoration-[#0054A5]">
             Terms of Use
           </Link>
@@ -263,7 +283,7 @@ const FooterPage = () => {
           >
             Privacy Policy
           </Link>
-        </p>
+        </p> */}
       </div>
 
       <ToastContainer />

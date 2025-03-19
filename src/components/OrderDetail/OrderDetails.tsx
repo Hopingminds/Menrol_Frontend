@@ -137,24 +137,24 @@ const OrderDetails = () => {
     fetchOrderData();
   }, [userInfo]);
 
-  const handleModalOpen = (
-    startTime: string,
-    endTime: string,
-    totalAmount: number,
-    orderId: string,
-    serviceId: string,
-    subcategoryId: string
-  ) => {
-    setModalContent({
-      startTime,
-      endTime,
-      totalAmount,
-      orderId,
-      serviceId,
-      subcategoryId,
-    });
-    setIsModalOpen(true);
-  };
+  // const handleModalOpen = (
+  //   startTime: string,
+  //   endTime: string,
+  //   totalAmount: number,
+  //   orderId: string,
+  //   serviceId: string,
+  //   subcategoryId: string
+  // ) => {
+  //   setModalContent({
+  //     startTime,
+  //     endTime,
+  //     totalAmount,
+  //     orderId,
+  //     serviceId,
+  //     subcategoryId,
+  //   });
+  //   setIsModalOpen(true);
+  // };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -397,7 +397,7 @@ const OrderDetails = () => {
                                             Cancel
                                           </button>
 
-                                          <button
+                                          {/* <button
                                             onClick={() =>
                                               handleModalOpen(
                                                 subcat.scheduledTiming
@@ -412,7 +412,7 @@ const OrderDetails = () => {
                                             className="flex-1 xsm:text-xs bg-[#0054A5] hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                                           >
                                             Add Extra Work
-                                          </button>
+                                          </button> */}
                                         </div>
                                       )}
                                   </div>
@@ -432,25 +432,6 @@ const OrderDetails = () => {
                         </div>
 
 
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <p className="text-gray-600 font-medium mb-2">
-                            Payment Details
-                          </p>
-                          <div className="flex justify-between text-sm">
-                            <div>
-                              <p className="text-gray-500">Total Amount</p>
-                              <p className="font-medium">
-                                ₹{Math.round(order.payment.totalamount)}
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-gray-500">Paid Amount</p>
-                              <p className="font-medium">
-                                ₹{Math.round(order.payment.paidAmount)}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   )

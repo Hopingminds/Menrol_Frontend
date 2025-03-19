@@ -2,12 +2,13 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 import { HiMiniCheck } from "react-icons/hi2";
 
+// All the interfaces remain the same
 interface UserInfo {
     id: string;
     name: string;
@@ -40,7 +41,6 @@ interface SubcategoryData {
 interface Subcategory {
     scheduledTiming: {
         startTime: string;
-        endTime: string;
     };
     subcategoryId: {
         _id: string;
@@ -52,11 +52,11 @@ interface Subcategory {
     status: string;
     instructions: string | null;
     instructionsImages: string[];
+    instructionAudio?: string;
     _id: string;
 }
 
 interface ServiceRequest {
-    instImages: File | null;
     service: string;
     subcategory: {
         subcategoryId: string;
@@ -65,32 +65,41 @@ interface ServiceRequest {
         workersRequirment: number;
         selectedAmount: number;
         instructions: string;
+        instructionsImages: string[];
+        instructionAudio?: string;
         scheduledTiming: {
             startTime: string;
-            endTime: string;
         };
     };
 }
 
-const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("en-IN", {
-        style: "currency",
-        currency: "INR",
-        maximumFractionDigits: 0,
-    }).format(price);
-};
+interface FileResponse {
+    path: string;
+    // You can add any other properties that are returned by the API
+}
 
-const Adddetail = () => {
+// Loading component for suspense fallback
+function LoadingSpinner() {
+    return (
+        <div className="absolute inset-0 flex items-center justify-center bg-white z-50">
+            <div className="animate-spin w-16 h-16 border-t-4 border-b-4 border-blue-500 rounded-full"></div>
+        </div>
+    );
+}
+
+// Main content component that uses useSearchParams
+function AddDetailContent() {
     const searchParams = useSearchParams();
     const serviceId = searchParams.get("service");
-    const subcategoryId = searchParams.get("subcategory");
+
+    // Handle multiple subcategories
+    const subcategoriesParam = searchParams.get("subcategories");
+    const [subcategoryIds, setSubcategoryIds] = useState<string[]>([]);
+    const [currentSubcategoryIndex, setCurrentSubcategoryIndex] = useState<number>(0);
 
     const [startDate, setStartDate] = useState<string>("");
-    const [endDate, setEndDate] = useState<string>("");
     const [instructions, setInstructions] = useState<string>("");
-    const [pricingType, setPricingType] = useState<string>("daily");
     const [selectedPrice, setSelectedPrice] = useState<number>(0);
-    const [workers, setWorkers] = useState<number>(1);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
@@ -100,8 +109,37 @@ const Adddetail = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [cartItems, setCartItems] = useState<string[]>([]);
+    const [instructionImages, setInstructionImages] = useState<string[]>([]);
+    const [instructionAudio, setInstructionAudio] = useState<string | null>(null);
+    const [uploadingImage, setUploadingImage] = useState<boolean>(false);
+    const [uploadingAudio, setUploadingAudio] = useState<boolean>(false);
+    const [isRecording, setIsRecording] = useState<boolean>(false);
+    const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(null);
+    const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+    const [progress, setProgress] = useState<number>(0);
 
     const router = useRouter();
+    const pricingType = "daily";
+
+    console.log(cartItems);
+    console.log(audioChunks);
+    
+    // Parse subcategory IDs from URL
+    useEffect(() => {
+        if (subcategoriesParam) {
+            const ids = subcategoriesParam.split(',');
+            setSubcategoryIds(ids);
+            setProgress(0);
+        } else {
+            // Fall back to single subcategory mode
+            const singleSubcategoryId = searchParams.get("subcategory");
+            if (singleSubcategoryId) {
+                setSubcategoryIds([singleSubcategoryId]);
+            } else {
+                setError("No subcategory IDs found");
+            }
+        }
+    }, [subcategoriesParam, searchParams]);
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user-info");
@@ -112,31 +150,42 @@ const Adddetail = () => {
     }, []);
 
     useEffect(() => {
-        console.log(isSubmitting);
-        const fetchSubcategoryData = async () => {
-            try {
-                const itemParam = searchParams.get('service');
-                console.log(itemParam);
-                const response = await fetch(
-                    `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${subcategoryId}`
-                );
+        // Reset form when moving to next subcategory
+        if (subcategoryIds.length > 0) {
+            setStartDate("");
+            setInstructions("");
+            setSelectedPrice(0);
+            setInstructionImages([]);
+            setInstructionAudio(null);
+            setError(null);
+            setLoading(true);
+            fetchSubcategoryData();
+        }
+    }, [currentSubcategoryIndex, subcategoryIds]);
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch subcategory data');
-                }
+    const fetchSubcategoryData = async () => {
+        if (!serviceId || subcategoryIds.length === 0) return;
 
-                const data = await response.json();
-                setSubcategoryData(data);
-            } catch (err) {
-                console.error('Error:', err);
-                setError(err instanceof Error ? err.message : 'An error occurred');
-            } finally {
-                setLoading(false);
+        try {
+            const currentSubcategoryId = subcategoryIds[currentSubcategoryIndex];
+
+            const response = await fetch(
+                `https://api.menrol.com/api/v1/getSubcategory?categoryId=${serviceId}&subcategoryId=${currentSubcategoryId}`
+            );
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch subcategory data');
             }
-        };
 
-        fetchSubcategoryData();
-    }, [serviceId, subcategoryId]);
+            const data = await response.json();
+            setSubcategoryData(data);
+        } catch (err) {
+            console.error('Error:', err);
+            setError(err instanceof Error ? err.message : 'An error occurred');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
         if (userInfo) {
@@ -144,7 +193,7 @@ const Adddetail = () => {
         }
     }, [userInfo]);
 
-    // New useEffect to handle initial price setting
+    // Set initial price setting
     useEffect(() => {
         if (subcategoryData?.data) {
             const currentPriceRange = subcategoryData.data.pricing.find(
@@ -202,39 +251,10 @@ const Adddetail = () => {
     const { title, description, image } = subcategoryData.data;
     const selectedItem = subcategoryData.data;
 
-    const priceRange = selectedItem?.pricing.find((p) => p.pricingtype === pricingType) || null;
-
-    const validateHourlyBooking = (start: string, end: string): boolean => {
-        if (!start || !end) return false;
-
-        const startTime = new Date(start);
-        const endTime = new Date(end);
-
-        if (startTime.toDateString() !== endTime.toDateString()) {
-            toast.warning("For hourly booking, start and end time must be on the same day");
-            return false;
-        }
-
-        const diffInHours = (endTime.getTime() - startTime.getTime()) / (1000 * 60 * 60);
-
-        if (diffInHours > 8) {
-            toast.warning("Hourly booking cannot exceed 8 hours");
-            return false;
-        }
-
-        if (diffInHours <= 0) {
-            toast.warning("End time must be after start time");
-            return false;
-        }
-
-        return true;
-    };
-
     const getCurrentDateTime = () => {
         const now = new Date();
         return now.toISOString().slice(0, 16);
     };
-
 
     const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newStartDate = e.target.value;
@@ -247,74 +267,145 @@ const Adddetail = () => {
         }
 
         setStartDate(newStartDate);
-
-        if (pricingType === "hourly") {
-            const endDateTime = new Date(selectedDateTime);
-            console.log(endDateTime);
-            // endDateTime.setHours(endDateTime.getHours() + 1);
-            // setEndDate(endDateTime.toISOString().slice(0, 16));
-        }
-
     };
 
-    const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newEndDate = e.target.value;
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files || !userInfo?.token) {
+            return;
+        }
+    
+        const files = Array.from(e.target.files);
+    
+        // ✅ Check for max image limit
+        if (instructionImages.length + files.length > 10) {
+            toast.error("Maximum 10 images allowed");
+            return;
+        }
+        try {
+            setUploadingImage(true);
+            const formData = new FormData();
+            files.forEach((file) => {
+                formData.append('instImages', file);
+            });
+    
+            const response = await fetch(
+                "https://api.menrol.com/api/v1/uploadServiceInstructionImage",
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${userInfo?.token}`,
+                    },
+                    body: formData,
+                }
+            );
+            if (!response.ok) {
+                throw new Error("Failed to upload images");
+            }
+    
+            const data = await response.json();
+            if (data.success && Array.isArray(data.file)) {
+                // Define the type of file in the response
+                const uploadedUrls = (data.file as FileResponse[]).map((file) => file.path);
+    
+                setInstructionImages(prev => [...prev, ...uploadedUrls]);
+    
+                toast.success("Images uploaded successfully");
+            } else {
+                throw new Error(data.message || "Failed to upload images");
+            }
+    
+        } catch (err) {
+            toast.error(err instanceof Error ? err.message : "Failed to upload images");
+        } finally {
+            setUploadingImage(false);
+        }
+    };
 
-        if (pricingType === "hourly") {
-            const startDateTime = new Date(startDate);
-            const endDateTime = new Date(newEndDate);
+    const handleStartRecording = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const recorder = new MediaRecorder(stream);
+            const chunks: Blob[] = [];
 
-            if (startDateTime.toDateString() !== endDateTime.toDateString()) {
-                toast.warning("For hourly booking, end time must be on the same day");
-                return;
+            recorder.ondataavailable = (e) => {
+                if (e.data.size > 0) {
+                    chunks.push(e.data);
+                }
+            };
+
+            recorder.onstop = () => {
+                const audioBlob = new Blob(chunks, { type: 'audio/mpeg' });
+                setUploadingAudio(true);
+                uploadAudioToServer(audioBlob); // Upload audio to API
+            };
+
+            recorder.start();
+            setAudioChunks(chunks);
+            setMediaRecorder(recorder);
+            setIsRecording(true);
+
+            toast.info("Recording started. Speak now...");
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to start recording. Mic permission denied?");
+        }
+    };
+
+    const handleStopRecording = () => {
+        if (!mediaRecorder) {
+            toast.error("No recording in progress");
+            return;
+        }
+
+        mediaRecorder.stop();
+        setIsRecording(false);
+        toast.info("Recording stopped. Uploading...");
+    };
+
+    const uploadAudioToServer = async (audioBlob: Blob) => {
+        try {
+            const formData = new FormData();
+            // Correct key based on API requirements
+            formData.append('instAudio', audioBlob, `audio_${Date.now()}.mp3`);
+
+            const response = await fetch('https://api.menrol.com/api/v1/uploadServiceInstructionAudio', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${userInfo?.token}`,
+                    // Do NOT manually set Content-Type for FormData
+                },
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error("Upload failed. Server error!");
             }
 
-            const diffInHours = (endDateTime.getTime() - startDateTime.getTime()) / (1000 * 60 * 60);
-            if (diffInHours > 8) {
-                toast.warning("Hourly booking cannot exceed 8 hours");
-                return;
+            const result = await response.json();
+
+            if (result.success) {
+                toast.success("Audio uploaded successfully!");
+
+                // If API returns a filePath, set it here
+                setInstructionAudio(result.file[0].path || null);
+            } else {
+                toast.error(result.message || "Upload failed!");
             }
-        }
-
-        setEndDate(newEndDate);
-    };
-
-    const handlePricingTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const newPricingType = e.target.value;
-        setPricingType(newPricingType);
-
-
-        const newPriceRange = selectedItem?.pricing.find(p => p.pricingtype === newPricingType);
-        if (newPriceRange) {
-            setSelectedPrice(newPriceRange.from);
-        }
-
-        if (newPricingType === "hourly" && startDate) {
-            const startDateTime = new Date(startDate);
-            const endDateTime = new Date(startDateTime);
-            endDateTime.setHours(startDateTime.getHours() + 1);
-            setEndDate(endDateTime.toISOString().slice(0, 16));
+        } catch (error) {
+            console.error(error);
+            toast.error("Audio upload failed.");
+        } finally {
+            setUploadingAudio(false);
         }
     };
 
-    const calculateTotalDays = () => {
-        if (!startDate || !endDate) return 0;
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-
-        let totalTime = 0;
-        if (pricingType === "hourly") {
-            const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60)), 1);
-        } else if (pricingType === "daily" || pricingType === "contract") {
-            const diffInMs = end.getTime() - start.getTime();
-            totalTime = Math.max(Math.ceil(diffInMs / (1000 * 60 * 60 * 24)), 1);
-        }
-
-        return selectedPrice * workers * totalTime;
+    const removeImage = (indexToRemove: number) => {
+        setInstructionImages(prev => prev.filter((_, index) => index !== indexToRemove));
     };
 
-    const totalPrice = calculateTotalDays();
+    const removeAudio = () => {
+        setInstructionAudio(null);
+    };
 
     const handleSubmit = async () => {
         if (!userInfo?.token) {
@@ -325,64 +416,41 @@ const Adddetail = () => {
         try {
             const currentDateTime = new Date();
             const startDateTime = new Date(startDate);
-            const endDateTime = new Date(endDate);
 
+            if (!startDate) {
+                toast.warning("Please select a start date");
+                return;
+            }
 
             if (startDateTime < currentDateTime) {
                 toast.error("Start time cannot be before current time");
                 return;
             }
 
-            if (!startDate || !endDate) {
-                toast.warning("Please select both start and end dates");
-                return;
-            }
-
-            if (startDateTime >= endDateTime) {
-                toast.warning("End time must be after start time");
-                return;
-            }
-
-            if (pricingType === "hourly" && !validateHourlyBooking(startDate, endDate)) {
-                return;
-            } else {
-                setIsSubmitting(true);
-                toast.success("Service request added successfully!", {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
-            }
-
+            setIsSubmitting(true);
             setError(null);
 
-            const serviceRequest: ServiceRequest = {
-                instImages: null,
+            // Build the service request object
+            const serviceRequest = {
                 service: serviceId ?? "",
                 subcategory: {
-                    subcategoryId: selectedItem?._id || " ",
+                    subcategoryId: selectedItem?._id || "",
                     title: selectedItem?.title || "",
                     requestType: pricingType,
-                    workersRequirment: workers,
-                    selectedAmount: selectedPrice,
                     instructions,
+                    instructionsImages: instructionImages,
+                    instructionAudio: instructionAudio,
                     scheduledTiming: {
                         startTime: startDateTime.toISOString(),
-                        endTime: endDateTime.toISOString(),
                     },
                 },
             };
 
+            // Since backend now expects JSON format (no stringify)
             const payload = {
                 service: serviceRequest.service,
-                subcategory: JSON.stringify(serviceRequest.subcategory),
+                subcategory: serviceRequest.subcategory, // no need for JSON.stringify
             };
-
-            const jsonData = JSON.stringify(payload);
 
             const response = await fetch(
                 "https://api.menrol.com/api/v1/addServiceRequest",
@@ -392,37 +460,79 @@ const Adddetail = () => {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${userInfo?.token}`,
                     },
-                    body: jsonData,
+                    body: JSON.stringify(payload), // convert the full object to JSON string, not nested stringify
                 }
             );
 
             if (!response.ok) {
-                console.error("API Response Error:", await response.text());
-                throw new Error(
-                    `Failed to fetch service details. Status: ${response.status}`
-                );
+                const errorResponse = await response.text();
+                console.error("API Response Error:", errorResponse);
+                throw new Error(`Failed to add service request. Status: ${response.status}`);
             }
 
             const data = await response.json();
             if (data.success) {
-                router.push("/checkout");
+                toast.success(`Service request added successfully!`, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                });
+
+                // Check if this is the last subcategory
+                if (currentSubcategoryIndex < subcategoryIds.length - 1) {
+                    // Move to the next subcategory
+                    setCurrentSubcategoryIndex(currentSubcategoryIndex + 1);
+                    setProgress((currentSubcategoryIndex + 1) / subcategoryIds.length * 100);
+                } else {
+                    // All subcategories processed, go to checkout
+                    router.push("/checkout");
+                }
             } else {
                 throw new Error(data.message || "Failed to add service request");
             }
+
         } catch (err) {
             console.error("Error submitting service request:", err);
             toast.error(err instanceof Error ? err.message : "Failed to submit service request");
-            setError(
-                err instanceof Error ? err.message : "Failed to submit service request"
-            );
+            setError(err instanceof Error ? err.message : "Failed to submit service request");
         } finally {
             setIsSubmitting(false);
         }
     };
+
+    const handleSkip = () => {
+        if (currentSubcategoryIndex < subcategoryIds.length - 1) {
+            toast.info(`Skipping ${title}...`);
+            setCurrentSubcategoryIndex(currentSubcategoryIndex + 1);
+            setProgress((currentSubcategoryIndex + 1) / subcategoryIds.length * 100);
+        } else {
+            // All subcategories processed, go to checkout
+            router.push("/checkout");
+        }
+    };
+
     return (
         <>
             <ToastContainer />
             <div className='px-[7%] py-[4%]'>
+                {/* Progress bar */}
+                <div className="w-full bg-gray-200 h-3 rounded-full mb-6">
+                    <div
+                        className="bg-blue-500 h-3 rounded-full"
+                        style={{ width: `${progress}%` }}
+                    ></div>
+                </div>
+
+                {/* Subcategory counter */}
+                <div className="text-center mb-4">
+                    <p className="text-gray-600">
+                        Service {currentSubcategoryIndex + 1} of {subcategoryIds.length}
+                    </p>
+                </div>
+
                 {showLoginPrompt ? (
                     <div className="flex flex-col items-center justify-center p-8">
                         <div className="text-xl font-semibold mb-4">Please Log In</div>
@@ -458,7 +568,7 @@ const Adddetail = () => {
                         <div className='border w-full rounded-xl px-6 py-4'>
                             <Image
                                 src={image}
-                                alt={'efegefv'}
+                                alt={title}
                                 height={500}
                                 width={500}
                                 className='w-full lg:h-[400px] md:h-[200px] object-cover rounded-xl'
@@ -484,42 +594,25 @@ const Adddetail = () => {
                         <div className='border justify-between rounded-xl w-full p-5'>
                             <h1 className='text-3xl font-lexend font-bold'>Book your service</h1>
                             <div className='flex flex-col items-center justify-between gap-10 p-4 w-full'>
-                                <div className='w-full'>
+                                <div className='w-full hidden'>
                                     <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Pricing Type:</label>
                                     <select
                                         value={pricingType}
-                                        onChange={handlePricingTypeChange}
+                                        disabled={true}
                                         className="w-full border border-gray-400 rounded-2xl p-4"
                                     >
-                                        {selectedItem.pricing.map((price) => (
-                                            <option key={price._id} value={price.pricingtype}>
-                                                {price.pricingtype.charAt(0).toUpperCase() +
-                                                    price.pricingtype.slice(1)}
-                                            </option>
-                                        ))}
+                                        <option value="daily">Daily</option>
                                     </select>
                                 </div>
-                                <div className='flex lg:flex-row xsm:flex-col md:flex-col gap-16 w-full'>
-                                    <div className='w-full'>
-                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
-                                        <input
-                                            type="datetime-local"
-                                            value={startDate}
-                                            min={getCurrentDateTime()}
-                                            onChange={handleStartDateChange}
-                                            className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
-                                        />
-                                    </div>
-                                    <div className='w-full'>
-                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>End Date:</label>
-                                        <input
-                                            type="datetime-local"
-                                            value={endDate}
-                                            onChange={handleEndDateChange}
-                                            min={startDate}
-                                            className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
-                                        />
-                                    </div>
+                                <div className='w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Start Date:</label>
+                                    <input
+                                        type="datetime-local"
+                                        value={startDate}
+                                        min={getCurrentDateTime()}
+                                        onChange={handleStartDateChange}
+                                        className='border px-5 py-4 border-gray-400 active:border-blue-600 rounded-2xl w-full'
+                                    />
                                 </div>
                                 <div className='flex flex-col w-full'>
                                     <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Instructions:</label>
@@ -531,55 +624,97 @@ const Adddetail = () => {
                                     />
                                 </div>
 
-                                {priceRange && (
-                                    <div className='w-full'>
-                                        <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Select Price ({formatPrice(priceRange.from)} - {formatPrice(priceRange.to)})</label>
+                                {/* Image Upload */}
+                                <div className='flex flex-col w-full'>
+                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Instruction Images (Maximum 10):</label>
+                                    <div className='flex flex-col gap-3'>
                                         <input
-                                            type="range"
-                                            min={priceRange.from}
-                                            max={priceRange.to}
-                                            value={selectedPrice}
-                                            onChange={(e) => setSelectedPrice(parseInt(e.target.value))}
-                                            className='w-full'
-                                            step={(priceRange.to - priceRange.from) / 100}
+                                            type="file"
+                                            onChange={handleImageUpload}
+                                            accept="image/*"
+                                            multiple
+                                            className='border px-5 py-4 border-gray-400 rounded-2xl w-full'
+                                            disabled={uploadingImage || instructionImages.length >= 10}
                                         />
-                                        <p className="text-sm text-gray-500 mt-1">
-                                            Selected Price: {formatPrice(selectedPrice)}
-                                        </p>
-                                    </div>
-                                )}
+                                        {uploadingImage && <p className="text-blue-500">Uploading images...</p>}
 
-                                <div className='w-full'>
-                                    <label htmlFor="" className='text-gray-400 font-lexend font-bold text-sm'>Workers Required:</label>
-                                    <input
-                                        type="number"
-                                        value={workers}
-                                        onChange={(e) => setWorkers(parseInt(e.target.value))}
-                                        min={1}
-                                        className='w-full border border-gray-400 rounded-2xl p-4'
-                                    />
+                                        <div className="text-sm text-gray-500">
+                                            {instructionImages.length}/10 images uploaded
+                                        </div>
+
+                                        {instructionImages.length > 0 && (
+                                            <div className="flex flex-wrap gap-3 mt-3">
+                                                {instructionImages.map((imgUrl, index) => (
+                                                    <div key={index} className="relative">
+                                                        <img src={imgUrl} alt={`Instruction ${index + 1}`} className="w-20 h-20 object-cover rounded-md" />
+                                                        <button
+                                                            onClick={() => removeImage(index)}
+                                                            className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
+                                                        >
+                                                            ×
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                                <div className='flex justify-start w-full'>
-                                    <h1 className='text-2xl font-lexend font-bold'>Total Price: </h1>
-                                    <span className='text-2xl font-bold font-lexend'>{formatPrice(totalPrice)}</span>
+
+                                {/* Audio Recording Section */}
+                                <div className='flex flex-col w-full'>
+                                    <label className='text-gray-400 font-lexend font-bold text-sm'>Instruction Audio:</label>
+                                    <div className='flex flex-col gap-3'>
+                                        <div className="flex gap-3">
+                                            {!isRecording ? (
+                                                <button
+                                                    onClick={handleStartRecording}
+                                                    disabled={instructionAudio !== null || uploadingAudio}
+                                                    className={`px-5 py-3 rounded-2xl ${instructionAudio === null && !uploadingAudio ? 'bg-[#0054A5] text-white' : 'bg-gray-300 text-gray-600'} font-semibold`}
+                                                >
+                                                    Start Recording
+                                                </button>
+                                            ) : (
+                                                <button
+                                                    onClick={handleStopRecording}
+                                                    className="px-5 py-3 rounded-2xl bg-red-500 text-white font-semibold flex items-center gap-2"
+                                                >
+                                                    <span className="animate-pulse w-3 h-3 bg-white rounded-full"></span>
+                                                    Stop Recording
+                                                </button>
+                                            )}
+                                        </div>
+
+                                        {uploadingAudio && <p className="text-blue-500">Processing audio...</p>}
+
+                                        {instructionAudio && (
+                                            <div className="flex items-center gap-3 mt-3">
+                                                <audio controls src={instructionAudio} className="w-full" />
+                                                <button
+                                                    onClick={removeAudio}
+                                                    className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                                                >
+                                                    ×
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
+
                                 <div className='flex w-full gap-5'>
-                                    <button className='w-full p-4 md:p-2 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'>Cancel</button>
-                                    {cartItems.includes(selectedItem?._id) ? (
-                                        <button
-                                            onClick={() => router.push('/checkout')}
-                                            className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
-                                        >
-                                            Go to Cart
-                                        </button>
-                                    ) : (
-                                        <button
-                                            onClick={handleSubmit}
-                                            className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
-                                        >
-                                            Add to Cart
-                                        </button>
-                                    )}
+                                    <button
+                                        onClick={handleSkip}
+                                        className='w-full p-4 md:p-2 rounded-xl bg-[#D9D9D994] text-black font-lexend font-bold'
+                                    >
+                                        Skip this service
+                                    </button>
+
+                                    <button
+                                        onClick={handleSubmit}
+                                        disabled={isSubmitting}
+                                        className="w-full lg:p-4 md:p-2 rounded-xl bg-[#0054A5] text-white font-lexend font-bold"
+                                    >
+                                        {isSubmitting ? "Adding..." : currentSubcategoryIndex === subcategoryIds.length - 1 ? "Add & Checkout" : "Add & Continue"}
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -587,7 +722,16 @@ const Adddetail = () => {
                 )}
             </div>
         </>
-    )
+    );
 }
 
-export default Adddetail
+// Wrapper component that implements Suspense boundary
+const Adddetail = () => {
+    return (
+        <Suspense fallback={<LoadingSpinner />}>
+            <AddDetailContent />
+        </Suspense>
+    );
+}
+
+export default Adddetail;
