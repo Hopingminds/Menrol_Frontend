@@ -155,12 +155,12 @@ function AddDetailContent() {
     }, []);
 
     // Handle successful login
-    // const handleLoginSuccess = (userData: UserInfo) => {
-    //     setUserInfo(userData);
-    //     setIsAuthenticated(true);
-    //     setIsModalOpen(false);
-    //     fetchCart(); // Fetch cart after successful login
-    // };
+    const handleLoginSuccess = (userData: UserInfo) => {
+        setUserInfo(userData);
+        setIsAuthenticated(true);
+        setIsModalOpen(false);
+        fetchCart(); // Fetch cart after successful login
+    };
 
     useEffect(() => {
         // Reset form when moving to next subcategory
@@ -324,7 +324,7 @@ function AddDetailContent() {
 
                 setInstructionImages(prev => [...prev, ...uploadedUrls]);
 
-                toast.success("Images uploaded successfully");
+                // toast.success("Images uploaded successfully");
             } else {
                 throw new Error(data.message || "Failed to upload images");
             }
@@ -359,7 +359,7 @@ function AddDetailContent() {
             setMediaRecorder(recorder);
             setIsRecording(true);
 
-            toast.info("Recording started. Speak now...");
+            // toast.info("Recording started. Speak now...");
         } catch (error) {
             console.error(error);
             toast.error("Failed to start recording. Mic permission denied?");
@@ -374,7 +374,7 @@ function AddDetailContent() {
 
         mediaRecorder.stop();
         setIsRecording(false);
-        toast.info("Recording stopped. Uploading...");
+        // toast.info("Recording stopped. Uploading...");
     };
 
     const uploadAudioToServer = async (audioBlob: Blob) => {
@@ -399,7 +399,7 @@ function AddDetailContent() {
             const result = await response.json();
 
             if (result.success) {
-                toast.success("Audio uploaded successfully!");
+                // toast.success("Audio uploaded successfully!");
 
                 // If API returns a filePath, set it here
                 setInstructionAudio(result.file[0].path || null);
@@ -732,7 +732,8 @@ function AddDetailContent() {
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
                 isLoginMode={isLoginMode}
-                setIsLoginMode={setIsLoginMode}         
+                setIsLoginMode={setIsLoginMode}
+                onLoginSuccess={handleLoginSuccess}
             />
         </>
     );

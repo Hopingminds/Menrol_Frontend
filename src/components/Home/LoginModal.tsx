@@ -4,16 +4,27 @@ import { BsTelephone } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 
+// Updated interface to include onLoginSuccess callback
+interface UserData {
+  token: string;
+  phone: string;
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
 interface LoginModalProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isLoginMode: boolean;
   setIsLoginMode: React.Dispatch<React.SetStateAction<boolean>>;
+  onLoginSuccess?: (userData: UserData) => void; // Updated to use UserData type
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({
   isModalOpen,
   setIsModalOpen,
+  onLoginSuccess
 }) => {
   const [phone, setPhoneNo] = useState("");
   const [otp, setOtp] = useState("");
@@ -22,6 +33,7 @@ const LoginModal: React.FC<LoginModalProps> = ({
   const [otpSent, setOtpSent] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
   const [countdown, setCountdown] = useState(30);
+
 
   // Reset state when modal is closed
   useEffect(() => {
@@ -92,7 +104,15 @@ const LoginModal: React.FC<LoginModalProps> = ({
       const data = await response.json();
 
       if (response.ok && data.token) {
-        const userInfo = { token: data.token, phone };
+        const userInfo = {
+          token: data.token,
+          phone,
+          id: data.id || '',
+          name: data.name || '',
+          email: data.email || '',
+          role: data.role || ''
+        };
+
         localStorage.setItem("user-info", JSON.stringify(userInfo));
         window.dispatchEvent(new Event("storage"));
 
@@ -105,9 +125,15 @@ const LoginModal: React.FC<LoginModalProps> = ({
           theme: "colored",
         });
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        // Call the callback if provided
+        if (onLoginSuccess) {
+          onLoginSuccess(userInfo);
+        } else {
+          // Only reload if callback is not provided
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
       } else {
         setError(data.message || "Invalid OTP. Please try again.");
       }
