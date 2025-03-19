@@ -343,7 +343,7 @@ const OurServices = () => {
       ))}
 
       <div>
-        <Image src="/Images/banner5.jpg" alt="Hi this is the banner " className="w-full h-full cursor-pointer " onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} width={1000} height={100} />
+        <Image src="/Images/banner5.jpg" alt="Hi this is the banner " className="w-full h-full cursor-pointer " onClick={() => handleServiceDetails1("67bee1c8d722ecec61234be8")} width={1000} height={100} />
       </div>
 
       {services?.map((service, index) => (
@@ -405,7 +405,7 @@ const OurServices = () => {
 
       ))}
       <div>
-        <Image src="/Images/banner7.jpg" alt="Hi this is the banner " className="w-full h-[80%] cursor-pointer" width={1000} height={100} onClick={() => handleServiceDetails1("677cfaf7607e149e63802e11")} />
+        <Image src="/Images/banner7.jpg" alt="Hi this is the banner " className="w-full h-[80%] cursor-pointer" width={1000} height={100} onClick={() => handleServiceDetails1("67bee1c8d722ecec61234be8")} />
       </div>
 
 
