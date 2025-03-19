@@ -106,11 +106,11 @@ const PrivacyPolicy: FC = () => {
             </p>
 
             <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row gap-8 relative">
-                <aside className={`${isSmallScreen ? 'sticky top-0 bg-gray-50 z-10 py-2' : 'lg:w-1/4 lg:sticky lg:top-8 h-fit xl:w-1/4 xl:sticky xl:top-16'}`}>
+                <aside className={`${isSmallScreen ? 'sticky top-0 bg-gray-50 z-10 py-2' : 'lg:w-1/4 lg:sticky lg:top-8 h-fit xl:w-1/4 xl:sticky xl:top-16 '}`}>
                     <div className="p-6 shadow-none ">
-                        <ul className={`${isSmallScreen ? 'flex flex-nowrap overflow-x-auto gap-4 pb-2 no-scrollbar' : 'space-y-4'}`}>
+                        <ul className={`${isSmallScreen ? 'flex flex-nowrap overflow-x-auto xsm:mt-6 gap-4 pb-2 no-scrollbar' : 'space-y-4'}`}>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'info' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-sm cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'info' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(infoWeCollectRef, 'info')}
                             >
                                 Information We Collect

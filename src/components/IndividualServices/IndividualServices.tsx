@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
+import LoginModal from "../Home/LoginModal";
 
 interface PricingType {
   pricingtype: string;
@@ -59,6 +60,8 @@ const IndividualServices: React.FC = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const [cartItems, setCartItems] = useState<string[]>([]);
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
 
   const Router = useRouter();
 
@@ -111,6 +114,22 @@ const IndividualServices: React.FC = () => {
     }
   }, []);
 
+  // Listen for storage events (login/logout)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedUser = localStorage.getItem("user-info");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        setUserInfo(parsedUser);
+      } else {
+        setUserInfo(null);
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
+
   useEffect(() => {
     if (userInfo) {
       fetchCart();
@@ -160,6 +179,11 @@ const IndividualServices: React.FC = () => {
   }, [service, subcategoryId]);
 
   const toggleItemSelection = (subcategoryId: string) => {
+    if (!userInfo) {
+      setIsModalOpen(true);
+      return;
+    }
+
     setSelectedItems(prev => {
       if (prev.includes(subcategoryId)) {
         return prev.filter(id => id !== subcategoryId);
@@ -172,6 +196,11 @@ const IndividualServices: React.FC = () => {
   const handleAddSelected = () => {
     if (selectedItems.length === 0) {
       alert("Please select at least one service");
+      return;
+    }
+
+    if (!userInfo) {
+      setIsModalOpen(true);
       return;
     }
 
@@ -214,6 +243,14 @@ const IndividualServices: React.FC = () => {
 
   return (
     <div className="px-[10%] py-8">
+      {/* Login Modal */}
+      <LoginModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        isLoginMode={isLoginMode}
+        setIsLoginMode={setIsLoginMode}
+      />
+
       {/* Category Header */}
       <div className="mb-12 text-center">
         <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -310,6 +347,11 @@ const IndividualServices: React.FC = () => {
                 ) : (
                   <button
                     onClick={() => {
+                      if (!userInfo) {
+                        setIsModalOpen(true);
+                        return;
+                      }
+
                       if (isSelected) {
                         toggleItemSelection(item._id);
                       } else {

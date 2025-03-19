@@ -8,7 +8,6 @@ import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 import { HiMiniCheck } from "react-icons/hi2";
 
-
 // All the interfaces remain the same
 interface UserInfo {
     id: string;
@@ -104,11 +103,11 @@ function AddDetailContent() {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-    const [showLoginPrompt, setShowLoginPrompt] = useState<boolean>(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isLoginMode, setIsLoginMode] = useState<boolean>(true);
     const [subcategoryData, setSubcategoryData] = useState<SubcategoryData | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [cartItems, setCartItems] = useState<string[]>([]);
     const [instructionImages, setInstructionImages] = useState<string[]>([]);
     const [instructionAudio, setInstructionAudio] = useState<string | null>(null);
@@ -122,8 +121,8 @@ function AddDetailContent() {
     const router = useRouter();
     const pricingType = "daily";
 
-    console.log(cartItems);
     console.log(audioChunks);
+    console.log(cartItems);
 
     // Parse subcategory IDs from URL
     useEffect(() => {
@@ -142,13 +141,26 @@ function AddDetailContent() {
         }
     }, [subcategoriesParam, searchParams]);
 
+    // Check authentication status on component mount
     useEffect(() => {
         const storedUser = localStorage.getItem("user-info");
         if (storedUser) {
             const parsedUser = JSON.parse(storedUser);
             setUserInfo(parsedUser);
+            setIsAuthenticated(true);
+        } else {
+            // User is not authenticated, show login modal
+            setIsModalOpen(true);
         }
     }, []);
+
+    // Handle successful login
+    // const handleLoginSuccess = (userData: UserInfo) => {
+    //     setUserInfo(userData);
+    //     setIsAuthenticated(true);
+    //     setIsModalOpen(false);
+    //     fetchCart(); // Fetch cart after successful login
+    // };
 
     useEffect(() => {
         // Reset form when moving to next subcategory
@@ -207,12 +219,14 @@ function AddDetailContent() {
     }, [subcategoryData, pricingType, selectedPrice]);
 
     const fetchCart = async () => {
+        if (!userInfo?.token) return;
+
         try {
             const response = await fetch(
                 "https://api.menrol.com/api/v1/getUserServiceRequests",
                 {
                     headers: {
-                        Authorization: `Bearer ${userInfo?.token}`,
+                        Authorization: `Bearer ${userInfo.token}`,
                     },
                 }
             );
@@ -410,7 +424,7 @@ function AddDetailContent() {
 
     const handleSubmit = async () => {
         if (!userInfo?.token) {
-            setShowLoginPrompt(true);
+            setIsModalOpen(true);
             return;
         }
 
@@ -532,11 +546,12 @@ function AddDetailContent() {
                     </p>
                 </div>
 
-                {showLoginPrompt ? (
+                {/* If not authenticated, show login prompt */}
+                {!isAuthenticated ? (
                     <div className="flex flex-col items-center justify-center p-8">
                         <div className="text-xl font-semibold mb-4">Please Log In</div>
                         <p className="text-gray-600 mb-6 text-center">
-                            You need to be logged in to add items to your cart.
+                            You need to be logged in to book this service.
                         </p>
                         <div className="flex gap-4">
                             <button
@@ -546,20 +561,11 @@ function AddDetailContent() {
                                 Log In
                             </button>
                             <button
-                                onClick={() => {
-                                    setShowLoginPrompt(false);
-                                    setError(null);
-                                }}
+                                onClick={() => router.push('/')}
                                 className="bg-gray-100 text-gray-900 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
                             >
                                 Cancel
                             </button>
-                            <LoginModal
-                                isModalOpen={isModalOpen}
-                                setIsModalOpen={setIsModalOpen}
-                                isLoginMode={isLoginMode}
-                                setIsLoginMode={setIsLoginMode}
-                            />
                         </div>
                     </div>
                 ) : (
@@ -720,6 +726,14 @@ function AddDetailContent() {
                     </div>
                 )}
             </div>
+
+            {/* Login Modal */}
+            <LoginModal
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+                isLoginMode={isLoginMode}
+                setIsLoginMode={setIsLoginMode}         
+            />
         </>
     );
 }
