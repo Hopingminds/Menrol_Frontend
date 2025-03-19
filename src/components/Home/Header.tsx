@@ -304,11 +304,11 @@ const Header: React.FC = () => {
             >
               <span className="flex justify-center items-center gap-4 xsm:gap-1 xsm:text-[12px]">
                 <span className="hover:text-blue-500 transition-all duration-500">
-                  Login
+                  LOGIN
                 </span>{" "}
                 <span>|</span>{" "}
                 <span className="hover:text-blue-500 transition-all duration-500">
-                  signup
+                  SIGN UP
                 </span>
               </span>
             </button>
