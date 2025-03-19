@@ -2,17 +2,17 @@
 import React, { useRef, useState, useEffect, FC } from 'react';
 
 const Terms: FC = () => {
-const infoWeCollectRef = useRef<HTMLDivElement | null>(null);
-const howWeUseInfoRef = useRef<HTMLDivElement | null>(null);
-const dataSharingRef = useRef<HTMLDivElement | null>(null);
-const dataSecurityRef = useRef<HTMLDivElement | null>(null);
-const yourChoicesRef = useRef<HTMLDivElement | null>(null);
-const childrensPrivacyRef = useRef<HTMLDivElement | null>(null);
-const changesToPolicyRef = useRef<HTMLDivElement | null>(null);
-const refundCancellationRef = useRef<HTMLDivElement | null>(null);
-const changesToTerms = useRef<HTMLDivElement | null>(null);
-const contactUsRef = useRef<HTMLDivElement | null>(null);
-const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+    const infoWeCollectRef = useRef<HTMLDivElement | null>(null);
+    const howWeUseInfoRef = useRef<HTMLDivElement | null>(null);
+    const dataSharingRef = useRef<HTMLDivElement | null>(null);
+    const dataSecurityRef = useRef<HTMLDivElement | null>(null);
+    const yourChoicesRef = useRef<HTMLDivElement | null>(null);
+    const childrensPrivacyRef = useRef<HTMLDivElement | null>(null);
+    const changesToPolicyRef = useRef<HTMLDivElement | null>(null);
+    const refundCancellationRef = useRef<HTMLDivElement | null>(null);
+    const changesToTerms = useRef<HTMLDivElement | null>(null);
+    const contactUsRef = useRef<HTMLDivElement | null>(null);
+    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
     const [activeSection, setActiveSection] = useState<string>('');
@@ -32,7 +32,7 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
         if (ref.current) {
             if (isSmallScreen) {
                 window.scrollTo({
-                    top: ref.current.offsetTop - 20,
+                    top: ref.current.offsetTop + 290, // Increase this offset value to ensure the heading is visible
                     behavior: 'smooth',
                 });
             } else if (scrollContainerRef.current) {
@@ -47,7 +47,7 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     };
 
     return (
-        <div className="bg-gray-50 -mt-10 md:p-16 lg:p-24 xl:p-24 px-[5%]">
+        <div className="bg-gray-50 -mt-10 xsm:p-10 xsm:py-12 md:p-16 lg:p-24 xl:p-24 px-[5%]">
             <h1 className="text-4xl font-bold mb-4 text-center font-poppins">
                 Terms and <span className="text-[#0054A5] font-poppins">Conditions</span>
             </h1>
@@ -76,12 +76,11 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                                 <li
                                     key={item.id}
                                     onClick={() => scrollToSection(item.ref, item.id)}
-                                    className={`text-lg cursor-pointer font-poppins pl-2 border-l-4 ${
-                                        activeSection === item.id
-                                            ? 'border-[#0054A5] font-bold text-[#0054A5]'
-                                            : 'border-transparent text-gray-600 hover:text-black'
-                                    }`}
-                                    
+                                    className={`text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === item.id
+                                        ? 'border-[#0054A5] font-bold text-[#0054A5]'
+                                        : 'border-transparent text-gray-600 hover:text-black'
+                                        }`}
+
                                 >
                                     {item.label}
                                 </li>
@@ -126,8 +125,8 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                             b. User-Generated Content: You may have the opportunity to submit or create content on the Platform. By submitting content, you grant Menrol a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, and distribute such content.
                         </p>
                     </div>
-                     {/* Section: Data Sharing */}
-                     <div className="mb-8" ref={dataSharingRef}>
+                    {/* Section: Data Sharing */}
+                    <div className="mb-8" ref={dataSharingRef}>
                         <h2 className="text-2xl font-bold mb-4 font-poppins">Payments</h2>
                         <p className="text-gray-700 mb-2 font-poppins">
                             a. Payment Terms: If you make a purchase on the Platform, you agree to provide accurate payment information and authorize us to charge the specified amount.
@@ -185,15 +184,15 @@ const scrollContainerRef = useRef<HTMLDivElement | null>(null);
                         </p>
                     </div>
 
-            
+
                     <div className="mb-8" ref={contactUsRef}>
                         <h2 className="text-2xl font-bold mb-4 font-poppins">Contact Us</h2>
                         <p className="text-gray-700 mb-2 font-poppins">
-                        If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030</a>
+                            If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030</a>
                         </p>
                     </div>
 
-               
+
                 </section>
             </div>
         </div>

@@ -11,6 +11,7 @@ const PrivacyPolicy: FC = () => {
     const refundCancellationRef = useRef<HTMLDivElement | null>(null);
     const contactUsRef = useRef<HTMLDivElement | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+    const mainContainerRef = useRef<HTMLDivElement | null>(null);
 
     const [activeSection, setActiveSection] = useState<string>('');
     const [isSmallScreen, setIsSmallScreen] = useState<boolean>(false);
@@ -26,16 +27,63 @@ const PrivacyPolicy: FC = () => {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
+    useEffect(() => {
+        // Set up intersection observer to track which section is currently in view
+        if (!isSmallScreen) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Get section id from data attribute
+                        const sectionId = entry.target.getAttribute('data-section');
+                        if (sectionId) {
+                            setActiveSection(sectionId);
+                        }
+                    }
+                });
+            },
+            {
+                rootMargin: '-10% 0px -70% 0px', // Adjust this to control when the active state changes
+                threshold: 0.1
+            }
+        );
+
+        // Observe all section elements
+        const sections = [
+            infoWeCollectRef,
+            howWeUseInfoRef,
+            dataSharingRef,
+            dataSecurityRef,
+            yourChoicesRef,
+            childrensPrivacyRef,
+            changesToPolicyRef,
+            refundCancellationRef,
+            contactUsRef
+        ];
+
+        sections.forEach(ref => {
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => observer.disconnect();
+    }, [isSmallScreen]);
+
     const scrollToSection = (ref: RefObject<HTMLDivElement | null>, sectionName: string): void => {
         if (ref.current) {
             if (isSmallScreen) {
-                const yOffset = -10;
+                // For small screens, adjust the offset to account for any fixed headers
+                const yOffset = -80; // Adjust this value based on your header height
                 const y = ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
                 window.scrollTo({
                     top: y,
                     behavior: 'smooth',
                 });
             } else if (scrollContainerRef.current) {
+                // For larger screens, scroll within the container
                 const sectionTop = ref.current.offsetTop;
                 scrollContainerRef.current.scrollTo({
                     top: sectionTop - 10,
@@ -47,83 +95,82 @@ const PrivacyPolicy: FC = () => {
     };
 
     return (
-        <div className="bg-gray-50 -mt-10 xsm:p-6 sm:p-8 md:p-16 lg:p-24 xl:32 px-[5%]">
+        <div className="bg-gray-50 -mt-10 xsm:p-14 sm:p-8 md:p-16 lg:p-24 xl:32 px-[5%]" ref={mainContainerRef}>
             <h1 className="text-3xl xsm:text-4xl font-bold mb-4 text-center font-poppins">
                 Privacy <span className="text-[#0054A5] font-poppins">Policy</span>
             </h1>
 
             <p className="text-base xsm:text-lg text-gray-600 text-center mb-10 font-poppins">
-                At Menrol, we are committed to protecting the privacy and security of our users  personal information.
+                At Menrol, we are committed to protecting the privacy and security of our users personal information.
                 This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data when you use our platform.
             </p>
 
             <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row gap-8 relative">
-                <aside className="lg:w-1/4 lg:sticky lg:top-8 h-fit xl:w-1/4 xl:sticky xl:top-16">
-                    <div className="p-6 shadow-none">
-                        <ul className="space-y-4">
+                <aside className={`${isSmallScreen ? 'sticky top-0 bg-gray-50 z-10 py-2' : 'lg:w-1/4 lg:sticky lg:top-8 h-fit xl:w-1/4 xl:sticky xl:top-16'}`}>
+                    <div className="p-6 shadow-none ">
+                        <ul className={`${isSmallScreen ? 'flex flex-nowrap overflow-x-auto gap-4 pb-2 no-scrollbar' : 'space-y-4'}`}>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'info' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'info' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(infoWeCollectRef, 'info')}
                             >
                                 Information We Collect
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'how' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'how' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(howWeUseInfoRef, 'how')}
                             >
                                 How We Use Your Information
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'data' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'data' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(dataSharingRef, 'data')}
                             >
                                 Data Sharing and Disclosure
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'security' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'security' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(dataSecurityRef, 'security')}
                             >
                                 Data Security
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'choices' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'choices' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(yourChoicesRef, 'choices')}
                             >
                                 Your Choices
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'children' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'children' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(childrensPrivacyRef, 'children')}
                             >
                                 Childrens Privacy
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'changes' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'changes' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(changesToPolicyRef, 'changes')}
                             >
                                 Changes to This Privacy Policy
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'refund' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'refund' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(refundCancellationRef, 'refund')}
                             >
                                 Refund & Cancellation Policy
                             </li>
                             <li
-                                className={`text-base xsm:text-lg cursor-pointer font-poppins pl-2 border-l-4 ${activeSection === 'contact' ? 'border[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
+                                className={`text-base xsm:text-lg cursor-pointer font-poppins ${isSmallScreen ? 'whitespace-nowrap px-3 py-1' : 'pl-2 border-l-4'} ${activeSection === 'contact' ? 'border-[#0054A5] font-bold text-[#0054A5]' : 'border-transparent text-gray-600 hover:text-black'}`}
                                 onClick={() => scrollToSection(contactUsRef, 'contact')}
                             >
                                 Contact Us
                             </li>
-                        
                         </ul>
                     </div>
                 </aside>
 
                 <div className="hidden md:block lg:block xl:block w-1 h-auto bg-[#0054A5]"></div>
 
-                <section className="lg:w-3/4 xl:w-3/4 max-h-[70vh] overflow-y-scroll no-scrollbar" ref={scrollContainerRef}>
-                <div className="mb-8" ref={infoWeCollectRef}>
+                <section className={`${isSmallScreen ? 'w-full' : 'lg:w-3/4 xl:w-3/4 max-h-[70vh] overflow-y-scroll no-scrollbar'}`} ref={scrollContainerRef}>
+                    <div className="mb-8" ref={infoWeCollectRef} data-section="info">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Information We Collect:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Personal Information: When you register an account with Menrol, we may collect personal information such as your name, email address, and other contact details.
@@ -140,7 +187,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: How We Use Your Information */}
-                    <div className="mb-8" ref={howWeUseInfoRef}>
+                    <div className="mb-8" ref={howWeUseInfoRef} data-section="how">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">How We Use Your Information:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Providing Services: We use the information we collect to provide, maintain, and improve our eLearning platform, including delivering content, processing payments, and facilitating communication between users.
@@ -157,7 +204,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Data Sharing and Disclosure */}
-                    <div className="mb-8" ref={dataSharingRef}>
+                    <div className="mb-8" ref={dataSharingRef} data-section="data">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Data Sharing and Disclosure:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Third-Party Service Providers: We may share your information with third-party service providers who assist us in delivering our services, such as payment processors and cloud hosting providers.
@@ -171,7 +218,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Data Security */}
-                    <div className="mb-8" ref={dataSecurityRef}>
+                    <div className="mb-8" ref={dataSecurityRef} data-section="security">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Data Security:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Security Measures: We take appropriate technical and organizational measures to protect your personal information from unauthorized access, loss, or alteration.
@@ -182,7 +229,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Your Choices */}
-                    <div className="mb-8" ref={yourChoicesRef}>
+                    <div className="mb-8" ref={yourChoicesRef} data-section="choices">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Your Choices:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Account Settings: You can access and update your account information through your profile settings.
@@ -193,7 +240,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Children's Privacy */}
-                    <div className="mb-8" ref={childrensPrivacyRef}>
+                    <div className="mb-8" ref={childrensPrivacyRef} data-section="children">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Childrens Privacy:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             Our platform is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13 without parental consent.
@@ -201,7 +248,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Changes to This Privacy Policy */}
-                    <div className="mb-8" ref={changesToPolicyRef}>
+                    <div className="mb-8" ref={changesToPolicyRef} data-section="changes">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Changes to This Privacy Policy:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             We may update this Privacy Policy from time to time to reflect changes in our practices or for legal reasons. We will notify you of any material changes by posting the revised policy on our website.
@@ -209,7 +256,7 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Refund & Cancellation Policy */}
-                    <div className="mb-8" ref={refundCancellationRef}>
+                    <div className="mb-8" ref={refundCancellationRef} data-section="refund">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Refund & Cancellation Policy:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
                             a. Refunds: If a service provider purchases a subscription on our platform and the payment is stuck during the subscription process, the money will be refunded within 7 business days.
@@ -220,10 +267,10 @@ const PrivacyPolicy: FC = () => {
                     </div>
 
                     {/* Section: Contact Us */}
-                    <div className="mb-8" ref={contactUsRef}>
+                    <div className="mb-8" ref={contactUsRef} data-section="contact">
                         <h2 className="text-xl xsm:text-2xl font-bold mb-4 font-poppins">Contact Us:</h2>
                         <p className="text-sm xsm:text-base text-gray-700 mb-2 font-poppins">
-                        If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030.</a>
+                            If you have any questions about these Terms, please contact us at: <a href="mailto:support@menrol.com" className="text-blue-500 underline mr-1">support@menrol.com</a>,<a href='tel:+91 77176 67030'>+91 77176 67030.</a>
                         </p>
                     </div>
                 </section>

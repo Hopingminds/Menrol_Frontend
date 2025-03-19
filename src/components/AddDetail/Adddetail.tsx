@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import LoginModal from '../Home/LoginModal';
 import { HiMiniCheck } from "react-icons/hi2";
 
+
 // All the interfaces remain the same
 interface UserInfo {
     id: string;
@@ -123,7 +124,7 @@ function AddDetailContent() {
 
     console.log(cartItems);
     console.log(audioChunks);
-    
+
     // Parse subcategory IDs from URL
     useEffect(() => {
         if (subcategoriesParam) {
@@ -273,9 +274,9 @@ function AddDetailContent() {
         if (!e.target.files || !userInfo?.token) {
             return;
         }
-    
+
         const files = Array.from(e.target.files);
-    
+
         // ✅ Check for max image limit
         if (instructionImages.length + files.length > 10) {
             toast.error("Maximum 10 images allowed");
@@ -287,7 +288,7 @@ function AddDetailContent() {
             files.forEach((file) => {
                 formData.append('instImages', file);
             });
-    
+
             const response = await fetch(
                 "https://api.menrol.com/api/v1/uploadServiceInstructionImage",
                 {
@@ -301,19 +302,19 @@ function AddDetailContent() {
             if (!response.ok) {
                 throw new Error("Failed to upload images");
             }
-    
+
             const data = await response.json();
             if (data.success && Array.isArray(data.file)) {
                 // Define the type of file in the response
                 const uploadedUrls = (data.file as FileResponse[]).map((file) => file.path);
-    
+
                 setInstructionImages(prev => [...prev, ...uploadedUrls]);
-    
+
                 toast.success("Images uploaded successfully");
             } else {
                 throw new Error(data.message || "Failed to upload images");
             }
-    
+
         } catch (err) {
             toast.error(err instanceof Error ? err.message : "Failed to upload images");
         } finally {
@@ -463,13 +464,11 @@ function AddDetailContent() {
                     body: JSON.stringify(payload), // convert the full object to JSON string, not nested stringify
                 }
             );
-
             if (!response.ok) {
-                const errorResponse = await response.text();
-                console.error("API Response Error:", errorResponse);
-                throw new Error(`Failed to add service request. Status: ${response.status}`);
+                const errorResponse = await response.json();
+                alert(errorResponse.message);
+                router.push('/orderdetails');
             }
-
             const data = await response.json();
             if (data.success) {
                 toast.success(`Service request added successfully!`, {
