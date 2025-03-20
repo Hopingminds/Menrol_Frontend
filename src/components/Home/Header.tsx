@@ -5,15 +5,10 @@ import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
 import LoginModal from "./LoginModal";
 import ProfileModal from "./ProfileModal";
-import Script from "next/script";
-import "./Language.css";
 import Cart from "./Cart";
 import Image from "next/image";
-import Location from "./Location";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import { MdLocationPin } from "react-icons/md";
-import { MdLanguage } from "react-icons/md";
 
 // Custom hook for typing effect
 export const useTypingEffect = () => {
@@ -187,31 +182,19 @@ const Header: React.FC = () => {
   return (
     <>
       <ToastContainer />
-      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-[#FFFFFF] shadow-md   xsm:w-full">
+      <header className="sticky top-0 z-50 flex items-center justify-between px-[7%] bg-[#FFFFFF] shadow-md xsm:w-full">
         <div className="">
           <Image
             src="/Images/logo2.png"
             alt="Logo"
-            className="lg:h-16 lg:w-16 md:w-14 md:h-14 xsm:w-12 xsm:h-12 w-16  cursor-pointer md:mr-2"
+            className="lg:h-16 lg:w-16 md:w-14 md:h-14 xsm:w-12 xsm:h-12 w-16 cursor-pointer md:mr-2"
             onClick={() => router.push("/")}
             width={500}
             height={200}
           />
         </div>
 
-        <div
-          className={` flex  justify-between items-center rounded-lg bg-[#FFFFFF] shadow-md border h-[3rem] xsm:h-[2rem]  xsm:w-[50%] xsm:rounded-md  `}
-        >
-          <div className="flex flex-row items-center justify-center  pt-5 xsm:hidden ">
-            <div className="flex items-center justify-center w-full ">
-              <MdLocationPin className="text-[#FF7E8B] lg:text-xl md:text-sm  ml-2 mb-4" />
-              <Location />
-            </div>
-          </div>
-          <span className="text-[#DADADA] md:text-xl lg:text-2xl font-light xsm:hidden">
-            |
-          </span>
-
+        <div className="flex justify-between items-center rounded-lg bg-[#FFFFFF] shadow-md border h-[3rem] xsm:h-[2rem] xsm:w-[50%] xsm:rounded-md">
           <div className="flex flex-1 items-center md:mx-2 lg:mx-6">
             <div className="relative w-[13vw] xsm:w-full xsm:h-[2rem]">
               <IoSearchOutline className="absolute xsm:text-[13px] xsm:hidden top-1/2 transform -translate-y-1/2 text-gray-500 text-lg md:hidden lg:block" />
@@ -220,12 +203,9 @@ const Header: React.FC = () => {
                 placeholder={dynamicPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10  xsm:px-4  md:px-0 lg:px-6 xsm:py-0 py-2 xsm:pt-2 text-sm rounded-lg focus:outline-none"
+                className="w-full pl-10 xsm:px-4 md:px-0 lg:px-6 xsm:py-0 py-2 xsm:pt-2 text-sm rounded-lg focus:outline-none"
               />
             </div>
-            <span className="text-[#DADADA] md:text-xl text-2xl font-light xsm:hidden">
-              |
-            </span>
 
             {searchQuery?.length >= 3 && (
               <div className="absolute top-[60px] bg-white shadow-lg z-50 max-h-60 overflow-y-auto rounded-md mt-1">
@@ -254,13 +234,6 @@ const Header: React.FC = () => {
                 )}
               </div>
             )}
-          </div>
-          <div className="xsm:hidden flex items-center justify-center">
-            <MdLanguage className="lg:text-xl font-extralight md:text-sm" />
-            <div
-              id="google_translate_element"
-              className="check-text  rounded-xl bg-white"
-            ></div>
           </div>
         </div>
         <div className={`flex justify-center lg:gap-2`}>
@@ -299,7 +272,7 @@ const Header: React.FC = () => {
             </div>
           ) : (
             <button
-              className="focus:outline-none md:text-xs lg:text-base text-black  "
+              className="focus:outline-none md:text-xs lg:text-base text-black"
               onClick={() => setIsModalOpen(true)}
             >
               <span className="flex justify-center items-center gap-4 xsm:gap-1 xsm:text-[12px]">
@@ -331,37 +304,6 @@ const Header: React.FC = () => {
           {isLoggedIn && <Cart />}
         </div>
       </header>
-
-      <Script
-        id="google-translate"
-        strategy="lazyOnload"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      />
-      <Script id="google-translate-init" strategy="lazyOnload">
-        {`
-          function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-              {
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,pa',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-              },
-              'google_translate_element'
-            );
-          }
-        `}
-      </Script>
-
-      <style jsx global>{`
-        .VIpgJd-ZVi9od-ORHb-OEVmcd {
-          display: none !important;
-          visibility: hidden !important;
-        }
-
-        body {
-          top: 0 !important;
-        }
-      `}</style>
     </>
   );
 };

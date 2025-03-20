@@ -68,9 +68,9 @@ const FooterPage = () => {
       }
     };
 
-    if(temp){
+    if (temp) {
       fetchServices();
-      temp=false;
+      temp = false;
     }
   }, []);
 
@@ -110,7 +110,7 @@ const FooterPage = () => {
       theme: "colored",
     });
 
-    
+
     console.log("Subscribed with email:", email);
   };
 
@@ -201,7 +201,7 @@ const FooterPage = () => {
               <Link
                 href="/terms"
                 className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
-                  "/contactus"
+                  "/terms"
                 )}`}
               >
                 Terms of Use
@@ -211,7 +211,7 @@ const FooterPage = () => {
               <Link
                 href="/privacy"
                 className={`hover:text-[#0054A5] decoration-[#0054A5] transition-all duration-300 font-dm-sans tracking-wide leading-relaxed ${isActive(
-                  "/contactus"
+                  "/privacy"
                 )}`}
               >
                 Privacy Policy
