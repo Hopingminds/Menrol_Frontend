@@ -14,7 +14,7 @@ const Home = () => {
           <div className="flex justify-end w-2/3 xsm:w-[60%] md:w-1/2 mt-6 md:mt-1">
             <div className="flex justify-end">
               <p className="text-gray-500 md:tracking-tight xsm:mr-4 xsm:text-xs xsm:text-start md:leading-tight 2xl:text-lg 2xl:tracking-wide 2xl:leading-relaxed md:text-sm text-lg self-end  text-justify font-dm-sans tracking-wide leading-relaxed ">
-                We perfect transforming every space into a spotless, fresh, and
+                We at <span className="font-extrabold text-grey">Menrol Skills Private Limited</span> perfect transforming every space into a spotless, fresh, and
                 hygienic environment
               </p>
             </div>
@@ -45,7 +45,7 @@ const Home = () => {
               {" "}
               <Feature
                 title="Professional Experts"
-                description="Our professional experts offer excelllent services, transforming your space into a fresh, hygienic haven."
+                description="Our professional experts at Menrol Skills Private Limited offer excellent services, transforming your space into a fresh, hygienic haven."
               />
             </div>
           </div>
