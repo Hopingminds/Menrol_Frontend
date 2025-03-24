@@ -2,6 +2,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { CiMail } from "react-icons/ci";
 import { FiPhone } from "react-icons/fi";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 interface FormData {
     name: string;
@@ -100,6 +101,18 @@ const GetInTouch = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Address section added below the grid */}
+                    <div className="flex items-center space-x-4 xsm:space-x-0 xsm:gap-2">
+                        <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
+                            <i className="fas fa-map-marker text-2xl xsm:text-xl"><FaMapMarkerAlt /></i>
+                        </div>
+                        <div className='xsm:flex xsm:flex-col'>
+                            <h4 className="text-lg font-medium text-gray-800 xsm:text-[13px]">Address</h4>
+                            <p className="text-gray-600 xsm:items-start xsm:text-[10px]">4th Floor, E-314, Industrial Area, Sector 75, Sahibzada Ajit Singh Nagar, Punjab 160055</p>
+                        </div>
+                    </div>
+
                     <div className="w-full lg:w-[80%] xl:w-[90%] 2xl:w-full h-1 bg-blue-200"></div>
                     <div className="text-gray-700 flex items-center">
                         <span className="text-green-600 bg-[rgba(36,35,42,1)] border border-green-600 rounded-md px-3 py-3">
