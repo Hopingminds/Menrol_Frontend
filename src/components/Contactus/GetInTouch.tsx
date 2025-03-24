@@ -3,6 +3,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { CiMail } from "react-icons/ci";
 import { FiPhone } from "react-icons/fi";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 interface FormData {
     name: string;
@@ -110,6 +111,17 @@ const GetInTouch = () => {
                         <div className='xsm:flex xsm:flex-col'>
                             <h4 className="text-lg font-medium text-gray-800 xsm:text-[13px]">Address</h4>
                             <p className="text-gray-600 xsm:items-start xsm:text-[10px]">4th Floor, E-314, Industrial Area, Sector 75, Sahibzada Ajit Singh Nagar, Punjab 160055</p>
+                        </div>
+                    </div>
+
+                    {/* LinkedIn section */}
+                    <div className="flex items-center space-x-4 xsm:space-x-0 xsm:gap-2">
+                        <div className="flex items-center justify-center w-12 h-12 bg-[rgba(0,84,165,1)] text-white rounded-md">
+                            <i className="fas fa-linkedin text-2xl xsm:text-xl"><FaLinkedin /></i>
+                        </div>
+                        <div className='xsm:flex xsm:flex-col'>
+                            <h4 className="text-lg font-medium text-gray-800 xsm:text-[13px]">LinkedIn</h4>
+                            <a href="https://www.linkedin.com/company/menrol-com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 hover:underline xsm:items-start xsm:text-[10px]">linkedin.com/company/menrol-com</a>
                         </div>
                     </div>
 

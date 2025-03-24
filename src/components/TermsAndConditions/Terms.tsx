@@ -129,10 +129,16 @@ const Terms: FC = () => {
                     <div className="mb-8" ref={dataSharingRef}>
                         <h2 className="text-2xl font-bold mb-4 font-poppins">Payments</h2>
                         <p className="text-gray-700 mb-2 font-poppins">
-                            a. Payment Terms: If you make a purchase on the Platform, you agree to provide accurate payment information and authorize us to charge the specified amount.
+                            a. No Payment Processing: We do not process payments; users directly contact and transact with service providers.
                         </p>
                         <p className="text-gray-700 mb-2 font-poppins">
-                            b. Refunds and Cancellations: Refunds and cancellations are subject to our refund policy, which is available on the Platform.
+                            b.  Direct Transactions: Any payments or agreements are handled between the user and the service provider without platform involvement.
+                        </p>
+                        <p className="text-gray-700 mb-2 font-poppins">
+                            c.No Shipping Involvement: As a labor service platform, we do not manage shipping or delivery of any materials. Users must coordinate directly with service providers for any such needs.
+                        </p>
+                        <p className="text-gray-700 mb-2 font-poppins">
+                            d.Liability Disclaimer: We are not responsible for disputes, delays, or issues related to payments, services, or materials. Users should clarify terms before engaging a service.
                         </p>
                     </div>
 
