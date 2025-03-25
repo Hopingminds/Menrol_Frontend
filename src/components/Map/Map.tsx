@@ -275,7 +275,7 @@ const Map: React.FC<MapProps> = ({
       const data = await response.json();
 
       if (response.ok && data.success) {
-        toast.success("Address saved successfully!");
+        // toast.success("Address saved successfully!");
         if (onAddressSave) {
           onAddressSave(selectedPlace.address, selectedPlace.location);
         }

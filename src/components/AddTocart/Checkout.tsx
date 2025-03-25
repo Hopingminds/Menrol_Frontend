@@ -165,7 +165,7 @@ const Checkout: React.FC = () => {
 
       const data = await response.json();
       if (data.success) {
-        toast.success("Address saved successfully!");
+        // toast.success("Address saved successfully!");
         // Trigger a refresh of the addresses
         setAddressRefresh(prev => prev + 1);
       } else {
@@ -173,7 +173,7 @@ const Checkout: React.FC = () => {
       }
     } catch (error) {
       console.error("Error saving address:", error);
-      toast.error("An error occurred while saving address");
+      alert("An error occurred while saving address");
     }
   };
 
